@@ -1,9 +1,3 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import { parse } from "cookie";
-import { PrismaClient } from "@prisma/client";
-import JWT from "jsonwebtoken"; // Add this line
-const prisma = new PrismaClient();
-
 export default async function handler(req, res) {
   const { token } = parse(req.headers.cookie || "");
 
@@ -26,17 +20,39 @@ export default async function handler(req, res) {
     return;
   }
 
-  try {
-    const weddingInvitationList = await prisma.weddingInvitationList.findMany({
-      where: {
-        userId: Number(userId),
-      },
-    });
+  if (req.method === "GET") {
+    try {
+      const weddingInvitationList = await prisma.weddingInvitationList.findMany(
+        {
+          where: {
+            userId: Number(userId),
+          },
+        }
+      );
 
-    console.log("Fetched wedding invitation list:", weddingInvitationList);
-    res.status(200).json(weddingInvitationList);
-  } catch (error) {
-    console.log("Failed to fetch data:", error);
-    res.status(500).json({ error: "Unable to fetch data" });
+      console.log("Fetched wedding invitation list:", weddingInvitationList);
+      res.status(200).json(weddingInvitationList);
+    } catch (error) {
+      console.log("Failed to fetch data:", error);
+      res.status(500).json({ error: "Unable to fetch data" });
+    }
+  } else if (req.method === "POST") {
+    const { ...data } = req.body;
+
+    try {
+      const newInvitation = await prisma.weddingInvitationList.create({
+        data: {
+          userId: Number(userId),
+          ...data,
+        },
+      });
+
+      res.status(201).json(newInvitation);
+    } catch (error) {
+      console.log("Failed to create invitation:", error);
+      res.status(500).json({ error: "Unable to create invitation" });
+    }
+  } else {
+    res.status(405).json({ error: "Method not allowed" });
   }
 }
