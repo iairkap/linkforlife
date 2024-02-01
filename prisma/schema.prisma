@@ -49,6 +49,10 @@ model WeddingInvitationList {
   userId Int
   invitedBy InvitedBy?
   specialRole SpecialRole?
+  isAttending Boolean @default(false)
+  isConfirmed Boolean @default(false)
+  plusOneConfirmed Boolean @default(false)
+  
 }
 
 enum InvitedBy{

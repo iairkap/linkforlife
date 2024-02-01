@@ -1,2 +1,12 @@
 node_modules
 .env
+
+
+.next
+.next/server/server-reference-manifest.json
+package-lock.json
+.gitignore
+.next/trace
+.next/cache/webpack/client-development/1.pack.gz
+.next/cache/webpack/client-development/index.pack.gz.old
+.next/cache/webpack/server-development/0.pack.gz
