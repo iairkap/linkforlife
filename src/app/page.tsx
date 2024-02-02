@@ -11,7 +11,6 @@ export default function Home() {
       <section className="login-section-1" >
         <h1>Log In</h1>
         <LoginForm />
-        <span>Already have an account? <span>Log In</span> </span>
       </section>
       <section className="login-section-2">
         <span>

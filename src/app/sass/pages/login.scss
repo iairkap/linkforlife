@@ -17,20 +17,25 @@
     height: 100%;
     display: flex;
     align-items: center;
+    width: 100%;
+    justify-content: center;
+    border-radius: 3rem;
   }
 }
 
 main {
   margin: 0px;
   padding: 0px;
-  border: 0.5px solid $font-color;
+  /*   border: 0.5px solid $font-color;
+ */
   margin: 2rem;
 }
 
 h1 {
-  font-size: $title-size;
+  font-size: $title-size + 1rem;
   font-family: $title-family;
   font-weight: $title-weight;
+  font-style: italic;
 }
 
 .login-section-1 {
@@ -65,4 +70,45 @@ h1 {
   object-fit: cover;
   z-index: 0;
   transform: (rotate(180deg));
+}
+
+.button-containerB,
+.input-containerB {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  gap: 1.2rem;
+}
+
+.button-containerB {
+  margin-top: 2rem;
+}
+
+span {
+  font-family: $font-family;
+  text-align: center;
+
+  > span:last-child,
+  .forget-password {
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+  }
+  > span:last-child:hover,
+  .forget-password:hover {
+    color: $secondary-color;
+  }
+}
+
+.forget-password {
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+
+.forget-password:hover {
+  color: $secondary-color;
+}
+
+.span-container {
+  @include flexbox(column, space-between, center);
+  gap: 0.5rem;
 }

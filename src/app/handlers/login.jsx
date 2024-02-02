@@ -10,6 +10,6 @@ export async function loginUser(username, password) {
     return response.data;
   } catch (error) {
     console.error(error);
-    return null;
+    return { error: error.response.data.error || "An error occurred." };
   }
 }

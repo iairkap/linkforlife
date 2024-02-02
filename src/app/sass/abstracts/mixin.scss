@@ -1,7 +1,6 @@
 @import "../abstracts/variables.scss";
 
 @mixin input-styles {
-  padding: 8px;
   font-size: 14px;
   border: 0.5px solid $font-color;
   border-radius: 8px;
@@ -10,7 +9,7 @@
 
   &:focus {
     border-color: $accent-color;
-    box-shadow: 0 0 5px $accent-color;
+    box-shadow: 0 0 15px $accent-color;
   }
 }
 

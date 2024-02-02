@@ -1,6 +1,17 @@
 @import "../abstracts/mixin.scss";
+@import "../abstracts/variables.scss";
 
 .my-input {
   @include input-styles;
-  width: 100%;
+  width: calc(100% - 40px);
+  padding: 14px 20px;
+}
+
+.my-input.error {
+  border-color: $accent-color; // Cambia el color del borde a rojo si hay un error
+}
+
+.error-message {
+  color: $accent-color;
+  padding: 14px 20px;
 }

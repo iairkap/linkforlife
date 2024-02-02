@@ -1,0 +1,48 @@
+@import "../abstracts/variables.scss";
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-a {
+  background-color: $secondary-color;
+  color: white;
+  padding: 14px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+  border-radius: 5px;
+  font-size: $subtitle-size;
+  font-family: $title-family;
+  font-weight: 400;
+  transition: all 0.3s ease-in-out;
+  font-weight: bold;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.button-b {
+  background-color: #81836900;
+  color: $secondary-color;
+  padding: 14px 20px;
+  border: 1px solid black;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+  border-radius: 5px;
+  font-size: $subtitle-size;
+  font-family: $title-family;
+  font-weight: 400;
+  transition: all 0.3s ease-in-out;
+
+  font-weight: bold;
+  &:hover {
+    background-color: #81836937;
+  }
+}
