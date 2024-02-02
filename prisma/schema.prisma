@@ -35,13 +35,14 @@ model User {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   weddingInvitationList WeddingInvitationList[]
+  groups Group[]
 }
 
 model WeddingInvitationList {
   id Int @id @default(autoincrement())
   name String
   lastName String
-  emailInvitation String @unique
+  emailInvitation String 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   plusOne Boolean @default(false)
@@ -52,7 +53,17 @@ model WeddingInvitationList {
   isAttending Boolean @default(false)
   isConfirmed Boolean @default(false)
   plusOneConfirmed Boolean @default(false)
-  
+  groups Group[]
+  groupId Int?
+  Table Int? 
+}
+
+model Group {
+  id                    Int                  @id @default(autoincrement())
+  name                  String
+  user                  User                 @relation(fields: [userId], references: [id])
+  userId                Int
+  weddingInvitationList WeddingInvitationList[]
 }
 
 enum InvitedBy{

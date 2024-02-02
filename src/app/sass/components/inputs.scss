@@ -1,0 +1,6 @@
+@import "../abstracts/mixin.scss";
+
+.my-input {
+  @include input-styles;
+  width: 100%;
+}

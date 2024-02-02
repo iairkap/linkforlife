@@ -1,21 +1,15 @@
+import { NextApiRequest, NextApiResponse } from "next";
+import { parse } from "cookie";
+import { PrismaClient } from "@prisma/client";
+import JWT from "jsonwebtoken";
+import verifyToken from "../verifyToken";
+// Add this line
+const prisma = new PrismaClient();
+
 export default async function handler(req, res) {
-  const { token } = parse(req.headers.cookie || "");
+  const userId = verifyToken(req);
 
-  if (!token) {
-    console.log("No token provided in the request");
-    res.status(400).json({ message: "No token provided" });
-    return;
-  }
-
-  console.log("Received token:", token);
-
-  let userId;
-  try {
-    const decoded = JWT.verify(token, process.env.JWT_SECRET);
-    userId = decoded.userId;
-    console.log("Decoded token:", decoded);
-  } catch (error) {
-    console.log("Token verification failed:", error);
+  if (!userId) {
     res.status(401).json({ message: "Invalid token" });
     return;
   }
@@ -27,30 +21,43 @@ export default async function handler(req, res) {
           where: {
             userId: Number(userId),
           },
+          include: {
+            groups: {
+              include: {
+                weddingInvitationList: true,
+              },
+            },
+          },
         }
       );
 
-      console.log("Fetched wedding invitation list:", weddingInvitationList);
       res.status(200).json(weddingInvitationList);
     } catch (error) {
-      console.log("Failed to fetch data:", error);
       res.status(500).json({ error: "Unable to fetch data" });
     }
   } else if (req.method === "POST") {
-    const { ...data } = req.body;
+    const invitations = req.body;
 
     try {
-      const newInvitation = await prisma.weddingInvitationList.create({
-        data: {
-          userId: Number(userId),
-          ...data,
-        },
+      const createInvitations = invitations.map((invitation) => {
+        return prisma.weddingInvitationList.create({
+          data: {
+            ...invitation,
+            user: {
+              connect: {
+                id: Number(userId),
+              },
+            },
+          },
+        });
       });
 
-      res.status(201).json(newInvitation);
+      const newInvitations = await prisma.$transaction(createInvitations);
+
+      res.status(201).json(newInvitations);
     } catch (error) {
-      console.log("Failed to create invitation:", error);
-      res.status(500).json({ error: "Unable to create invitation" });
+      console.log("Failed to create invitations:", error);
+      res.status(500).json({ error: "Unable to create invitations" });
     }
   } else {
     res.status(405).json({ error: "Method not allowed" });

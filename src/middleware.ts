@@ -1,8 +1,14 @@
-/* export { default } from "next-auth/middleware";
+import { NextRequest, NextResponse } from "next/server";
 
-export const config = { matcher: ["/", "/about"] };
- */
+export function middleware(req: NextRequest) {
+  const cookie = req.cookies.get("token");
+  if (!cookie) {
+    return NextResponse.redirect("http://localhost:3000/"); // use absolute URL
+  }
 
-export { default } from "next-auth/middleware";
+  return NextResponse.next();
+}
 
-export const config = { matcher: ["/dashboard"] };
+export const config = {
+  matcher: "/dashboard",
+};
