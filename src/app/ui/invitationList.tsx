@@ -1,383 +1,304 @@
-import React from 'react';
-import { useMemo, useState } from "react";
-import {
-    MaterialReactTable,
-    useMaterialReactTable,
-    MRT_GlobalFilterTextField,
-    MRT_ToggleFiltersButton,
-} from "material-react-table";
-import {
-    Box,
-    Button,
-    ListItemIcon,
-    MenuItem,
-    Typography,
-    lighten,
-} from "@mui/material";
-import {
-    CompassCalibrationTwoTone,
-    Email,
-    WhatsApp,
-} from "@mui/icons-material";
-import { AccountCircle, Send } from "@mui/icons-material";
-import { createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
+import React, { useMemo, useState } from 'react';
+import { useTable, useFilters, useGlobalFilter, usePagination, useRowSelect } from 'react-table';
+import "../sass/layout/table.scss"
+import Papa from 'papaparse';
 
 
-function TableInvitationList({ userInvitationList, isLoading, setIsLoading, groups, groupInvitations }: { userInvitationList: Array<object>, isLoading: boolean, setIsLoading: Function }) {
-
-
-
-
-    const [isFullScreen, setIsFullScreen] = useState(false);
-
-    const handleFullScreenToggle = () => {
-        setIsFullScreen(!isFullScreen);
-    };
-
-    const rowActions = useMemo(
-        () => [
-            {
-                id: "email",
-                label: "Send Email",
-                icon: <Email />,
-                onClick: (row: any) => {
-
-                },
-            },
-            {
-                id: "whatsapp",
-                label: "Send WhatsApp",
-                icon: <WhatsApp />,
-                onClick: (row: any) => {
-
-                },
-            },
-        ],
-        []
-    );
-    const columns = useMemo(
-        () => [
-            {
-                id: "Name",
-                header: "Name",
-                columns: [
-                    {
-                        accessorFn: (row: any) => `${row.name} ${row.lastName}`,
-                        id: "name",
-                        header: "Name",
-                        size: 200,
-
-                    },
-                    {
-                        accessorKey: "emailInvitation",
-                        enableClickToCopy: true,
-                        filterVariant: "autocomplete",
-                        header: "Email",
-                        size: 150,
-                    },
-                    {
-                        accessorKey: "phoneNumber",
-                        header: "Numero de telefono",
-                        size: 150,
-                    },
-                    {
-                        accessorKey: "invitedBy",
-                        header: "invited by",
-                        size: 150,
-                    },
-
-                    {
-                        id: 'groups',
-                        header: 'Groups',
-                        accessorFn: (row: any) => {
-                            // Asegúrate de que 'row.groups' es un array que contiene los grupos a los que pertenece el usuario
-                            return row.groups.map((group: any) => group.name).join(', ');
-                        },
-                        size: 200,
-                    },
-
-
-
-                    {
-                        id: 'isAttending',
-                        Header: () => (
-                            <div style={{ textAlign: 'center' }}>
-                                Asistirá
-                            </div>
-                        ),
-                        accessor: 'isAttending',
-                        Cell: ({ value }: any) => (
-                            <div style={{ textAlign: 'center' }}>
-                                {value ? '✔️' : 'x'}
-                            </div>
-                        ),
-                    },
-                    {
-                        id: 'isConfirmed',
-                        Header: () => (
-                            <div style={{ textAlign: 'center' }}>
-                                RSVP FORM
-                            </div>
-                        ),
-                        accessor: 'isConfirmed',
-                        Cell: ({ value }) => (
-                            <div style={{ textAlign: 'center' }}>
-                                {value ? '✔️' : 'x'}
-                            </div>
-                        ),
-                    },
-
-                ],
-            },
-        ],
-        []
-    );
-    const globalTheme = useTheme();
-
-    const tableTheme = useMemo(
-        () =>
-            createTheme({
-                palette: {
-                    text: {
-                        primary: "#000",
-                        secondary: "#000",
-                    },
-
-                    primary: {
-                        main: "#101934",
-                    },
-                    info: {
-                        main: "#A61C4F",
-                    },
-                    secondary: {
-                        main: "#A61C4F", // Reemplaza 'yourSecondaryColor' con el color que desees
-                    },
-                    background: {
-                        default:
-                            globalTheme.palette.mode === "light" ? "#F2F2F2" : "#F2F2F2",
-                    },
-                },
-
-                typography: {
-                    button: {
-                        textTransform: "none", //customize typography styles for all buttons in table by default
-                        fontSize: "1.4rem",
-                        fontFamily: "Poppins",
-                        color: "black",
-                    },
-                },
-                components: {
-                    MuiTooltip: {
-                        styleOverrides: {
-                            tooltip: {
-                                fontSize: "1.1rem",
-                                color: "black",
-                                //override to make tooltip font size larger
-                            },
-                        },
-                    },
-                    MuiSvgIcon: {
-                        styleOverrides: {
-                            root: {
-                                color: "black",
-                            },
-                        },
-                    },
-                    MuiList: {
-                        styleOverrides: {
-                            root: {
-                                backgroundColor: "rgba(166, 28, 79, 0.30)",
-                                width: "15rem",
-                            },
-                        },
-                    },
-                    MuiPaper: {
-                        styleOverrides: {
-                            root: {
-                                boxShadow: "none",
-                            },
-                        },
-                    },
-                    /*       MuiPopover: {
-                              styleOverrides: {
-                                  paper: {
-                                      left: '1200px !important',
-                                  },
-                              },
-                          }, */
-                    MuiChip: {
-                        styleOverrides: {
-                            colorPrimary: {
-                                backgroundColor: "transparent",
-                                color: "black",
-                                fontFamily: "Roboto",
-                                border: "1px solid black",
-                            },
-                        },
-                    },
-                    MuiIcon: {
-                        styleOverrides: {
-                            root: {
-                                color: "black", // Esto hará que todos los iconos sean blancos
-                            },
-                        },
-                    },
-                    MuiInput: {
-                        styleOverrides: {
-                            underline: {
-                                borderColor: "black", // Esto hará que las líneas del buscador sean blancas
-                                "&:before": {
-                                    borderBottomColor: "black", // Esto hará que las líneas del buscador sean blancas
-                                },
-                            },
-                        },
-                    },
-                    MuiTableCell: {
-                        styleOverrides: {
-                            root: {
-                                "&.Mui-selected": {
-                                    backgroundColor: "#A61C4F",
-                                },
-                                fontWeight: "900",
-                                color: "black",
-                                backgroundColor: "#F2F2F2",
-                            },
-                        },
-                    },
-                    MuiSelect: {
-                        styleOverrides: {
-                            root: {
-                                selected: {
-                                    backgroundColor: "red",
-                                },
-                            },
-                        },
-                    },
-                    MuiCheckbox: {
-                        styleOverrides: {
-                            root: {
-                                color: "black",
-                            },
-                        },
-                    },
-
-                    MuiAlert: {
-                        styleOverrides: {
-                            root: {
-                                backgroundColor: "#A61C4F",
-                                fontFamily: "Roboto",
-                                fontWeight: "900",
-                                color: "black", // Cambia el color de fondo del encabezado a negro
-                            },
-                        },
-                    },
-
-                    MuiSwitch: {
-                        styleOverrides: {
-                            thumb: {
-                                color: "000000", //change the color of the switch thumb in the columns show/hide menu to pink
-                            },
-                        },
-                    },
-                    MuiTableRow: {
-                        styleOverrides: {
-                            root: {
-                                selected: {
-                                    backgroundColor: "red",
-                                },
-                            },
-                        },
-                    },
-                    MuiOutlinedInput: {
-                        styleOverrides: {
-                            root: {},
-                        },
-                    },
-                },
-            }),
-
-        [globalTheme]
-    );
-
-    const options = {
-        muiTablePaperProps: {
-            style: {
-                zIndex: 1000, // Cambia este valor al zIndex que necesitas
-            },
-        },
-    };
-    const table = useMaterialReactTable({
-        columns,
-        data: userInvitationList,
-
-
-        rowActions,
-        enableColumnFilterModes: false,
-        enableColumnOrdering: true,
-        enableGrouping: true,
-        enableColumnPinning: true,
-        enableFacetedValues: true,
-        enableRowActions: true,
-        enableRowSelection: true,
-        enableFullScreenToggle: true,
-        initialState: {
-            showColumnFilters: false,
-            showGlobalFilter: false,
-
-            pagination: {
-                pageSize: 8,
-            },
-            density: "spacious",
-        },
-        paginationDisplayMode: "pages",
-        positionToolbarAlertBanner: "bottom",
-        muiSearchTextFieldProps: {
-            size: "small",
-            variant: "outlined",
-        },
-        muiPaginationProps: {
-            color: "secondary",
-            rowsPerPageOptions: [8, 20, 30],
-            shape: "rounded",
-            variant: "outlined",
-        },
-
-
-        renderRowActionMenuItems: ({ closeMenu }) => [
-            <MenuItem
-                key="email"
-                onClick={() => {
-                    closeMenu();
-                }}
-            >
-                <ListItemIcon>
-                    <Email />
-                </ListItemIcon>
-                Send Email
-            </MenuItem>,
-            <MenuItem
-                key="whatsapp"
-                onClick={() => {
-                    closeMenu();
-                }}
-            >
-                <ListItemIcon>
-                    <WhatsApp />
-                </ListItemIcon>
-                Send WhatsApp
-            </MenuItem>,
-        ],
-    });
+function GlobalFilter({
+    preGlobalFilteredRows,
+    globalFilter,
+    setGlobalFilter,
+}) {
+    const count = preGlobalFilteredRows.length;
+    const [isVisible, setIsVisible] = useState(false);
 
 
 
     return (
-        <div style={{ width: "100%", zIndex: isFullScreen ? 9999 : "auto" }}>
-            <ThemeProvider theme={tableTheme}>
-                <MaterialReactTable table={table} />
-            </ThemeProvider>
+
+        <div className='search-container'>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+
+            <button onClick={() => setIsVisible(!isVisible)} className='search'><span class="material-symbols-outlined">
+                search
+            </span></button>
+            <span>
+                <input
+                    value={globalFilter || ''}
+                    onChange={e => {
+                        setGlobalFilter(e.target.value || undefined);
+                    }}
+                    placeholder={`חיפוש`}
+                    className={`searchInput ${isVisible ? 'visible' : ''}`}
+                />
+            </span>
         </div>
     );
 }
 
+
+
+
+function TableInvitationList({ userInvitationList, groupInvitations }) {
+    const data = useMemo(() => userInvitationList, [userInvitationList]);
+
+
+
+
+    const columns = useMemo(
+        () => [
+            {
+                id: 'selection',
+                Header: ({ getToggleAllRowsSelectedProps }) => (
+                    <div>
+                        <input type="checkbox" {...getToggleAllRowsSelectedProps()} id="myCheckbox" />
+                        <label htmlFor="myCheckbox"></label>
+                    </div>
+                ),
+                Cell: ({ row }) => (
+                    <div>
+                        <input type="checkbox" {...row.getToggleRowSelectedProps()} id={`myCheckbox-${row.id}`} />
+                        <label htmlFor={`myCheckbox-${row.id}`}></label>
+                    </div>
+                )
+            },
+
+            {
+                Header: 'שם',
+                accessor: (row) => `${row.name} ${row.lastName}`,
+                className: 'column-name'
+            },
+
+            {
+                Header: 'אמייל',
+                accessor: 'emailInvitation',
+                className: 'column-email',
+
+            },
+            /*             {
+                            Header: 'מספר טלפון',
+                            accessor: 'phoneNumber',
+                            c
+                        }, */
+            {
+                Header: 'הוזמן על ידי',
+                accessor: 'invitedBy',
+                className: 'column-invitedBy',
+            },
+            {
+                Header: 'קבוצות',
+                id: 'groups',
+                accessor: (row) => row.groups.map((group) => group.name).join(', '),
+                filter: 'includes',
+                Filter: ({ column }) => {
+                    return (
+                        <input className='filterInput'
+                            value={column.filterValue || ''}
+                            onChange={(e) => column.setFilter(e.target.value)}
+                        />
+                    );
+                },
+                className: 'column-groups',
+                Cell: ({ value }) => (
+                    <div className="group-chip-container">
+                        {value.split(', ').map((groupName) => <span className="group-chip">{groupName}</span>)}
+                    </div>
+                ),
+            },
+            {
+                Header: 'משתתף',
+                accessor: 'isAttending',
+                Cell: ({ value }) => (
+                    value
+                        ? <span className="material-symbols-outlined">done</span>
+                        : <span className="material-symbols-outlined">close</span>
+                ),
+                className: 'column-isAttending',
+            },
+            {
+                Header: 'אישור נוכחות',
+                accessor: 'isConfirmed',
+                Cell: ({ value }) => (
+                    value
+                        ? <span className="material-symbols-outlined">done</span>
+                        : <span className="material-symbols-outlined">close</span>
+                ), className: 'column-isConfirmed',
+            },
+            {
+                Header: 'Actions',
+                Cell: ({ row }) => (
+                    <div>
+                        <button onClick={() => console.log(row.original)}><span class="material-symbols-outlined">
+                            more_horiz
+                        </span></button>
+                    </div>
+                ),
+            }
+        ],
+        []
+    );
+
+    const csv = Papa.unparse(data);
+
+    // Descargar los datos como un archivo CSV
+    /*     const blob = new Blob([csv], { type: 'text/csv' });
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'data.csv';
+        link.click();
+     */
+    const {
+        getTableProps,
+        getTableBodyProps,
+        headerGroups,
+        rows,
+        prepareRow,
+        preGlobalFilteredRows,
+        setGlobalFilter,
+        state: { globalFilter, selectedRowIds }, // Agrega selectedRowIds aquí
+        page, // Instead of using 'rows', we'll use page,
+        canPreviousPage,
+        canNextPage,
+        pageOptions,
+        pageCount,
+        gotoPage,
+        nextPage,
+        previousPage,
+        setPageSize,
+        allColumns,
+
+        getToggleHideAllColumnsProps,
+
+        state: { pageIndex, pageSize },
+    } = useTable(
+        {
+            columns,
+            data,
+            initialState: { pageIndex: 0, pageSize: 8 }, // Pass our initial page index and page size to the options
+        },
+        useFilters,
+        useGlobalFilter,
+        usePagination,
+        useRowSelect, // Asegúrate de que estás utilizando useRowSelect aquí
+
+    );
+    const [isMenuOpen, setMenuOpen] = useState(false);
+
+    return (
+
+        <>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+            <div className='headOfHeader'>
+
+                <div>
+                    <div onClick={() => setMenuOpen(!isMenuOpen)}>
+                        <span class="material-symbols-outlined">
+                            filter_list
+                        </span>
+                    </div>
+                    {isMenuOpen && (
+                        <div className="menu menu-open">
+                            <div>
+                                <input type="checkbox" {...getToggleHideAllColumnsProps()} id="toggle-all" />
+                                <label htmlFor="toggle-all">Toggle All</label>
+                            </div>
+                            {allColumns.map(column => (
+                                <div key={column.id}>
+                                    <label>
+                                        <input type="checkbox" {...column.getToggleHiddenProps()} id={`checkbox-${column.id}`} />
+                                        <label htmlFor={`checkbox-${column.id}`}>{column.Header}</label>
+                                    </label>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+
+                </div>
+                <GlobalFilter
+                    preGlobalFilteredRows={preGlobalFilteredRows}
+                    globalFilter={globalFilter}
+                    setGlobalFilter={setGlobalFilter}
+                />
+            </div >
+            <table {...getTableProps()} className="my-table">
+                <thead className='thead'>
+                    {headerGroups.map(headerGroup => (
+                        <tr {...headerGroup.getHeaderGroupProps()}>
+                            {headerGroup.headers.map(column => (
+                                <th {...column.getHeaderProps()} className={column.className}>{column.render('Header')}</th>
+                            ))}
+                        </tr>
+                    ))}
+                </thead>
+                <tbody {...getTableBodyProps()}>
+                    {page.map((row) => { // Cambia 'rows' por 'page'
+                        prepareRow(row);
+                        let rowProps = row.getRowProps();
+                        if (selectedRowIds[row.id]) {
+                            rowProps = { ...rowProps, style: { ...rowProps.style, background: "rgba(129, 131, 105, 0.32)" } }; // Cambia el estilo como quieras aquí
+                        }
+                        return (
+                            <tr {...rowProps} className="my-row">
+                                {row.cells.map(cell => (
+                                    <td {...cell.getCellProps({ className: `${cell.column.className} my-cell` })}>{cell.render('Cell')}</td>
+                                ))}
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </table>
+
+            <div>
+                <button onClick={() => gotoPage(0)} disabled={!canPreviousPage} className='filterButton'>
+                    {'<<'}
+                </button>{' '}
+                <button onClick={() => previousPage()} disabled={!canPreviousPage} className='filterButton'>
+                    {'<'}
+                </button>{' '}
+                <button onClick={() => nextPage()} disabled={!canNextPage} className='filterButton'>
+                    {'>'}
+                </button>{' '}
+                <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage} className='filterButton'>
+                    {'>>'}
+                </button>{' '}
+                <span>
+                    Page{' '}
+                    <strong>
+                        {pageIndex + 1} of {pageOptions.length}
+                    </strong>{' '}
+                </span>
+                <span>
+                    | Go to page:{' '}
+                    <input
+                        type="number"
+                        defaultValue={pageIndex + 1}
+                        onChange={e => {
+                            const page = e.target.value ? Number(e.target.value) - 1 : 0;
+                            gotoPage(page);
+                        }}
+
+                    />
+                </span>{' '}
+                <select
+                    value={pageSize}
+                    onChange={e => {
+                        setPageSize(Number(e.target.value));
+                    }}
+                >
+                    {[8, 16, 24].map(pageSize => (
+                        <option key={pageSize} value={pageSize}>
+                            Show {pageSize}
+                        </option>
+                    ))}
+                </select>
+            </div>
+        </>
+    );
+}
+
 export default TableInvitationList;
+

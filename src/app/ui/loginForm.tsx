@@ -40,17 +40,17 @@ function LoginForm() {
     return (
         <div className='container'>
             <div className='input-containerB'>
-                <InputField value={username} type="text" onChange={handleUsernameChange} placeholder='email' error={emailError} /> {/* Pasa el error de email como prop */}
-                <InputField value={password} type="password" onChange={handlePasswordChange} placeholder='password' error={passwordError} /> {/* Pasa el error de password como prop */}
+                <InputField value={username} type="text" onChange={handleUsernameChange} placeholder='אימייל' error={emailError} /> {/* Pasa el error de email como prop */}
+                <InputField value={password} type="password" onChange={handlePasswordChange} placeholder='סיסמה' error={passwordError} /> {/* Pasa el error de password como prop */}
 
             </div>
             <div className='button-containerB'>
-                <Button label='Log in' onClick={handleLoginClick} className='button-a' />
-                <Button label='Log in with Google' onClick={handleLoginClick} className='button-b' />
+                <Button label='התחבר' onClick={handleLoginClick} className='button-a' />
+                <Button label='התחבר עם Google' onClick={handleLoginClick} className='button-b' />
             </div>
             <div className='span-container'>
-                <span>Don't have an account?<span> Sign Up</span> </span>
-                <span className='forget-password'>Forget Password?</span>
+                <span>אין לך חשבון?<span> הירשם</span> </span>
+                <span className='forget-password'>שכחת סיסמה?</span>
             </div>
 
         </div>
@@ -58,3 +58,6 @@ function LoginForm() {
 }
 
 export default LoginForm;
+
+/*  
+ */

@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <main className="login-grid">
       <section className="login-section-1" >
-        <h1>Log In</h1>
+        <h1>התחבר</h1>
         <LoginForm />
       </section>
       <section className="login-section-2">

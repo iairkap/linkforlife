@@ -1,0 +1,152 @@
+@import "../abstracts/variables.scss";
+@import "../abstracts/mixin.scss";
+
+.my-table {
+  width: 100%;
+  min-height: 57rem;
+  border-collapse: separate;
+  border-spacing: 0rem;
+  font-family: $font-family;
+}
+
+.my-table th {
+}
+
+.my-table th,
+.my-table td {
+  padding: 1rem;
+  text-align: right;
+  border-bottom: 1px solid #818369;
+  min-height: 2rem;
+}
+
+.my-table .my-header-group {
+  background-color: $primary-color;
+}
+
+.my-table .my-row {
+}
+
+.column-groups {
+  width: 500px;
+}
+
+.column-name {
+  width: 10rem;
+}
+
+.column-email {
+  width: 10rem;
+}
+
+.filterButton {
+  min-width: 2rem;
+  min-height: 2rem;
+}
+
+input {
+}
+
+.group-chip-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.group-chip {
+  border-radius: 0.1875rem;
+  border: 1px solid #818369;
+  padding: 0rem 0.6875rem;
+  background: rgba(129, 131, 105, 0.32);
+}
+
+.search {
+  background-color: transparent;
+  border: none;
+}
+
+.headOfHeader,
+.search-container {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  align-items: center;
+  min-height: 46px;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+}
+
+.thead tr {
+  position: sticky;
+  background-color: #eee8dbdf;
+  top: 0;
+  z-index: 10; /* Asegúrate de que el encabezado esté por encima de las otras filas */
+}
+
+.searchInput {
+  @include input-styles;
+  padding: 14px 20px;
+}
+
+.searchInput {
+  @include input-styles;
+  padding: 14px 20px;
+  transition: all 0.2s ease-in-out;
+  width: 0;
+  visibility: hidden;
+}
+
+.searchInput.visible {
+  width: 200px; // O el ancho que desees
+  visibility: visible;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+/* Crea un nuevo checkbox */
+input[type="checkbox"] {
+  display: none;
+}
+
+/* Crea un nuevo checkbox */
+input[type="checkbox"] + label {
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+}
+
+input[type="checkbox"] + label:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 15px;
+  height: 15px;
+  border: 2px solid #836977;
+  background: #f9f9f9;
+}
+
+/* Estilo cuando el checkbox está marcado */
+input[type="checkbox"]:checked + label:before {
+  background: #836977;
+}
+
+.menu {
+  position: absolute;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  padding: 1.5rem;
+  z-index: 120; /* Asegúrate de que el menú aparezca por encima de otros elementos */
+  display: none; /* Por defecto, el menú está oculto */
+}
+
+.menu-open {
+  display: flex;
+  flex-direction: row;
+}
