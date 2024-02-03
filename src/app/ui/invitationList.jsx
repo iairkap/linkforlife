@@ -7,7 +7,6 @@ import {
   useRowSelect,
 } from "react-table";
 import "../sass/layout/table.scss";
-import { Column, TableState, Filters, IdType, Row } from "react-table";
 
 function GlobalFilter({
   preGlobalFilteredRows,
@@ -25,7 +24,7 @@ function GlobalFilter({
       />
 
       <button onClick={() => setIsVisible(!isVisible)} className="search">
-        <span className="material-symbols-outlined">search</span>
+        <span class="material-symbols-outlined">search</span>
       </button>
       <span>
         <input
@@ -46,7 +45,6 @@ function TableInvitationList({
   groupInvitations,
   isLoading,
   setIsLoading,
-  groups,
 }) {
   const data = useMemo(() => userInvitationList, [userInvitationList]);
 
@@ -147,7 +145,7 @@ function TableInvitationList({
         Cell: ({ row }) => (
           <div>
             <button onClick={() => console.log(row.original)}>
-              <span className="material-symbols-outlined">more_horiz</span>
+              <span class="material-symbols-outlined">more_horiz</span>
             </button>
           </div>
         ),
@@ -164,8 +162,6 @@ function TableInvitationList({
         link.download = 'data.csv';
         link.click();
      */
-
-  // Asegúrate de que estás utilizando useTable con los tipos correctos
   const {
     getTableProps,
     getTableBodyProps,
@@ -174,8 +170,8 @@ function TableInvitationList({
     prepareRow,
     preGlobalFilteredRows,
     setGlobalFilter,
-    state: { globalFilter, selectedRowIds },
-    page,
+    state: { globalFilter, selectedRowIds }, // Agrega selectedRowIds aquí
+    page, // Instead of using 'rows', we'll use page,
     canPreviousPage,
     canNextPage,
     pageOptions,
@@ -185,18 +181,21 @@ function TableInvitationList({
     previousPage,
     setPageSize,
     allColumns,
-  } = (useTable < TableOptions) &
-  (Filters <
-    Data >>
-      ({
-        columns,
-        data,
-        initialState: { pageIndex: 0, pageSize: 8 },
-      },
-      useFilters,
-      useGlobalFilter,
-      usePagination,
-      useRowSelect));
+
+    getToggleHideAllColumnsProps,
+
+    state: { pageIndex, pageSize },
+  } = useTable(
+    {
+      columns,
+      data,
+      initialState: { pageIndex: 0, pageSize: 8 }, // Pass our initial page index and page size to the options
+    },
+    useFilters,
+    useGlobalFilter,
+    usePagination,
+    useRowSelect // Asegúrate de que estás utilizando useRowSelect aquí
+  );
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -216,7 +215,7 @@ function TableInvitationList({
       <div className="headOfHeader">
         <div>
           <div onClick={() => setMenuOpen(!isMenuOpen)}>
-            <span className="material-symbols-outlined">filter_list</span>
+            <span class="material-symbols-outlined">filter_list</span>
           </div>
           {isMenuOpen && (
             <div className="menu menu-open">

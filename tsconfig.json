@@ -27,7 +27,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/pages/api/invitationListGeneral/index.js",
-    "src/app/ui/invitationList.jsx"
+    "src/app/ui/invitationList.tsx"
   ],
   "exclude": ["node_modules"]
 }
