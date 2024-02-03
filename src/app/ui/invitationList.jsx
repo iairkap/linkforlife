@@ -45,6 +45,7 @@ function TableInvitationList({
   groupInvitations,
   isLoading,
   setIsLoading,
+  groups,
 }) {
   const data = useMemo(() => userInvitationList, [userInvitationList]);
 
