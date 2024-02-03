@@ -1,10 +1,22 @@
 import { useEffect, useState } from "react";
 import { fetchInvitationList } from "./api";
 
+interface Group {
+  id: number;
+  // otras propiedades aquí...
+}
+
+interface UserInvitation {
+  groups: Group[];
+  // otras propiedades aquí...
+}
+
 export const useDashboardData = () => {
-  const [userInvitationList, setUserInvitationList] = useState([]);
+  const [userInvitationList, setUserInvitationList] = useState<
+    UserInvitation[]
+  >([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [groups, setGroups] = useState([]);
+  const [groups, setGroups] = useState<Group[][]>([]);
   const [groupInvitations, setGroupInvitations] = useState<
     Record<number, UserInvitation[]>
   >({});

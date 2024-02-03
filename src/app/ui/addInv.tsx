@@ -9,11 +9,19 @@ interface AddInvProps {
 }
 
 function AddInv({ isOpen, contentLabel, onRequestClose }: AddInvProps) {
+    const [value, setValue] = React.useState('');
+
     return (
         <div>
             <Modal isOpen={isOpen} onRequestClose={onRequestClose} contentLabel={contentLabel}>
                 <h2>Hola</h2>
-                <InputField label="Name" type="text" placeholder='Nombre' />
+                <InputField
+                    value={value}
+                    type="text"
+                    placeholder='Nombre'
+                    onChange={(e) => setValue(e.target.value)}
+                    error=''
+                />
             </Modal>
         </div>
     );
