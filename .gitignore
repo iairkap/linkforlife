@@ -12,3 +12,4 @@ package-lock.json
 .next/cache/webpack/server-development/0.pack.gz
 .next/server/pages-manifest.json
 invListB.tsx
+.vercel
