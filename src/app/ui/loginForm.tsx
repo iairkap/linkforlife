@@ -1,5 +1,5 @@
 "use client"
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import InputField from './InputField';
 import { useState } from 'react';
@@ -7,6 +7,9 @@ import Button from './button';
 import { loginUser } from "../handlers/login"
 import { useRouter } from 'next/navigation'
 import "../sass/pages/login.scss"
+import { signIn, getSession } from "next-auth/react";
+
+
 
 function LoginForm() {
     const [username, setUsername] = useState('');
@@ -46,7 +49,9 @@ function LoginForm() {
             </div>
             <div className='button-containerB'>
                 <Button label='התחבר' onClick={handleLoginClick} className='button-a' />
-                <Button label='התחבר עם Google' onClick={handleLoginClick} className='button-b' />
+                <Button label='התחבר עם Google' onClick={() => {
+                    signIn("google", { callbackUrl: "https://localhost:3000/dashboard" });
+                }} className='button-b' />
             </div>
             <div className='span-container'>
                 <span>אין לך חשבון?<span> הירשם</span> </span>

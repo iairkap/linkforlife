@@ -3,6 +3,7 @@ import LoginForm from "./ui/loginForm";
 import "./sass/pages/login.scss"
 import { PrismaClient } from "@prisma/client";
 import Flower from "../../public/flower.png"
+
 const prisma = new PrismaClient();
 
 export default function Home() {
@@ -23,6 +24,7 @@ export default function Home() {
           <Image src={Flower} alt="flower" width={150} />
         </div>
         <h2>bla</h2>
+
       </section>
     </main>
   );

@@ -26,8 +26,11 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/pages/api/invitationListGeneral/index.js",
-    "src/app/ui/invitationList.tsx"
+    "src/app/api/invitationListGeneral/index.js",
+    "src/app/ui/invitationList.tsx",
+    "src/pages/api/auth/[...nextauth]/index.js",
+    "src/app/lib/getUserSession.jsx",
+    "src/pages/api/auth/[...nextauth].js"
   ],
   "exclude": ["node_modules"]
 }
