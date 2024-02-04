@@ -3,10 +3,10 @@ import { NextRequest, NextResponse } from "next/server";
 export function middleware(req: NextRequest) {
   const sessionCookie = req.cookies.get("next-auth.session-token");
   console.log(sessionCookie);
-  const customCookie = req.cookies.get("token");
-  console.log(customCookie);
+  /*   const customCookie = req.cookies.get("token");
+  console.log(customCookie); */
 
-  if (!sessionCookie || !customCookie) {
+  if (!sessionCookie /* || !customCookie */) {
     return NextResponse.redirect("http://localhost:3000/"); // use absolute URL
   }
 

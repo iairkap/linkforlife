@@ -37,7 +37,6 @@ model User {
   weddingInvitationList WeddingInvitationList[]
   groups Group[]
   provider      String?
-  family Family[]
 }
 
 model WeddingInvitationList {
@@ -50,26 +49,16 @@ model WeddingInvitationList {
   plusOne Boolean @default(false)
   user User @relation(fields: [userId], references: [id])
   userId Int
-  invitedBy InvitedBy[]
-  specialRole SpecialRole? @default(none)
+  invitedBy InvitedBy?
+  specialRole SpecialRole?
   isAttending Boolean @default(false)
   isConfirmed Boolean @default(false)
   plusOneConfirmed Boolean @default(false)
   groups Group[]
   groupId Int?
   Table Int? 
-  family Family[]
 }
 
-
-
-model Family{
-  id Int @id @default(autoincrement())
-  name String
-  user User @relation(fields: [userId], references: [id])
-  userId Int
-  weddingInvitationList WeddingInvitationList[]
-}
 model Group {
   id                    Int                  @id @default(autoincrement())
   name                  String

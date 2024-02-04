@@ -11,12 +11,21 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  session
 }: Readonly<{
   children: React.ReactNode;
+  session: any;
 }>) {
+
+
+
+
   return (
     <html lang="he" dir="rtl">
-      <body className={inter.className}>{children}</body>
+
+      <body className={inter.className}>
+        {children}
+      </body>
     </html>
   );
 }

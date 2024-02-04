@@ -4,9 +4,12 @@ import "./sass/pages/login.scss"
 import { PrismaClient } from "@prisma/client";
 import Flower from "../../public/flower.png"
 
+import { decode } from 'next-auth/jwt';
 const prisma = new PrismaClient();
 
 export default function Home() {
+
+
   return (
     <main className="login-grid">
       <section className="login-section-1" >

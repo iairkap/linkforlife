@@ -8,17 +8,17 @@ import { loginUser } from "../handlers/login"
 import { useRouter } from 'next/navigation'
 import "../sass/pages/login.scss"
 import { signIn, getSession } from "next-auth/react";
-
+import { useSession } from 'next-auth/react';
 
 
 function LoginForm() {
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [emailError, setEmailError] = useState(''); // Nuevo estado para el error de email
     const [passwordError, setPasswordError] = useState(''); // Nuevo estado para el error de password
 
     const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setUsername(e.target.value);
+        setEmail(e.target.value);
     }
 
     const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,28 +27,27 @@ function LoginForm() {
 
     const router = useRouter();
 
-    const handleLoginClick = async () => {
-        const data = await loginUser(username, password);
-        if (data && data.token) {
-            router.push('/dashboard');
-        } else {
-            if (data.error === 'No user found with this email.') {
-                setEmailError(data.error);
-            } else if (data.error === 'Incorrect password.') {
-                setPasswordError(data.error);
-            }
-        }
-    }
+
+
 
     return (
         <div className='container'>
             <div className='input-containerB'>
-                <InputField value={username} type="text" onChange={handleUsernameChange} placeholder='אימייל' error={emailError} /> {/* Pasa el error de email como prop */}
+                <InputField value={email} type="text" onChange={handleUsernameChange} placeholder='אימייל' error={emailError} /> {/* Pasa el error de email como prop */}
                 <InputField value={password} type="password" onChange={handlePasswordChange} placeholder='סיסמה' error={passwordError} /> {/* Pasa el error de password como prop */}
 
             </div>
             <div className='button-containerB'>
-                <Button label='התחבר' onClick={handleLoginClick} className='button-a' />
+                <Button
+                    label='התחבר'
+                    onClick={() => {
+                        signIn("credentials", {
+
+                            email, password, callbackUrl: "https://localhost:3000/dashboard"
+                        })
+                    }}
+                    className='button-a'
+                />
                 <Button label='התחבר עם Google' onClick={() => {
                     signIn("google", { callbackUrl: "https://localhost:3000/dashboard" });
                 }} className='button-b' />
