@@ -7,9 +7,10 @@
   border-collapse: separate;
   border-spacing: 0rem;
   font-family: $font-family;
+  position: relative;
 }
 
-.my-table th {
+table {
 }
 
 .my-table th,
@@ -40,8 +41,6 @@
 }
 
 .filterButton {
-  min-width: 2rem;
-  min-height: 2rem;
 }
 
 input {
@@ -54,11 +53,12 @@ input {
   gap: 0.5rem;
 }
 
-.group-chip {
+.group-chip,
+.filterButton {
   border-radius: 0.1875rem;
-  border: 1px solid #818369;
+  border: 1px solid rgba(129, 131, 105, 0.518);
   padding: 0rem 0.6875rem;
-  background: rgba(129, 131, 105, 0.32);
+  background: #d4b5abae;
 }
 
 .search {
@@ -82,8 +82,9 @@ button {
 
 .thead tr {
   position: sticky;
-  background-color: #eee8dbdf;
-  top: 0;
+  background-color: #d4b5aba8;
+  backdrop-filter: blur(10px);
+  top: 40px;
   z-index: 10; /* Asegúrate de que el encabezado esté por encima de las otras filas */
 }
 
@@ -147,6 +148,51 @@ input[type="checkbox"]:checked + label:before {
 }
 
 .menu-open {
+  display: flex;
+  flex-direction: row;
+}
+
+.headOfHeader {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #fdfdfd;
+}
+
+article {
+  max-height: 70vh;
+  overflow-y: auto;
+  position: relative;
+
+  &::-webkit-scrollbar {
+    display: none;
+    padding-top: 46px; // Añade un padding-top al contenedor de desplazamiento
+    top: 46px;
+    width: 10px; // Ajusta el ancho del scrollbar
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1; // Ajusta el color de la pista del scrollbar
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #888; // Ajusta el color del pulgar del scrollbar
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555; // Ajusta el color del pulgar del scrollbar cuando se pasa el mouse por encima
+  }
+}
+
+.headito {
+  display: flex;
+  width: calc(100% - 2rem);
+  justify-content: space-between;
+  padding: 1 1rem;
+  align-items: center;
+}
+
+.filter-first {
   display: flex;
   flex-direction: row;
 }

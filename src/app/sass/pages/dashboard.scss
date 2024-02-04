@@ -1,13 +1,14 @@
-.table-container {
-  overflow-y: scroll;
-  border-radius: 1rem;
-  width: 90vw;
-  height: 70vh;
-}
-
-main {
+.main {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
+  width: 100%;
+  flex-direction: column;
+}
+
+.table-container {
+  width: 80vw;
+  border: 0.5px solid black;
+  padding-top: 0.5rem;
 }

@@ -1,0 +1,38 @@
+.graph-container,
+.confirmed,
+.not-confirmed,
+.is-attending,
+.not-attending {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.container {
+}
+
+.graph-container {
+  gap: 3rem;
+}
+
+.confirmed,
+.not-confirmed,
+.is-attending,
+.not-attending {
+  border-radius: 0.1875rem;
+  border: 1px solid #818369;
+  padding: 0rem 0.6875rem;
+  background: rgba(129, 131, 105, 0.32);
+  gap: 10px;
+}
+
+.not-confirmed,
+.not-attending {
+  background: rgba(163, 36, 36, 0.32);
+  border: 1px solid #836969;
+}
+
+.bold {
+  font-weight: bold;
+  font-weight: 900;
+}

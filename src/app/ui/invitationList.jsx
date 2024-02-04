@@ -46,6 +46,7 @@ function TableInvitationList({
   isLoading,
   setIsLoading,
   groups,
+  modalButton,
 }) {
   const data = useMemo(() => userInvitationList, [userInvitationList]);
 
@@ -201,158 +202,164 @@ function TableInvitationList({
 
   return (
     <>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
-      />
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
-      />
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
-      />
-      <div className="headOfHeader">
-        <div>
-          <div onClick={() => setMenuOpen(!isMenuOpen)}>
-            <span class="material-symbols-outlined">filter_list</span>
-          </div>
-          {isMenuOpen && (
-            <div className="menu menu-open">
-              <div>
-                <input
-                  type="checkbox"
-                  {...getToggleHideAllColumnsProps()}
-                  id="toggle-all"
-                />
-                <label htmlFor="toggle-all">Toggle All</label>
+      <article>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+        />
+
+        <div className="headOfHeader">
+          <div className="headito">
+            <div className="filter-first">
+              <div
+                onClick={() => setMenuOpen(!isMenuOpen)}
+                style={{ display: "flex", alignItems: "center" }}
+                className="filterButton"
+              >
+                Filter
+                <span class="material-symbols-outlined">filter_alt</span>{" "}
               </div>
-              {allColumns.map((column) => (
-                <div key={column.id}>
-                  <label>
+              {isMenuOpen && (
+                <div className="menu menu-open">
+                  <div>
+                    <button onClick={() => setMenuOpen(false)}>x</button>{" "}
                     <input
                       type="checkbox"
-                      {...column.getToggleHiddenProps()}
-                      id={`checkbox-${column.id}`}
+                      {...getToggleHideAllColumnsProps()}
+                      id="toggle-all"
                     />
-                    <label htmlFor={`checkbox-${column.id}`}>
-                      {column.Header}
-                    </label>
-                  </label>
+                    <label htmlFor="toggle-all">Toggle All</label>
+                  </div>
+                  {allColumns.map((column) => (
+                    <div key={column.id}>
+                      <label>
+                        <input
+                          type="checkbox"
+                          {...column.getToggleHiddenProps()}
+                          id={`checkbox-${column.id}`}
+                        />
+                        <label htmlFor={`checkbox-${column.id}`}>
+                          {column.Header}
+                        </label>
+                      </label>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              )}
+              <GlobalFilter
+                preGlobalFilteredRows={preGlobalFilteredRows}
+                globalFilter={globalFilter}
+                setGlobalFilter={setGlobalFilter}
+              />
             </div>
-          )}
+
+            <div>{modalButton}</div>
+            <div>
+              <button
+                onClick={() => gotoPage(0)}
+                disabled={!canPreviousPage}
+                className="filterButton"
+              >
+                {"<<"}
+              </button>{" "}
+              <button
+                onClick={() => previousPage()}
+                disabled={!canPreviousPage}
+                className="filterButton"
+              >
+                {"<"}
+              </button>{" "}
+              <button
+                onClick={() => nextPage()}
+                disabled={!canNextPage}
+                className="filterButton"
+              >
+                {">"}
+              </button>{" "}
+              <button
+                onClick={() => gotoPage(pageCount - 1)}
+                disabled={!canNextPage}
+                className="filterButton"
+              >
+                {">>"}
+              </button>{" "}
+              <span>
+                Page{" "}
+                <strong>
+                  {pageIndex + 1} of {pageOptions.length}
+                </strong>{" "}
+              </span>
+              <span>
+                | Go to page:{" "}
+                <input
+                  type="number"
+                  defaultValue={pageIndex + 1}
+                  onChange={(e) => {
+                    const page = e.target.value
+                      ? Number(e.target.value) - 1
+                      : 0;
+                    gotoPage(page);
+                  }}
+                />
+              </span>{" "}
+              <select
+                value={pageSize}
+                onChange={(e) => {
+                  setPageSize(Number(e.target.value));
+                }}
+              >
+                {[8, 16, 24].map((pageSize) => (
+                  <option key={pageSize} value={pageSize}>
+                    Show {pageSize}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
         </div>
-        <GlobalFilter
-          preGlobalFilteredRows={preGlobalFilteredRows}
-          globalFilter={globalFilter}
-          setGlobalFilter={setGlobalFilter}
-        />
-      </div>
-      <table {...getTableProps()} className="my-table">
-        <thead className="thead">
-          {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()} className={column.className}>
-                  {column.render("Header")}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {page.map((row) => {
-            // Cambia 'rows' por 'page'
-            prepareRow(row);
-            let rowProps = row.getRowProps();
-            if (selectedRowIds[row.id]) {
-              rowProps = {
-                ...rowProps,
-                style: {
-                  ...rowProps.style,
-                  background: "rgba(129, 131, 105, 0.32)",
-                },
-              }; // Cambia el estilo como quieras aquí
-            }
-            return (
-              <tr {...rowProps} className="my-row">
-                {row.cells.map((cell) => (
-                  <td
-                    {...cell.getCellProps({
-                      className: `${cell.column.className} my-cell`,
-                    })}
-                  >
-                    {cell.render("Cell")}
-                  </td>
+        <table {...getTableProps()} className="my-table">
+          <thead className="thead">
+            {headerGroups.map((headerGroup) => (
+              <tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map((column) => (
+                  <th {...column.getHeaderProps()} className={column.className}>
+                    {column.render("Header")}
+                  </th>
                 ))}
               </tr>
-            );
-          })}
-        </tbody>
-      </table>
-
-      <div>
-        <button
-          onClick={() => gotoPage(0)}
-          disabled={!canPreviousPage}
-          className="filterButton"
-        >
-          {"<<"}
-        </button>{" "}
-        <button
-          onClick={() => previousPage()}
-          disabled={!canPreviousPage}
-          className="filterButton"
-        >
-          {"<"}
-        </button>{" "}
-        <button
-          onClick={() => nextPage()}
-          disabled={!canNextPage}
-          className="filterButton"
-        >
-          {">"}
-        </button>{" "}
-        <button
-          onClick={() => gotoPage(pageCount - 1)}
-          disabled={!canNextPage}
-          className="filterButton"
-        >
-          {">>"}
-        </button>{" "}
-        <span>
-          Page{" "}
-          <strong>
-            {pageIndex + 1} of {pageOptions.length}
-          </strong>{" "}
-        </span>
-        <span>
-          | Go to page:{" "}
-          <input
-            type="number"
-            defaultValue={pageIndex + 1}
-            onChange={(e) => {
-              const page = e.target.value ? Number(e.target.value) - 1 : 0;
-              gotoPage(page);
-            }}
-          />
-        </span>{" "}
-        <select
-          value={pageSize}
-          onChange={(e) => {
-            setPageSize(Number(e.target.value));
-          }}
-        >
-          {[8, 16, 24].map((pageSize) => (
-            <option key={pageSize} value={pageSize}>
-              Show {pageSize}
-            </option>
-          ))}
-        </select>
-      </div>
+            ))}
+          </thead>
+          <tbody {...getTableBodyProps()}>
+            {page.map((row) => {
+              // Cambia 'rows' por 'page'
+              prepareRow(row);
+              let rowProps = row.getRowProps();
+              if (selectedRowIds[row.id]) {
+                rowProps = {
+                  ...rowProps,
+                  style: {
+                    ...rowProps.style,
+                    background: "rgba(129, 131, 105, 0.32)",
+                  },
+                }; // Cambia el estilo como quieras aquí
+              }
+              return (
+                <tr {...rowProps} className="my-row">
+                  {row.cells.map((cell) => (
+                    <td
+                      {...cell.getCellProps({
+                        className: `${cell.column.className} my-cell`,
+                      })}
+                    >
+                      {cell.render("Cell")}
+                    </td>
+                  ))}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </article>
     </>
   );
 }
