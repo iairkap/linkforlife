@@ -43,13 +43,13 @@ function LoginForm() {
                     onClick={() => {
                         signIn("credentials", {
 
-                            email, password, callbackUrl: "https://localhost:3000/dashboard"
+                            email, password, callbackUrl: "/dashboard"
                         })
                     }}
                     className='button-a'
                 />
                 <Button label='התחבר עם Google' onClick={() => {
-                    signIn("google", { callbackUrl: "https://localhost:3000/dashboard" });
+                    signIn("google", { callbackUrl: "/dashboard" });
                 }} className='button-b' />
             </div>
             <div className='span-container'>
