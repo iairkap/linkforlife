@@ -49,8 +49,8 @@ model WeddingInvitationList {
   plusOne Boolean @default(false)
   user User @relation(fields: [userId], references: [id])
   userId Int
-  invitedBy InvitedBy?
-  specialRole SpecialRole?
+  invitedBy String[]
+  specialRole String[]
   isAttending Boolean @default(false)
   isConfirmed Boolean @default(false)
   plusOneConfirmed Boolean @default(false)
@@ -66,29 +66,4 @@ model Group {
   userId                Int
   weddingInvitationList WeddingInvitationList[]
 }
-
-enum InvitedBy{
-  Bride
-  Groom
-  BridesFamily
-  GroomsFamily
-  Both
-}
-
-enum SpecialRole{
-  BestMan
-  MaidOfHonor
-  Bridesmaid
-  Groomsman
-  FlowerGirl
-  RingBearer
-  Usher
-  Reader
-  Officiant
-  Parent
-  Grandparent
-  Other
-  none
-}
-
 

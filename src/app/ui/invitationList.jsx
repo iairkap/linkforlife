@@ -14,7 +14,7 @@ function GlobalFilter({
   setGlobalFilter,
 }) {
   const count = preGlobalFilteredRows.length;
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   return (
     <div className="search-container">
@@ -23,8 +23,8 @@ function GlobalFilter({
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
       />
 
-      <button onClick={() => setIsVisible(!isVisible)} className="search">
-        <span class="material-symbols-outlined">search</span>
+      <button className="search">
+        <span class="material-symbols-outlined searchicon">search</span>
       </button>
       <span>
         <input
@@ -33,7 +33,7 @@ function GlobalFilter({
             setGlobalFilter(e.target.value || undefined);
           }}
           placeholder={`חיפוש`}
-          className={`searchInput ${isVisible ? "visible" : ""}`}
+          className="searchInput visible"
         />
       </span>
     </div>
@@ -100,7 +100,8 @@ function TableInvitationList({
       {
         Header: "קבוצות",
         id: "groups",
-        accessor: (row) => row.groups.map((group) => group.name).join(", "),
+        accessor: (row) =>
+          row.groups ? row.groups.map((group) => group.name).join(", ") : "",
         filter: "includes",
         Filter: ({ column }) => {
           return (
@@ -156,14 +157,6 @@ function TableInvitationList({
     []
   );
 
-  // Descargar los datos como un archivo CSV
-  /*     const blob = new Blob([csv], { type: 'text/csv' });
-        const url = window.URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = 'data.csv';
-        link.click();
-     */
   const {
     getTableProps,
     getTableBodyProps,
@@ -214,11 +207,14 @@ function TableInvitationList({
               <div
                 onClick={() => setMenuOpen(!isMenuOpen)}
                 style={{ display: "flex", alignItems: "center" }}
-                className="filterButton"
+                className="filter-b"
               >
-                Filter
-                <span class="material-symbols-outlined">filter_alt</span>{" "}
+                <span>מסנן</span>
+                <span class="material-symbols-outlined fa">
+                  filter_alt
+                </span>{" "}
               </div>
+
               {isMenuOpen && (
                 <div className="menu menu-open">
                   <div>
@@ -246,6 +242,7 @@ function TableInvitationList({
                   ))}
                 </div>
               )}
+
               <GlobalFilter
                 preGlobalFilteredRows={preGlobalFilteredRows}
                 globalFilter={globalFilter}
@@ -254,67 +251,19 @@ function TableInvitationList({
             </div>
 
             <div>{modalButton}</div>
-            <div>
-              <button
-                onClick={() => gotoPage(0)}
-                disabled={!canPreviousPage}
-                className="filterButton"
-              >
-                {"<<"}
-              </button>{" "}
-              <button
-                onClick={() => previousPage()}
-                disabled={!canPreviousPage}
-                className="filterButton"
-              >
-                {"<"}
-              </button>{" "}
-              <button
-                onClick={() => nextPage()}
-                disabled={!canNextPage}
-                className="filterButton"
-              >
-                {">"}
-              </button>{" "}
-              <button
-                onClick={() => gotoPage(pageCount - 1)}
-                disabled={!canNextPage}
-                className="filterButton"
-              >
-                {">>"}
-              </button>{" "}
-              <span>
-                Page{" "}
-                <strong>
-                  {pageIndex + 1} of {pageOptions.length}
-                </strong>{" "}
-              </span>
-              <span>
-                | Go to page:{" "}
-                <input
-                  type="number"
-                  defaultValue={pageIndex + 1}
-                  onChange={(e) => {
-                    const page = e.target.value
-                      ? Number(e.target.value) - 1
-                      : 0;
-                    gotoPage(page);
-                  }}
-                />
-              </span>{" "}
-              <select
-                value={pageSize}
-                onChange={(e) => {
-                  setPageSize(Number(e.target.value));
-                }}
-              >
-                {[8, 16, 24].map((pageSize) => (
-                  <option key={pageSize} value={pageSize}>
-                    Show {pageSize}
-                  </option>
-                ))}
-              </select>
-            </div>
+            <select
+              value={pageSize}
+              onChange={(e) => {
+                setPageSize(Number(e.target.value));
+              }}
+              className="selectePerSize"
+            >
+              {[8, 16, 24].map((pageSize) => (
+                <option key={pageSize} value={pageSize}>
+                  להציגçc {pageSize}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
         <table {...getTableProps()} className="my-table">
@@ -360,6 +309,33 @@ function TableInvitationList({
           </tbody>
         </table>
       </article>
+      <div className="pagination">
+        <button
+          onClick={() => previousPage()}
+          disabled={!canPreviousPage}
+          className="filterButton"
+        >
+          {"< Previous"}
+        </button>{" "}
+        <div>
+          {pageOptions.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => gotoPage(i)}
+              disabled={i === pageIndex}
+            >
+              {i + 1}
+            </button>
+          ))}
+        </div>
+        <button
+          onClick={() => nextPage()}
+          disabled={!canNextPage}
+          className="filterButton"
+        >
+          {"Next >"}
+        </button>{" "}
+      </div>
     </>
   );
 }

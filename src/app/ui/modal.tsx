@@ -20,6 +20,7 @@ function Modal({ isOpen, contentLabel, onRequestClose, children }: ModalProps) {
             overlayClassName="myOverlay"
         >
             {children}
+
         </ReactModal>
     );
 }

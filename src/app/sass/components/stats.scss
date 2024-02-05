@@ -15,13 +15,18 @@
   gap: 3rem;
 }
 
+.title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .confirmed,
 .not-confirmed,
 .is-attending,
 .not-attending {
   border-radius: 0.1875rem;
   border: 1px solid #818369;
-  padding: 0rem 0.6875rem;
+  padding: 0.5rem 0.6875rem;
   background: rgba(129, 131, 105, 0.32);
   gap: 10px;
 }

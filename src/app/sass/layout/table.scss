@@ -10,7 +10,8 @@
   position: relative;
 }
 
-table {
+tbody {
+  min-height: 500px;
 }
 
 .my-table th,
@@ -38,9 +39,6 @@ table {
 
 .column-email {
   width: 10rem;
-}
-
-.filterButton {
 }
 
 input {
@@ -190,9 +188,64 @@ article {
   justify-content: space-between;
   padding: 1 1rem;
   align-items: center;
+  margin-bottom: 0.5rem;
 }
 
 .filter-first {
   display: flex;
   flex-direction: row;
+}
+
+.pagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.filterButton {
+  border-radius: 0.1875rem;
+  border: 1px solid #818369;
+  padding: 0.5rem 0.6875rem;
+  background: transparent;
+  gap: 10px;
+  font-family: $font-family;
+  transition: all 0.2s ease-in-out;
+}
+
+.filterButton:hover {
+  background: rgba(129, 131, 105, 0.602);
+}
+
+.search-container {
+  position: relative;
+}
+
+.searchicon {
+  position: absolute;
+  left: 10px;
+  bottom: 24%;
+}
+
+.filter-b,
+.selectePerSize {
+  font-size: 14px;
+  border: 0.5px solid #545454;
+  border-radius: 8px;
+  outline: none;
+  background-color: #e7e5e4;
+  transition: all 0.2s ease-in-out;
+  padding: 0 1rem;
+}
+
+.selectePerSize {
+  height: 100%;
+  padding: 1rem 1rem;
+}
+
+tr {
+  max-height: 20px;
 }
