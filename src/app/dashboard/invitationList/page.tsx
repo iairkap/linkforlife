@@ -30,7 +30,6 @@ function Dashboard() {
         isLoading,
         setIsLoading,
         groups,
-        modalButton: <button onClick={handleOpenModal}>הוסף אורח</button>,
     });
 
     useEffect(() => {
@@ -64,7 +63,7 @@ function Dashboard() {
                     setGlobalFilter={tableProps.setGlobalFilter}
                     pageSize={tableProps.state.pageSize}
                     setPageSize={tableProps.setPageSize}
-                    modalButton={<button onClick={handleOpenModal}>הוסף אורח</button>}
+                    handleOpenModal={handleOpenModal}
                 />
                 {renderTable}
             </section>

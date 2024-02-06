@@ -188,9 +188,8 @@ article {
 
 .headito {
   display: flex;
-  width: calc(100% - 2rem);
+  width: 100%;
   justify-content: space-between;
-  padding: 1 1rem;
   align-items: center;
   margin-bottom: 0.5rem;
 }
@@ -198,6 +197,7 @@ article {
 .filter-first {
   display: flex;
   flex-direction: row;
+  gap: 0.75rem;
 }
 
 .pagination {
@@ -234,7 +234,6 @@ article {
   bottom: 24%;
 }
 
-.filter-b,
 .selectePerSize {
   font-size: 14px;
   border: 0.5px solid #545454;
@@ -265,4 +264,16 @@ th[data-checkbox-header="true"] {
 
 th[data-actions-header="true"] {
   border-top-left-radius: 0.5rem;
+}
+
+.headOfHeader {
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+}
+
+.filter-b {
+  border-radius: 0.5rem;
+  border: 1px solid var(--Grey-Grey-400, #858d9d);
+  padding: 0.59375rem 1rem 0.59375rem 0.5rem;
 }

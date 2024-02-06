@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import "../sass/components/searchBarTable.scss";
 function GlobalFilter({
   preGlobalFilteredRows,
   globalFilter,
@@ -10,26 +10,24 @@ function GlobalFilter({
   const [value, setValue] = useState(globalFilter);
 
   return (
-    <div className="search-container">
+    <div className="search-cont">
       <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
       />
 
-      <button className="search">
+      <input
+        value={value || ""}
+        onChange={(e) => {
+          setValue(e.target.value);
+          setGlobalFilter(e.target.value || undefined);
+        }}
+        placeholder={`חיפוש`}
+        className="searchInput-f"
+      />
+      <button className="search-icon">
         <span class="material-symbols-outlined searchicon">search</span>
       </button>
-      <span>
-        <input
-          value={value || ""}
-          onChange={(e) => {
-            setValue(e.target.value);
-            setGlobalFilter(e.target.value || undefined);
-          }}
-          placeholder={`חיפוש`}
-          className="searchInput visible"
-        />
-      </span>
     </div>
   );
 }

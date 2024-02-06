@@ -1,21 +1,38 @@
 import React from "react";
 import GlobalFilter from "./GlobalFilter";
-
+import "../sass/pages/dashboard.scss";
 const HeaderFilter = ({
   isMenuOpen,
   setMenuOpen,
+  handleOpenModal,
   allColumns,
   preGlobalFilteredRows,
   globalFilter,
   setGlobalFilter,
   pageSize,
   setPageSize,
-  modalButton,
+
   getToggleHideAllColumnsProps, // Asegúrate de que estás aceptando esto aquí
 }) => {
   return (
     <div className="headOfHeader">
       <div className="headito">
+        <button onClick={handleOpenModal} className="buttonPLus">
+          הוסף אורח +
+        </button>
+        {/*         <select
+          value={pageSize}
+          onChange={(e) => {
+            setPageSize(Number(e.target.value));
+          }}
+          className="selectePerSize"
+        >
+          {[10, 20, 30].map((pageSize) => (
+            <option key={pageSize} value={pageSize}>
+              להציג {pageSize}
+            </option>
+          ))}
+        </select> */}
         <div className="filter-first">
           <div
             onClick={() => setMenuOpen(!isMenuOpen)}
@@ -60,21 +77,6 @@ const HeaderFilter = ({
             setGlobalFilter={setGlobalFilter}
           />
         </div>
-
-        <div>{modalButton}</div>
-        <select
-          value={pageSize}
-          onChange={(e) => {
-            setPageSize(Number(e.target.value));
-          }}
-          className="selectePerSize"
-        >
-          {[10, 20, 30].map((pageSize) => (
-            <option key={pageSize} value={pageSize}>
-              להציג {pageSize}
-            </option>
-          ))}
-        </select>
       </div>
     </div>
   );
