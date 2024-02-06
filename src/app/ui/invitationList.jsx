@@ -16,7 +16,6 @@ function TableInvitationList({
   isLoading,
   setIsLoading,
   groups,
-  modalButton,
 }) {
   const data = useMemo(() => userInvitationList, [userInvitationList]);
 
