@@ -27,7 +27,7 @@ function Pagination({ previousPage, nextPage, canPreviousPage, canNextPage, page
                 disabled={!canPreviousPage}
                 className={`filterButtonD ${!canPreviousPage ? 'disabled' : ''}`}
             >
-                {"< Previous"}
+                {"< קודם"}
             </button>{" "}
             <div className='buttonNumberContainer'>
                 {pageOptions.map((_: any, i: number) => (
@@ -46,7 +46,7 @@ function Pagination({ previousPage, nextPage, canPreviousPage, canNextPage, page
                 disabled={!canNextPage}
                 className={`filterButtonD ${!canNextPage ? 'disabled' : ''}`}
             >
-                {"Next >"}
+                {"הבא >"}
             </button>{" "}
         </div>
     );
