@@ -7,9 +7,7 @@ export function middleware(req: NextRequest) {
   console.log(customCookie); */
 
   if (!sessionCookie /* || !customCookie */) {
-    return NextResponse.redirect(
-      "http://localhost:3000/" || "https://weddingplanningdashboard.vercel.app/"
-    ); // use absolute URL
+    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASE_URL}/`); // use absolute URL
   }
 
   return NextResponse.next();
