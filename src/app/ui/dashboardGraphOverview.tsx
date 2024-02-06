@@ -33,7 +33,6 @@ function DashboardGraph({ userInvitationList }: DashboardGraphProps): JSX.Elemen
 
     const { confirmed, notConfirmed, isAttending, notAttending, invitedBy } = getInvitationStats(userInvitationList);
 
-    console.log(userInvitationList)
 
     return (
         <div>

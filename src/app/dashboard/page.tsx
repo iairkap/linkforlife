@@ -21,7 +21,6 @@ function DashboardGeneral() {
     const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations } = useGlobalContext() as DashboardData;
 
     const { data: session } = useSession()
-    console.log(session);
 
 
     return (

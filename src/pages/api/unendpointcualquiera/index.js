@@ -9,13 +9,11 @@ export default async (req, res) => {
   try {
     if (token) {
       const decoded = await decode({ token, secret: nextSecret });
-      console.log(decoded);
       res.status(200).json({ decoded });
     } else {
       res.status(200).json({ decoded: "no token" });
     }
   } catch (error) {
-    console.log(error);
     res.status(500).json({ error });
   }
 };

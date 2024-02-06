@@ -9,7 +9,6 @@ interface ModalProps {
 }
 
 function Modal({ isOpen, contentLabel, onRequestClose, children }: ModalProps) {
-    console.log('Modal isOpen:', isOpen);
 
     return (
         <ReactModal

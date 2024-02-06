@@ -1,4 +1,4 @@
-import JWT from "jsonwebtoken";
+/* import JWT from "jsonwebtoken";
 import { parse } from "cookie";
 
 export default function verifyToken(req) {
@@ -23,3 +23,4 @@ export default function verifyToken(req) {
 
   return userId;
 }
+ */

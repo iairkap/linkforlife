@@ -47,7 +47,6 @@ export default async function handler(req, res) {
 
       res.status(201).json(newGroups);
     } catch (error) {
-      console.log("Failed to create groups:", error);
       res.status(500).json({ error: "Unable to create groups" });
     }
   } else {

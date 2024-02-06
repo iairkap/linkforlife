@@ -15,8 +15,6 @@ const HeaderFilter = ({
   setFilter,
   filter,
 }) => {
-  console.log(preGlobalFilteredRows);
-
   /* 
   const [filter, setFilter] = useState('all');
 

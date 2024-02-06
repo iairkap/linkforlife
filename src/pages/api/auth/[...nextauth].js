@@ -28,7 +28,6 @@ const authOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        console.log("Credentials:", credentials);
         if (!credentials?.email || !credentials.password) {
           return null;
         }
@@ -63,7 +62,6 @@ const authOptions = {
   ],
   callbacks: {
     session: function ({ session, token }) {
-      console.log("Session Callback", { session, token });
       return {
         ...session,
         user: {
@@ -74,7 +72,6 @@ const authOptions = {
       };
     },
     jwt: function ({ token, user }) {
-      console.log("JWT Callback", { token, user });
       if (user) {
         return {
           ...token,

@@ -31,7 +31,6 @@ function Dashboard() {
 
         setFilteredUserInvitationList(newFilteredUserInvitationList);
     }, [userInvitationList, filter]);
-    console.log(filter)
 
 
 
@@ -54,7 +53,6 @@ function Dashboard() {
         groups,
     });
     useEffect(() => {
-        console.log('userInvitationList has changed:', userInvitationList);
     }, [userInvitationList]);
 
     if (isLoading) {
@@ -65,7 +63,6 @@ function Dashboard() {
         );
     }
 
-    console.log('userInvitationList:', userInvitationList);
 
     return (
         <main className="main">

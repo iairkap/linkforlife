@@ -41,10 +41,8 @@ function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList }:
                 invitedBy,
                 specialRole,
             });
-            console.log('Calling refreshData');
             setUserInvitationList([...userInvitationList, response.data]);
             refreshData();
-            console.log('refreshData called');
 
             onRequestClose();
         } catch (error) {

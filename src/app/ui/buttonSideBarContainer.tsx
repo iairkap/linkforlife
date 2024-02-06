@@ -10,7 +10,6 @@ import { usePathname } from 'next/navigation';
 function ButtonSideBarContainer() {
     const pathName = usePathname();
 
-    console.log(pathName)
 
 
     const icons = [
