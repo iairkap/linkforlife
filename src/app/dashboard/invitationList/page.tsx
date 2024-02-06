@@ -1,13 +1,14 @@
-"use client"
+// Dashboard.jsx
 
-import React, { useEffect } from 'react';
+"use client"
+import React, { useEffect, useState } from 'react';
 import TableInvitationList from "../../ui/invitationList";
 import "../../sass/pages/dashboard.scss"
 import Loader from '../../ui/loader';
 import { useDashboardData } from '../../helpers/useDashboardData';
 import AddInv from '../../ui/addInv';
 import Graph from '../../ui/graph';
-
+import HeaderFilter from "../../ui/tableReference"
 
 function Dashboard() {
     const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations } = useDashboardData();
@@ -21,7 +22,16 @@ function Dashboard() {
         setIsModalOpen(false);
     };
 
+    const [isMenuOpen, setMenuOpen] = useState(false);
 
+    const { tableProps, renderTable } = TableInvitationList({
+        userInvitationList,
+        groupInvitations,
+        isLoading,
+        setIsLoading,
+        groups,
+        modalButton: <button onClick={handleOpenModal}>הוסף אורח</button>,
+    });
 
     useEffect(() => {
         console.log('userInvitationList has changed:', userInvitationList);
@@ -35,15 +45,8 @@ function Dashboard() {
         );
     }
 
-
-
-
     return (
         <main className="main">
-            <div className='title-container'>
-                <h1>לוח בקרה</h1>
-                <Graph userInvitationList={userInvitationList} />
-            </div>
             <section className='table-container'>
                 <AddInv
                     isOpen={isModalOpen}
@@ -51,15 +54,19 @@ function Dashboard() {
                     contentLabel="My Modal"
                     setUserInvitationList={setUserInvitationList}
                 />
-                <TableInvitationList
-                    key={userInvitationList.length} // Agrega esto
-                    userInvitationList={userInvitationList}
-                    isLoading={isLoading}
-                    setIsLoading={setIsLoading}
-                    groups={groups}
-                    groupInvitations={groupInvitations}
+                <HeaderFilter
+                    getToggleHideAllColumnsProps={tableProps.getToggleHideAllColumnsProps} // Pasa esto aquí
+                    isMenuOpen={isMenuOpen}
+                    setMenuOpen={setMenuOpen}
+                    allColumns={tableProps.allColumns}
+                    preGlobalFilteredRows={tableProps.preGlobalFilteredRows}
+                    globalFilter={""}
+                    setGlobalFilter={tableProps.setGlobalFilter}
+                    pageSize={tableProps.state.pageSize}
+                    setPageSize={tableProps.setPageSize}
                     modalButton={<button onClick={handleOpenModal}>הוסף אורח</button>}
                 />
+                {renderTable}
             </section>
         </main>
     );

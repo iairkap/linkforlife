@@ -13,7 +13,7 @@ const DashboardLayout = ({ children }: any) => {
         <   GlobalProvider>
             <div className="dashboard-layout">
                 <Sidebar />
-                <div className="layout">
+                <div className="flex">
                     <Header />
                     <div className='content'>{children}</div>
                 </div>

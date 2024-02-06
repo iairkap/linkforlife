@@ -1,0 +1,28 @@
+@import "../abstracts/mixin.scss";
+
+.search-input {
+  display: flex;
+  width: 20vw;
+  padding: 0.5rem 1rem;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--Grey-Grey-400, #858d9d);
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid var(--Dashboard, #eef0f2);
+  background: var(--Grey-Grey-50, #f7f9fc);
+  padding-right: 44px;
+}
+
+.search {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  right: 0;
+  top: 5px;
+}
+
+.search-container {
+  position: relative;
+}

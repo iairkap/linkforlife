@@ -6,3 +6,10 @@
   align-items: flex-start;
   gap: 0.5rem;
 }
+
+.image-container {
+  border-radius: 50%;
+  overflow: hidden;
+  width: 105px;
+  height: 132px;
+}

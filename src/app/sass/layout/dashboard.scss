@@ -5,11 +5,12 @@
   width: 100vw;
 }
 
-.layout {
+.flex {
   display: flex;
   width: 100%;
-  flex-direction: column;
+  flex-direction: column !important;
   position: relative;
+  padding: 0rem 0.75rem 0rem 0.75rem;
 }
 
 .content {
@@ -19,3 +20,7 @@
   justify-content: center;
   height: 100%;
 }
+
+/* 
+padding: 2rem 0.75rem 0rem 0.75rem;
+ */

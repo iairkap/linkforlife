@@ -1,0 +1,22 @@
+.general {
+  display: flex;
+  flex-direction: row;
+  width: calc(100% - 2.5rem);
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.75rem 1.25rem;
+}
+
+.image-container {
+  border-radius: 50%;
+  display: flex;
+  overflow: hidden;
+  background-color: red;
+}
+
+.notificationCenter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+}

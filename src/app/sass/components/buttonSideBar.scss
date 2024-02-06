@@ -27,6 +27,7 @@ $material-icons-fill-color: red;
   align-items: center;
   gap: 0.75rem;
   align-self: stretch;
+  border: transparent 0px;
 }
 
 a {
@@ -39,6 +40,33 @@ a {
   background: #e9eadd;
   display: flex;
   padding: 0.5rem 0.75rem;
+  align-items: center;
+  gap: 0.75rem;
+  align-self: stretch;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-family: $font-family-hebrew;
+  display: flex;
+  width: 12.25rem;
+  padding: 0.5rem 0.75rem;
+  align-items: center;
+  gap: 0.75rem;
+  display: flex;
+  padding: 0.5rem 0.75rem;
+  align-items: center;
+  gap: 0.75rem;
+  align-self: stretch;
+  color: #818369;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 0.75rem;
   align-self: stretch;

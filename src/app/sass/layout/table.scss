@@ -3,11 +3,15 @@
 
 .my-table {
   width: 100%;
-  min-height: 57rem;
   border-collapse: separate;
   border-spacing: 0rem;
   font-family: $font-family;
   position: relative;
+  border-radius: 0.5rem;
+  border: 1px solid #dbdeb9;
+  background: var(--Color, #fff);
+  color: $font-color;
+  border-top-left-radius: 0.5rem;
 }
 
 tbody {
@@ -16,7 +20,7 @@ tbody {
 
 .my-table th,
 .my-table td {
-  padding: 1rem;
+  padding: 1.0625rem 1.5rem;
   text-align: right;
   border-bottom: 1px solid #818369;
   min-height: 2rem;
@@ -80,10 +84,11 @@ button {
 
 .thead tr {
   position: sticky;
-  background-color: #d4b5aba8;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
   backdrop-filter: blur(10px);
-  top: 40px;
-  z-index: 10; /* Asegúrate de que el encabezado esté por encima de las otras filas */
+  top: 0;
+  z-index: 0; /* Asegúrate de que el encabezado esté por encima de las otras filas */
 }
 
 .searchInput {
@@ -158,7 +163,6 @@ input[type="checkbox"]:checked + label:before {
 }
 
 article {
-  max-height: 70vh;
   overflow-y: auto;
   position: relative;
 
@@ -247,5 +251,18 @@ article {
 }
 
 tr {
-  max-height: 20px;
+  padding: 1.0625rem 1.5rem;
+}
+
+th {
+  background-color: $table-background;
+}
+
+th[data-checkbox-header="true"] {
+  /* Aquí puedes agregar tus estilos */
+  border-top-right-radius: 0.5rem;
+}
+
+th[data-actions-header="true"] {
+  border-top-left-radius: 0.5rem;
 }

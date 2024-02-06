@@ -5,40 +5,10 @@ import {
   useGlobalFilter,
   usePagination,
   useRowSelect,
+  useColumnOrder,
 } from "react-table";
 import "../sass/layout/table.scss";
-
-function GlobalFilter({
-  preGlobalFilteredRows,
-  globalFilter,
-  setGlobalFilter,
-}) {
-  const count = preGlobalFilteredRows.length;
-  const [isVisible, setIsVisible] = useState(true);
-
-  return (
-    <div className="search-container">
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
-      />
-
-      <button className="search">
-        <span class="material-symbols-outlined searchicon">search</span>
-      </button>
-      <span>
-        <input
-          value={globalFilter || ""}
-          onChange={(e) => {
-            setGlobalFilter(e.target.value || undefined);
-          }}
-          placeholder={`חיפוש`}
-          className="searchInput visible"
-        />
-      </span>
-    </div>
-  );
-}
+import GlobalFilter from "./GlobalFilter";
 
 function TableInvitationList({
   userInvitationList,
@@ -156,7 +126,6 @@ function TableInvitationList({
     ],
     []
   );
-
   const {
     getTableProps,
     getTableBodyProps,
@@ -165,7 +134,7 @@ function TableInvitationList({
     prepareRow,
     preGlobalFilteredRows,
     setGlobalFilter,
-    state: { globalFilter, selectedRowIds }, // Agrega selectedRowIds aquí
+    state: { globalFilter, selectedRowIds }, // Correctly destructured here
     page, // Instead of using 'rows', we'll use page,
     canPreviousPage,
     canNextPage,
@@ -176,10 +145,8 @@ function TableInvitationList({
     previousPage,
     setPageSize,
     allColumns,
-
     getToggleHideAllColumnsProps,
-
-    state: { pageIndex, pageSize },
+    state: { pageIndex, pageSize }, // Only pageIndex and pageSize are in this state
   } = useTable(
     {
       columns,
@@ -189,19 +156,97 @@ function TableInvitationList({
     useFilters,
     useGlobalFilter,
     usePagination,
-    useRowSelect // Asegúrate de que estás utilizando useRowSelect aquí
+    useRowSelect, // Make sure you're using useRowSelect here
+    useColumnOrder
   );
-  const [isMenuOpen, setMenuOpen] = useState(false);
-
-  return (
-    <>
+  return {
+    tableProps: {
+      getTableProps,
+      getTableBodyProps,
+      headerGroups,
+      rows,
+      prepareRow,
+      preGlobalFilteredRows,
+      setGlobalFilter,
+      state: { globalFilter, selectedRowIds },
+      page,
+      canPreviousPage,
+      canNextPage,
+      pageOptions,
+      pageCount,
+      gotoPage,
+      nextPage,
+      previousPage,
+      setPageSize,
+      allColumns,
+      getToggleHideAllColumnsProps,
+      state: { pageIndex, pageSize },
+    },
+    renderTable: (
       <article>
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
         />
 
-        <div className="headOfHeader">
+        <table {...getTableProps()} className="my-table">
+          <thead className="thead">
+            {headerGroups.map((headerGroup) => (
+              <tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map((column, index) => (
+                  <th
+                    {...column.getHeaderProps()}
+                    className={column.className}
+                    data-checkbox-header={index === 0} // Asume que el checkbox está en la primera columna
+                    data-actions-header={
+                      index === headerGroup.headers.length - 1
+                    } // Asume que "actions" está en la última columna
+                  >
+                    {column.render("Header")}
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
+          <tbody {...getTableBodyProps()}>
+            {page.map((row) => {
+              // Cambia 'rows' por 'page'
+              prepareRow(row);
+              let rowProps = row.getRowProps();
+              if (selectedRowIds[row.id]) {
+                rowProps = {
+                  ...rowProps,
+                  style: {
+                    ...rowProps.style,
+                    background: "rgba(129, 131, 105, 0.32)",
+                  },
+                }; // Cambia el estilo como quieras aquí
+              }
+              return (
+                <tr {...rowProps} className="my-row">
+                  {row.cells.map((cell) => (
+                    <td
+                      {...cell.getCellProps({
+                        className: `${cell.column.className} my-cell`,
+                      })}
+                    >
+                      {cell.render("Cell")}
+                    </td>
+                  ))}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </article>
+    ),
+  };
+}
+
+export default TableInvitationList;
+
+{
+  /*  <div className="headOfHeader">
           <div className="headito">
             <div className="filter-first">
               <div
@@ -258,58 +303,18 @@ function TableInvitationList({
               }}
               className="selectePerSize"
             >
-              {[8, 16, 24].map((pageSize) => (
+              {[10, 20, 30].map((pageSize) => (
                 <option key={pageSize} value={pageSize}>
-                  להציגçc {pageSize}
+                  להציג {pageSize}
                 </option>
               ))}
             </select>
           </div>
-        </div>
-        <table {...getTableProps()} className="my-table">
-          <thead className="thead">
-            {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column) => (
-                  <th {...column.getHeaderProps()} className={column.className}>
-                    {column.render("Header")}
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
-          <tbody {...getTableBodyProps()}>
-            {page.map((row) => {
-              // Cambia 'rows' por 'page'
-              prepareRow(row);
-              let rowProps = row.getRowProps();
-              if (selectedRowIds[row.id]) {
-                rowProps = {
-                  ...rowProps,
-                  style: {
-                    ...rowProps.style,
-                    background: "rgba(129, 131, 105, 0.32)",
-                  },
-                }; // Cambia el estilo como quieras aquí
-              }
-              return (
-                <tr {...rowProps} className="my-row">
-                  {row.cells.map((cell) => (
-                    <td
-                      {...cell.getCellProps({
-                        className: `${cell.column.className} my-cell`,
-                      })}
-                    >
-                      {cell.render("Cell")}
-                    </td>
-                  ))}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </article>
-      <div className="pagination">
+        </div> */
+}
+
+{
+  /*   <div className="pagination">
         <button
           onClick={() => previousPage()}
           disabled={!canPreviousPage}
@@ -335,9 +340,5 @@ function TableInvitationList({
         >
           {"Next >"}
         </button>{" "}
-      </div>
-    </>
-  );
+      </div> */
 }
-
-export default TableInvitationList;

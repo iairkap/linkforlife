@@ -30,7 +30,8 @@
     "src/app/ui/invitationList.tsx",
     "src/pages/api/auth/[...nextauth]/index.js",
     "src/app/lib/getUserSession.jsx",
-    "src/pages/api/auth/[...nextauth].js"
+    "src/pages/api/auth/[...nextauth].js",
+    "src/app/ui/tableReference.jsx"
   ],
   "exclude": ["node_modules"]
 }
