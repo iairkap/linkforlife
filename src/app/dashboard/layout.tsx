@@ -6,7 +6,9 @@ import Header from '../ui/header';
 
 
 
+
 const DashboardLayout = ({ children }: any) => {
+    console.log(GlobalProvider)
 
 
     return (

@@ -1,14 +1,15 @@
 "use client"
 import React, { createContext, useContext } from 'react';
 import { useDashboardData } from '../helpers/useDashboardData';
-// Define el tipo de tus datos del dashboard aquí
+import Loader from "../ui/loader" // Asegúrate de importar tu componente Loader
+
 interface DashboardData {
-    userInvitationList: any; // Reemplaza 'any' con el tipo correcto
-    setUserInvitationList: any; // Reemplaza 'any' con el tipo correcto
+    userInvitationList: any;
+    setUserInvitationList: any;
     isLoading: boolean;
-    setIsLoading: any; // Reemplaza 'any' con el tipo correcto
-    groups: any; // Reemplaza 'any' con el tipo correcto
-    groupInvitations: any; // Reemplaza 'any' con el tipo correcto
+    setIsLoading: any;
+    groups: any;
+    groupInvitations: any;
 }
 
 const GlobalContext = createContext<DashboardData | null>(null);
@@ -18,7 +19,9 @@ const GlobalProvider: React.FC<{ children: React.ReactNode }> = ({ children }) =
 
     return (
         <GlobalContext.Provider value={{ userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations }}>
-            {children}
+            {isLoading ? <div style={{ display: "flex", height: "100vh", width: "100vw", alignItems: "center", justifyContent: "center" }}>
+                <Loader />
+            </div> : children}
         </GlobalContext.Provider>
     );
 };
