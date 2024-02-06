@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { fetchInvitationList } from "./api";
 
+import { useSession } from "next-auth/react";
+
 interface Group {
   id: number;
   // otras propiedades aquí...
@@ -12,6 +14,8 @@ interface UserInvitation {
 }
 
 export const useDashboardData = () => {
+  const { data: session } = useSession();
+
   const [userInvitationList, setUserInvitationList] = useState<
     UserInvitation[]
   >([]);

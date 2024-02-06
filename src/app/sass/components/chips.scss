@@ -1,6 +1,10 @@
-.group-chip {
+@mixin chip-style {
   border-radius: 0.1875rem;
   border: 1px solid #818369;
   padding: 0rem 0.6875rem;
   background: rgba(129, 131, 105, 0.32);
+}
+
+.group-chip {
+  @include chip-style;
 }

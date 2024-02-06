@@ -3,17 +3,17 @@ import { parse } from "cookie";
 import { PrismaClient } from "@prisma/client";
 import JWT from "jsonwebtoken";
 import { decode } from "next-auth/jwt";
+import { getToken } from "next-auth/jwt";
 
 const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
-  const token = req.cookies["next-auth.session-token"];
+  const token = await getToken({ req });
 
-  const nextSecret = process.env.NEXTAUTH_SECRET;
-  const jwtSecret = process.env.JWT_SECRET;
+  console.log(token);
 
-  const decoded = await decode({ token, secret: nextSecret });
-  const userEmail = decoded.token.email;
+  const userEmail = token.email;
+  console.log(userEmail);
 
   if (!userEmail) {
     res.status(401).json({ message: "Invalid token" });

@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState } from 'react';
 import { animated, useSpring } from '@react-spring/web';
 import HomeIcon from '@mui/icons-material/Home';
@@ -5,33 +7,31 @@ import EmailIcon from '@mui/icons-material/Email';
 import MenuIcon from '@mui/icons-material/Menu';
 import "../sass/components/sideBar.scss"
 import Image from 'next/image';
+import HamburguerIcon from './hamburguerIcon';
+import ButtonSideBarContainer from './buttonSideBarContainer';
+import { signOut } from "next-auth/react"
+
 const Sidebar = () => {
-    const [isExpanded, setIsExpanded] = useState(true);
-    const animation = useSpring({
-        width: isExpanded ? 200 : 50,
-    });
+    /*     const [isExpanded, setIsExpanded] = useState(true);
+        const animation = useSpring({
+            width: isExpanded ? 200 : 50,
+        }); */
 
     return (
         <section className='side-bar'>
-            <animated.div style={animation} className="sidebar">
+            <animated.div className="sidebar">
                 <div className='logo-container'>
-                    <Image src="/logofinal.png" alt="logo" width={150} height={40} />
+                    <Image src="/finalLogoB.png" alt="logo" width={196} height={38.33} />
 
+                    <button onClick={() => { }} className='button'>
+                    </button>
                 </div>
-                <br />
-                <button onClick={() => setIsExpanded(!isExpanded)}>
-                    <MenuIcon />
-                </button>
-                <ul>
-                    <li>
-                        <HomeIcon />
-                        {isExpanded && <span>לוח בקרה</span>}
-                    </li>
-                    <li>
-                        <EmailIcon />
-                        {isExpanded && <span>אורחים</span>}
-                    </li>
-                </ul>
+                <div>
+                    <ButtonSideBarContainer />
+                </div>
+                <div>
+                </div>
+
             </animated.div>
         </section>
     );

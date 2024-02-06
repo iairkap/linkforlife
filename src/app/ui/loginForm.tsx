@@ -11,8 +11,6 @@ import { signIn, getSession } from "next-auth/react";
 import { useSession } from 'next-auth/react';
 
 
-
-
 function LoginForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -32,7 +30,6 @@ function LoginForm() {
 
 
 
-
     return (
         <div className='container'>
             <div className='input-containerB'>
@@ -46,8 +43,8 @@ function LoginForm() {
                     onClick={() => {
                         signIn("credentials", {
 
-                            email, password
-                        }, { callbackUrl: "/dashboard" })
+                            email, password, callbackUrl: "/dashboard"
+                        })
                     }}
                     className='button-a'
                 />

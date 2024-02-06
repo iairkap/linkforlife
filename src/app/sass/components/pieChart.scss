@@ -1,0 +1,55 @@
+.pieContainer {
+  position: relative;
+  width: 200px;
+  height: 100px;
+  overflow: hidden;
+}
+
+.pieBackground {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: #eee;
+}
+
+.pie {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  clip: rect(
+    0,
+    100px,
+    200px,
+    0
+  ); // Ajustado para dibujar desde el borde derecho
+}
+
+.confirmed {
+  background-color: #0f0;
+  transform: rotate(-90deg);
+  transition: transform 1s;
+}
+
+.MuiChartsLegend-root {
+  display: none;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+.pie-chartFa {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pie-container {
+  display: relative;
+  width: 100%;
+}
+
+.number-position {
+}
