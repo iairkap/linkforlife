@@ -14,6 +14,27 @@ import Pagination from "../../ui/pagination"
 function Dashboard() {
     const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations } = useDashboardData();
     const [isModalOpen, setIsModalOpen] = React.useState(false);
+    const [filter, setFilter] = useState('all');
+    const [filteredUserInvitationList, setFilteredUserInvitationList] = useState(userInvitationList);
+
+
+    useEffect(() => {
+        const newFilteredUserInvitationList = userInvitationList.filter(invitation => {
+            if (filter === 'confirmed') {
+                return invitation.isConfirmed;
+            } else if (filter === 'notConfirmed') {
+                return !invitation.isConfirmed;
+            } else {
+                return true;
+            }
+        });
+
+        setFilteredUserInvitationList(newFilteredUserInvitationList);
+    }, [userInvitationList, filter]);
+    console.log(filter)
+
+
+
 
     const handleOpenModal = () => {
         setIsModalOpen(true);
@@ -26,13 +47,12 @@ function Dashboard() {
     const [isMenuOpen, setMenuOpen] = useState(false);
 
     const { tableProps, renderTable } = TableInvitationList({
-        userInvitationList,
+        userInvitationList: filteredUserInvitationList,
         groupInvitations,
         isLoading,
         setIsLoading,
         groups,
     });
-
     useEffect(() => {
         console.log('userInvitationList has changed:', userInvitationList);
     }, [userInvitationList]);
@@ -44,6 +64,8 @@ function Dashboard() {
             </main>
         );
     }
+
+    console.log('userInvitationList:', userInvitationList);
 
     return (
         <main className="main">
@@ -68,6 +90,9 @@ function Dashboard() {
                         pageSize={tableProps.state.pageSize}
                         setPageSize={tableProps.setPageSize}
                         handleOpenModal={handleOpenModal}
+                        setFilter={setFilter}
+                        filter={filter}
+
                     />
                     {renderTable}
                     <Pagination

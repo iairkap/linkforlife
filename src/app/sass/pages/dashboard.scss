@@ -38,3 +38,32 @@
   height: 32px;
   margin: 0px;
 }
+
+.button-container {
+  display: flex;
+  flex-direction: row !important;
+  gap: 0.75rem;
+}
+
+.button-chip,
+.button-chip-active {
+  border-radius: 6.25rem;
+  border: 1px solid #818369;
+  background: #e9eadd;
+  display: flex;
+  padding: 0.46875rem 1rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content;
+}
+
+.button-first-container {
+  display: flex;
+  flex-direction: row !important;
+}
+
+.button-chip {
+  background-color: transparent;
+  border: 1px solid var(--Grey-Grey-300, #989fad);
+}

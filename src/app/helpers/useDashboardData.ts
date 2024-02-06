@@ -9,6 +9,7 @@ interface Group {
 }
 
 interface UserInvitation {
+  isConfirmed: unknown;
   groups: Group[];
   // otras propiedades aquí...
 }

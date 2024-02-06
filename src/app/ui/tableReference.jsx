@@ -11,28 +11,61 @@ const HeaderFilter = ({
   setGlobalFilter,
   pageSize,
   setPageSize,
-
-  getToggleHideAllColumnsProps, // Asegúrate de que estás aceptando esto aquí
+  getToggleHideAllColumnsProps,
+  setFilter,
+  filter,
 }) => {
+  console.log(preGlobalFilteredRows);
+
+  /* 
+  const [filter, setFilter] = useState('all');
+
+
+  const filteredUserInvitationList = preGlobalFilteredRows.filter(
+    (invitation) => {
+      if (filter === "confirmed") {
+        return invitation.isConfirmed;
+      } else if (filter === "notConfirmed") {
+        return !invitation.isConfirmed;
+      } else {
+        return true;
+      }
+    }
+  ); */
+
   return (
     <div className="headOfHeader">
       <div className="headito">
-        <button onClick={handleOpenModal} className="buttonPLus">
-          הוסף אורח +
-        </button>
-        {/*         <select
-          value={pageSize}
-          onChange={(e) => {
-            setPageSize(Number(e.target.value));
-          }}
-          className="selectePerSize"
-        >
-          {[10, 20, 30].map((pageSize) => (
-            <option key={pageSize} value={pageSize}>
-              להציג {pageSize}
-            </option>
-          ))}
-        </select> */}
+        <div className="button-first-container">
+          <button onClick={handleOpenModal} className="buttonPLus">
+            הוסף אורח +
+          </button>
+          <div className="button-container">
+            <button
+              className={
+                (filter === "confirmed" && "button-chip-active") ||
+                "button-chip"
+              }
+              onClick={() =>
+                setFilter(filter === "confirmed" ? "all" : "confirmed")
+              }
+            >
+              Confirmed
+            </button>
+            <button
+              className={
+                (filter === "notConfirmed" && "button-chip-active") ||
+                "button-chip"
+              }
+              onClick={() =>
+                setFilter(filter === "notConfirmed" ? "all" : "notConfirmed")
+              }
+            >
+              Not Confirmed
+            </button>
+          </div>
+        </div>
+
         <div className="filter-first">
           <div
             onClick={() => setMenuOpen(!isMenuOpen)}
