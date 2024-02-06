@@ -18,7 +18,7 @@ interface Props {
 }
 
 const ButtonSideBar = ({ icon, Tooltip, Link: linkPath, isActive }: Props) => {
-    const iconElement = (typeof icon === 'object' && 'src' in icon)
+    const iconElement = (icon && typeof icon === 'object' && 'src' in icon)
         ? <img src={icon.src} height={icon.height} width={icon.width} style={{ filter: `blur(${icon.blurWidth}px ${icon.blurHeight}px)` }} />
         : icon;
 

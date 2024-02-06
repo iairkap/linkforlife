@@ -34,7 +34,6 @@ const MyPieChart: React.FC<PieChartProps> = ({ totalNumber, confirmedNumber }) =
                             endAngle: 90,
                         },
                     ]}
-                    hideLegend={true} // Oculta la leyenda
                     {...size}
                 />
             </div>
