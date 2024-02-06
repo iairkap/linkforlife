@@ -3,7 +3,7 @@
 import React from 'react';
 import { useGlobalContext } from './globalContext';
 import DashboardGraph from '../ui/dashboardGraphOverview';
-
+import { useSession } from 'next-auth/react';
 
 interface DashboardData {
     userInvitationList: any[]; // Reemplaza 'any' con el tipo correcto
@@ -15,10 +15,13 @@ interface DashboardData {
 }
 
 
+
 function DashboardGeneral() {
 
     const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations } = useGlobalContext() as DashboardData;
 
+    const { data: session } = useSession()
+    console.log(session);
 
 
     return (
