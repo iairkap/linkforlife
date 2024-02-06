@@ -71,6 +71,7 @@ const authOptions = {
           id: token.id,
           randomKey: token.randomKey,
         },
+        accessToken: token.accessToken, // Agrega el token de acceso a la sesión
       };
     },
     jwt: function ({ token, user }) {
