@@ -9,6 +9,7 @@ import { useDashboardData } from '../../helpers/useDashboardData';
 import AddInv from '../../ui/addInv';
 import Graph from '../../ui/graph';
 import HeaderFilter from "../../ui/tableReference"
+import Pagination from "../../ui/pagination"
 
 function Dashboard() {
     const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations } = useDashboardData();
@@ -66,6 +67,8 @@ function Dashboard() {
                     handleOpenModal={handleOpenModal}
                 />
                 {renderTable}
+
+
             </section>
         </main>
     );
