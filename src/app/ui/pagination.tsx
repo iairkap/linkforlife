@@ -1,7 +1,7 @@
 
 import React from 'react';
-
-
+import "../sass/components/pagination.scss"
+import { useState } from 'react';
 
 interface Props {
     previousPage: () => void;
@@ -15,22 +15,27 @@ interface Props {
 
 
 function Pagination({ previousPage, nextPage, canPreviousPage, canNextPage, pageOptions, pageIndex, gotoPage }: Props) {
+
+
+
+
     return (
 
         <div className="pagination">
             <button
                 onClick={() => previousPage()}
                 disabled={!canPreviousPage}
-                className="filterButton"
+                className={`filterButtonD ${!canPreviousPage ? 'disabled' : ''}`}
             >
                 {"< Previous"}
             </button>{" "}
-            <div>
+            <div className='buttonNumberContainer'>
                 {pageOptions.map((_: any, i: number) => (
                     <button
                         key={i}
                         onClick={() => gotoPage(i)}
                         disabled={i === pageIndex}
+                        className={i === pageIndex ? "active" : "filterButtonC"}
                     >
                         {i + 1}
                     </button>
@@ -39,7 +44,7 @@ function Pagination({ previousPage, nextPage, canPreviousPage, canNextPage, page
             <button
                 onClick={() => nextPage()}
                 disabled={!canNextPage}
-                className="filterButton"
+                className={`filterButtonD ${!canNextPage ? 'disabled' : ''}`}
             >
                 {"Next >"}
             </button>{" "}

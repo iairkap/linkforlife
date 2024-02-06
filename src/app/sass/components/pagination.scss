@@ -1,0 +1,59 @@
+.pagination {
+  display: flex;
+  flex-direction: row;
+  height: 2rem;
+}
+
+.buttonNumberContainer {
+  display: flex;
+}
+
+.active {
+  display: flex;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.75rem 0.875rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  background: #e9eadd;
+  color: #818369;
+  text-align: center;
+  font-family: Inter;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.25rem;
+}
+
+.filterButtonC {
+  display: flex;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.75rem 0.875rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  color: #818369;
+  text-align: center;
+  font-family: Inter;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.25rem;
+}
+
+.filterButtonD {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  border-radius: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--Grey-Grey-400, #858d9d);
+  border: 1px solid var(--Grey-Grey-400, #858d9d);
+  width: fit-content;
+  padding: 0.46875rem 0.5rem 0.46875rem 1rem;
+}

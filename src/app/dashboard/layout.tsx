@@ -10,7 +10,7 @@ const DashboardLayout = ({ children }: any) => {
 
 
     return (
-        <   GlobalProvider>
+        <GlobalProvider>
             <div className="dashboard-layout">
                 <Sidebar />
                 <div className="flex">

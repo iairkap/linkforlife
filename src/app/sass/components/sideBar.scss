@@ -2,7 +2,8 @@
 .side-bar {
   display: flex;
   width: 13.75rem;
-  height: 60rem;
+  /*   height: 60rem;
+ */
   padding-top: 2rem;
   flex-direction: column;
   align-items: flex-start;
@@ -22,6 +23,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0px 8px;
 }
 
 .button {

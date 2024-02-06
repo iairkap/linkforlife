@@ -47,28 +47,40 @@ function Dashboard() {
 
     return (
         <main className="main">
+            <h4 className='subtitle'>
+                רשימת אורחים            </h4>
             <section className='table-container'>
-                <AddInv
-                    isOpen={isModalOpen}
-                    onRequestClose={handleCloseModal}
-                    contentLabel="My Modal"
-                    setUserInvitationList={setUserInvitationList}
-                />
-                <HeaderFilter
-                    getToggleHideAllColumnsProps={tableProps.getToggleHideAllColumnsProps} // Pasa esto aquí
-                    isMenuOpen={isMenuOpen}
-                    setMenuOpen={setMenuOpen}
-                    allColumns={tableProps.allColumns}
-                    preGlobalFilteredRows={tableProps.preGlobalFilteredRows}
-                    globalFilter={""}
-                    setGlobalFilter={tableProps.setGlobalFilter}
-                    pageSize={tableProps.state.pageSize}
-                    setPageSize={tableProps.setPageSize}
-                    handleOpenModal={handleOpenModal}
-                />
-                {renderTable}
+                <div>
+                    <AddInv
+                        isOpen={isModalOpen}
+                        onRequestClose={handleCloseModal}
+                        contentLabel="My Modal"
+                        setUserInvitationList={setUserInvitationList}
+                    />
+                    <HeaderFilter
+                        getToggleHideAllColumnsProps={tableProps.getToggleHideAllColumnsProps} // Pasa esto aquí
+                        isMenuOpen={isMenuOpen}
+                        setMenuOpen={setMenuOpen}
+                        allColumns={tableProps.allColumns}
+                        preGlobalFilteredRows={tableProps.preGlobalFilteredRows}
+                        globalFilter={""}
+                        setGlobalFilter={tableProps.setGlobalFilter}
+                        pageSize={tableProps.state.pageSize}
+                        setPageSize={tableProps.setPageSize}
+                        handleOpenModal={handleOpenModal}
+                    />
+                    {renderTable}
+                    <Pagination
+                        previousPage={tableProps.previousPage}
+                        nextPage={tableProps.nextPage}
+                        canPreviousPage={tableProps.canPreviousPage}
+                        canNextPage={tableProps.canNextPage}
+                        pageOptions={tableProps.pageOptions}
+                        pageIndex={tableProps.state.pageIndex}
+                        gotoPage={tableProps.gotoPage}
+                    />
 
-
+                </div>
             </section>
         </main>
     );

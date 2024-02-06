@@ -1,9 +1,12 @@
+@import "../../sass/abstracts/variables.scss";
+
 .main {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   width: 100%;
   flex-direction: column;
+  margin-top: 0.4rem;
 }
 
 .table-container {
@@ -21,4 +24,17 @@
   justify-content: center;
   align-items: center;
   color: white;
+}
+
+.subtitle {
+  color: var(--Grey-Grey-400, #858d9d);
+  font-family: $font-family-hebrew;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 1.125rem */
+  place-self: flex-start;
+  padding: 0 1.25rem;
+  height: 32px;
+  margin: 0px;
 }

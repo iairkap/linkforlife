@@ -277,3 +277,14 @@ th[data-actions-header="true"] {
   border: 1px solid var(--Grey-Grey-400, #858d9d);
   padding: 0.59375rem 1rem 0.59375rem 0.5rem;
 }
+
+.conttable {
+  min-height: 40vw;
+  display: flex;
+}
+
+.disabled {
+  border-radius: 0.5rem;
+  border: 1px solid var(--Grey-Grey-400, #858d9d);
+  opacity: 0.2;
+}
