@@ -16,7 +16,10 @@
   cursor: pointer;
   width: 100%;
   opacity: 0.9;
-  border-radius: 5px;
+  display: flex;
+  border-radius: 0.5rem;
+  align-items: center;
+  justify-content: center;
   font-size: $subtitle-size;
   font-family: $title-family;
   font-weight: 400;
@@ -35,7 +38,7 @@
   cursor: pointer;
   width: 100%;
   opacity: 0.9;
-  border-radius: 5px;
+  border-radius: 0.5rem;
   font-size: $subtitle-size;
   font-family: $title-family;
   font-weight: 400;

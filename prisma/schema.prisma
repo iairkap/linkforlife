@@ -24,7 +24,6 @@ model Sorteo {
   weddingPlace String?
   createdAt DateTime @default(now())
 }
-
 model User {
   id            Int       @id @default(autoincrement())
   name          String?
@@ -57,6 +56,7 @@ model WeddingInvitationList {
   groups Group[]
   groupId Int?
   Table Int? 
+  phoneNumber String?
 }
 
 model Group {
@@ -66,4 +66,3 @@ model Group {
   userId                Int
   weddingInvitationList WeddingInvitationList[]
 }
-

@@ -1,14 +1,34 @@
-.layout {
+/* .layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  width: 90%;
+  width: 100%;
   gap: 2rem;
 }
 
-.main-general {
+
+ */
+
+.containerModalInvitationWedding {
+  width: calc(100% - 80px);
+  margin: 0px;
+  padding: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  width: 100%;
+  gap: 20px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.title-container {
+  color: #a86869;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-align: center;
 }

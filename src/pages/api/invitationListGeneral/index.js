@@ -10,7 +10,6 @@ const prisma = new PrismaClient();
 export default async function handler(req, res) {
   const token = await getToken({ req });
 
-
   const userEmail = token.email;
 
   if (!userEmail) {
@@ -29,8 +28,8 @@ export default async function handler(req, res) {
     return;
   }
   const userId = user.id;
-
   if (req.method === "GET") {
+    console.log("GET request"); // Log when a GET request is made
     try {
       const weddingInvitationList = await prisma.weddingInvitationList.findMany(
         {
@@ -48,14 +47,18 @@ export default async function handler(req, res) {
       );
 
       res.status(200).json(weddingInvitationList);
+      console.log(weddingInvitationList); 
     } catch (error) {
       console.error("Error fetching data:", error); // Log any errors
       res.status(500).json({ error: "Unable to fetch data" });
     }
   } else if (req.method === "POST") {
+    console.log("POST request"); // Log when a POST request is made
 
     const invitations = req.body;
+    console.log("Invitations:", invitations); // Log the invitations
 
+    console.log(userId);
     try {
       let invitationsArray;
 

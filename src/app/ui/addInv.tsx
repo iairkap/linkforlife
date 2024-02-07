@@ -1,11 +1,11 @@
 import React from 'react';
 import Modal from './modal';
 import InputField from './InputField';
-import Selector from './Select';
 import "../sass/layout/modalContent.scss"
 import Button from './button';
 import axios from 'axios';
 import { useDashboardData } from '../helpers/useDashboardData';
+import MultiSelect from './Select';
 
 
 interface AddInvProps {
@@ -27,66 +27,89 @@ function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList }:
     const [email, setEmail] = React.useState('');
     const [invitedBy, setInvitedBy] = React.useState<string[]>([]);
     const [specialRole, setSpecialRole] = React.useState<string[]>([]);
+    const [phoneNumber, setPhoneNumber] = React.useState('');
+
+
+    const data = {
+        name: name,
+        lastName: lastName,
+        email: email,
+        invitedBy: invitedBy,
+        specialRole: specialRole,
+        phoneNumber: phoneNumber
+    }
+
+
 
 
     const { userInvitationList } = useDashboardData(); // 
 
+    console.log(userInvitationList, 'userInvitationList')
+
     const { refreshData } = useDashboardData();
     const handleAddInv = async () => {
         try {
-            const response = await axios.post('/api/invitationListGeneral', {
+            const invitation = {
                 name,
                 lastName,
                 emailInvitation: email,
                 invitedBy,
                 specialRole,
-            });
-            setUserInvitationList([...userInvitationList, response.data]);
-            refreshData();
+                phoneNumber
+            };
 
-            onRequestClose();
+            const response = await axios.post('/api/invitationListGeneral', invitation);
+
+            if (response.status === 200) {
+                setUserInvitationList([...userInvitationList, invitation]);
+                refreshData();
+                onRequestClose();
+            }
         } catch (error) {
             console.error('Failed to add invitation:', error);
         }
     };
     return (
-        <main >
-            <Modal isOpen={isOpen} onRequestClose={onRequestClose} contentLabel={contentLabel}>
-                <section className='main-general'>
-                    <h1>Agregar Invitado</h1>
-                    <article className="layout">
-                        <InputField
-                            value={name}
-                            type="text"
-                            placeholder='שם'
-                            onChange={(e) => setName(e.target.value)}
-                            error=''
-                        />
-                        <InputField
-                            value={lastName}
-                            type="text"
-                            placeholder='apellido'
-                            onChange={(e) => setLastName(e.target.value)}
-                            error=''
-                        />
-                        <InputField
-                            value={email}
-                            type="text"
-                            placeholder='אמייל'
-                            onChange={(e) => setEmail(e.target.value)}
-                            error=''
-                        />
-                        <Selector value={invitedBy} onChange={setInvitedBy} options={['Groom', 'Bride', 'GroomsFamily', 'BridesFamily']} id={"הוזמן על ידי"} />
-                        <Selector value={specialRole} onChange={setSpecialRole} options={['BestMan', 'MaidOfHonor', 'Parent', 'none']} id={"specialRole"} />
+        <Modal isOpen={isOpen} onRequestClose={onRequestClose} contentLabel={contentLabel} icon={"person_add"}>
+            <section className='containerModalInvitationWedding'>
+                <h1 className='title-container'>להוסיף אורח</h1>
+                <article className="layout">
+                    <InputField
+                        value={name}
+                        type="text"
+                        placeholder='שם'
+                        onChange={(e) => setName(e.target.value)}
+                        error=''
+                    />
+                    <InputField
+                        value={lastName}
+                        type="text"
+                        placeholder='שם משפחה'
+                        onChange={(e) => setLastName(e.target.value)}
+                        error=''
+                    />
+                    <InputField
+                        value={email}
+                        type="text"
+                        placeholder='אמייל'
+                        onChange={(e) => setEmail(e.target.value)}
+                        error=''
+                    />
+                    <InputField
+                        value={phoneNumber}
+                        type="text"
+                        placeholder='טלפון'
+                        onChange={(e) => setPhoneNumber(e.target.value)}
+                        error=''
+                    />
+                    <MultiSelect span="הוזמן על ידי" value={invitedBy} onChange={setInvitedBy} options={['Groom', 'Bride', 'Grooms Family', 'Brides Family']} id={"הוזמן על ידי"} />
+                    <MultiSelect span="תפקיד מיוחד" value={specialRole} onChange={setSpecialRole} options={['Best Man', 'Maid Of Honor', 'Parent', 'None']} id={"specialRole"} />
 
-                        <Button label='שמור' onClick={handleAddInv} className='button-a' />
 
-
-
-                    </article>
-                </section>
-            </Modal>
-        </main >
+                    <Button label='שמור והוסף לרשימה' onClick={handleAddInv} className='button-a' />
+                </article>
+            </section>
+        </Modal>
     );
 }
 

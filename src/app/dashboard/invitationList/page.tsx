@@ -13,7 +13,7 @@ import Pagination from "../../ui/pagination"
 
 function Dashboard() {
     const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations } = useDashboardData();
-    const [isModalOpen, setIsModalOpen] = React.useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const [filter, setFilter] = useState('all');
     const [filteredUserInvitationList, setFilteredUserInvitationList] = useState(userInvitationList);
 
@@ -31,6 +31,7 @@ function Dashboard() {
 
         setFilteredUserInvitationList(newFilteredUserInvitationList);
     }, [userInvitationList, filter]);
+    console.log(filter)
 
 
 
@@ -52,8 +53,11 @@ function Dashboard() {
         setIsLoading,
         groups,
     });
+
     useEffect(() => {
+        console.log('userInvitationList has changed:', userInvitationList);
     }, [userInvitationList]);
+
 
     if (isLoading) {
         return (
@@ -63,6 +67,7 @@ function Dashboard() {
         );
     }
 
+    console.log('userInvitationList:', userInvitationList);
 
     return (
         <main className="main">

@@ -9,7 +9,7 @@ interface Group {
 }
 
 interface UserInvitation {
-  isConfirmed: unknown;
+  isConfirmed: Boolean;
   groups: Group[];
   // otras propiedades aquí...
 }

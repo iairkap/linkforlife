@@ -3,8 +3,6 @@
 
 .my-input {
   @include input-styles;
-  width: calc(100% - 40px);
-  padding: 14px 20px;
 }
 
 .my-input.error {

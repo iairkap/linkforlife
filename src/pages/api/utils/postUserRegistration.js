@@ -4,7 +4,7 @@ export async function postUserRegistration(event) {
   const prisma = new PrismaClient();
 
   try {
-    const { email, name } = event.user; // Utiliza el nombre completo del usuario
+    const { email, name } = event.user;
 
     const existingUser = await prisma.user.findUnique({
       where: { email: email },
@@ -13,7 +13,7 @@ export async function postUserRegistration(event) {
     if (!existingUser) {
       const newUser = await prisma.user.create({
         data: {
-          name: name, // Utiliza el nombre completo del usuario
+          name: name,
           email: email,
           provider: "GOOGLE",
         },

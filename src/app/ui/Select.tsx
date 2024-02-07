@@ -1,4 +1,4 @@
-import React from "react";
+/* import React from "react";
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
 import MenuItem from '@mui/material/MenuItem';
@@ -26,6 +26,11 @@ function Selector({ value, onChange, options, id }: SelectorProps) {
 
     const theme = createTheme({
         direction: 'rtl',
+        components: {
+
+        }
+
+
     });
 
     const cacheRtl = createCache({
@@ -36,32 +41,104 @@ function Selector({ value, onChange, options, id }: SelectorProps) {
     return (
         <CacheProvider value={cacheRtl}>
             <ThemeProvider theme={theme}>
-                <FormControl sx={{ width: "100%", border: "0.5px solid #545454", borderRadius: "8px" }}>
-                    <InputLabel id={`label-${id}`}>{id}</InputLabel>
-                    <Select
-                        id={id}
-                        multiple
-                        value={value}
-                        onChange={handleChange}
-                        input={<OutlinedInput id={`select-${id}`} label={id} />}
-                        renderValue={(selected) => (
-                            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                                {(selected as string[]).map((value) => (
-                                    <Chip key={value} label={value} />
-                                ))}
-                            </Box>
-                        )}
-                    >
-                        {options.map((option) => (
-                            <MenuItem key={option} value={option}>
-                                {option}
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
+                <FormControl />
+                <InputLabel id={`label-${id}`}>{id}</InputLabel>
+                <Select
+                    id={id}
+                    multiple
+                    value={value}
+                    onChange={handleChange}
+                    input={<OutlinedInput id={`select-${id}`} label={id} />}
+                    renderValue={(selected) => (
+                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                            {(selected as string[]).map((value) => (
+                                <Chip key={value} label={value} />
+                            ))}
+                        </Box>
+                    )}
+                    sx={{ '& .MuiOutlinedInput-root': { borderColor: '#A86869;' } }}
+
+                >
+                    {options.map((option) => (
+                        <MenuItem key={option} value={option}>
+                            {option}
+                        </MenuItem>
+                    ))}
+                </Select>
             </ThemeProvider>
         </CacheProvider>
+
+
     );
 }
 
-export default Selector;
+export default Selector; */
+
+
+
+import React, { useState, useEffect } from 'react';
+import "../sass/components/selector.scss"
+
+interface MultiSelectProps {
+    value: string[];
+    onChange: (value: string[]) => void;
+    options: string[];
+    id: string;
+    span: string;
+}
+
+function MultiSelect({ value, onChange, options, id, span }: MultiSelectProps) {
+    const [selectedOptions, setSelectedOptions] = useState(value || []);
+    const [isOpen, setIsOpen] = useState(false);
+
+    useEffect(() => {
+        setSelectedOptions(value);
+    }, [value]);
+
+    const handleSelect = (option: string) => {
+        if (selectedOptions.includes(option)) {
+            handleRemove(option);
+        } else {
+            const newOptions = [...selectedOptions, option];
+            setSelectedOptions(newOptions);
+            onChange(newOptions);
+        }
+        setIsOpen(false)
+    };
+
+    const handleRemove = (option: string) => {
+        const newOptions = selectedOptions.filter(o => o !== option);
+        setSelectedOptions(newOptions);
+        onChange(newOptions);
+    };
+
+    return (
+        <div className='selector-container' onClick={() => setIsOpen(!isOpen)}>
+            <div className='fafa'>
+                {selectedOptions.length === 0 && <span className='first-display'>{span}</span>}
+                {selectedOptions.map(option => (
+                    <div key={option} className='optionContainerB'>
+                        <span className='options-chip'>
+                            {option}
+                        </span>
+                    </div>
+                ))}
+            </div>
+
+            <div className='container-drop'>
+                {isOpen && (
+                    <div className='optionContainer'>
+                        {options.map(option => (
+                            <div key={option} onClick={() => handleSelect(option)} className={selectedOptions.includes(option) ? 'optionContainerSelected' : 'optionContainer'}>
+                                <h4 className='options'> {option}
+                                </h4>
+                            </div>
+                        ))}
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+}
+
+export default MultiSelect; 
