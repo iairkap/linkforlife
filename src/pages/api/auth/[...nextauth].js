@@ -82,6 +82,11 @@ const authOptions = {
       return token;
     },
   },
+  events: {
+    async signIn(message) {
+      await postUserRegistration(message);
+    },
+  },
 };
 
 export default NextAuth(authOptions);
