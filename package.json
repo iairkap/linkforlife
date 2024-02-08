@@ -38,6 +38,7 @@
     "next-auth": "^4.24.5",
     "next-cookies": "^2.0.3",
     "next-intl": "^3.5.4",
+    "nodemailer": "^6.9.9",
     "papaparse": "^5.4.1",
     "react": "^18",
     "react-dom": "^18",

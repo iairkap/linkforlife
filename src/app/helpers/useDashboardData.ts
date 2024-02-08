@@ -5,36 +5,77 @@ import { useSession } from "next-auth/react";
 
 interface Group {
   id: number;
-  // otras propiedades aquí...
 }
 
 interface UserInvitation {
-  isConfirmed: Boolean;
+  isConfirmed: boolean;
   groups: Group[];
-  // otras propiedades aquí...
+  weddingId: number;
 }
 
+interface Wedding {
+  id: number;
+  weddingName: string;
+  weddingId: number;
+  weddingInvitationList: UserInvitation[]; // Asegúrate de definir UserInvitation
+}
 export const useDashboardData = () => {
-  const { data: session } = useSession();
-
   const [userInvitationList, setUserInvitationList] = useState<
     UserInvitation[]
   >([]);
+  const [weddings, setWeddings] = useState<Wedding[]>([]);
+  const [selectedWedding, setSelectedWedding] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [groups, setGroups] = useState<Group[][]>([]);
   const [groupInvitations, setGroupInvitations] = useState<
     Record<number, UserInvitation[]>
   >({});
 
-  const fetchData = async () => {
+  /*   const fetchData = async () => {
     setIsLoading(true);
     try {
       const data = await fetchInvitationList();
-      setUserInvitationList(data);
+      const allInvitations = data.flatMap(
+        (wedding) => wedding.weddingInvitationList
+      );
+      setUserInvitationList(allInvitations);
+      setWeddings(data);
     } catch (error) {
       console.error(error);
     }
     setIsLoading(false);
+  };
+  const handleWeddingChange = (event) => {
+    const weddingId = Number(event.target.value);
+    setSelectedWedding(weddingId);
+    const wedding = weddings.find((wedding) => wedding.id === weddingId);
+    if (wedding) {
+      setUserInvitationList(wedding.weddingInvitationList);
+    } else {
+      setUserInvitationList([]);
+    }
+  };
+ */
+
+  const fetchData = async () => {
+    setIsLoading(true);
+    try {
+      const data = await fetchInvitationList();
+      setWeddings(data);
+    } catch (error) {
+      console.error(error);
+    }
+    setIsLoading(false);
+  };
+  const handleWeddingChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const weddingId = Number(event.target.value);
+    setSelectedWedding(weddingId);
+    const wedding = weddings.find((wedding) => wedding.id === weddingId);
+    if (wedding) {
+      setUserInvitationList(wedding.weddingInvitationList);
+    } else {
+      setUserInvitationList([]);
+    }
   };
 
   useEffect(() => {
@@ -42,24 +83,42 @@ export const useDashboardData = () => {
   }, []);
 
   useEffect(() => {
-    const newGroups = userInvitationList.map((user) => user.groups);
+    if (!userInvitationList || !selectedWedding) {
+      return;
+    }
+
+    const filteredInvitations = userInvitationList.filter(
+      (invitation) => invitation.weddingId === selectedWedding
+    );
+    const newGroups = filteredInvitations.map((user) => user.groups);
     setGroups(newGroups);
-  }, [userInvitationList]);
+  }, [userInvitationList, selectedWedding]);
+
   useEffect(() => {
-    const newGroupInvitations = userInvitationList.reduce((acc, invitation) => {
-      if (invitation.groups) {
-        invitation.groups.forEach((group) => {
-          if (!acc[group.id]) {
-            acc[group.id] = [];
-          }
-          acc[group.id].push(invitation);
-        });
-      }
-      return acc;
-    }, {} as Record<number, UserInvitation[]>);
+    if (!userInvitationList || !selectedWedding) {
+      return;
+    }
+
+    const filteredInvitations = userInvitationList.filter(
+      (invitation) => invitation.weddingId === selectedWedding
+    );
+    const newGroupInvitations = filteredInvitations.reduce(
+      (acc, invitation) => {
+        if (invitation.groups) {
+          invitation.groups.forEach((group) => {
+            if (!acc[group.id]) {
+              acc[group.id] = [];
+            }
+            acc[group.id].push(invitation);
+          });
+        }
+        return acc;
+      },
+      {} as Record<number, UserInvitation[]>
+    );
 
     setGroupInvitations(newGroupInvitations);
-  }, [userInvitationList]);
+  }, [userInvitationList, selectedWedding]);
 
   return {
     setUserInvitationList,
@@ -69,5 +128,10 @@ export const useDashboardData = () => {
     groups,
     groupInvitations,
     refreshData: fetchData,
+    handleWeddingChange,
+    selectedWedding,
+    setSelectedWedding,
+    weddings,
+    setWeddings,
   };
 };

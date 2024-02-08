@@ -10,9 +10,11 @@ import AddInv from '../../ui/addInv';
 import Graph from '../../ui/graph';
 import HeaderFilter from "../../ui/tableReference"
 import Pagination from "../../ui/pagination"
+import InputField from '@/app/ui/InputField';
 
 function Dashboard() {
-    const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations } = useDashboardData();
+    const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations, selectedWedding, setSelectedWedding, weddings, setWeddings, handleWeddingChange
+    } = useDashboardData();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [filter, setFilter] = useState('all');
     const [filteredUserInvitationList, setFilteredUserInvitationList] = useState(userInvitationList);
@@ -81,6 +83,12 @@ function Dashboard() {
                         contentLabel="My Modal"
                         setUserInvitationList={setUserInvitationList}
                     />
+                    <select name="table-selection" id="table-selection" onChange={handleWeddingChange}>
+                        <option value="">Select a wedding...</option>
+                        {weddings.map(wedding => (
+                            <option key={wedding.id} value={wedding.id}>{wedding.weddingName}</option>
+                        ))}
+                    </select>
                     <HeaderFilter
                         getToggleHideAllColumnsProps={tableProps.getToggleHideAllColumnsProps} // Pasa esto aquí
                         isMenuOpen={isMenuOpen}

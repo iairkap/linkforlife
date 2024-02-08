@@ -1,68 +1,86 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("POSTGRES_PRISMA_URL")
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
-
 }
-
 
 model Sorteo {
-  id                Int      @id @default(autoincrement())
-  name            String
-  lastName          String
-  email   String   @unique
-  weddingDate DateTime
+  id           Int      @id @default(autoincrement())
+  name         String
+  lastName     String
+  email        String   @unique
+  weddingDate  DateTime
   weddingPlace String?
-  createdAt DateTime @default(now())
+  createdAt    DateTime @default(now())
 }
+
 model User {
-  id            Int       @id @default(autoincrement())
-  name          String?
-  email         String    @unique
-  password      String?
-  image         String?
-  emailVerified DateTime? @map("email_verified")
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  id                    Int                     @id @default(autoincrement())
+  name                  String?
+  email                 String                  @unique
+  password              String?
+  image                 String?
+  emailVerified         DateTime?               @map("email_verified")
+  createdAt             DateTime                @default(now())
+  updatedAt             DateTime                @updatedAt
   weddingInvitationList WeddingInvitationList[]
-  groups Group[]
-  provider      String?
+  groups                Group[]
+  provider              String?
+  weddingId             Int?
+  weddings              Wedding[]               @relation("UserToWedding")
+  adminWeddings         Wedding[]               @relation("AdminToWedding")
+}
+
+model Wedding {
+  id                    Int                     @id @default(autoincrement())
+  weddingInvitationList WeddingInvitationList[]
+  users                 User[]                  @relation("UserToWedding")
+  groups                Group[]
+  weddingDate           DateTime?
+  weddingPlace          String?
+  createdAt             DateTime                @default(now())
+  weddingName           String?
+  colaborators          String[]
+  adminId               Int
+  admin                 User                    @relation("AdminToWedding", fields: [adminId], references: [id])
 }
 
 model WeddingInvitationList {
-  id Int @id @default(autoincrement())
-  name String
-  lastName String
-  emailInvitation String 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  plusOne Boolean @default(false)
-  user User @relation(fields: [userId], references: [id])
-  userId Int
-  invitedBy String[]
-  specialRole String[]
-  isAttending Boolean @default(false)
-  isConfirmed Boolean @default(false)
-  plusOneConfirmed Boolean @default(false)
-  groups Group[]
-  groupId Int?
-  Table Int? 
-  phoneNumber String?
+  id               Int      @id @default(autoincrement())
+  name             String
+  lastName         String
+  emailInvitation  String
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  plusOne          Boolean  @default(false)
+  user             User     @relation(fields: [userId], references: [id])
+  userId           Int
+  invitedBy        String[]
+  specialRole      String[]
+  isAttending      Boolean  @default(false)
+  isConfirmed      Boolean  @default(false)
+  plusOneConfirmed Boolean  @default(false)
+  groups           Group[]
+  groupId          Int?
+  Table            Int?
+  phoneNumber      String?
+  wedding          Wedding  @relation(fields: [weddingId], references: [id])
+  weddingId        Int
 }
 
 model Group {
-  id                    Int                  @id @default(autoincrement())
+  id                    Int                     @id @default(autoincrement())
   name                  String
-  user                  User                 @relation(fields: [userId], references: [id])
+  user                  User                    @relation(fields: [userId], references: [id])
   userId                Int
   weddingInvitationList WeddingInvitationList[]
+  wedding               Wedding                 @relation(fields: [weddingId], references: [id])
+  weddingId             Int
 }

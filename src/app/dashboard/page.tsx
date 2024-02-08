@@ -1,10 +1,10 @@
 "use client"
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useGlobalContext } from './globalContext';
 import DashboardGraph from '../ui/dashboardGraphOverview';
-import { useSession } from 'next-auth/react';
-
+import AddWedding from '../ui/addWedding';
+import AddUserCollaborator from '../ui/addUserToTheWeddingList';
 interface DashboardData {
     userInvitationList: any[]; // Reemplaza 'any' con el tipo correcto
     setUserInvitationList: React.Dispatch<React.SetStateAction<any[]>>; // Reemplaza 'any' con el tipo correcto
@@ -14,18 +14,21 @@ interface DashboardData {
     groupInvitations: any; // Reemplaza 'any' con el tipo correcto
 }
 
-
-
 function DashboardGeneral() {
+    const [isModalOpenCreateWedding, setIsModalOpenCreateWedding] = useState(false);
+    const [isInvitationModalOpen, setIsInvitationModalOpen] = useState(false);
 
-    const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations } = useGlobalContext() as DashboardData;
 
-    const { data: session } = useSession()
+
+
 
 
     return (
         <div>
-            <DashboardGraph userInvitationList={userInvitationList} />
+            <button onClick={() => { setIsModalOpenCreateWedding(true) }}>Create Wedding</button>
+            <AddWedding isOpen={isModalOpenCreateWedding} contentLabel="Add Wedding" onRequestClose={() => setIsModalOpenCreateWedding(false)} />
+            <button>Invite someone to your wedding list</button>
+            <AddUserCollaborator isOpen={isInvitationModalOpen} contentLabel="Add Collaborator" onRequestClose={() => setIsInvitationModalOpen(false)} />
         </div>
     );
 }
