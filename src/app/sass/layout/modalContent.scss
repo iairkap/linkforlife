@@ -9,19 +9,31 @@
  */
 
 .containerModalInvitationWedding {
-  width: calc(100% - 80px);
   margin: 0px;
   padding: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 20px;
+  margin: 0px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
 }
 
 .layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
+}
+.layoutBis {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 50%;
 }
 
 .title-container {

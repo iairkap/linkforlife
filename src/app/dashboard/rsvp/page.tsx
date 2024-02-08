@@ -11,14 +11,14 @@ import Graph from '../../ui/graph';
 import HeaderFilter from "../../ui/tableReference"
 import Pagination from "../../ui/pagination"
 import InputField from '@/app/ui/InputField';
-
+import FirstSteps from '@/app/ui/firstSteps';
+import { Modal } from '@mui/material';
 function Dashboard() {
-    const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations, selectedWedding, setSelectedWedding, weddings, setWeddings, handleWeddingChange
-    } = useDashboardData();
+    const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations, selectedWedding, setSelectedWedding, weddings, setWeddings, handleWeddingChange,
+        ModalFirstSteps, setModalFirstSteps } = useDashboardData();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [filter, setFilter] = useState('all');
     const [filteredUserInvitationList, setFilteredUserInvitationList] = useState(userInvitationList);
-
 
     useEffect(() => {
         const newFilteredUserInvitationList = userInvitationList.filter(invitation => {
@@ -117,6 +117,7 @@ function Dashboard() {
 
                 </div>
             </section>
+            <FirstSteps isOpen={ModalFirstSteps} onRequestClose={() => setModalFirstSteps(false)} contentLabel="a" />
         </main>
     );
 }

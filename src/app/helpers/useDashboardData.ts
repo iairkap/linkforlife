@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { fetchInvitationList } from "./api";
-
+import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { AxiosError } from "axios";
 
 interface Group {
   id: number;
@@ -23,6 +24,7 @@ export const useDashboardData = () => {
   const [userInvitationList, setUserInvitationList] = useState<
     UserInvitation[]
   >([]);
+  const [ModalFirstSteps, setModalFirstSteps] = useState(false);
   const [weddings, setWeddings] = useState<Wedding[]>([]);
   const [selectedWedding, setSelectedWedding] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -57,13 +59,24 @@ export const useDashboardData = () => {
   };
  */
 
+  const router = useRouter();
+
   const fetchData = async () => {
     setIsLoading(true);
     try {
       const data = await fetchInvitationList();
       setWeddings(data);
+
+      if (data?.weddings.length === 0) {
+        router.push("/dashboard/rsvp");
+      }
     } catch (error) {
-      console.error(error);
+      const axiosError = error as AxiosError;
+
+      if (axiosError.response && axiosError.response.status === 404) {
+        router.push("/dashboard/rsvp");
+        setModalFirstSteps(true);
+      }
     }
     setIsLoading(false);
   };
@@ -133,5 +146,7 @@ export const useDashboardData = () => {
     setSelectedWedding,
     weddings,
     setWeddings,
+    ModalFirstSteps,
+    setModalFirstSteps,
   };
 };

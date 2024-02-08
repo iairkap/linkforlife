@@ -47,10 +47,23 @@ model Wedding {
   weddingPlace          String?
   createdAt             DateTime                @default(now())
   weddingName           String?
-  colaborators          String[]
+  inviteTokens          InviteToken[]
   adminId               Int
   admin                 User                    @relation("AdminToWedding", fields: [adminId], references: [id])
 }
+
+
+model InviteToken{
+  id          Int      @id @default(autoincrement())
+  token       String   @unique
+  email       String
+  wedding     Wedding  @relation(fields: [weddingId], references: [id])
+  weddingId   Int
+  createdAt   DateTime @default(now())
+  isValid     Boolean  @default(true)
+  updatedAt   DateTime @updatedAt
+}
+
 
 model WeddingInvitationList {
   id               Int      @id @default(autoincrement())

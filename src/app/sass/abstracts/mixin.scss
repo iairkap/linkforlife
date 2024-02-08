@@ -25,3 +25,13 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
 }
+
+@mixin smallButtons {
+  background: #818369;
+  border-radius: 0.5rem;
+  display: flex;
+  padding: 0.59375rem 1.5rem;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}

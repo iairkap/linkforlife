@@ -1,10 +1,12 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useGlobalContext } from './globalContext';
 import DashboardGraph from '../ui/dashboardGraphOverview';
 import AddWedding from '../ui/addWedding';
 import AddUserCollaborator from '../ui/addUserToTheWeddingList';
+import AccesTableWithToken from '../ui/accesTableWithToken';
+import { useRouter } from 'next/navigation';
 interface DashboardData {
     userInvitationList: any[]; // Reemplaza 'any' con el tipo correcto
     setUserInvitationList: React.Dispatch<React.SetStateAction<any[]>>; // Reemplaza 'any' con el tipo correcto
@@ -12,13 +14,16 @@ interface DashboardData {
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
     groups: any[]; // Reemplaza 'any' con el tipo correcto
     groupInvitations: any; // Reemplaza 'any' con el tipo correcto
+    weddings: any[];
 }
 
 function DashboardGeneral() {
     const [isModalOpenCreateWedding, setIsModalOpenCreateWedding] = useState(false);
     const [isInvitationModalOpen, setIsInvitationModalOpen] = useState(false);
+    const [isAccesTableWithTokenOpen, setIsAccesTableWithTokenOpen] = useState(false);
 
-
+    let weddings: DashboardData | null = useGlobalContext();
+    const router = useRouter();
 
 
 
@@ -29,6 +34,8 @@ function DashboardGeneral() {
             <AddWedding isOpen={isModalOpenCreateWedding} contentLabel="Add Wedding" onRequestClose={() => setIsModalOpenCreateWedding(false)} />
             <button onClick={() => { setIsInvitationModalOpen(true) }}>Invite someone to your wedding list</button>
             <AddUserCollaborator isOpen={isInvitationModalOpen} contentLabel="Add Collaborator" onRequestClose={() => setIsInvitationModalOpen(false)} />
+            <button onClick={() => { setIsAccesTableWithTokenOpen(true) }}>Join Table</button>
+            <AccesTableWithToken isOpen={isAccesTableWithTokenOpen} contentLabel="Join existent table" onRequestClose={() => setIsAccesTableWithTokenOpen(false)} />
         </div>
     );
 }

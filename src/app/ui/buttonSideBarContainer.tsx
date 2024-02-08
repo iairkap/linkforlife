@@ -21,7 +21,7 @@ function ButtonSideBarContainer() {
         {
             icon: rsvp,
             Tooltip: "רשימת מוזמנים",
-            Link: "/dashboard/invitationList"
+            Link: "/dashboard/rsvp"
         },
         {
             icon: charts,

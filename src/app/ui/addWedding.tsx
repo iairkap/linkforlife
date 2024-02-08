@@ -62,21 +62,27 @@ function AddWedding({ isOpen, contentLabel, onRequestClose }: AddInvProps) {
                     <InputField
                         value={weddingName}
                         type="text"
-                        placeholder='wedding name'
+                        placeholder='שם האירוע'
                         onChange={(e) => setWeddingName(e.target.value)}
                         error=''
                     />
                     <InputField
                         value={weddingPlace}
                         type="text"
-                        placeholder='Wedding Place'
+                        placeholder='מקום חתונה'
                         onChange={(e) => setWeddingPLace(e.target.value)}
                         error=''
                     />
                     <InputField
                         value={weddingDate}
-                        type="date"
-                        placeholder='אמייל'
+                        type={weddingDate ? "date" : "text"}
+                        placeholder='תאריך חתונה'
+                        onFocus={(e) => e.currentTarget.type = 'date'}
+                        onBlur={(e) => {
+                            if (!e.currentTarget.value) {
+                                e.currentTarget.type = 'text';
+                            }
+                        }}
                         onChange={(e) => setWeddingDate(e.target.value)}
                         error=''
                     />

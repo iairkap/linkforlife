@@ -2,6 +2,7 @@
 import React, { createContext, useContext } from 'react';
 import { useDashboardData } from '../helpers/useDashboardData';
 import Loader from "../ui/loader" // Asegúrate de importar tu componente Loader
+import { useSession } from 'next-auth/react';
 
 interface DashboardData {
     userInvitationList: any;
@@ -10,15 +11,21 @@ interface DashboardData {
     setIsLoading: any;
     groups: any;
     groupInvitations: any;
+    weddings: any;
+    setWeddings: any;
+    session: any;
 }
 
 const GlobalContext = createContext<DashboardData | null>(null);
 
 const GlobalProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations } = useDashboardData();
+    const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations, weddings, setWeddings } = useDashboardData();
+
+    const { data: session, status } = useSession();
+    console.log(session, 'session')
 
     return (
-        <GlobalContext.Provider value={{ userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations }}>
+        <GlobalContext.Provider value={{ userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations, weddings, setWeddings, session }}>
             {isLoading ? <div style={{ display: "flex", height: "100vh", width: "100vw", alignItems: "center", justifyContent: "center" }}>
                 <Loader />
             </div> : children}

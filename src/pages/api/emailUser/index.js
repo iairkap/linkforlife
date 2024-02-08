@@ -3,16 +3,20 @@
 import nodemailer from "nodemailer";
 import { getToken } from "next-auth/jwt";
 import { PrismaClient } from "@prisma/client";
+import { v4 as uuidv4 } from "uuid";
 
 const prisma = new PrismaClient();
 export default async function handler(req, res) {
   const token = await getToken({ req });
+
   console.log(token);
   const { emailUser } = req.body;
+  const inviteToken = uuidv4();
 
   const email = token.email;
 
-  const button = `<a href="https://weddingplanningdashboard.vercel.app/">Accept Invitation</a>`;
+  const button = `<a href="https://weddingplanningdashboard.vercel.app/token=${inviteToken}">Accept Invitation</a>`;
+  const buttonLocalHost = `<a href="https://localhost:3000/token=${inviteToken}">Accept Invitation</a>`;
 
   const wedding = await prisma.wedding.findFirst({
     where: {
@@ -25,17 +29,13 @@ export default async function handler(req, res) {
   });
 
   if (wedding) {
-    const updatedWedding = await prisma.wedding.update({
-      where: {
-        id: wedding.id,
-      },
+    await prisma.inviteToken.create({
       data: {
-        colaborators: {
-          push: emailUser,
-        },
+        email: emailUser,
+        token: inviteToken,
+        weddingId: wedding.id,
       },
     });
-    console.log("Wedding updated:", updatedWedding);
   } else {
     console.log("No wedding found for user:", userEmail);
   }
@@ -62,6 +62,7 @@ export default async function handler(req, res) {
       To accept the invitation and start collaborating, simply click the button below:
       
       ${button}
+      ${buttonLocalHost}
       
       If you didn't expect this invitation or have any questions, feel free to reach out to us.
       

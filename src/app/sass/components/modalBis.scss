@@ -1,0 +1,36 @@
+@import "../abstracts/variables.scss";
+@import "../abstracts/mixin.scss";
+.myOverlayB {
+  background: rgba(0, 0, 0, 0.758);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(1px);
+}
+
+.myModalB {
+  height: 100%;
+  position: relative;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.buttoncito {
+  @include smallButtons;
+  width: 100%;
+}
+
+.buttoncito-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
+}
