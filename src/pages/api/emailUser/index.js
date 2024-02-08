@@ -2,21 +2,52 @@
 
 import nodemailer from "nodemailer";
 import { getToken } from "next-auth/jwt";
+import { PrismaClient } from "@prisma/client";
 
+const prisma = new PrismaClient();
 export default async function handler(req, res) {
   const token = await getToken({ req });
-  const userEmail = token.email;
+  console.log(token);
+  const { emailUser } = req.body;
+
+  const email = token.email;
 
   const button = `<a href="https://weddingplanningdashboard.vercel.app/">Accept Invitation</a>`;
 
+  const wedding = await prisma.wedding.findFirst({
+    where: {
+      users: {
+        some: {
+          email: email,
+        },
+      },
+    },
+  });
+
+  if (wedding) {
+    const updatedWedding = await prisma.wedding.update({
+      where: {
+        id: wedding.id,
+      },
+      data: {
+        colaborators: {
+          push: emailUser,
+        },
+      },
+    });
+    console.log("Wedding updated:", updatedWedding);
+  } else {
+    console.log("No wedding found for user:", userEmail);
+  }
+
   if (req.method === "POST") {
-    const { emailUser } = req.body;
+    console.log(emailUser);
 
     let transporter = nodemailer.createTransport({
       service: "gmail", // use your email service
       auth: {
-        user: process.env.EMAIL, // your email
-        pass: process.env.PASSWORD, // your email password
+        user: process.env.EMAIL_USERNAME, // your email
+        pass: process.env.EMAIL_PASSWORD, // your email password
       },
     });
 
@@ -26,7 +57,7 @@ export default async function handler(req, res) {
       subject: "Weddinginvitation", // Subject line
       html: `Hi there,
 
-      You've been invited to collaborate on our Wedding Invitation List dashboard.
+      You've been invited by ${email} to collaborate on our Wedding Invitation List dashboard.
       
       To accept the invitation and start collaborating, simply click the button below:
       
@@ -37,9 +68,8 @@ export default async function handler(req, res) {
       Looking forward to collaborating with you!
       
       Best regards,
-      [Your Brand Name] Team`, // HTML body
+      Weddinvitation Team`, // HTML body
     };
-
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         console.log(error);

@@ -27,7 +27,7 @@ function DashboardGeneral() {
         <div>
             <button onClick={() => { setIsModalOpenCreateWedding(true) }}>Create Wedding</button>
             <AddWedding isOpen={isModalOpenCreateWedding} contentLabel="Add Wedding" onRequestClose={() => setIsModalOpenCreateWedding(false)} />
-            <button>Invite someone to your wedding list</button>
+            <button onClick={() => { setIsInvitationModalOpen(true) }}>Invite someone to your wedding list</button>
             <AddUserCollaborator isOpen={isInvitationModalOpen} contentLabel="Add Collaborator" onRequestClose={() => setIsInvitationModalOpen(false)} />
         </div>
     );

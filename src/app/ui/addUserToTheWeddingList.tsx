@@ -34,7 +34,6 @@ function AddUserCollaborator({ isOpen, contentLabel, onRequestClose }: AddInvPro
 
     const handleUserInvitation = async () => {
         try {
-            const emailUser: string = ''; // Declare and initialize emailUser variable
 
             const response = await axios.post('/api/emailUser', { emailUser }); // Pass emailUser as an object
 
