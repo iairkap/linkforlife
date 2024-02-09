@@ -257,8 +257,13 @@ th {
   background-color: $table-background;
 }
 
+th.empty-weddings {
+  background: #f4f5ee;
+  color: #c0c0c0;
+}
+
 th[data-checkbox-header="true"] {
-  /* Aquí puedes agregar tus estilos */
+  /* Here you can add your styles */
   border-top-right-radius: 0.5rem;
 }
 

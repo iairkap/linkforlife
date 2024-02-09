@@ -44,7 +44,6 @@ function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList }:
 
     const { userInvitationList } = useDashboardData(); // 
 
-    console.log(userInvitationList, 'userInvitationList')
 
     const { refreshData } = useDashboardData();
     const handleAddInv = async () => {

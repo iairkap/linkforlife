@@ -23,20 +23,20 @@ function Modal({ isOpen, contentLabel, onRequestClose, children, icon }: ModalPr
             overlayClassName="myOverlay"
         >
             <div className='icon-container'>
-                <svg xmlns="http://www.w3.org/2000/svg" width="136" height="136" viewBox="0 0 136 136" fill="none">
-                    <g filter="url(#filter0_d_496_636)">
-                        <circle cx="68" cy="64" r="50" fill="#FFEFEF" />
+                <svg xmlns="http://www.w3.org/2000/svg" width="135" height="135" viewBox="0 0 135 135" fill="none">
+                    <g filter="url(#filter0_d_581_3070)">
+                        <path d="M117.5 63.5C117.5 91.1142 95.1142 113.5 67.5 113.5C39.8858 113.5 17.5 91.1142 17.5 63.5C17.5 35.8858 39.8858 13.5 67.5 13.5C95.1142 13.5 117.5 35.8858 117.5 63.5Z" fill="#DBDEB9" />
                     </g>
                     <defs>
-                        <filter id="filter0_d_496_636" x="0.700001" y="0.700001" width="134.6" height="134.6" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                        <filter id="filter0_d_581_3070" x="0.200001" y="0.200001" width="134.6" height="134.6" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
                             <feFlood flood-opacity="0" result="BackgroundImageFix" />
                             <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
                             <feOffset dy="4" />
                             <feGaussianBlur stdDeviation="8.65" />
                             <feComposite in2="hardAlpha" operator="out" />
-                            <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.258333 0 0 0 0 0.258333 0 0 0 0.25 0" />
-                            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_496_636" />
-                            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_496_636" result="shape" />
+                            <feColorMatrix type="matrix" values="0 0 0 0 0.858824 0 0 0 0 0.870588 0 0 0 0 0.72549 0 0 0 1 0" />
+                            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_581_3070" />
+                            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_581_3070" result="shape" />
                         </filter>
                     </defs>
                 </svg>

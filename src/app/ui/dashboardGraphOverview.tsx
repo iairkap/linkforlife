@@ -4,7 +4,10 @@ import { getInvitationStats } from '@/utils/userInvitationListExtactionData';
 import NumberPortion from './numberPortion';
 import "../sass/components/dashboardGraphOverview.scss"
 import CircleChart from './circleChart';
-
+import DashboardGraphCard from './DashboardGraphCard';
+import Groom from "../../../public/groom.svg"
+import Bride from "../../../public/bride.svg"
+import Both from "../../../public/both.svg"
 
 interface UserInvitation {
     id: number;
@@ -31,28 +34,28 @@ interface DashboardGraphProps {
 
 function DashboardGraph({ userInvitationList }: DashboardGraphProps): JSX.Element {
 
-    const { confirmed, notConfirmed, isAttending, notAttending, invitedBy } = getInvitationStats(userInvitationList);
+    const { confirmedByBride,
+        confirmedByGroom,
+        confirmedTotal,
+        notConfirmedByBride,
+        notConfirmedByGroom,
+        notConfirmedTotal,
+        isAttendingByBride,
+        isAttendingByGroom,
+        isAttendingTotal,
+        notAttendingByBride,
+        notAttendingByGroom,
+        notAttendingTotal,
+        invitedByBride,
+        invitedByGroom, } = getInvitationStats(userInvitationList);
 
+    const invitedTotal = userInvitationList.length;
 
     return (
-        <div>
-            <article>
-                <div className='container'>
-                    <h3>Overiew</h3>
-                    <section className='graph-container'>
-                        <NumberPortion title="Total Invited" number={userInvitationList.length} />
-                        <NumberPortion title="Confirmed" number={confirmed.length} />
-                        <NumberPortion title="Not Confirmed" number={notConfirmed.length} />
-                        <NumberPortion title="Attending" number={isAttending.length} />
-                        <NumberPortion title="Not Attending" number={notAttending.length} />
-                    </section>
-                </div>
-                <div>
-                    <section>
-                        <CircleChart confirmedNumber={confirmed.length} totalNumber={userInvitationList.length} />
-                    </section>
-                </div>
-            </article>
+        <div className='dash-card-container'>
+            <DashboardGraphCard cardTitle={"מוזמנים על ידי החתן"} icon={Groom} confirmed={confirmedByGroom} attending={isAttendingByGroom} notAttending={notAttendingByGroom} notConfirmed={notConfirmedByGroom} total={invitedByGroom} />
+            <DashboardGraphCard cardTitle={"מוזמנים על ידי הכלה"} icon={Bride} confirmed={confirmedByBride} attending={isAttendingByBride} notAttending={notAttendingByBride} notConfirmed={notConfirmedByBride} total={invitedByBride} />
+            <DashboardGraphCard cardTitle={`סה"כ מוזמנים`} icon={Both} confirmed={confirmedTotal} attending={isAttendingTotal} notAttending={notAttendingTotal} notConfirmed={notConfirmedTotal} total={invitedTotal} />
         </div>
     );
 }

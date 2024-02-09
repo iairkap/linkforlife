@@ -7,11 +7,11 @@ export default async function handler(req, res) {
 
   const email = token.email;
   const accesToken = req.body.accesToken;
-  console.log(accesToken);
+  const accesTokenToNumber = parseInt(accesToken);
 
   const inviteToken = await prisma.inviteToken.findUnique({
     where: {
-      token: accesToken,
+      token: accesTokenToNumber,
     },
   });
 

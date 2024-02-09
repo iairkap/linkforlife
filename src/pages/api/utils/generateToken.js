@@ -2,7 +2,6 @@ import { PrismaClient } from "@prisma/client";
 import JWT from "jsonwebtoken";
 
 export async function generateToken(email) {
-  console.log(email);
   const prisma = new PrismaClient();
 
   try {

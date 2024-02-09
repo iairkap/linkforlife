@@ -1,6 +1,6 @@
 @import "../abstracts/mixin.scss";
 
-.search-input {
+.search-inputB {
   display: flex;
   width: 20vw;
   padding: 0.5rem 1rem;
@@ -15,14 +15,14 @@
   padding-right: 44px;
 }
 
-.search {
+.searchD {
   background-color: transparent;
   border: none;
   position: absolute;
   right: 0;
-  top: 5px;
 }
 
-.search-container {
+.search-containerB {
   position: relative;
+  display: flex;
 }

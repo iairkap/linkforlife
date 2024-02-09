@@ -9,6 +9,7 @@ import {
 } from "react-table";
 import "../sass/layout/table.scss";
 import GlobalFilter from "./GlobalFilter";
+import FirstSteps from "./firstSteps";
 
 function TableInvitationList({
   userInvitationList,
@@ -16,8 +17,14 @@ function TableInvitationList({
   isLoading,
   setIsLoading,
   groups,
+  ModalFirstSteps,
+  setModalFirstSteps,
+  refreshData,
+  weddings,
 }) {
   const data = useMemo(() => userInvitationList, [userInvitationList]);
+
+  const isWeddingsEmpty = weddings && weddings.length === 0;
 
   const columns = useMemo(
     () => [
@@ -56,11 +63,7 @@ function TableInvitationList({
         accessor: "emailInvitation",
         className: "column-email",
       },
-      /*             {
-                            Header: 'מספר טלפון',
-                            accessor: 'phoneNumber',
-                            c
-                        }, */
+
       {
         Header: "הוזמן על ידי",
         accessor: "invitedBy",
@@ -189,13 +192,15 @@ function TableInvitationList({
         />
 
         <table {...getTableProps()} className="my-table">
-          <thead className="thead">
+          <thead className={`${isWeddingsEmpty}?"thead-disable":"thead"}`}>
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column, index) => (
                   <th
                     {...column.getHeaderProps()}
-                    className={column.className}
+                    className={`${column.className} ${
+                      isWeddingsEmpty ? "empty-weddings" : ""
+                    }`}
                     data-checkbox-header={index === 0} // Asume que el checkbox está en la primera columna
                     data-actions-header={
                       index === headerGroup.headers.length - 1
@@ -236,6 +241,14 @@ function TableInvitationList({
               );
             })}
           </tbody>
+          {isWeddingsEmpty && (
+            <FirstSteps
+              isOpen={ModalFirstSteps}
+              onRequestClose={() => setModalFirstSteps(false)}
+              contentLabel="a"
+              refreshData={refreshData}
+            />
+          )}
         </table>
       </article>
     ),
@@ -243,101 +256,3 @@ function TableInvitationList({
 }
 
 export default TableInvitationList;
-
-{
-  /*  <div className="headOfHeader">
-          <div className="headito">
-            <div className="filter-first">
-              <div
-                onClick={() => setMenuOpen(!isMenuOpen)}
-                style={{ display: "flex", alignItems: "center" }}
-                className="filter-b"
-              >
-                <span>מסנן</span>
-                <span class="material-symbols-outlined fa">
-                  filter_alt
-                </span>{" "}
-              </div>
-
-              {isMenuOpen && (
-                <div className="menu menu-open">
-                  <div>
-                    <button onClick={() => setMenuOpen(false)}>x</button>{" "}
-                    <input
-                      type="checkbox"
-                      {...getToggleHideAllColumnsProps()}
-                      id="toggle-all"
-                    />
-                    <label htmlFor="toggle-all">Toggle All</label>
-                  </div>
-                  {allColumns.map((column) => (
-                    <div key={column.id}>
-                      <label>
-                        <input
-                          type="checkbox"
-                          {...column.getToggleHiddenProps()}
-                          id={`checkbox-${column.id}`}
-                        />
-                        <label htmlFor={`checkbox-${column.id}`}>
-                          {column.Header}
-                        </label>
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              <GlobalFilter
-                preGlobalFilteredRows={preGlobalFilteredRows}
-                globalFilter={globalFilter}
-                setGlobalFilter={setGlobalFilter}
-              />
-            </div>
-
-            <div>{modalButton}</div>
-            <select
-              value={pageSize}
-              onChange={(e) => {
-                setPageSize(Number(e.target.value));
-              }}
-              className="selectePerSize"
-            >
-              {[10, 20, 30].map((pageSize) => (
-                <option key={pageSize} value={pageSize}>
-                  להציג {pageSize}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div> */
-}
-
-{
-  /*   <div className="pagination">
-        <button
-          onClick={() => previousPage()}
-          disabled={!canPreviousPage}
-          className="filterButton"
-        >
-          {"< Previous"}
-        </button>{" "}
-        <div>
-          {pageOptions.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => gotoPage(i)}
-              disabled={i === pageIndex}
-            >
-              {i + 1}
-            </button>
-          ))}
-        </div>
-        <button
-          onClick={() => nextPage()}
-          disabled={!canNextPage}
-          className="filterButton"
-        >
-          {"Next >"}
-        </button>{" "}
-      </div> */
-}

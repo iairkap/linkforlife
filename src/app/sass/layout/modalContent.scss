@@ -7,6 +7,7 @@
 
 
  */
+@import "../abstracts/variables.scss";
 
 .containerModalInvitationWedding {
   margin: 0px;
@@ -37,7 +38,7 @@
 }
 
 .title-container {
-  color: #a86869;
+  color: $accent-color;
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;

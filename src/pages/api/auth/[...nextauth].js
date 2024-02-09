@@ -16,6 +16,10 @@ const authOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      authorizationUrl:
+        "https://accounts.google.com/o/oauth2/auth?prompt=consent&access_type=offline&response_type=code",
+      scope:
+        "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/contacts.readonly",
     }),
     CredentialsProvider({
       name: "Sign in",
@@ -69,15 +73,12 @@ const authOptions = {
           id: token.id,
           randomKey: token.randomKey,
         },
+        accessToken: token.accessToken, // Agrega esta línea
       };
     },
-    jwt: function ({ token, user }) {
-      if (user) {
-        return {
-          ...token,
-          id: user.id,
-          randomKey: user.randomKey,
-        };
+    jwt: async ({ token, user, account }) => {
+      if (account && account.access_token) {
+        token.accessToken = account.access_token; // <-- adding the access_token here
       }
       return token;
     },

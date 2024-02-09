@@ -12,10 +12,11 @@ interface FirstStepsProps {
     isOpen: boolean;
     contentLabel: string;
     onRequestClose: () => void;
+    refreshData: () => void;
 
 }
 
-function FirstSteps({ isOpen, contentLabel, onRequestClose }: FirstStepsProps) {
+function FirstSteps({ isOpen, contentLabel, onRequestClose, refreshData }: FirstStepsProps) {
 
 
     const [isModalOpenCreateWedding, setIsModalOpenCreateWedding] = useState(false);
@@ -24,21 +25,22 @@ function FirstSteps({ isOpen, contentLabel, onRequestClose }: FirstStepsProps) {
 
 
 
-    return (
-        <ModalFistSteps isOpen={isOpen} contentLabel={contentLabel} onRequestClose={onRequestClose}>
-            <div className='container'>
-                <Image src={firstIcon} alt="First Icon" />
-                <h1 className='title'>Not Wedding yet</h1>
-                <div className='buttoncito-container'>
-                    <button onClick={() => { setIsModalOpenCreateWedding(true) }} className='buttoncito'>Create Wedding</button>
-                    <AddWedding isOpen={isModalOpenCreateWedding} contentLabel="Add Wedding" onRequestClose={() => setIsModalOpenCreateWedding(false)} />
-                    <button onClick={() => { setIsAccesTableWithTokenOpen(true) }} className='buttoncito'>Join Wedding</button>
-                    <AccesTableWithToken isOpen={isAccesTableWithTokenOpen} contentLabel="Join existent table" onRequestClose={() => setIsAccesTableWithTokenOpen(false)} />
-                </div>
 
+    return (
+/*         <ModalFistSteps isOpen={isOpen} contentLabel={contentLabel} onRequestClose={onRequestClose}>
+ */            <div className='container'>
+            <Image src={firstIcon} alt="First Icon" />
+            <h1 className='title'>עדיין לא חתונה</h1>
+            <div className='buttoncito-container'>
+                <button onClick={() => { setIsModalOpenCreateWedding(true) }} className='buttoncito'>צור חתונה</button>
+                <AddWedding isOpen={isModalOpenCreateWedding} contentLabel="Add Wedding" onRequestClose={() => setIsModalOpenCreateWedding(false)} refreshData={refreshData} onRequestCloseGeneral={onRequestClose} />
+                <button onClick={() => { setIsAccesTableWithTokenOpen(true) }} className='buttoncito'>הצטרף לחתונה</button>
+                <AccesTableWithToken isOpen={isAccesTableWithTokenOpen} contentLabel="Join existent table" onRequestClose={() => setIsAccesTableWithTokenOpen(false)} />
             </div>
-        </ModalFistSteps>
-    );
+
+        </div>
+/*         </ModalFistSteps>
+ */    );
 }
 
 export default FirstSteps;

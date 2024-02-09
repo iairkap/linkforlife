@@ -33,32 +33,6 @@ export const useDashboardData = () => {
     Record<number, UserInvitation[]>
   >({});
 
-  /*   const fetchData = async () => {
-    setIsLoading(true);
-    try {
-      const data = await fetchInvitationList();
-      const allInvitations = data.flatMap(
-        (wedding) => wedding.weddingInvitationList
-      );
-      setUserInvitationList(allInvitations);
-      setWeddings(data);
-    } catch (error) {
-      console.error(error);
-    }
-    setIsLoading(false);
-  };
-  const handleWeddingChange = (event) => {
-    const weddingId = Number(event.target.value);
-    setSelectedWedding(weddingId);
-    const wedding = weddings.find((wedding) => wedding.id === weddingId);
-    if (wedding) {
-      setUserInvitationList(wedding.weddingInvitationList);
-    } else {
-      setUserInvitationList([]);
-    }
-  };
- */
-
   const router = useRouter();
 
   const fetchData = async () => {
@@ -68,17 +42,19 @@ export const useDashboardData = () => {
       setWeddings(data);
 
       if (data?.weddings.length === 0) {
-        router.push("/dashboard/rsvp");
+        router.replace("/dashboard/rsvp");
       }
     } catch (error) {
       const axiosError = error as AxiosError;
 
       if (axiosError.response && axiosError.response.status === 404) {
-        router.push("/dashboard/rsvp");
+        router.replace("/dashboard/rsvp");
         setModalFirstSteps(true);
+        console.error("No weddings found");
       }
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
   const handleWeddingChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const weddingId = Number(event.target.value);

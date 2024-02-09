@@ -36,6 +36,7 @@ model User {
   weddingId             Int?
   weddings              Wedding[]               @relation("UserToWedding")
   adminWeddings         Wedding[]               @relation("AdminToWedding")
+  profilePicture        String?
 }
 
 model Wedding {
@@ -55,13 +56,13 @@ model Wedding {
 
 model InviteToken{
   id          Int      @id @default(autoincrement())
-  token       String   @unique
+  token       Int   @unique
   email       String
   wedding     Wedding  @relation(fields: [weddingId], references: [id])
   weddingId   Int
   createdAt   DateTime @default(now())
-  isValid     Boolean  @default(true)
   updatedAt   DateTime @updatedAt
+  expiresAt   DateTime
 }
 
 

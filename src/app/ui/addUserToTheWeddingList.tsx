@@ -38,25 +38,26 @@ function AddUserCollaborator({ isOpen, contentLabel, onRequestClose }: AddInvPro
             const response = await axios.post('/api/emailUser', { emailUser }); // Pass emailUser as an object
 
             if (response.status === 200) {
-                console.log('user added successfully');
             }
         } catch (error) {
+
             console.error('Failed to add invitation:', error);
+
         }
     };
     return (
         <Modal isOpen={isOpen} onRequestClose={onRequestClose} contentLabel={contentLabel} icon={"celebration"}>
             <section className='containerModalInvitationWedding'>
-                <h1 className='title-container'>Creacion de Boda</h1>
+                <h1 className='title-container'>Invite someone to Collaborate</h1>
                 <article className="layout">
                     <InputField
                         value={emailUser}
                         type="text"
-                        placeholder='wedding name'
+                        placeholder='אמייל'
                         onChange={(e) => setEmailUser(e.target.value)}
                         error=''
                     />
-                    <Button label='add user' onClick={handleUserInvitation} className='button-a' />
+                    <Button label='שלח הזמנה לשיתוף' onClick={handleUserInvitation} className='button-a' />
                 </article>
             </section>
         </Modal>

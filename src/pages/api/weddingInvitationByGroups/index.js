@@ -30,9 +30,7 @@ export default async function handler(req, res) {
       const updatedWeddingInvitationLists = await Promise.all(updatePromises);
 
       res.status(200).json(updatedWeddingInvitationLists);
-    } catch (error) {
-      console.log("Failed to connect WeddingInvitationList with Group:", error);
-    }
+    } catch (error) {}
   } else {
     res.status(405).json({ error: "Method not allowed" });
   }

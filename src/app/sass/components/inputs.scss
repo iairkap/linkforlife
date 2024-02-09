@@ -6,10 +6,10 @@
 }
 
 .my-input.error {
-  border-color: $accent-color; // Cambia el color del borde a rojo si hay un error
+  border-color: $secondary-color; // Cambia el color del borde a rojo si hay un error
 }
 
 .error-message {
-  color: $accent-color;
+  color: $secondary-color;
   padding: 14px 20px;
 }

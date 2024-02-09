@@ -1,7 +1,7 @@
 @import "../abstracts/variables.scss";
 
 .myOverlay {
-  background: rgba(168, 104, 105, 0.5);
+  background: rgba(129, 131, 105, 0.5);
   backdrop-filter: blur(9px);
   position: fixed;
   top: 0;
@@ -18,7 +18,7 @@
   position: relative;
   width: 50%;
   border-radius: 1.25rem;
-  border: 1px solid $secondary-color;
+  border: 1px solid $accent-color;
   background: var(--Color, #fff);
   box-shadow: 0px 4px 54.4px 0px rgba(0, 0, 0, 0.25);
 }
@@ -42,7 +42,7 @@ flex-shrink: 0; */
 
 .icon-containerBis {
   border-radius: 4.25rem;
-  background: #a86869;
+  background: #818369;
   width: 4.25rem;
   height: 4.25rem;
   flex-shrink: 0;

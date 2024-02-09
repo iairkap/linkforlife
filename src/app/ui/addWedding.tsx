@@ -12,15 +12,17 @@ interface AddInvProps {
     isOpen: boolean;
     contentLabel: string;
     onRequestClose: () => void;
+    refreshData: () => void;
 }
 
 interface AddInvProps {
     isOpen: boolean;
     contentLabel: string;
     onRequestClose: () => void;
+    onRequestCloseGeneral: () => void;
 }
 
-function AddWedding({ isOpen, contentLabel, onRequestClose }: AddInvProps) {
+function AddWedding({ isOpen, contentLabel, onRequestClose, refreshData, onRequestCloseGeneral }: AddInvProps) {
     const [weddingName, setWeddingName] = React.useState('');
     const [weddingPlace, setWeddingPLace] = React.useState('');
     const [weddingDate, setWeddingDate] = useState<string>('');
@@ -43,13 +45,10 @@ function AddWedding({ isOpen, contentLabel, onRequestClose }: AddInvProps) {
             };
 
             const response = await axios.post('/api/wedding', wedding);
+            refreshData();
+            onRequestClose();
+            onRequestCloseGeneral();
 
-            if (response.status === 200) {
-                console.log('Invitation added successfully');
-
-
-
-            }
         } catch (error) {
             console.error('Failed to add invitation:', error);
         }

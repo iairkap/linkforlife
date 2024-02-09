@@ -18,6 +18,13 @@ interface UserInvitation {
 }
 
 export function getInvitationStats(userInvitationList: UserInvitation[]) {
+  function countInvitationsByFilter(
+    invitations: UserInvitation[],
+    filter: string
+  ) {
+    return invitations?.filter((inv) => inv.invitedBy.includes(filter)).length;
+  }
+
   const confirmed = userInvitationList?.filter(
     (inv) => inv.isConfirmed === true
   );
@@ -32,5 +39,44 @@ export function getInvitationStats(userInvitationList: UserInvitation[]) {
   );
   const invitedBy = userInvitationList?.map((inv) => inv.invitedBy);
 
-  return { confirmed, notConfirmed, isAttending, notAttending, invitedBy };
+  const flattenedInvitedBy = invitedBy?.flat();
+  const invitedByBride = flattenedInvitedBy?.filter(
+    (inv) => inv == "Bride"
+  ).length;
+  const invitedByGroom = flattenedInvitedBy?.filter(
+    (inv) => inv == "Groom"
+  ).length;
+
+  const confirmedByBride = countInvitationsByFilter(confirmed, "Bride");
+  const confirmedByGroom = countInvitationsByFilter(confirmed, "Groom");
+  const confirmedTotal = confirmed?.length;
+
+  const notConfirmedByBride = countInvitationsByFilter(notConfirmed, "Bride");
+  const notConfirmedByGroom = countInvitationsByFilter(notConfirmed, "Groom");
+  const notConfirmedTotal = notConfirmed?.length;
+
+  const isAttendingByBride = countInvitationsByFilter(isAttending, "Bride");
+  const isAttendingByGroom = countInvitationsByFilter(isAttending, "Groom");
+  const isAttendingTotal = isAttending?.length;
+
+  const notAttendingByBride = countInvitationsByFilter(notAttending, "Bride");
+  const notAttendingByGroom = countInvitationsByFilter(notAttending, "Groom");
+  const notAttendingTotal = notAttending?.length;
+
+  return {
+    confirmedByBride,
+    confirmedByGroom,
+    confirmedTotal,
+    notConfirmedByBride,
+    notConfirmedByGroom,
+    notConfirmedTotal,
+    isAttendingByBride,
+    isAttendingByGroom,
+    isAttendingTotal,
+    notAttendingByBride,
+    notAttendingByGroom,
+    notAttendingTotal,
+    invitedByBride,
+    invitedByGroom,
+  };
 }

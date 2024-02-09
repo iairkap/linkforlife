@@ -15,7 +15,7 @@ import FirstSteps from '@/app/ui/firstSteps';
 import { Modal } from '@mui/material';
 function Dashboard() {
     const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations, selectedWedding, setSelectedWedding, weddings, setWeddings, handleWeddingChange,
-        ModalFirstSteps, setModalFirstSteps } = useDashboardData();
+        ModalFirstSteps, setModalFirstSteps, refreshData } = useDashboardData();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [filter, setFilter] = useState('all');
     const [filteredUserInvitationList, setFilteredUserInvitationList] = useState(userInvitationList);
@@ -33,7 +33,6 @@ function Dashboard() {
 
         setFilteredUserInvitationList(newFilteredUserInvitationList);
     }, [userInvitationList, filter]);
-    console.log(filter)
 
 
 
@@ -54,10 +53,13 @@ function Dashboard() {
         isLoading,
         setIsLoading,
         groups,
+        ModalFirstSteps,
+        setModalFirstSteps,
+        refreshData,
+        weddings
     });
 
     useEffect(() => {
-        console.log('userInvitationList has changed:', userInvitationList);
     }, [userInvitationList]);
 
 
@@ -69,7 +71,6 @@ function Dashboard() {
         );
     }
 
-    console.log('userInvitationList:', userInvitationList);
 
     return (
         <main className="main">
@@ -117,7 +118,6 @@ function Dashboard() {
 
                 </div>
             </section>
-            <FirstSteps isOpen={ModalFirstSteps} onRequestClose={() => setModalFirstSteps(false)} contentLabel="a" />
         </main>
     );
 }

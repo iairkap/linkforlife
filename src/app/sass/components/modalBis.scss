@@ -22,15 +22,3 @@
   display: flex;
   justify-content: center;
 }
-
-.buttoncito {
-  @include smallButtons;
-  width: 100%;
-}
-
-.buttoncito-container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 1rem;
-}
