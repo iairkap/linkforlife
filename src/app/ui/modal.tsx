@@ -22,6 +22,7 @@ function Modal({ isOpen, contentLabel, onRequestClose, children, icon }: ModalPr
             className="myModal"
             overlayClassName="myOverlay"
         >
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
             <div className='icon-container'>
                 <svg xmlns="http://www.w3.org/2000/svg" width="135" height="135" viewBox="0 0 135 135" fill="none">
                     <g filter="url(#filter0_d_581_3070)">

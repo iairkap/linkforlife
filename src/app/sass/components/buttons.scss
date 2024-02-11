@@ -30,6 +30,28 @@
   }
 }
 
+.button-a-disabled {
+  background-color: $accent-color-disabled;
+  color: white;
+  padding: 14px 20px;
+  border: none;
+  cursor: not-allowed;
+  width: 100%;
+  opacity: 0.9;
+  display: flex;
+  border-radius: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  font-size: $subtitle-size;
+  font-family: $title-family;
+  font-weight: 400;
+  transition: all 0.3s ease-in-out;
+  font-weight: bold;
+  &:hover {
+    opacity: 1;
+  }
+}
+
 .button-b {
   background-color: #81836900;
   color: $accent-color;

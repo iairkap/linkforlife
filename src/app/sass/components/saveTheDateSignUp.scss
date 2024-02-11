@@ -1,0 +1,25 @@
+@import "../abstracts/variables.scss";
+.container {
+  background-color: $accent-color-low-opacity;
+  height: 110%;
+  margin-top: -40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $hebrew-cool-font;
+  flex-direction: column;
+  border: 2px solid black;
+  border-radius: 1rem;
+}
+
+h2 {
+  font-size: 8rem;
+}
+
+.name-wedding {
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  justify-content: space-around;
+  font-size: 4rem;
+}

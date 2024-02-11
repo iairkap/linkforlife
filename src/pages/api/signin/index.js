@@ -6,11 +6,13 @@ const prisma = new PrismaClient();
 export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
-      const { email, password } = req.body;
+      const { email, password, name, lastName, partnerName, partnerLastName } =
+        req.body;
 
       const existingUser = await prisma.user.findUnique({ where: { email } });
       if (existingUser) {
-        return res.status(400).json({ error: "Email ya está en uso." });
+        console.log("existingUser", existingUser);
+        return res.status(400).json({ error: "האימייל כבר בשימוש" });
       }
 
       const hashedPassword = await hash(password, 10);
@@ -19,12 +21,17 @@ export default async function handler(req, res) {
         data: {
           email,
           password: hashedPassword,
+          name,
+          lastName,
+          partnerName,
+          partnerLastName,
         },
       });
 
-      res.status(200).json(user);
+      res.status(200).json({ user, message: "ההרשמה בוצעה בהצלחה" });
     } catch (error) {
-      res.status(500).json({ error: error.message || "Algo salió mal." });
+      res.status(500).json({ error: error.message });
+      console.error(error);
     }
   } else {
     // Enviar un mensaje de error si el método de la solicitud no es POST

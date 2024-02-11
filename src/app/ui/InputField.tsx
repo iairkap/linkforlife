@@ -2,6 +2,7 @@ import React from 'react';
 import "../sass/components/inputs.scss"
 
 function InputField({
+    disabled,
     value,
     type,
     onChange,
@@ -10,6 +11,7 @@ function InputField({
     onFocus = () => { },
     onBlur = () => { }
 }: {
+    disabled?: boolean,
     value: string,
     type: string,
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
@@ -20,6 +22,7 @@ function InputField({
 }) {
     const autoComplete = type === 'password' ? 'current-password' : '';
     const inputClass = error ? 'my-input error' : 'my-input'; // Cambia la clase si hay un error
+    const displayPlaceholder = error ? error : placeholder; // Cambia el placeholder si hay un error
 
     return (
         <div>
@@ -28,12 +31,11 @@ function InputField({
                 type={type}
                 value={value}
                 onChange={onChange}
-                placeholder={placeholder}
+                placeholder={displayPlaceholder}
                 autoComplete={autoComplete}
                 onFocus={onFocus}
                 onBlur={onBlur}
             />
-            {error && <div className="error-message">{error}</div>} {/* Muestra el mensaje de error si hay un error */}
         </div>
     );
 }

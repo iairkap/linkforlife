@@ -9,6 +9,17 @@
   width: calc(100% - 43px);
   padding: 14px 20px;
 
+  &[type="date"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: calc(100% - 43px);
+    padding: 0;
+
+    /* Tus estilos personalizados */
+    width: calc(100% - 43px);
+    padding: 14px 20px;
+  }
   &:focus {
     border-color: $accent-color;
   }
