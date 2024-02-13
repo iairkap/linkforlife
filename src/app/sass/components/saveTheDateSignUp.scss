@@ -1,19 +1,21 @@
 @import "../abstracts/variables.scss";
 .container {
-  background-color: $accent-color-low-opacity;
-  height: 110%;
+  background-color: #f4f0ed;
+  max-height: 919px;
+  height: 100%;
   margin-top: -40px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: $hebrew-cool-font;
   flex-direction: column;
-  border: 2px solid black;
   border-radius: 1rem;
+  position: relative;
 }
 
 h2 {
   font-size: 8rem;
+  color: #b8ba98;
 }
 
 .name-wedding {
@@ -21,5 +23,20 @@ h2 {
   flex-direction: row;
   width: 70%;
   justify-content: space-around;
+  align-items: flex-start;
   font-size: 4rem;
+}
+
+.icon-svg1,
+.icon-svg2 {
+  position: absolute;
+  bottom: 40px;
+}
+
+.icon-svg1 {
+  right: 30px;
+}
+
+.icon-svg2 {
+  left: 30px;
 }

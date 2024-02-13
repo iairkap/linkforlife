@@ -43,9 +43,9 @@
 .container-inputB {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.5rem;
+  gap: 1.2rem;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 3.5rem;
   min-width: 440.06px;
 }
 
@@ -166,3 +166,9 @@ form {
   display: block;
 }
  */
+
+.button-container-sign-up {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}

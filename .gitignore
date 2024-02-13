@@ -13,3 +13,9 @@ package-lock.json
 .next/server/pages-manifest.json
 invListB.tsx
 .vercel
+sign-up-bis/ImageComponent.md
+sign-up-bis/page.md
+sign-up-bis/Page1Form.md
+sign-up-bis/Page2Form.md
+sign-up-bis/useForm.md
+sign-up-bis/useSession.md

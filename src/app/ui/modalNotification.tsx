@@ -1,20 +1,24 @@
 import React from 'react';
 import Modal from './modal';
-
+import { signIn, getSession } from "next-auth/react"
 
 interface ModalNotificationProps {
     message: string;
     status: number;
     isOpen: boolean;
     onRequestClose: () => void;
+    email?: string;
+    password?: string;
+    formdata?: any;
 }
 
 
-function ModalNotification({ message, status, isOpen, onRequestClose }: ModalNotificationProps) {
+function ModalNotification({ message, status, isOpen, onRequestClose, email, password, formdata }: ModalNotificationProps) {
 
 
     console.log('ModalNotification', message, status, isOpen, onRequestClose)
-
+    console.log(email)
+    console.log(password)
 
     let icon;
     let title;
@@ -39,6 +43,13 @@ function ModalNotification({ message, status, isOpen, onRequestClose }: ModalNot
                 <h1 className='title-container'>{title}</h1>
                 <article className="layoutBis">
                     <p>{message}</p>
+                    {
+                        status === 500 &&
+                        <button onClick={onRequestClose} className="button-container">סגור</button>
+                    }
+                    {
+                        status === 200 &&
+                        <button onClick={() => signIn("credentials", { email: email, password: password, callbackUrl: "/dashboard/rsvp" })} className="button-container">sign in</button>}
                 </article>
 
             </section>

@@ -6,11 +6,17 @@ export default async function handle(req, res) {
     try {
       await prisma.inviteToken.deleteMany();
       await prisma.weddingInvitationList.deleteMany();
-      const deleteWeddings = await prisma.wedding.deleteMany();
+      await prisma.wedding.deleteMany();
+      await prisma.user.deleteMany();
 
-      res.json(deleteWeddings);
+      res.status(200).json({
+        message: "All users and associated data deleted successfully",
+      });
     } catch (error) {
-      res.status(500).json({ error: "Error deleting weddings" });
+      res.status(500).json({
+        error: "Error deleting users and associated data",
+        message: error,
+      });
     }
   } else {
     res.status(405).json({ error: "Method not allowed" });
