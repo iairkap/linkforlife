@@ -21,6 +21,7 @@ function TableInvitationList({
   setModalFirstSteps,
   refreshData,
   weddings,
+  user,
 }) {
   const data = useMemo(() => userInvitationList, [userInvitationList]);
 
@@ -247,6 +248,7 @@ function TableInvitationList({
               onRequestClose={() => setModalFirstSteps(false)}
               contentLabel="a"
               refreshData={refreshData}
+              user={user}
             />
           )}
         </table>

@@ -3,7 +3,7 @@ import { fetchInvitationList } from "./api";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { AxiosError } from "axios";
-
+import { fetchUserDataBis } from "./api";
 interface Group {
   id: number;
 }
@@ -32,13 +32,18 @@ export const useDashboardData = () => {
   const [groupInvitations, setGroupInvitations] = useState<
     Record<number, UserInvitation[]>
   >({});
+  const [user, setUser] = useState<any>([]);
 
   const router = useRouter();
 
   const fetchData = async () => {
     setIsLoading(true);
     try {
+      const databis = await fetchUserDataBis();
+      console.log(databis);
+      setUser(databis);
       const data = await fetchInvitationList();
+      console.log(data);
       setWeddings(data);
 
       if (data?.weddings.length === 0) {
@@ -109,6 +114,7 @@ export const useDashboardData = () => {
     setGroupInvitations(newGroupInvitations);
   }, [userInvitationList, selectedWedding]);
 
+  console.log(user);
   return {
     setUserInvitationList,
     userInvitationList,
@@ -124,5 +130,7 @@ export const useDashboardData = () => {
     setWeddings,
     ModalFirstSteps,
     setModalFirstSteps,
+    user,
+    setUser,
   };
 };

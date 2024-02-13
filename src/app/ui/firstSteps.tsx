@@ -13,10 +13,11 @@ interface FirstStepsProps {
     contentLabel: string;
     onRequestClose: () => void;
     refreshData: () => void;
+    user: any;
 
 }
 
-function FirstSteps({ isOpen, contentLabel, onRequestClose, refreshData }: FirstStepsProps) {
+function FirstSteps({ isOpen, contentLabel, onRequestClose, refreshData, user }: FirstStepsProps) {
 
 
     const [isModalOpenCreateWedding, setIsModalOpenCreateWedding] = useState(false);
@@ -33,14 +34,13 @@ function FirstSteps({ isOpen, contentLabel, onRequestClose, refreshData }: First
             <h1 className='title'>עדיין לא חתונה</h1>
             <div className='buttoncito-container'>
                 <button onClick={() => { setIsModalOpenCreateWedding(true) }} className='buttoncito'>צור חתונה</button>
-                <AddWedding isOpen={isModalOpenCreateWedding} contentLabel="Add Wedding" onRequestClose={() => setIsModalOpenCreateWedding(false)} refreshData={refreshData} onRequestCloseGeneral={onRequestClose} />
+                <AddWedding isOpen={isModalOpenCreateWedding} contentLabel="Add Wedding" onRequestClose={() => setIsModalOpenCreateWedding(false)} refreshData={refreshData} onRequestCloseGeneral={onRequestClose} user={user} />
                 <button onClick={() => { setIsAccesTableWithTokenOpen(true) }} className='buttoncito'>הצטרף לחתונה</button>
                 <AccesTableWithToken isOpen={isAccesTableWithTokenOpen} contentLabel="Join existent table" onRequestClose={() => setIsAccesTableWithTokenOpen(false)} />
             </div>
 
         </div>
-/*         </ModalFistSteps>
- */    );
+    );
 }
 
 export default FirstSteps;

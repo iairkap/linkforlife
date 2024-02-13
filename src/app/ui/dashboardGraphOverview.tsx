@@ -26,13 +26,15 @@ interface UserInvitation {
     groupId: null | number;
     Table: any;
     groups: any[];
+    user: any;
 }
 
 interface DashboardGraphProps {
     userInvitationList: UserInvitation[];
+    user: any;
 }
 
-function DashboardGraph({ userInvitationList }: DashboardGraphProps): JSX.Element {
+function DashboardGraph({ userInvitationList, user }: DashboardGraphProps): JSX.Element {
 
     const { confirmedByBride,
         confirmedByGroom,
@@ -53,8 +55,8 @@ function DashboardGraph({ userInvitationList }: DashboardGraphProps): JSX.Elemen
 
     return (
         <div className='dash-card-container'>
-            <DashboardGraphCard cardTitle={"מוזמנים על ידי החתן"} icon={Groom} confirmed={confirmedByGroom} attending={isAttendingByGroom} notAttending={notAttendingByGroom} notConfirmed={notConfirmedByGroom} total={invitedByGroom} />
-            <DashboardGraphCard cardTitle={"מוזמנים על ידי הכלה"} icon={Bride} confirmed={confirmedByBride} attending={isAttendingByBride} notAttending={notAttendingByBride} notConfirmed={notConfirmedByBride} total={invitedByBride} />
+            <DashboardGraphCard cardTitle={`מוזמנים על ידי ${user.partnerName}`} icon={Groom} confirmed={confirmedByGroom} attending={isAttendingByGroom} notAttending={notAttendingByGroom} notConfirmed={notConfirmedByGroom} total={invitedByGroom} />
+            <DashboardGraphCard cardTitle={`מוזמנים על ידי ${user.name}`} icon={Bride} confirmed={confirmedByBride} attending={isAttendingByBride} notAttending={notAttendingByBride} notConfirmed={notConfirmedByBride} total={invitedByBride} />
             <DashboardGraphCard cardTitle={`סה"כ מוזמנים`} icon={Both} confirmed={confirmedTotal} attending={isAttendingTotal} notAttending={notAttendingTotal} notConfirmed={notConfirmedTotal} total={invitedTotal} />
         </div>
     );

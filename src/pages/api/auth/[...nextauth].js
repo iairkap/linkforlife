@@ -72,14 +72,26 @@ const authOptions = {
           ...session.user,
           id: token.id,
           randomKey: token.randomKey,
+          lastName: token.lastName, // Aquí usamos 'token', no 'user'
+          partnerName: token.partnerName, // Aquí usamos 'token', no 'user'
+          partnerLastName: token.partnerLastName, // Aquí usamos 'token', no 'user'
         },
-        accessToken: token.accessToken, // Agrega esta línea
+        accessToken: token.accessToken,
       };
     },
     jwt: async ({ token, user, account }) => {
       if (account && account.access_token) {
-        token.accessToken = account.access_token; // <-- adding the access_token here
+        token.accessToken = account.access_token;
       }
+
+      // Si 'user' está definido, entonces estamos en el proceso de inicio de sesión
+      // y podemos agregar los datos adicionales al token.
+      if (user) {
+        token.lastName = user.lastName;
+        token.partnerName = user.partnerName;
+        token.partnerLastName = user.partnerLastName;
+      }
+
       return token;
     },
   },

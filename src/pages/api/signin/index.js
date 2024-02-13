@@ -22,9 +22,6 @@ export default async function handler(req, res) {
           email,
           password: hashedPassword,
           name,
-          lastName,
-          partnerName,
-          partnerLastName,
         },
       });
 

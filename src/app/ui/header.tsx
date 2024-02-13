@@ -5,6 +5,7 @@ import { useSession } from 'next-auth/react'
 import Image from 'next/image';
 import SearchBar from './searchBar';
 import DropDownUserSettings from './dropDownUserSettings';
+import logo from "../../../public/logo.png"
 
 function Header({ }) {
     const { data: session } = useSession()
@@ -46,13 +47,22 @@ function Header({ }) {
                 </svg>
                 <div className='menu-container' ref={menuRef}>
                     <button onClick={() => { handleClickSetMenuVisibleInvisible() }}>
-                        <div className='image-container'>
-                            <Image src={profilePicture} width="50" height="50" alt='profile-picture' />
+                        <div className='image-container'>{
+                            profilePicture && (
+                                <Image src={profilePicture} width="50" height="50" alt='profile-picture' />
+                            )
+                        }{
+                                !profilePicture && (
+                                    <Image src={logo} width="40" height="40" alt='profile-picture' />
+                                )
+
+
+                            }
                         </div>
                     </button>
                     {
                         menuVisible &&
-                        <DropDownUserSettings isOpen={menuVisible} profilePicture={profilePicture} email={email} name={name} setIsOpen={setMenuVisible} />
+                        <DropDownUserSettings logo={logo} isOpen={menuVisible} profilePicture={profilePicture} email={email} name={name} setIsOpen={setMenuVisible} />
                     }
                 </div>
             </div>

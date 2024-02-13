@@ -15,10 +15,12 @@ import FirstSteps from '@/app/ui/firstSteps';
 import { Modal } from '@mui/material';
 function Dashboard() {
     const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations, selectedWedding, setSelectedWedding, weddings, setWeddings, handleWeddingChange,
-        ModalFirstSteps, setModalFirstSteps, refreshData } = useDashboardData();
+        ModalFirstSteps, setModalFirstSteps, refreshData, user } = useDashboardData();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [filter, setFilter] = useState('all');
     const [filteredUserInvitationList, setFilteredUserInvitationList] = useState(userInvitationList);
+
+
 
     useEffect(() => {
         const newFilteredUserInvitationList = userInvitationList.filter(invitation => {
@@ -35,7 +37,9 @@ function Dashboard() {
     }, [userInvitationList, filter]);
 
 
-
+    useEffect(() => {
+        refreshData();
+    }, []);
 
     const handleOpenModal = () => {
         setIsModalOpen(true);
@@ -56,10 +60,12 @@ function Dashboard() {
         ModalFirstSteps,
         setModalFirstSteps,
         refreshData,
-        weddings
+        weddings,
+        user
     });
 
     useEffect(() => {
+
     }, [userInvitationList]);
 
 
@@ -70,6 +76,8 @@ function Dashboard() {
             </main>
         );
     }
+
+    console.log(user)
 
 
     return (
@@ -84,12 +92,12 @@ function Dashboard() {
                         contentLabel="My Modal"
                         setUserInvitationList={setUserInvitationList}
                     />
-                    <select name="table-selection" id="table-selection" onChange={handleWeddingChange}>
+                    {/*                 <select name="table-selection" id="table-selection" onChange={handleWeddingChange}>
                         <option value="">Select a wedding...</option>
                         {weddings.map(wedding => (
                             <option key={wedding.id} value={wedding.id}>{wedding.weddingName}</option>
                         ))}
-                    </select>
+                    </select> */}
                     <HeaderFilter
                         getToggleHideAllColumnsProps={tableProps.getToggleHideAllColumnsProps} // Pasa esto aquí
                         isMenuOpen={isMenuOpen}

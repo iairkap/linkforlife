@@ -9,6 +9,8 @@ import AccesTableWithToken from '../ui/accesTableWithToken';
 import { useRouter } from 'next/navigation';
 import HeaderDashboard from '../ui/headerDashboard';
 import { useDashboardData } from '../helpers/useDashboardData';
+/* import PieChart from "../ui/pieChart";
+ */
 interface DashboardData {
     userInvitationList: any[]; // Reemplaza 'any' con el tipo correcto
     setUserInvitationList: React.Dispatch<React.SetStateAction<any[]>>; // Reemplaza 'any' con el tipo correcto
@@ -23,7 +25,7 @@ function DashboardGeneral() {
 
 
     const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations, selectedWedding, setSelectedWedding, weddings, setWeddings, handleWeddingChange,
-        ModalFirstSteps, setModalFirstSteps, refreshData } = useDashboardData();
+        ModalFirstSteps, setModalFirstSteps, refreshData, user } = useDashboardData();
 
 
     const [weddingDate, setWeddingDate] = useState('')
@@ -31,9 +33,9 @@ function DashboardGeneral() {
 
     useEffect(() => {
         if (weddings && weddings.length > 0) {
-            setUserInvitationList(weddings[0].weddingInvitationList);
-            setWeddingDate(weddings[0].weddingDate);
-        }
+            setUserInvitationList(weddings[0]?.weddingInvitationList);
+/*             setWeddingDate(weddings[0].weddingDate);
+ */        }
     }, [weddings]);
 
     const areWedding = weddings && weddings.length > 0;
@@ -43,9 +45,9 @@ function DashboardGeneral() {
     return (
         <div>
             <HeaderDashboard weddingDate={weddingDate} />
-            <DashboardGraph userInvitationList={userInvitationList} />
-
-        </div>
+            <DashboardGraph userInvitationList={userInvitationList} user={user} />
+            {/*             <PieChart userInvitationList={userInvitationList} />
+ */}        </div>
     );
 }
 

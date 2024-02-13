@@ -3,6 +3,13 @@ import Cookies from "js-cookie";
 
 export const fetchInvitationList = async () => {
   const response = await axios.get("/api/wedding", {});
+  console.log(response);
+  return response.data;
+};
+
+export const fetchUserDataBis = async () => {
+  const response = await axios.get("/api/user", {});
+  console.log(response.data);
 
   return response.data;
 };

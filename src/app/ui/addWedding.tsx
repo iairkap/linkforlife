@@ -6,13 +6,14 @@ import Button from './button';
 import axios from 'axios';
 import { useDashboardData } from '../helpers/useDashboardData';
 import MultiSelect from './Select';
-
+import { useSession } from 'next-auth/react';
 
 interface AddInvProps {
     isOpen: boolean;
     contentLabel: string;
     onRequestClose: () => void;
     refreshData: () => void;
+    user: any;
 }
 
 interface AddInvProps {
@@ -22,8 +23,11 @@ interface AddInvProps {
     onRequestCloseGeneral: () => void;
 }
 
-function AddWedding({ isOpen, contentLabel, onRequestClose, refreshData, onRequestCloseGeneral }: AddInvProps) {
-    const [weddingName, setWeddingName] = React.useState('');
+function AddWedding({ isOpen, contentLabel, onRequestClose, refreshData, onRequestCloseGeneral, user }: AddInvProps) {
+
+    const posibleNameEvent = user?.name + ' ' + "&" + " " + user?.partnerName
+    console.log(posibleNameEvent)
+    const [weddingName, setWeddingName] = React.useState(posibleNameEvent);
     const [weddingPlace, setWeddingPLace] = React.useState('');
     const [weddingDate, setWeddingDate] = useState<string>('');
 
@@ -34,6 +38,8 @@ function AddWedding({ isOpen, contentLabel, onRequestClose, refreshData, onReque
         weddingDate: weddingDate
     }
 
+
+    console.log(user)
 
 
     const handleWeddingaAddition = async () => {
@@ -61,7 +67,7 @@ function AddWedding({ isOpen, contentLabel, onRequestClose, refreshData, onReque
                     <InputField
                         value={weddingName}
                         type="text"
-                        placeholder='שם האירוע'
+                        placeholder={posibleNameEvent ? posibleNameEvent : 'שם חתונה'}
                         onChange={(e) => setWeddingName(e.target.value)}
                         error=''
                     />

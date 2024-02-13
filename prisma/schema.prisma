@@ -40,6 +40,9 @@ model User {
   lastName             String?
   partnerName           String?
   partnerLastName       String?
+  weddingDate           DateTime?
+  role                  ROLE                    @default(ADMIN)
+  partnerRole           ROLE                    @default(ADMIN)
 }
 
 model Wedding {
@@ -55,6 +58,15 @@ model Wedding {
   adminId               Int
   admin                 User                    @relation("AdminToWedding", fields: [adminId], references: [id])
 }
+
+enum ROLE {
+ADMIN
+BRIDE
+GROOM
+WEDDING_PLANNER
+}
+
+
 
 
 model InviteToken{
