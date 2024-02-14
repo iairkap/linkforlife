@@ -9,6 +9,7 @@ import AccesTableWithToken from '../ui/accesTableWithToken';
 import { useRouter } from 'next/navigation';
 import HeaderDashboard from '../ui/headerDashboard';
 import { useDashboardData } from '../helpers/useDashboardData';
+import Loader from '../ui/loader';
 /* import PieChart from "../ui/pieChart";
  */
 interface DashboardData {
@@ -41,7 +42,13 @@ function DashboardGeneral() {
 
     const areWedding = weddings && weddings.length > 0;
 
+    console.log(isLoading)
 
+
+
+    if (isLoading) {
+        return <Loader />
+    }
 
     return (
         <div>
