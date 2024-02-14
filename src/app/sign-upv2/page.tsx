@@ -17,6 +17,11 @@ import axios from 'axios';
 import SignUpPart1 from '../ui/signUpPart1';
 import SignUpPart2 from '../ui/signUpPart2';
 
+interface SignUpFormData {
+    email: string;
+    password: string;
+    passwordConfirmation: string;
+}
 
 
 interface SignUpResponse {
@@ -32,7 +37,7 @@ function SignUp() {
     console.log(formData)
 
 
-    const handleNext = (data) => {
+    const handleNext = (data: SignUpFormData) => {
         setFormData(prevData => ({ ...prevData, ...data }));
         setCurrentPage(prevPage => prevPage + 1);
     };
@@ -41,7 +46,7 @@ function SignUp() {
         setCurrentPage(prevPage => prevPage - 1);
     };
 
-    const handleSubmit = (data) => {
+    const handleSubmit = (data: { [key: string]: string }) => {
         setFormData(prevData => ({ ...prevData, ...data }));
 
     };
@@ -78,7 +83,7 @@ function SignUp() {
                 {currentPage === 1 ? (
                     <SignUpPart1 onNext={handleNext} />
                 ) : (
-                    <SignUpPart2 onBack={handleBack} onSubmit={handleSubmit} formDataEmail={formData} />
+                    <SignUpPart2 formDataEmail={formData} />
                 )}
             </section>
         </main>

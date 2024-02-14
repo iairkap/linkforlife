@@ -37,11 +37,10 @@ interface Errors {
 }
 
 interface SignUpPart2Props {
-    onBack: (data: FormData) => void;
-    formDataEmail: any;
+    formDataEmail?: any;
 }
 
-const SignUpPart2: React.FC<SignUpPart2Props> = ({ onBack, formDataEmail }) => {
+const SignUpPart2: React.FC<SignUpPart2Props> = ({ formDataEmail }) => {
     const [formData, setFormData] = useState<FormData>({
         name: "",
         lastName: "",
@@ -92,7 +91,7 @@ const SignUpPart2: React.FC<SignUpPart2Props> = ({ onBack, formDataEmail }) => {
 
     console.log(formDataEmail, 'formDataEmail')
 
-    const updateFormData = (key: keyof FormData, value: string) => {
+    const updateFormData = (key: keyof FormData, value: string | boolean) => {
         setFormData(prevData => ({ ...prevData, [key]: value }));
     }
     const handleSubmit = async (event: React.FormEvent) => {
@@ -120,6 +119,10 @@ const SignUpPart2: React.FC<SignUpPart2Props> = ({ onBack, formDataEmail }) => {
                     throw new Error('Something went wrong');
                 } else if (pathName === "/sign-upv2") {
                     const encryptedPassword = Cookies.get('tempPassword');
+
+                    if (!encryptedPassword) {
+                        throw new Error("No se encontró la cookie 'tempPassword'");
+                    }
 
                     const bytes = CryptoJS.AES.decrypt(encryptedPassword, "process.env.SECRET_KEY");
                     const tempPassword = bytes.toString(CryptoJS.enc.Utf8);

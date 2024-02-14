@@ -1,7 +1,7 @@
 import React from 'react';
 import Sidebar from '../ui/sideBar';
 import "../sass/layout/dashboard.scss"
-import GlobalProvider,  from './globalContext';
+import GlobalProvider from './globalContext';
 import Header from '../ui/header';
 
 

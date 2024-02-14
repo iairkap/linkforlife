@@ -24,11 +24,12 @@ interface DashboardData {
 function DashboardGeneral() {
 
 
-    const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations, selectedWedding, setSelectedWedding, weddings, setWeddings, handleWeddingChange,
+    const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations, selectedWedding, setSelectedWedding, weddings, setWeddings, /* handleWeddingChange */
         ModalFirstSteps, setModalFirstSteps, refreshData, user } = useDashboardData();
 
 
     const [weddingDate, setWeddingDate] = useState('')
+    console.log(userInvitationList)
 
 
     useEffect(() => {

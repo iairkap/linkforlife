@@ -1,6 +1,10 @@
 export const dateFormat = (date: string) => {
   const dateObj = new Date(date);
-  const options = { month: "long", day: "numeric", year: "numeric" };
+  const options: Intl.DateTimeFormatOptions = {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  };
   return dateObj.toLocaleDateString("he-IL", options);
 };
 

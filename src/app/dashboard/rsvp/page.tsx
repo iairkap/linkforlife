@@ -14,7 +14,7 @@ import InputField from '@/app/ui/InputField';
 import FirstSteps from '@/app/ui/firstSteps';
 import { Modal } from '@mui/material';
 function Dashboard() {
-    const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations, selectedWedding, setSelectedWedding, weddings, setWeddings, handleWeddingChange,
+    const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations, selectedWedding, setSelectedWedding, weddings, setWeddings, /* handleWeddingChange */
         ModalFirstSteps, setModalFirstSteps, refreshData, user } = useDashboardData();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [filter, setFilter] = useState('all');
@@ -90,6 +90,8 @@ function Dashboard() {
                         onRequestClose={handleCloseModal}
                         contentLabel="My Modal"
                         setUserInvitationList={setUserInvitationList}
+                        userInvitationList={userInvitationList}
+                        user={user}
                     />
                     {/*                 <select name="table-selection" id="table-selection" onChange={handleWeddingChange}>
                         <option value="">Select a wedding...</option>

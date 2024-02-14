@@ -26,6 +26,11 @@ const GlobalContext = createContext<DashboardData | null>(null);
 const GlobalProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations, weddings, setWeddings, refreshData, user } = useDashboardData();
 
+
+    console.log(weddings)
+    console.log(userInvitationList)
+
+
     const { data: session, status } = useSession();
 
     const [isOpenModalAddUser, setIsOpenModalAddUser] = useState(false);

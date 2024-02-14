@@ -45,6 +45,10 @@ export const useDashboardData = () => {
       const data = await fetchInvitationList();
       console.log(data);
       setWeddings(data);
+      if (data.length > 0) {
+        setSelectedWedding(data[0].id);
+        setUserInvitationList(data[0].weddingInvitationList);
+      }
     } catch (error) {
       const axiosError = error as AxiosError;
 
@@ -59,6 +63,9 @@ export const useDashboardData = () => {
   };
 
   useEffect(() => {
+    console.log(userInvitationList);
+  }, [userInvitationList]);
+  useEffect(() => {
     fetchData().then(() => {
       if (weddings.length > 0) {
         setSelectedWedding(weddings[0].id);
@@ -66,16 +73,22 @@ export const useDashboardData = () => {
     });
   }, []);
 
+  /*   console.log(weddings);
+   */ /* 
   const handleWeddingChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedWedding(weddings[0].id);
-    console.log(selectedWedding);
-    const wedding = weddings.find((wedding) => wedding.id === selectedWedding);
+    const newSelectedWedding = weddings[0].id;
+    setSelectedWedding(newSelectedWedding);
+    console.log(newSelectedWedding);
+    const wedding = weddings.find(
+      (wedding) => wedding.id === newSelectedWedding
+    );
     if (wedding) {
       setUserInvitationList(wedding.weddingInvitationList);
+      console.log(userInvitationList);
     } else {
       setUserInvitationList([]);
     }
-  };
+  }; */
 
   useEffect(() => {
     fetchData();
@@ -129,8 +142,8 @@ export const useDashboardData = () => {
     groups,
     groupInvitations,
     refreshData: fetchData,
-    handleWeddingChange,
-    selectedWedding,
+    /*     handleWeddingChange,
+     */ selectedWedding,
     setSelectedWedding,
     weddings,
     setWeddings,

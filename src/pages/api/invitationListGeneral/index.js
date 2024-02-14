@@ -61,20 +61,24 @@ export default async function handler(req, res) {
       } else {
         invitationsArray = [invitations];
       }
-
       let createInvitations = invitationsArray.map((invitation) => {
+        const { weddingId, ...invitationWithoutWeddingId } = invitation;
         return prisma.weddingInvitationList.create({
           data: {
-            ...invitation,
+            ...invitationWithoutWeddingId,
             user: {
               connect: {
                 id: Number(userId),
               },
             },
+            wedding: {
+              connect: {
+                id: weddingId,
+              },
+            },
           },
         });
       });
-
       const newInvitations = await prisma.$transaction(createInvitations);
 
       res.status(201).json(newInvitations);

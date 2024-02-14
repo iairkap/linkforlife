@@ -15,13 +15,15 @@ interface AddInvProps {
 }
 
 interface AddInvProps {
+    user: any;
     isOpen: boolean;
     contentLabel: string;
     onRequestClose: () => void;
+    userInvitationList: any[]; // Add this line
     setUserInvitationList: (list: any[]) => void; // Add this line
 }
 
-function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList }: AddInvProps) {
+function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList, userInvitationList, user }: AddInvProps) {
     const [name, setName] = React.useState('');
     const [lastName, setLastName] = React.useState('');
     const [email, setEmail] = React.useState('');
@@ -29,20 +31,13 @@ function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList }:
     const [specialRole, setSpecialRole] = React.useState<string[]>([]);
     const [phoneNumber, setPhoneNumber] = React.useState('');
 
-
-    const data = {
-        name: name,
-        lastName: lastName,
-        email: email,
-        invitedBy: invitedBy,
-        specialRole: specialRole,
-        phoneNumber: phoneNumber
-    }
+    console.log(user)
 
 
+    let firstName = user.name.split(' ')[0];
+    firstName = firstName.charAt(0).toUpperCase() + firstName.slice(1);
+    const wedding = userInvitationList[0].weddingId
 
-
-    const { userInvitationList } = useDashboardData(); // 
 
 
 
@@ -51,6 +46,7 @@ function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList }:
     const handleAddInv = async () => {
         try {
             const invitation = {
+                weddingId: wedding,
                 name,
                 lastName,
                 emailInvitation: email,
@@ -103,7 +99,7 @@ function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList }:
                         onChange={(e) => setPhoneNumber(e.target.value)}
                         error=''
                     />
-                    <MultiSelect span="הוזמן על ידי" value={invitedBy} onChange={setInvitedBy} options={['Groom', 'Bride', 'Grooms Family', 'Brides Family']} id={"הוזמן על ידי"} />
+                    <MultiSelect span="הוזמן על ידי" value={invitedBy} onChange={setInvitedBy} options={[`${firstName}`, `${user?.partnerName}`, `${firstName}'s family`, `${user?.partnerName}'s family`, `Both`]} id={"הוזמן על ידי"} />
                     <MultiSelect span="תפקיד מיוחד" value={specialRole} onChange={setSpecialRole} options={['Best Man', 'Maid Of Honor', 'Parent', 'None']} id={"specialRole"} />
 
 

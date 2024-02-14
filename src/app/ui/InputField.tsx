@@ -13,10 +13,10 @@ function InputField({
 }: {
     disabled?: boolean,
     value: string,
-    type: string,
+    type: string | undefined,
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
     placeholder: string,
-    error: string,
+    error?: string,
     onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void,
     onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
 }) {

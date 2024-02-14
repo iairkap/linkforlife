@@ -1,12 +1,11 @@
-"use client"
+/\* "use client"
 
 import React, { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 
 function Page() {
-    const { data: session, status } = useSession();
-    const [data, setData] = useState(null);
-
+const { data: session, status } = useSession();
+const [data, setData] = useState(null);
 
     useEffect(() => {
         if (session) {
@@ -34,6 +33,7 @@ function Page() {
             {data && <pre>{JSON.stringify(data, null, 2)}</pre>}
         </div>
     );
+
 }
 
-export default Page;
+export default Page; \*/

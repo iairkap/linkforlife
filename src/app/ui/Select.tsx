@@ -113,7 +113,7 @@ function MultiSelect({ value, onChange, options, id, span }: MultiSelectProps) {
     };
 
     return (
-        <div className='selector-container' onClick={() => setIsOpen(!isOpen)}>
+        <div className='selector-containerbis' onClick={() => setIsOpen(!isOpen)}>
             <div className='fafa'>
                 {selectedOptions.length === 0 && <span className='first-display'>{span}</span>}
                 {selectedOptions.map(option => (

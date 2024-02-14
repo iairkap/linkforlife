@@ -26,7 +26,8 @@ interface UserInvitation {
     groupId: null | number;
     Table: any;
     groups: any[];
-    user: any;
+    phoneNumber: string;
+    weddingId: number;
 }
 
 interface DashboardGraphProps {
@@ -34,7 +35,7 @@ interface DashboardGraphProps {
     user: any;
 }
 
-function DashboardGraph({ userInvitationList, user }: DashboardGraphProps): JSX.Element {
+function DashboardGraph({ userInvitationList, user }: { userInvitationList: any[], user: any }): JSX.Element {
 
     const { confirmedByBride,
         confirmedByGroom,

@@ -5,7 +5,7 @@ import { signIn, getSession } from "next-auth/react";
 import Cookies from "js-cookie"
 import CryptoJS from 'crypto-js';
 
-interface FormData {
+interface SignUpFormData {
     email: string;
     password: string;
     passwordConfirmation: string;
@@ -18,11 +18,10 @@ interface Errors {
 }
 
 interface SignUpPart1Props {
-    onNext: (data: FormData) => void;
+    onNext: (data: SignUpFormData) => void;
 }
-
 const SignUpPart1: React.FC<SignUpPart1Props> = ({ onNext }) => {
-    const [formData, setFormData] = useState<FormData>({
+    const [formData, setFormData] = useState<SignUpFormData>({
         email: "",
         password: "",
         passwordConfirmation: "",
@@ -49,7 +48,7 @@ const SignUpPart1: React.FC<SignUpPart1Props> = ({ onNext }) => {
         return newErrors;
     }
 
-    const updateFormData = (key: keyof FormData, value: string) => {
+    const updateFormData = (key: keyof SignUpFormData, value: string) => {
         setFormData(prevData => ({ ...prevData, [key]: value }));
     }
 

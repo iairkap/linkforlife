@@ -5,7 +5,7 @@ import Image from 'next/image';
 import backgroundSign from "../../../public/backC.jpeg"
 
 
-function Page(props) {
+function SignUpGooglePart2() {
 
     return (
         <main className='main-container' dir='rtl'>
@@ -29,4 +29,4 @@ function Page(props) {
     );
 }
 
-export default Page;
+export default SignUpGooglePart2;
