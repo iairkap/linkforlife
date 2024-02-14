@@ -21,7 +21,6 @@ function Dashboard() {
     const [filteredUserInvitationList, setFilteredUserInvitationList] = useState(userInvitationList);
 
 
-
     useEffect(() => {
         const newFilteredUserInvitationList = userInvitationList.filter(invitation => {
             if (filter === 'confirmed') {
@@ -61,6 +60,7 @@ function Dashboard() {
         setModalFirstSteps,
         refreshData,
         weddings,
+        selectedWedding,
         user
     });
 
@@ -77,7 +77,6 @@ function Dashboard() {
         );
     }
 
-    console.log(user)
 
 
     return (

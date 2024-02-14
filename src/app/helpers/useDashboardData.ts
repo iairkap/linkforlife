@@ -45,10 +45,6 @@ export const useDashboardData = () => {
       const data = await fetchInvitationList();
       console.log(data);
       setWeddings(data);
-
-      if (data?.weddings.length === 0) {
-        router.replace("/dashboard/rsvp");
-      }
     } catch (error) {
       const axiosError = error as AxiosError;
 
@@ -61,10 +57,19 @@ export const useDashboardData = () => {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchData().then(() => {
+      if (weddings.length > 0) {
+        setSelectedWedding(weddings[0].id);
+      }
+    });
+  }, []);
+
   const handleWeddingChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const weddingId = Number(event.target.value);
-    setSelectedWedding(weddingId);
-    const wedding = weddings.find((wedding) => wedding.id === weddingId);
+    setSelectedWedding(weddings[0].id);
+    console.log(selectedWedding);
+    const wedding = weddings.find((wedding) => wedding.id === selectedWedding);
     if (wedding) {
       setUserInvitationList(wedding.weddingInvitationList);
     } else {
@@ -90,6 +95,7 @@ export const useDashboardData = () => {
 
   useEffect(() => {
     if (!userInvitationList || !selectedWedding) {
+      console.log("no hay invitaciones");
       return;
     }
 

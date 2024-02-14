@@ -21,6 +21,7 @@ function TableInvitationList({
   setModalFirstSteps,
   refreshData,
   weddings,
+  selectedWedding,
   user,
 }) {
   const data = useMemo(() => userInvitationList, [userInvitationList]);
