@@ -8,6 +8,7 @@ import DashboardGraphCard from './DashboardGraphCard';
 import Groom from "../../../public/groom.svg"
 import Bride from "../../../public/bride.svg"
 import Both from "../../../public/both.svg"
+import { splitName } from '../utils/splitName';
 
 interface UserInvitation {
     id: number;
@@ -54,10 +55,36 @@ function DashboardGraph({ userInvitationList, user }: { userInvitationList: any[
 
     const invitedTotal = userInvitationList.length;
 
+    let iconUser = "";
+    switch (user.role) {
+        case "BRIDE":
+            iconUser = Bride;
+            break;
+        case "GROOM":
+            iconUser = Groom;
+            break;
+        default:
+            iconUser = Both;
+            break;
+    }
+
+    let iconPartner = "";
+    switch (user.partnerRole) {
+        case "BRIDE":
+            iconPartner = Bride;
+            break;
+        case "GROOM":
+            iconPartner = Groom;
+            break;
+        default:
+            iconPartner = Both;
+            break;
+    }
+
     return (
         <div className='dash-card-container'>
-            <DashboardGraphCard cardTitle={`מוזמנים על ידי ${user.partnerName}`} icon={Groom} confirmed={confirmedByGroom} attending={isAttendingByGroom} notAttending={notAttendingByGroom} notConfirmed={notConfirmedByGroom} total={invitedByGroom} />
-            <DashboardGraphCard cardTitle={`מוזמנים על ידי ${user.name}`} icon={Bride} confirmed={confirmedByBride} attending={isAttendingByBride} notAttending={notAttendingByBride} notConfirmed={notConfirmedByBride} total={invitedByBride} />
+            <DashboardGraphCard cardTitle={`מוזמנים על ידי ${user.partnerName}`} icon={iconPartner} confirmed={confirmedByGroom} attending={isAttendingByGroom} notAttending={notAttendingByGroom} notConfirmed={notConfirmedByGroom} total={invitedByGroom} />
+            <DashboardGraphCard cardTitle={`מוזמנים על ידי ${splitName(user.name)}`} icon={iconUser} confirmed={confirmedByBride} attending={isAttendingByBride} notAttending={notAttendingByBride} notConfirmed={notConfirmedByBride} total={invitedByBride} />
             <DashboardGraphCard cardTitle={`סה"כ מוזמנים`} icon={Both} confirmed={confirmedTotal} attending={isAttendingTotal} notAttending={notAttendingTotal} notConfirmed={notConfirmedTotal} total={invitedTotal} />
         </div>
     );

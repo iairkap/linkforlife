@@ -16,6 +16,8 @@ interface DashboardGraphCardProps {
 function DashboardGraphCard({ cardTitle, icon, confirmed, attending, notAttending, notConfirmed, total }: DashboardGraphCardProps): JSX.Element {
     return (
         <div className='card-container'>
+            <div className='details'></div>
+            <div className='details-buttom'></div>
             <div className='title-container'>
                 <div className='groom-container'>
                     <Image src={icon} alt="Groom-icon" />

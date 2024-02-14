@@ -16,15 +16,16 @@
   padding: 1.5rem 2rem;
   border: 1px solid $accent-color;
   gap: 2rem;
+  position: relative;
 }
 .groom-container {
-  background-color: #e6c7c7;
+  background-color: #e9eadd;
   display: flex;
   justify-content: center;
   border-radius: 50%;
   align-items: center;
   width: 3.75rem;
-  height: 3.75rem;
+  height: 2.75rem;
 }
 
 .title-container {
@@ -64,4 +65,24 @@
     line-height: 150%; /* 3.75rem */
     margin: 0px;
   }
+}
+
+.details {
+  position: absolute;
+  background-color: #e9eadd;
+  height: 34px;
+  width: 10px;
+  top: 0;
+  right: 0;
+  border-top-right-radius: 0.5rem;
+}
+
+.details-buttom {
+  position: absolute;
+  background-color: $accent-color;
+  height: 34px;
+  width: 10px;
+  bottom: 0;
+  left: 0;
+  border-bottom-left-radius: 0.5rem;
 }

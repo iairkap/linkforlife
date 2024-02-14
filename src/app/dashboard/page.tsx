@@ -54,8 +54,7 @@ function DashboardGeneral() {
         <div>
             <HeaderDashboard weddingDate={weddingDate} />
             <DashboardGraph userInvitationList={userInvitationList} user={user} />
-            {/*             <PieChart userInvitationList={userInvitationList} />
- */}        </div>
+        </div>
     );
 }
 
