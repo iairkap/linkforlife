@@ -1,16 +1,30 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { parse } from "cookie";
 import JWT from "jsonwebtoken"; // Add this line
-import verifyToken from "../verifyToken";
 import prisma from "../../../utils/prismaClient";
+import { getToken } from "next-auth/jwt";
 
 export default async function handler(req, res) {
-  const userId = verifyToken(req);
+  const token = await getToken({ req });
 
-  if (!userId) {
+  const userEmail = token.email;
+
+  if (!userEmail) {
     res.status(401).json({ message: "Invalid token" });
     return;
   }
+
+  const user = await prisma.user.findUnique({
+    where: {
+      email: userEmail,
+    },
+  });
+
+  if (!user) {
+    res.status(404).json({ message: "User not found" });
+    return;
+  }
+  const userId = user.id;
 
   if (req.method === "GET") {
     try {
@@ -27,25 +41,30 @@ export default async function handler(req, res) {
   } else if (req.method === "POST") {
     const groups = req.body;
 
+    const wedding = groups.weddingId;
+    console.log(groups);
+
     try {
-      const createGroups = groups.map((group) => {
-        return prisma.group.create({
-          data: {
-            ...group,
-            user: {
-              connect: {
-                id: Number(userId),
-              },
+      const newGroup = await prisma.group.create({
+        data: {
+          name: groups.name,
+          user: {
+            connect: {
+              id: Number(userId),
             },
           },
-        });
+          wedding: {
+            connect: {
+              id: groups.weddingId,
+            },
+          },
+        },
       });
 
-      const newGroups = await prisma.$transaction(createGroups);
-
-      res.status(201).json(newGroups);
+      res.status(201).json(newGroup);
     } catch (error) {
-      res.status(500).json({ error: "Unable to create groups" });
+      res.status(500).json({ error: error.message });
+      console.log(error);
     }
   } else {
     res.status(405).json({ error: "Method not allowed" });

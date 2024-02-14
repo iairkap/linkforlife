@@ -13,3 +13,9 @@ export const fetchUserDataBis = async () => {
 
   return response.data;
 };
+
+export const fetchGroups = async () => {
+  const response = await axios.get("/api/groupsList", {});
+  console.log(response.data);
+  return response.data;
+};

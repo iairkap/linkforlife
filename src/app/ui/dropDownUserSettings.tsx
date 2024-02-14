@@ -53,9 +53,9 @@ function DropDownUserSettings({ isOpen, setIsOpen, profilePicture, email, name, 
                 </header>
                 <div className='line-divisor'></div>
                 <section>
-                    <ul>
+                    <ul className='ul'>
                         {listItems.map((item, index) => (
-                            <li key={index} onClick={item.onClick}>
+                            <li className='li' key={index} onClick={item.onClick}>
                                 <span className="material-symbols-outlined">{item.symbol}</span>
                                 <span>{item.text}</span>
                             </li>

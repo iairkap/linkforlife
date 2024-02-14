@@ -10,17 +10,26 @@ import { useRouter } from 'next/navigation';
 import HeaderDashboard from '../ui/headerDashboard';
 import { useDashboardData } from '../helpers/useDashboardData';
 import Loader from '../ui/loader';
+import ModalGroup from '../ui/modalGroup';
 import "../sass/layout/dashboard.scss"
 /* import PieChart from "../ui/pieChart";
  */
+import DashboardGroups from '../ui/DashboardGroups';
 interface DashboardData {
     userInvitationList: any[]; // Reemplaza 'any' con el tipo correcto
     setUserInvitationList: React.Dispatch<React.SetStateAction<any[]>>; // Reemplaza 'any' con el tipo correcto
     isLoading: boolean;
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
-    groups: any[]; // Reemplaza 'any' con el tipo correcto
+    groups: Groups[];
     groupInvitations: any; // Reemplaza 'any' con el tipo correcto
     weddings: any[];
+}
+
+interface Groups {
+    id: number;
+    name: string;
+    userId: number;
+    weddingId: number;
 }
 
 function DashboardGeneral() {
@@ -32,6 +41,9 @@ function DashboardGeneral() {
 
     const [weddingDate, setWeddingDate] = useState(new Date());
     console.log(userInvitationList)
+    const [isModalGroupOpen, setIsModalGroupOpen] = useState(false);
+
+
 
     useEffect(() => {
         if (weddings && weddings.length > 0) {
@@ -41,11 +53,13 @@ function DashboardGeneral() {
         }
     }, [weddings]);
 
+    console.log(weddings)
+
     const areWedding = weddings && weddings.length > 0;
 
     console.log(isLoading)
     console.log(userInvitationList)
-
+    console.log(groups)
     if (isLoading) {
         return <Loader />
     }
@@ -54,7 +68,12 @@ function DashboardGeneral() {
         <article className='containerDash'>
             <HeaderDashboard weddingDate={weddingDate} />
             <DashboardGraph userInvitationList={userInvitationList} user={user} />
+            <DashboardGroups groups={groups} setIsModalOpen={setIsModalGroupOpen} />
+            {
+                isModalGroupOpen && <ModalGroup isOpen={isModalGroupOpen} contentLabel="Add Group" onRequestClose={() => setIsModalGroupOpen(false)} onRequestCloseGeneral={() => setIsModalGroupOpen(false)} weddings={weddings} />
+            }
         </article>
+
     );
 }
 

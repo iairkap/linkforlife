@@ -52,12 +52,12 @@
   }
 }
 
-ul {
+.ul {
   color: #464c57;
   padding: 0;
   margin: 2rem 0 0 0;
   list-style: none;
-  li {
+  .li {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -67,7 +67,7 @@ ul {
     align-items: center;
     padding: 0.5rem 0.75rem;
   }
-  li:hover {
+  .li:hover {
     border-radius: 0.5rem;
     background: #e9eadd;
   }

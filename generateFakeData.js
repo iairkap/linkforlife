@@ -80,7 +80,6 @@ function generateFakeData() {
 }
 
 const fakeDataList = Array.from({ length: 150 }, generateFakeData);
-console.log(fakeDataList);
 
 function generateData(
   weddingInvitationListIds,

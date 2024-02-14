@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { fetchInvitationList } from "./api";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { AxiosError } from "axios";
-import { fetchUserDataBis } from "./api";
+import { fetchUserDataBis, fetchGroups, fetchInvitationList } from "./api";
 interface Group {
   id: number;
 }
@@ -46,6 +45,9 @@ export const useDashboardData = () => {
       const data = await fetchInvitationList();
       console.log(data);
       setWeddings(data);
+      const dataGroups = await fetchGroups();
+      console.log(dataGroups);
+      setGroups(dataGroups);
       if (data.length > 0) {
         setSelectedWedding(data[0].id);
         setUserInvitationList(data[0].weddingInvitationList);
