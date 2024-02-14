@@ -1,0 +1,41 @@
+@import "../abstracts/mixin.scss";
+@import "../abstracts/variables.scss";
+
+.header-container {
+  display: flex;
+  flex-direction: row;
+  width: calc(100% - 2rem);
+  background-color: #e9eadd;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  align-items: center;
+  height: 92px;
+}
+
+.first-data {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-evenly;
+}
+.date-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 0.9rem;
+  margin-bottom: 0px;
+}
+
+.titleDate {
+  padding: 0rem;
+  margin: 0px;
+  font-size: 1.7rem;
+  color: $accent-color;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+.titleDayRemain {
+  padding: 0rem;
+
+  margin: 0px;
+}

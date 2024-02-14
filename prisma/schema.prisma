@@ -43,6 +43,8 @@ model User {
   weddingDate           DateTime?
   role                  ROLE                    @default(ADMIN)
   partnerRole           ROLE                    @default(ADMIN)
+  expenses  Expenses[]
+
 }
 
 model Wedding {
@@ -57,6 +59,8 @@ model Wedding {
   inviteTokens          InviteToken[]
   adminId               Int
   admin                 User                    @relation("AdminToWedding", fields: [adminId], references: [id])
+  expense              Expenses[]
+
 }
 
 enum ROLE {
@@ -66,6 +70,23 @@ GROOM
 WEDDING_PLANNER
 }
 
+
+model Expenses{
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  amount      Float
+  wedding     Wedding  @relation(fields: [weddingId], references: [id])
+  weddingId   Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  alreadyPay Boolean @default(false)
+  paymentDate DateTime?
+  paidBy      User?    @relation(fields: [paidById], references: [id])
+  paidById    Int?
+
+
+}
 
 
 

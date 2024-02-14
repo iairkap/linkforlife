@@ -83,9 +83,15 @@ function DashboardGraph({ userInvitationList, user }: { userInvitationList: any[
 
     return (
         <div className='dash-card-container'>
-            <DashboardGraphCard cardTitle={`מוזמנים על ידי ${user.partnerName}`} icon={iconPartner} confirmed={confirmedByGroom} attending={isAttendingByGroom} notAttending={notAttendingByGroom} notConfirmed={notConfirmedByGroom} total={invitedByGroom} />
-            <DashboardGraphCard cardTitle={`מוזמנים על ידי ${splitName(user.name)}`} icon={iconUser} confirmed={confirmedByBride} attending={isAttendingByBride} notAttending={notAttendingByBride} notConfirmed={notConfirmedByBride} total={invitedByBride} />
-            <DashboardGraphCard cardTitle={`סה"כ מוזמנים`} icon={Both} confirmed={confirmedTotal} attending={isAttendingTotal} notAttending={notAttendingTotal} notConfirmed={notConfirmedTotal} total={invitedTotal} />
+            <div className='DashboardGraphCard'>
+                <DashboardGraphCard cardTitle={`מוזמנים על ידי ${user.partnerName}`} icon={iconPartner} confirmed={confirmedByGroom} attending={isAttendingByGroom} notAttending={notAttendingByGroom} notConfirmed={notConfirmedByGroom} total={invitedByGroom} />
+            </div>
+            <div className='DashboardGraphCard'>
+                <DashboardGraphCard cardTitle={`מוזמנים על ידי ${splitName(user.name)}`} icon={iconUser} confirmed={confirmedByBride} attending={isAttendingByBride} notAttending={notAttendingByBride} notConfirmed={notConfirmedByBride} total={invitedByBride} />
+            </div>
+            <div className='DashboardGraphCard'>
+                <DashboardGraphCard cardTitle={`סה"כ מוזמנים`} icon={Both} confirmed={confirmedTotal} attending={isAttendingTotal} notAttending={notAttendingTotal} notConfirmed={notConfirmedTotal} total={invitedTotal} />
+            </div>
         </div>
     );
 }

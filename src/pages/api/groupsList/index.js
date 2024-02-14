@@ -1,10 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { parse } from "cookie";
-import { PrismaClient } from "@prisma/client";
 import JWT from "jsonwebtoken"; // Add this line
 import verifyToken from "../verifyToken";
-
-const prisma = new PrismaClient();
+import prisma from "../../../utils/prismaClient";
 
 export default async function handler(req, res) {
   const userId = verifyToken(req);

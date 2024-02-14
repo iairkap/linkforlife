@@ -16,6 +16,7 @@ interface UserInvitation {
 
 interface Wedding {
   id: number;
+  weddingDate: Date;
   weddingName: string;
   weddingId: number;
   weddingInvitationList: UserInvitation[]; // Asegúrate de definir UserInvitation

@@ -1,14 +1,13 @@
-export const dateFormat = (date: string) => {
+export const dateFormat = (date: Date) => {
   const dateObj = new Date(date);
   const options: Intl.DateTimeFormatOptions = {
     month: "long",
     day: "numeric",
-    year: "numeric",
   };
   return dateObj.toLocaleDateString("he-IL", options);
 };
 
-export const countDownDays = (date: string) => {
+export const countDownDays = (date: Date) => {
   const weddingDate = new Date(date);
   const currentDate = new Date();
   const timeDiff = weddingDate.getTime() - currentDate.getTime();

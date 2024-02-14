@@ -6,6 +6,7 @@ import Button from './button';
 import axios from 'axios';
 import { useDashboardData } from '../helpers/useDashboardData';
 import MultiSelect from './Select';
+import { splitName } from '../utils/splitName';
 
 
 interface AddInvProps {
@@ -34,8 +35,8 @@ function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList, u
     console.log(user)
 
 
-    let firstName = user.name.split(' ')[0];
-    firstName = firstName.charAt(0).toUpperCase() + firstName.slice(1);
+    splitName(user.name)
+
     const wedding = userInvitationList[0].weddingId
 
 
@@ -99,7 +100,8 @@ function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList, u
                         onChange={(e) => setPhoneNumber(e.target.value)}
                         error=''
                     />
-                    <MultiSelect span="הוזמן על ידי" value={invitedBy} onChange={setInvitedBy} options={[`${firstName}`, `${user?.partnerName}`, `${firstName}'s family`, `${user?.partnerName}'s family`, `Both`]} id={"הוזמן על ידי"} />
+                    <MultiSelect span="הוזמן על ידי" value={invitedBy} onChange={setInvitedBy} options={[`${splitName(user.name)}`, `${user?.partnerName}`, `${splitName(user.name)
+                        }'s family`, `${user?.partnerName}'s family`, `Both`]} id={"הוזמן על ידי"} />
                     <MultiSelect span="תפקיד מיוחד" value={specialRole} onChange={setSpecialRole} options={['Best Man', 'Maid Of Honor', 'Parent', 'None']} id={"specialRole"} />
 
 

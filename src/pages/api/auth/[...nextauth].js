@@ -1,12 +1,10 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { PrismaClient } from "@prisma/client";
+import prisma from "../../../utils/prismaClient";
 import { postUserRegistration } from "../utils/postUserRegistration";
 import { generateToken } from "../utils/generateToken";
 import { compare } from "bcrypt";
-
-const prisma = new PrismaClient();
 
 const authOptions = {
   session: {

@@ -18,11 +18,18 @@
 .content {
   display: flex;
   width: 100%;
-  align-items: center;
-  justify-content: center;
   height: 100%;
 }
 
 /* 
 padding: 2rem 0.75rem 0rem 0.75rem;
  */
+
+.containerDash {
+  width: calc(100% - 2.5rem);
+  padding: 0rem 1.25rem;
+  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}

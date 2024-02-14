@@ -16,13 +16,13 @@ interface DashboardGraphCardProps {
 function DashboardGraphCard({ cardTitle, icon, confirmed, attending, notAttending, notConfirmed, total }: DashboardGraphCardProps): JSX.Element {
     return (
         <div className='card-container'>
-            <div className='details'></div>
-            <div className='details-buttom'></div>
+            {/*             <div className='details'></div>
+            <div className='details-buttom'></div> */}
             <div className='title-container'>
                 <div className='groom-container'>
                     <Image src={icon} alt="Groom-icon" />
                 </div>
-                <h3>{cardTitle}</h3>
+                <h3 className='title'>{cardTitle}</h3>
             </div>
             <div className='all-stats-container'>
                 <div className='number-container'>
