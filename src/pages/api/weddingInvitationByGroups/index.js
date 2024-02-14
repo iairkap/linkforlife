@@ -1,8 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { PrismaClient } from "@prisma/client";
+import prisma from "../../../utils/prismaClient";
 import verifyToken from "../verifyToken";
-
-const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
   const userId = verifyToken(req);

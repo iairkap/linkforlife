@@ -2,10 +2,9 @@
 
 import nodemailer from "nodemailer";
 import { getToken } from "next-auth/jwt";
-import { PrismaClient } from "@prisma/client";
+import prisma from "../../../utils/prismaClient";
 import { v4 as uuidv4 } from "uuid";
 
-const prisma = new PrismaClient();
 export default async function handler(req, res) {
   const token = await getToken({ req });
 

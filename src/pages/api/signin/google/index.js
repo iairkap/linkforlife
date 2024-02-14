@@ -1,7 +1,6 @@
-import { PrismaClient } from "@prisma/client";
+import prisma from "../../../utils/prismaClient";
 import { getToken } from "next-auth/jwt";
 import logo from "../../../../../public/logo.png";
-const prisma = new PrismaClient();
 export default async function handler(req, res) {
   const token = await getToken({ req });
   console.log("Token:", token);

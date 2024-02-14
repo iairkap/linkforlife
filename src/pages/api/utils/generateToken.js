@@ -1,9 +1,7 @@
-import { PrismaClient } from "@prisma/client";
+import prisma from "../../../utils/prismaClient";
 import JWT from "jsonwebtoken";
 
 export async function generateToken(email) {
-  const prisma = new PrismaClient();
-
   try {
     const user = await prisma.user.findUnique({
       where: { email: email },
