@@ -1,4 +1,4 @@
-import prisma from "../../../utils/prismaClient";
+import prisma from "../../../../utils/prismaClient";
 import { getToken } from "next-auth/jwt";
 import logo from "../../../../../public/logo.png";
 export default async function handler(req, res) {

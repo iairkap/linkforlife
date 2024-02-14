@@ -1,4 +1,4 @@
-import prisma from "../../../utils/prismaClient";
+import prisma from "../../utils/prismaClient";
 
 async function generateTestData() {
   for (let i = 0; i < 67; i++) {

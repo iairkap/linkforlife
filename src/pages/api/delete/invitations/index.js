@@ -1,4 +1,4 @@
-import prisma from "../../../utils/prismaClient";
+import prisma from "../../../../utils/prismaClient";
 
 export default async function handle(req, res) {
   if (req.method === "DELETE") {
