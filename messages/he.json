@@ -7,5 +7,66 @@
     "rsvp": "רשימת מוזמנים",
     "charts": "תשלומים",
     "calendar": "לוח שנה"
+  },
+  "MenuDropDown": {
+    "settings": "הגדרות",
+    "logout": "התנתקות",
+    "help": "עזרה",
+    "invite": "שיתוף חתונה"
+  },
+  "SearchBar": {
+    "search": "חיפוש"
+  },
+  "DashboardHeaderDates": { "date": "תאריך תתונה" },
+  "DashboardStats": {
+    "invitedBy": "הוזמן על ידי",
+    "totalInvited": "סה\"כ מוזמנים",
+    "attending": "מגיעים",
+    "notAttending": "לא מגיעים"
+  },
+  "DashboardGroups": {
+    "groups": "קבותזות",
+    "addGroup": "הוסף קבוצה"
+  },
+  "DashboardPieCharts": {
+    "attending": "מגיעים",
+    "notAttending": "לא מגיעים",
+    "notConfirmed": "לא מאשרים"
+  },
+  "ModalAddInv": {
+    "addInv": "להוסיף אורח",
+    "name": "שם",
+    "lastName": "שם משפחה",
+    "email": "אימייל",
+    "phone": "טלפון",
+    "invitedBy": "הוזמן על ידי",
+    "specialRole": "תפקיד מיוחד",
+    "save": "שמור והוסף לרשימה"
+  },
+  "RSVPTABLE": {
+    "name": "שם",
+    "lastName": "שם משפחה",
+    "email": "אימייל",
+    "phone": "טלפון",
+    "invitedBy": "הוזמן על ידי",
+    "specialRole": "תפקיד מיוחד",
+    "groups": "קבוצות",
+    "isAttending": "מגיע",
+    "isConfirmed": "מאשר",
+    "notConfirmed": "לא מאשרים",
+    "edit": "ערוך",
+    "delete": "מחק",
+    "togleAll": "החלף הכל",
+    "addInv": "להוסיף אורח",
+    "filter": "סנן",
+    "subtitle": "רשימת מוזמנים"
+  },
+  "Pagination": {
+    "next": "הבא >",
+    "prev": "< הקודם"
+  },
+  "AddUserToWeddingList": {
+    "email": "אימייל",
+    "send": "שלח הזמנה לשיתוף"
   }
 }

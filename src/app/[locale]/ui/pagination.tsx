@@ -2,7 +2,7 @@
 import React from 'react';
 import "../sass/components/pagination.scss"
 import { useState } from 'react';
-
+import { useTranslations } from 'next-intl';
 interface Props {
     previousPage: () => void;
     nextPage: () => void;
@@ -15,6 +15,7 @@ interface Props {
 
 
 function Pagination({ previousPage, nextPage, canPreviousPage, canNextPage, pageOptions, pageIndex, gotoPage }: Props) {
+    const t = useTranslations("Pagination");
 
 
 
@@ -27,8 +28,7 @@ function Pagination({ previousPage, nextPage, canPreviousPage, canNextPage, page
                 disabled={!canPreviousPage}
                 className={`filterButtonD ${!canPreviousPage ? 'disabled' : ''}`}
             >
-                {"< קודם"}
-            </button>{" "}
+                {t("prev")}            </button>{" "}
             <div className='buttonNumberContainer'>
                 {pageOptions.map((_: any, i: number) => (
                     <button
@@ -46,8 +46,7 @@ function Pagination({ previousPage, nextPage, canPreviousPage, canNextPage, page
                 disabled={!canNextPage}
                 className={`filterButtonD ${!canNextPage ? 'disabled' : ''}`}
             >
-                {"הבא >"}
-            </button>{" "}
+                {t("next")}             </button>{" "}
         </div>
     );
 }

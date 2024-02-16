@@ -1,6 +1,8 @@
 import React from 'react';
+import { useTranslations } from 'next-intl';
 import "../sass/components/SearchBar.scss"
 function SearchBar() {
+    const t = useTranslations('SearchBar');
     return (
         <div >
             <link
@@ -11,7 +13,7 @@ function SearchBar() {
 
                 <input
                     type="text"
-                    placeholder={`חיפוש`}
+                    placeholder={`${t('search')}...`}
                     className="search-inputB"
                 />
                 <button className="searchD">

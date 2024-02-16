@@ -21,11 +21,17 @@ tbody {
 .my-table th,
 .my-table td {
   padding: 1.0625rem 1.5rem;
-  text-align: right;
   border-bottom: 1px solid #818369;
   min-height: 2rem;
 }
 
+.text-align-right {
+  text-align: right;
+}
+
+.text-align-left {
+  text-align: left;
+}
 .my-table .my-header-group {
   background-color: $primary-color;
 }
@@ -262,14 +268,13 @@ th.empty-weddings {
   color: #c0c0c0;
 }
 
-th[data-checkbox-header="true"] {
-  /* Here you can add your styles */
+/* th[data-checkbox-header="true"] {
   border-top-right-radius: 0.5rem;
 }
 
 th[data-actions-header="true"] {
   border-top-left-radius: 0.5rem;
-}
+} */
 
 .headOfHeader {
   flex-direction: row;
@@ -292,4 +297,20 @@ th[data-actions-header="true"] {
   border-radius: 0.5rem;
   border: 1px solid var(--Grey-Grey-400, #858d9d);
   opacity: 0.2;
+}
+
+.border-radius-checkbox-he {
+  border-top-right-radius: 0.5rem;
+}
+
+.border-radius-actions-he {
+  border-top-left-radius: 0.5rem;
+}
+
+.border-radius-checkbox-en-es {
+  border-top-left-radius: 0.5rem;
+}
+
+.border-radius-actions-en-es {
+  border-top-right-radius: 0.5rem;
 }

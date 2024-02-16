@@ -12,13 +12,22 @@ import HeaderFilter from "../../ui/tableReference"
 import Pagination from "../../ui/pagination"
 import InputField from '@/app/[locale]/ui/InputField';
 import FirstSteps from '@/app/[locale]/ui/firstSteps';
+import { usePathname } from 'next/navigation';
+import { extractLocaleFromPathName } from "../../utils/getLocale"
 import { Modal } from '@mui/material';
+import { useTranslations } from 'next-intl';
+
 function Dashboard() {
     const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations, selectedWedding, setSelectedWedding, weddings, setWeddings, /* handleWeddingChange */
         ModalFirstSteps, setModalFirstSteps, refreshData, user } = useDashboardData();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [filter, setFilter] = useState('all');
     const [filteredUserInvitationList, setFilteredUserInvitationList] = useState(userInvitationList);
+    const pathName = usePathname();
+    const extraction = extractLocaleFromPathName(pathName)
+
+    const t = useTranslations("RSVPTABLE");
+
 
 
     useEffect(() => {
@@ -61,7 +70,8 @@ function Dashboard() {
         refreshData,
         weddings,
         selectedWedding,
-        user
+        user,
+        extraction
     });
 
     useEffect(() => {
@@ -82,7 +92,8 @@ function Dashboard() {
     return (
         <main className="main">
             <h4 className='subtitle'>
-                רשימת אורחים            </h4>
+                {t("subtitle")}
+            </h4>
             <section className='table-container'>
                 <div>
                     <AddInv
@@ -93,12 +104,7 @@ function Dashboard() {
                         userInvitationList={userInvitationList}
                         user={user}
                     />
-                    {/*                 <select name="table-selection" id="table-selection" onChange={handleWeddingChange}>
-                        <option value="">Select a wedding...</option>
-                        {weddings.map(wedding => (
-                            <option key={wedding.id} value={wedding.id}>{wedding.weddingName}</option>
-                        ))}
-                    </select> */}
+
                     <HeaderFilter
                         getToggleHideAllColumnsProps={tableProps.getToggleHideAllColumnsProps} // Pasa esto aquí
                         isMenuOpen={isMenuOpen}

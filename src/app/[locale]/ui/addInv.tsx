@@ -6,6 +6,7 @@ import Button from './button';
 import axios from 'axios';
 import { useDashboardData } from '../helpers/useDashboardData';
 import MultiSelect from './Select';
+import { useTranslations } from 'next-intl';
 import { splitName } from '../utils/splitName';
 
 
@@ -33,7 +34,7 @@ function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList, u
     const [phoneNumber, setPhoneNumber] = React.useState('');
 
     console.log(user)
-
+    const t = useTranslations('ModalAddInv');
 
     splitName(user.name)
 
@@ -70,42 +71,42 @@ function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList, u
     return (
         <Modal isOpen={isOpen} onRequestClose={onRequestClose} contentLabel={contentLabel} icon={"person_add"}>
             <section className='containerModalInvitationWedding'>
-                <h1 className='title-container'>להוסיף אורח</h1>
+                <h1 className='title-container'>{t("addInv")}</h1>
                 <article className="layout">
                     <InputField
                         value={name}
                         type="text"
-                        placeholder='שם'
+                        placeholder={t("name")}
                         onChange={(e) => setName(e.target.value)}
                         error=''
                     />
                     <InputField
                         value={lastName}
                         type="text"
-                        placeholder='שם משפחה'
+                        placeholder={t("lastName")}
                         onChange={(e) => setLastName(e.target.value)}
                         error=''
                     />
                     <InputField
                         value={email}
                         type="text"
-                        placeholder='אמייל'
+                        placeholder={t("email")}
                         onChange={(e) => setEmail(e.target.value)}
                         error=''
                     />
                     <InputField
                         value={phoneNumber}
                         type="text"
-                        placeholder='טלפון'
+                        placeholder={t("phone")}
                         onChange={(e) => setPhoneNumber(e.target.value)}
                         error=''
                     />
-                    <MultiSelect span="הוזמן על ידי" value={invitedBy} onChange={setInvitedBy} options={[`${splitName(user.name)}`, `${user?.partnerName}`, `${splitName(user.name)
-                        }'s family`, `${user?.partnerName}'s family`, `Both`]} id={"הוזמן על ידי"} />
-                    <MultiSelect span="תפקיד מיוחד" value={specialRole} onChange={setSpecialRole} options={['Best Man', 'Maid Of Honor', 'Parent', 'None']} id={"specialRole"} />
+                    <MultiSelect span={t("invitedBy")} value={invitedBy} onChange={setInvitedBy} options={[`${splitName(user.name)}`, `${user?.partnerName}`, `${splitName(user.name)
+                        }'s family`, `${user?.partnerName}'s family`, `Both`]} id={t("invitedBy")} />
+                    <MultiSelect span={t("specialRole")} value={specialRole} onChange={setSpecialRole} options={['Best Man', 'Maid Of Honor', 'Parent', 'None']} id={"specialRole"} />
 
 
-                    <Button label='שמור והוסף לרשימה' onClick={handleAddInv} className='button-a' />
+                    <Button label={t("save")} onClick={handleAddInv} className='button-a' />
                 </article>
             </section>
         </Modal>

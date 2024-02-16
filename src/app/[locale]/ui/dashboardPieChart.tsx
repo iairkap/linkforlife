@@ -6,7 +6,7 @@ import { getInvitationStats } from '@/utils/userInvitationListExtactionData';
 import { getAdjustedInvitationStats } from '@/utils/userInvitationListExtactionData';
 
 
-function DashboardWithPiechart({ userInvitationList }): any {
+function DashboardWithPiechart({ userInvitationList, extraction }): any {
     const {
         isAttendingTotal,
         notAttendingTotal,
@@ -42,7 +42,7 @@ function DashboardWithPiechart({ userInvitationList }): any {
         <article className='containerPie'>
             <div className='layout-inside'>
                 <DonutChart data={values} colors={colors} />
-                <ChartLegend colors={colors} labels={labels} data={values} />
+                <ChartLegend colors={colors} labels={labels} data={values} extraction={extraction} />
             </div>
         </article>
     );

@@ -1,26 +1,30 @@
 import React from 'react';
 import "../sass/components/dashboardPieChart.scss"
-
+import { useTranslations } from 'next-intl';
 interface LegendProps {
     colors: string[];
     labels: string[];
     data: number[];
+    extraction: string | undefined;
 }
 
-function Legend({ colors, labels, data }: LegendProps) {
+function Legend({ colors, labels, data, extraction }: LegendProps) {
     const total = data.reduce((a, b) => a + b, 0);
 
-    console.log(labels)
+    const t = useTranslations('DashboardPieCharts');
+
+
+    console.log(extraction)
 
     const hebrewLabels = labels.map((label) => {
         if (label === 'Is Attending') {
-            return 'השתתפות';
+            return t("attending");
         }
         if (label === 'Not Attending') {
-            return 'לא משתתף';
+            return t("notAttending");
         }
         if (label === 'Not Confirmed') {
-            return 'לא מאושר';
+            return t("notConfirmed");
         }
         return label;
     }

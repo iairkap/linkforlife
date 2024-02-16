@@ -5,6 +5,7 @@ import "../sass/components/dropdown.scss"
 import { signOut } from 'next-auth/react';
 import { useGlobalContext } from '../dashboard/globalContext';
 import { getListItems } from '../utils/listMenuDropdown';
+import { useTranslations } from 'next-intl';
 interface User {
     name: string;
     email: string;
@@ -20,18 +21,21 @@ interface DropDownUserSettingsProps {
     name: string;
     setIsOpen: (value: boolean) => void;
     logo?: any;
+    extraction: string | undefined
 
 }
 
-function DropDownUserSettings({ isOpen, setIsOpen, profilePicture, email, name, logo }: DropDownUserSettingsProps): JSX.Element {
+function DropDownUserSettings({ isOpen, setIsOpen, profilePicture, email, name, logo, extraction }: DropDownUserSettingsProps): JSX.Element {
+
+    const t = useTranslations('MenuDropDown');
 
     const { isOpenModalAddUser, setIsOpenModalAddUser } = useGlobalContext() as { isOpenModalAddUser: boolean, setIsOpenModalAddUser: (value: boolean) => void };
 
-    const listItems = getListItems(setIsOpenModalAddUser, setIsOpen, signOut);
+    const listItems = getListItems(setIsOpenModalAddUser, setIsOpen, signOut, t);
 
 
     return (
-        <DropDown isOpen={isOpen}>
+        <DropDown isOpen={isOpen} extraction={extraction}>
             <article>
                 <header className='header-dropDown'>
                     <div className='image-container'>
@@ -51,8 +55,7 @@ function DropDownUserSettings({ isOpen, setIsOpen, profilePicture, email, name, 
                         <p className='user-data-email'>{email}</p>
                     </div>
                 </header>
-                <div className='line-divisor'></div>
-                <section>
+                <div className={`line-divisor ${extraction === 'he' ? 'line-divisor-he' : 'line-divisor-en-es'}`}></div>                <section>
                     <ul className='ul'>
                         {listItems.map((item, index) => (
                             <li className='li' key={index} onClick={item.onClick}>

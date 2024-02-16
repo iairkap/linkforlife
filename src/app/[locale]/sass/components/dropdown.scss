@@ -1,7 +1,6 @@
 .menu-dropdown {
   position: absolute;
   top: 100%;
-  left: 10%;
   z-index: 1000000;
   display: none;
   float: left;
@@ -17,18 +16,31 @@
   padding: 1rem 2rem;
 }
 
+.menu-dropdown-he {
+  left: 10%;
+}
+
+.menu-dropdown-en-es {
+  right: 10%;
+}
 .menu-dropdown.open {
-  /* Estilos cuando el menú desplegable está abierto */
   display: block;
 }
 
-.line-divisor {
-  width: calc(100% + 4rem);
+/* .line-divisor {
+  width: calc(100% - 4rem);
   height: 1px;
   background-color: #e9eadd;
   align-self: center;
+}
+
+.line-divisor-he {
   margin-right: -2rem;
 }
+
+.line-divisor-en-es {
+  margin-left: 2rem;
+} */
 
 .header-dropDown {
   display: flex;

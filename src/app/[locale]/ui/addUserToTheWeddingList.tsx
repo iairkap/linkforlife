@@ -6,6 +6,7 @@ import Button from './button';
 import axios from 'axios';
 import { useDashboardData } from '../helpers/useDashboardData';
 import MultiSelect from './Select';
+import { useTranslations } from 'next-intl';
 
 
 interface AddInvProps {
@@ -22,7 +23,7 @@ interface AddInvProps {
 
 function AddUserCollaborator({ isOpen, contentLabel, onRequestClose }: AddInvProps) {
 
-
+    const t = useTranslations('AddUserToWeddingList');
 
 
     const [emailUser, setEmailUser] = useState<string>('');
@@ -30,19 +31,13 @@ function AddUserCollaborator({ isOpen, contentLabel, onRequestClose }: AddInvPro
         emailUser: emailUser
     }
 
-
-
     const handleUserInvitation = async () => {
         try {
-
             const response = await axios.post('/api/emailUser', { emailUser }); // Pass emailUser as an object
-
             if (response.status === 200) {
             }
         } catch (error) {
-
             console.error('Failed to add invitation:', error);
-
         }
     };
     return (
@@ -53,11 +48,11 @@ function AddUserCollaborator({ isOpen, contentLabel, onRequestClose }: AddInvPro
                     <InputField
                         value={emailUser}
                         type="text"
-                        placeholder='אמייל'
+                        placeholder={t("email")}
                         onChange={(e) => setEmailUser(e.target.value)}
                         error=''
                     />
-                    <Button label='שלח הזמנה לשיתוף' onClick={handleUserInvitation} className='button-a' />
+                    <Button label={t("send")} onClick={handleUserInvitation} className='button-a' />
                 </article>
             </section>
         </Modal>

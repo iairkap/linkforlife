@@ -1,7 +1,7 @@
 import React from 'react';
 import "../sass/components/dashboardGraphOverview.scss"
 import Image from 'next/image';
-
+import { useTranslations } from 'next-intl';
 interface DashboardGraphCardProps {
     cardTitle: string;
     icon: string;
@@ -14,6 +14,9 @@ interface DashboardGraphCardProps {
 
 
 function DashboardGraphCard({ cardTitle, icon, confirmed, attending, notAttending, notConfirmed, total }: DashboardGraphCardProps): JSX.Element {
+
+    const t = useTranslations('DashboardStats');
+
     return (
         <div className='card-container'>
             {/*             <div className='details'></div>
@@ -26,17 +29,17 @@ function DashboardGraphCard({ cardTitle, icon, confirmed, attending, notAttendin
             </div>
             <div className='all-stats-container'>
                 <div className='number-container'>
-                    <h5>סה"כ מוזמנים</h5>
+                    <h5>{t("totalInvited")}</h5>
                     <h5>{total}</h5>
                 </div>
                 <hr />
                 <div className='number-container'>
-                    <h5>נוכחים</h5>
+                    <h5>{t("attending")}</h5>
                     <h5>{attending}</h5>
                 </div>
                 <hr />
                 <div className='number-container'>
-                    <h5>לא נוכחים</h5>
+                    <h5>{t("notAttending")}</h5>
                     <h5>{notAttending}</h5>
                 </div>
 

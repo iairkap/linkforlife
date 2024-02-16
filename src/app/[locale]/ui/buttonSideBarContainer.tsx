@@ -5,10 +5,11 @@ import home from "../../../../public/home.svg"
 import charts from "../../../../public/charts.svg"
 import calendar from "../../../../public/calendar.svg"
 import { useState } from "react";
-import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import { usePathname } from "../../../navigation"
 function ButtonSideBarContainer() {
     const pathName = usePathname();
+    console.log(pathName)
 
 
     const t = useTranslations('Sidebar');

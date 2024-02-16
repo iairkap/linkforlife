@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../sass/components/searchBarTable.scss";
+import { useTranslations } from "next-intl";
 function GlobalFilter({
   preGlobalFilteredRows,
   globalFilter,
@@ -8,6 +9,7 @@ function GlobalFilter({
   const count = preGlobalFilteredRows.length;
   const [isVisible, setIsVisible] = useState(true);
   const [value, setValue] = useState(globalFilter);
+  const t = useTranslations("SearchBar");
 
   return (
     <div className="search-cont">
@@ -22,11 +24,11 @@ function GlobalFilter({
           setValue(e.target.value);
           setGlobalFilter(e.target.value || undefined);
         }}
-        placeholder={`חיפוש`}
+        placeholder={`${t("search")}...`}
         className="searchInput-f"
       />
       <button className="search-icon">
-        <span class="material-symbols-outlined searchicon">search</span>
+        <span class="material-symbols-outlined searchicon">{t("search")}</span>
       </button>
     </div>
   );

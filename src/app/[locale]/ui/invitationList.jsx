@@ -10,6 +10,7 @@ import {
 import "../sass/layout/table.scss";
 import GlobalFilter from "./GlobalFilter";
 import FirstSteps from "./firstSteps";
+import { useTranslations } from "next-intl";
 
 function TableInvitationList({
   userInvitationList,
@@ -23,8 +24,11 @@ function TableInvitationList({
   weddings,
   selectedWedding,
   user,
+  extraction,
 }) {
   const data = useMemo(() => userInvitationList, [userInvitationList]);
+  const t = useTranslations("RSVPTABLE");
+  console.log(extraction);
 
   const isWeddingsEmpty = weddings && weddings.length === 0;
 
@@ -55,24 +59,24 @@ function TableInvitationList({
       },
 
       {
-        Header: "שם",
+        Header: t("name"),
         accessor: (row) => `${row.name} ${row.lastName}`,
         className: "column-name",
       },
 
       {
-        Header: "אמייל",
+        Header: t("email"),
         accessor: "emailInvitation",
         className: "column-email",
       },
 
       {
-        Header: "הוזמן על ידי",
+        Header: t("invitedBy"),
         accessor: "invitedBy",
         className: "column-invitedBy",
       },
       {
-        Header: "קבוצות",
+        Header: t("groups"),
         id: "groups",
         accessor: (row) =>
           row.groups ? row.groups.map((group) => group.name).join(", ") : "",
@@ -96,7 +100,7 @@ function TableInvitationList({
         ),
       },
       {
-        Header: "משתתף",
+        Header: t("isAttending"),
         accessor: "isAttending",
         Cell: ({ value }) =>
           value ? (
@@ -107,7 +111,7 @@ function TableInvitationList({
         className: "column-isAttending",
       },
       {
-        Header: "אישור נוכחות",
+        Header: t("isConfirmed"),
         accessor: "isConfirmed",
         Cell: ({ value }) =>
           value ? (
@@ -130,6 +134,18 @@ function TableInvitationList({
     ],
     []
   );
+  const textAlignClass =
+    extraction === "he" ? "text-align-right" : "text-align-left";
+
+  const borderRadiusClassCheckbox =
+    extraction === "he"
+      ? "border-radius-checkbox-he"
+      : "border-radius-checkbox-en-es";
+  const borderRadiusClassActions =
+    extraction === "he"
+      ? "border-radius-actions-he"
+      : "border-radius-actions-en-es";
+
   const {
     getTableProps,
     getTableBodyProps,
@@ -193,7 +209,8 @@ function TableInvitationList({
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
         />
 
-        <table {...getTableProps()} className="my-table">
+        <table {...getTableProps()} className={`my-table ${textAlignClass}`}>
+          {" "}
           <thead className={`${isWeddingsEmpty}?"thead-disable":"thead"}`}>
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
@@ -202,11 +219,11 @@ function TableInvitationList({
                     {...column.getHeaderProps()}
                     className={`${column.className} ${
                       isWeddingsEmpty ? "empty-weddings" : ""
-                    }`}
-                    data-checkbox-header={index === 0} // Asume que el checkbox está en la primera columna
-                    data-actions-header={
+                    } ${index === 0 ? borderRadiusClassCheckbox : ""} ${
                       index === headerGroup.headers.length - 1
-                    } // Asume que "actions" está en la última columna
+                        ? borderRadiusClassActions
+                        : ""
+                    }`}
                   >
                     {column.render("Header")}
                   </th>

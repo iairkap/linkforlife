@@ -7,5 +7,64 @@
     "rsvp": "RSVP",
     "charts": "Pagos",
     "calendar": "Calendario"
-  }
+  },
+  "MenuDropDown": {
+    "settings": "Configuración",
+    "logout": "Cerrar sesión",
+    "help": "Ayuda",
+    "invite": "Agregar colaborador"
+  },
+  "SearchBar": {
+    "search": "Buscar"
+  },
+  "DashboardHeaderDates": { "date": "Fecha de Casamiento" },
+  "DashboardStats": {
+    "invitedBy": "Invitados Por",
+    "totalInvited": "Total Invitados",
+    "attending": "Asistirán",
+    "notAttending": "No Asistirán"
+  },
+  "DashboardGroups": {
+    "groups": "Grupos",
+    "addGroup": "Agregar Grupo"
+  },
+
+  "DashboardPieCharts": {
+    "attending": "Asistirán",
+    "notAttending": "No Asistirán",
+    "notConfirmed": "No Confirmados"
+  },
+  "ModalAddInv": {
+    "addInv": "Agregar Invitado",
+    "name": "Nombre",
+    "lastName": "Apellido",
+    "email": "Email",
+    "phone": "Teléfono",
+    "invitedBy": "Invitado Por",
+    "specialRole": "Rol Especial",
+    "save": "Guardar"
+  },
+  "RSVPTABLE": {
+    "name": "Nombre",
+    "lastName": "Apellido",
+    "email": "Email",
+    "phone": "Teléfono",
+    "invitedBy": "Invitado Por",
+    "specialRole": "Rol Especial",
+    "groups": "Grupos",
+    "isAttending": "Asistirá",
+    "isConfirmed": "Confirmado",
+    "notConfrimed:": "No Confirmado",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "togleAll": "Seleccionar Todo",
+    "addInv": "Agregar Invitado",
+    "filter": "Filtrar",
+    "subtitle": "Lista de Invitados"
+  },
+  "Pagination": {
+    "next": "Siguiente >",
+    "prev": "< Anterior"
+  },
+  "AddUserToWeddingList": { "email": "Email", "send": "Enviar   " }
 }

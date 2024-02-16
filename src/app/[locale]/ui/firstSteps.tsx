@@ -5,7 +5,7 @@ import "../sass/components/FirstSteps.scss"
 import AddWedding from './addWedding';
 import AddUserCollaborator from './addUserToTheWeddingList';
 import AccesTableWithToken from './accesTableWithToken';
-import firstIcon from "../../../public/firstIcon.svg"
+import firstIcon from "../../../../public/firstIcon.svg"
 import Image from 'next/image';
 import Button from './button';
 interface FirstStepsProps {

@@ -1,10 +1,25 @@
-export const dateFormat = (date: Date) => {
+export const dateFormat = (date: Date, extraction: string | undefined) => {
   const dateObj = new Date(date);
   const options: Intl.DateTimeFormatOptions = {
     month: "long",
     day: "numeric",
   };
-  return dateObj.toLocaleDateString("he-IL", options);
+
+  let locale;
+  switch (extraction) {
+    case "he":
+      locale = "he-IL";
+      break;
+    case "es":
+      locale = "es-ES";
+      break;
+    case "en":
+    default:
+      locale = "en-US";
+      break;
+  }
+
+  return dateObj.toLocaleDateString(locale, options);
 };
 
 export const countDownDays = (date: Date) => {

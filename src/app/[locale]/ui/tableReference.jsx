@@ -1,6 +1,7 @@
 import React from "react";
 import GlobalFilter from "./GlobalFilter";
 import "../sass/pages/dashboard.scss";
+import { useTranslations } from "next-intl";
 const HeaderFilter = ({
   isMenuOpen,
   setMenuOpen,
@@ -31,12 +32,14 @@ const HeaderFilter = ({
     }
   ); */
 
+  const t = useTranslations("RSVPTABLE");
+
   return (
     <div className="headOfHeader">
       <div className="headito">
         <div className="button-first-container">
           <button onClick={handleOpenModal} className="buttonPLus">
-            הוסף אורח +
+            {t("addInv")}{" "}
           </button>
           <div className="button-container">
             <button
@@ -48,7 +51,7 @@ const HeaderFilter = ({
                 setFilter(filter === "confirmed" ? "all" : "confirmed")
               }
             >
-              Confirmed
+              {t("isConfirmed")}
             </button>
             <button
               className={
@@ -59,7 +62,7 @@ const HeaderFilter = ({
                 setFilter(filter === "notConfirmed" ? "all" : "notConfirmed")
               }
             >
-              Not Confirmed
+              {t("notConfirmed")}
             </button>
           </div>
         </div>
@@ -70,7 +73,7 @@ const HeaderFilter = ({
             style={{ display: "flex", alignItems: "center" }}
             className="filter-b"
           >
-            <span>מסנן</span>
+            <span>{t("filter")}</span>
             <span class="material-symbols-outlined fa">filter_alt</span>{" "}
           </div>
 
@@ -83,7 +86,7 @@ const HeaderFilter = ({
                   {...getToggleHideAllColumnsProps()}
                   id="toggle-all"
                 />
-                <label htmlFor="toggle-all">Toggle All</label>
+                <label htmlFor="toggle-all">{t("togleAll")}</label>
               </div>
               {allColumns.map((column) => (
                 <div key={column.id}>

@@ -6,6 +6,8 @@ import Image from 'next/image';
 import SearchBar from './searchBar';
 import DropDownUserSettings from './dropDownUserSettings';
 import logo from "../../../../public/logo.png"
+import { extractLocaleFromPathName } from '../utils/getLocale';
+import { usePathname } from 'next/navigation';
 
 function Header({ }) {
     const { data: session } = useSession()
@@ -16,7 +18,9 @@ function Header({ }) {
     const email = session?.user?.email ?? '';
     const name = session?.user?.name ?? '';
 
-    // Close the menu when clicking outside
+    const pathName = usePathname();
+    const extraction = extractLocaleFromPathName(pathName)
+
     useEffect(() => {
         function handleMouseDown(event: MouseEvent) {
             if (menuRef.current && !(menuRef.current as HTMLElement).contains(event.target as Node)) {
@@ -62,7 +66,7 @@ function Header({ }) {
                     </button>
                     {
                         menuVisible &&
-                        <DropDownUserSettings logo={logo} isOpen={menuVisible} profilePicture={profilePicture} email={email} name={name} setIsOpen={setMenuVisible} />
+                        <DropDownUserSettings logo={logo} isOpen={menuVisible} profilePicture={profilePicture} email={email} name={name} setIsOpen={setMenuVisible} extraction={extraction} />
                     }
                 </div>
             </div>

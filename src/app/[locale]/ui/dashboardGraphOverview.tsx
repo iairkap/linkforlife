@@ -9,6 +9,7 @@ import Groom from "../../../../public/groom.svg"
 import Bride from "../../../../public/bride.svg"
 import Both from "../../../../public/both.svg"
 import { splitName } from '../utils/splitName';
+import { useTranslations } from 'next-intl';
 
 interface UserInvitation {
     id: number;
@@ -81,16 +82,18 @@ function DashboardGraph({ userInvitationList, user }: { userInvitationList: any[
             break;
     }
 
+    const t = useTranslations('DashboardStats');
+
     return (
         <div className='dash-card-container'>
             <div className='DashboardGraphCard'>
-                <DashboardGraphCard cardTitle={`מוזמנים על ידי ${user.partnerName}`} icon={iconPartner} confirmed={confirmedByGroom} attending={isAttendingByGroom} notAttending={notAttendingByGroom} notConfirmed={notConfirmedByGroom} total={invitedByGroom} />
+                <DashboardGraphCard cardTitle={`${t("invitedBy")} ${user.partnerName}`} icon={iconPartner} confirmed={confirmedByGroom} attending={isAttendingByGroom} notAttending={notAttendingByGroom} notConfirmed={notConfirmedByGroom} total={invitedByGroom} />
             </div>
             <div className='DashboardGraphCard'>
-                <DashboardGraphCard cardTitle={`מוזמנים על ידי ${splitName(user.name)}`} icon={iconUser} confirmed={confirmedByBride} attending={isAttendingByBride} notAttending={notAttendingByBride} notConfirmed={notConfirmedByBride} total={invitedByBride} />
+                <DashboardGraphCard cardTitle={`${t("invitedBy")} ${splitName(user.name)}`} icon={iconUser} confirmed={confirmedByBride} attending={isAttendingByBride} notAttending={notAttendingByBride} notConfirmed={notConfirmedByBride} total={invitedByBride} />
             </div>
             <div className='DashboardGraphCard'>
-                <DashboardGraphCard cardTitle={`סה"כ מוזמנים`} icon={Both} confirmed={confirmedTotal} attending={isAttendingTotal} notAttending={notAttendingTotal} notConfirmed={notConfirmedTotal} total={invitedTotal} />
+                <DashboardGraphCard cardTitle={`${t("totalInvited")}`} icon={Both} confirmed={confirmedTotal} attending={isAttendingTotal} notAttending={notAttendingTotal} notConfirmed={notConfirmedTotal} total={invitedTotal} />
             </div>
         </div>
     );

@@ -7,5 +7,68 @@
     "rsvp": "RSVP",
     "charts": "Charts",
     "calendar": "Calendar"
+  },
+  "MenuDropDown": {
+    "settings": "Settings",
+    "logout": "Logout",
+    "help": "Help",
+    "invite": "Add colaborator"
+  },
+  "SearchBar": {
+    "search": "Search"
+  },
+  "DashboardHeaderDates": { "date": "Wedding Day" },
+  "DashboardStats": {
+    "invitedBy": "Invited by",
+    "totalInvited": "Total Invited",
+    "attending": "Attending",
+    "notAttending": "Not Attending"
+  },
+  "DashboardGroups": {
+    "groups": "Groups",
+    "addGroup": "Add Group"
+  },
+
+  "DashboardPieCharts": {
+    "attending": "Attending",
+    "notAttending": "Not Attending",
+    "notConfirmed": "Not Confirmed"
+  },
+
+  "ModalAddInv": {
+    "addInv": "Add guest",
+    "name": "Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "invitedBy": "Invited by",
+    "specialRole": "Special Role",
+    "save": "Save"
+  },
+  "RSVPTABLE": {
+    "name": "name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "invitedBy": "Invited by",
+    "specialRole": "Special Role",
+    "groups": "Groups",
+    "isAttending": "Attending",
+    "isConfirmed": "Confirmed",
+    "notConfirmed": "Not Confirmed",
+    "edit": "Edit",
+    "delete": "Delete",
+    "togleAll": "Togle All",
+    "addInv": "Add guest",
+    "filter": "Filter",
+    "subtitle": "Guest List"
+  },
+  "Pagination": {
+    "next": "Next >",
+    "prev": "< Prev"
+  },
+  "AddUserToWeddingList": {
+    "email": "Email",
+    "send": "Send"
   }
 }

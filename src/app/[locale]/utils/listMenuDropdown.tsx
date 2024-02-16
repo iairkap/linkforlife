@@ -1,22 +1,22 @@
-export const getListItems = (setIsOpenModalAddUser: any, setIsOpen: any, signOut: any) => [
+export const getListItems = (setIsOpenModalAddUser: any, setIsOpen: any, signOut: any, t: any) => [
     {
         symbol: "settings_heart",
-        text: "הגדרות",
+        text: t("settings"),
         onClick: () => { }
     },
     {
         symbol: "group",
-        text: "שיתוף חתונה",
+        text: t("invite"),
         onClick: () => { setIsOpenModalAddUser(true); setIsOpen(false); }
     },
     {
         symbol: "help",
-        text: "עזרה",
+        text: t("help"),
         onClick: () => { }
     },
     {
         symbol: "logout",
-        text: "התנתק",
+        text: t("logout"),
         onClick: () => signOut({ callbackUrl: "/" })
     }
 ];

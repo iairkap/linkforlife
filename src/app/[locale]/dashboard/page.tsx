@@ -19,6 +19,9 @@ import DashboardGroups from '../ui/DashboardGroups';
 import { Pie } from 'react-chartjs-2';
 import { DashboardDataB as DashboardData, Groups } from '@/types/types';
 import { useTranslations } from 'next-intl';
+import { usePathname } from 'next/navigation';
+import { extractLocaleFromPathName } from '../utils/getLocale';
+
 
 
 
@@ -33,6 +36,8 @@ function DashboardGeneral() {
     const [isModalGroupOpen, setIsModalGroupOpen] = useState(false);
 
     const t = useTranslations('Dashboard');
+    const pathName = usePathname();
+    const extraction = extractLocaleFromPathName(pathName)
 
 
 
@@ -59,11 +64,11 @@ function DashboardGeneral() {
     return (
         <article className='containerDash'>
             <h1>{t("title")}</h1>
-            <HeaderDashboard weddingDate={weddingDate} />
+            <HeaderDashboard weddingDate={weddingDate} extraction={extraction} />
             <DashboardGraph userInvitationList={userInvitationList} user={user} />
             <div className='graph-container-pair'>
-                <DashboardGroups groups={groups} setIsModalOpen={setIsModalGroupOpen} />
-                <DashboardWithPiechart userInvitationList={userInvitationList} />
+                <DashboardGroups groups={groups} setIsModalOpen={setIsModalGroupOpen} extraction={extraction} />
+                <DashboardWithPiechart userInvitationList={userInvitationList} extraction={extraction} />
             </div>
             {
                 isModalGroupOpen && <ModalGroup isOpen={isModalGroupOpen} contentLabel="Add Group" onRequestClose={() => setIsModalGroupOpen(false)} onRequestCloseGeneral={() => setIsModalGroupOpen(false)} weddings={weddings} />

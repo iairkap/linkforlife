@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import '../sass/components/buttonSideBar.scss';
-import Link from 'next/link';
+import { Link } from '@/navigation';
 
 interface IconObject {
     src: string;
@@ -22,6 +22,8 @@ const ButtonSideBar = ({ icon, Tooltip, Link: linkPath, isActive }: Props) => {
         ? <img src={icon.src} height={icon.height} width={icon.width} style={{ filter: `blur(${icon.blurWidth}px ${icon.blurHeight}px)` }} />
         : icon;
 
+
+    console.log(isActive)
     const buttonClass = isActive ? 'buttonactive' : 'button'; // Aplica la clase 'active' si el botón está activo
 
     return (
