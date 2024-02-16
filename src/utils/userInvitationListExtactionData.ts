@@ -80,3 +80,27 @@ export function getInvitationStats(userInvitationList: UserInvitation[]) {
     invitedByGroom,
   };
 }
+
+export function getAdjustedInvitationStats(
+  userInvitationList: UserInvitation[]
+) {
+  let isAttendingTotal = 0;
+  let notAttendingTotal = 0;
+  let notConfirmedTotal = 0;
+
+  userInvitationList.forEach((invitation) => {
+    if (!invitation.isConfirmed) {
+      notConfirmedTotal++;
+    } else if (!invitation.isAttending) {
+      notAttendingTotal++;
+    } else {
+      isAttendingTotal++;
+    }
+  });
+
+  return {
+    isAttendingTotal,
+    notAttendingTotal,
+    notConfirmedTotal,
+  };
+}

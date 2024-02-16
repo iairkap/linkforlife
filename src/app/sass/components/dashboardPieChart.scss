@@ -1,0 +1,57 @@
+@import "../abstracts/variables.scss";
+@import "./chips.scss";
+.containerPie {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1.5rem 2rem;
+  border: 1px solid #818369;
+  border-radius: 0.5rem;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+  width: calc(66.66% - 5rem);
+  margin-right: 2rem;
+}
+
+.layout-inside {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+}
+
+.containerbisbas {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.label-span,
+.number-span {
+  margin: 0px;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+}
+
+.refernce-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.number-span {
+  margin-right: 3.875rem;
+  font-size: 1.5rem;
+  font-weight: 900;
+  font-family: "Poppins", sans-serif;
+}
+
+.label-span {
+  color: var(--Grey-50, #d0d1d2);
+  font-weight: 300;
+}

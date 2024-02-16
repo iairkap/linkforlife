@@ -12,9 +12,11 @@ import { useDashboardData } from '../helpers/useDashboardData';
 import Loader from '../ui/loader';
 import ModalGroup from '../ui/modalGroup';
 import "../sass/layout/dashboard.scss"
-/* import PieChart from "../ui/pieChart";
- */
+import PieChart from "../ui/pieChart";
+import DashboardWithPiechart from '../ui/dashboardPieChart';
+import { getInvitationStats } from '@/utils/userInvitationListExtactionData';
 import DashboardGroups from '../ui/DashboardGroups';
+import { Pie } from 'react-chartjs-2';
 interface DashboardData {
     userInvitationList: any[]; // Reemplaza 'any' con el tipo correcto
     setUserInvitationList: React.Dispatch<React.SetStateAction<any[]>>; // Reemplaza 'any' con el tipo correcto
@@ -68,10 +70,15 @@ function DashboardGeneral() {
         <article className='containerDash'>
             <HeaderDashboard weddingDate={weddingDate} />
             <DashboardGraph userInvitationList={userInvitationList} user={user} />
-            <DashboardGroups groups={groups} setIsModalOpen={setIsModalGroupOpen} />
+            <div className='graph-container-pair'>
+                <DashboardGroups groups={groups} setIsModalOpen={setIsModalGroupOpen} />
+                <DashboardWithPiechart userInvitationList={userInvitationList} />
+            </div>
             {
                 isModalGroupOpen && <ModalGroup isOpen={isModalGroupOpen} contentLabel="Add Group" onRequestClose={() => setIsModalGroupOpen(false)} onRequestCloseGeneral={() => setIsModalGroupOpen(false)} weddings={weddings} />
             }
+
+
         </article>
 
     );
