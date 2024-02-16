@@ -17,22 +17,9 @@ import DashboardWithPiechart from '../ui/dashboardPieChart';
 import { getInvitationStats } from '@/utils/userInvitationListExtactionData';
 import DashboardGroups from '../ui/DashboardGroups';
 import { Pie } from 'react-chartjs-2';
-interface DashboardData {
-    userInvitationList: any[]; // Reemplaza 'any' con el tipo correcto
-    setUserInvitationList: React.Dispatch<React.SetStateAction<any[]>>; // Reemplaza 'any' con el tipo correcto
-    isLoading: boolean;
-    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
-    groups: Groups[];
-    groupInvitations: any; // Reemplaza 'any' con el tipo correcto
-    weddings: any[];
-}
+import { DashboardDataB as DashboardData, Groups } from '@/types/types';
 
-interface Groups {
-    id: number;
-    name: string;
-    userId: number;
-    weddingId: number;
-}
+
 
 function DashboardGeneral() {
 
@@ -42,7 +29,6 @@ function DashboardGeneral() {
 
 
     const [weddingDate, setWeddingDate] = useState(new Date());
-    console.log(userInvitationList)
     const [isModalGroupOpen, setIsModalGroupOpen] = useState(false);
 
 
@@ -55,15 +41,16 @@ function DashboardGeneral() {
         }
     }, [weddings]);
 
-    console.log(weddings)
 
     const areWedding = weddings && weddings.length > 0;
 
-    console.log(isLoading)
-    console.log(userInvitationList)
-    console.log(groups)
     if (isLoading) {
-        return <Loader />
+        return (<main className='main'>
+
+            <Loader />
+        </main>
+
+        )
     }
 
     return (

@@ -4,22 +4,7 @@ import { useDashboardData } from '../helpers/useDashboardData';
 import Loader from "../ui/loader" // Asegúrate de importar tu componente Loader
 import { useSession } from 'next-auth/react';
 import AddUserCollaborator from '../ui/addUserToTheWeddingList';
-
-interface DashboardData {
-    userInvitationList: any;
-    setUserInvitationList: any;
-    isLoading: boolean;
-    setIsLoading: any;
-    groups: any;
-    groupInvitations: any;
-    weddings: any;
-    setWeddings: any;
-    session: any;
-    refreshData: any;
-    isOpenModalAddUser: boolean;
-    setIsOpenModalAddUser: any;
-    user: any;
-}
+import { DashboardData } from '@/types/types';
 
 const GlobalContext = createContext<DashboardData | null>(null);
 

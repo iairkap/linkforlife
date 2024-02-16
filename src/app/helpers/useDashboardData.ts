@@ -3,11 +3,13 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { AxiosError } from "axios";
 import { fetchUserDataBis, fetchGroups, fetchInvitationList } from "./api";
-interface Group {
-  id: number;
-}
+import { Group, UserInvitation, Wedding } from "@/types/types";
 
-interface UserInvitation {
+/* interface Group {
+  id: number;
+} */
+
+/* interface UserInvitation {
   isConfirmed: boolean;
   groups: Group[];
   weddingId: number;
@@ -19,7 +21,7 @@ interface Wedding {
   weddingName: string;
   weddingId: number;
   weddingInvitationList: UserInvitation[]; // Asegúrate de definir UserInvitation
-}
+} */
 export const useDashboardData = () => {
   const [userInvitationList, setUserInvitationList] = useState<
     UserInvitation[]

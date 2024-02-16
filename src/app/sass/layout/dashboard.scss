@@ -1,3 +1,12 @@
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  flex-direction: column;
+  margin-top: 0.4rem;
+}
+
 .dashboard-layout {
   display: flex;
   flex-direction: row;
