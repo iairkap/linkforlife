@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import InputField from './InputField';
 import { useState } from 'react';
 import Button from './button';
-import { loginUser } from "../handlers/login"
+import { loginUser } from "../../handlers/login"
 import { useRouter } from 'next/navigation'
 import "../sass/pages/login.scss"
 import { signIn, getSession } from "next-auth/react";

@@ -6,6 +6,7 @@
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "module": "esnext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
@@ -27,11 +28,11 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/app/api/invitationListGeneral/index.js",
-    "src/app/ui/invitationList.tsx",
+    "src/app/[locale]/ui/invitationList.tsx",
     "src/pages/api/auth/[...nextauth]/index.js",
-    "src/app/lib/getUserSession.jsx",
+    "src/app/[locale]/lib/getUserSession.jsx",
     "src/pages/api/auth/[...nextauth].js",
-    "src/app/ui/tableReference.jsx"
+    "src/app/[locale]/ui/tableReference.jsx"
   ],
   "exclude": ["node_modules"]
 }

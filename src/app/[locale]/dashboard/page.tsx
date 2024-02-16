@@ -18,6 +18,7 @@ import { getInvitationStats } from '@/utils/userInvitationListExtactionData';
 import DashboardGroups from '../ui/DashboardGroups';
 import { Pie } from 'react-chartjs-2';
 import { DashboardDataB as DashboardData, Groups } from '@/types/types';
+import { useTranslations } from 'next-intl';
 
 
 
@@ -30,6 +31,8 @@ function DashboardGeneral() {
 
     const [weddingDate, setWeddingDate] = useState(new Date());
     const [isModalGroupOpen, setIsModalGroupOpen] = useState(false);
+
+    const t = useTranslations('Dashboard');
 
 
 
@@ -55,6 +58,7 @@ function DashboardGeneral() {
 
     return (
         <article className='containerDash'>
+            <h1>{t("title")}</h1>
             <HeaderDashboard weddingDate={weddingDate} />
             <DashboardGraph userInvitationList={userInvitationList} user={user} />
             <div className='graph-container-pair'>

@@ -1,0 +1,11 @@
+{
+  "Dashboard": {
+    "title": "Hola"
+  },
+  "Sidebar": {
+    "dashboard": "Dashboard",
+    "rsvp": "RSVP",
+    "charts": "Pagos",
+    "calendar": "Calendario"
+  }
+}

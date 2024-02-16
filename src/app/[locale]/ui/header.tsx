@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/react'
 import Image from 'next/image';
 import SearchBar from './searchBar';
 import DropDownUserSettings from './dropDownUserSettings';
-import logo from "../../../public/logo.png"
+import logo from "../../../../public/logo.png"
 
 function Header({ }) {
     const { data: session } = useSession()

@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import iconCouple from "../../../public/iconCouple.png"
+import iconCouple from "../../../../public/iconCouple.png"
 import "../sass/components/dashboardGroups.scss"
 
 

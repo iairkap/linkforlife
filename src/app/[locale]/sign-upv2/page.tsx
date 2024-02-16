@@ -8,7 +8,7 @@ import Image from 'next/image';
 import SaveTheDateInitialSignUp from '../ui/saveTheDateInitialSignUp';
 import backgroundSign from "../../../public/backC.jpeg"
 import Button from '../ui/button';
-import { signUp, signUpWithGoogle } from '../handlers/singUp';
+import { signUp, signUpWithGoogle } from '../../handlers/singUp';
 import ModalNotification from '../ui/modalNotification';
 import { signIn, getSession } from "next-auth/react";
 import { useSession } from 'next-auth/react';

@@ -10,8 +10,8 @@ import AddInv from '../../ui/addInv';
 import Graph from '../../ui/graph';
 import HeaderFilter from "../../ui/tableReference"
 import Pagination from "../../ui/pagination"
-import InputField from '@/app/ui/InputField';
-import FirstSteps from '@/app/ui/firstSteps';
+import InputField from '@/app/[locale]/ui/InputField';
+import FirstSteps from '@/app/[locale]/ui/firstSteps';
 import { Modal } from '@mui/material';
 function Dashboard() {
     const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations, selectedWedding, setSelectedWedding, weddings, setWeddings, /* handleWeddingChange */

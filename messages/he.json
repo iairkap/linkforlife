@@ -1,1 +1,11 @@
-{}
+{
+  "Dashboard": {
+    "title": "שלום"
+  },
+  "Sidebar": {
+    "dashboard": "לוח בקרה",
+    "rsvp": "רשימת מוזמנים",
+    "charts": "תשלומים",
+    "calendar": "לוח שנה"
+  }
+}

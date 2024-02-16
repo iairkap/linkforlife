@@ -5,9 +5,9 @@ import NumberPortion from './numberPortion';
 import "../sass/components/dashboardGraphOverview.scss"
 import CircleChart from './circleChart';
 import DashboardGraphCard from './DashboardGraphCard';
-import Groom from "../../../public/groom.svg"
-import Bride from "../../../public/bride.svg"
-import Both from "../../../public/both.svg"
+import Groom from "../../../../public/groom.svg"
+import Bride from "../../../../public/bride.svg"
+import Both from "../../../../public/both.svg"
 import { splitName } from '../utils/splitName';
 
 interface UserInvitation {

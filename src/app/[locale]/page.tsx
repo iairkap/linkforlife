@@ -3,7 +3,7 @@ import Image from "next/image";
 import LoginForm from "./ui/loginForm";
 import "./sass/pages/login.scss"
 import { PrismaClient } from "@prisma/client";
-import Flower from "../../public/flower.png"
+import Flower from "../../../public/flower.png"
 const prisma = new PrismaClient();
 
 

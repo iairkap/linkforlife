@@ -1,1 +1,11 @@
-{}
+{
+  "Dashboard": {
+    "title": "Hello"
+  },
+  "Sidebar": {
+    "dashboard": "dashboard",
+    "rsvp": "RSVP",
+    "charts": "Charts",
+    "calendar": "Calendar"
+  }
+}
