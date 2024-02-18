@@ -16,10 +16,6 @@ interface ModalNotificationProps {
 function ModalNotification({ message, status, isOpen, onRequestClose, email, password, formdata }: ModalNotificationProps) {
 
 
-    console.log('ModalNotification', message, status, isOpen, onRequestClose)
-    console.log(email)
-    console.log(password)
-
     let icon;
     let title;
     switch (status) {

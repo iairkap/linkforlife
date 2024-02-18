@@ -37,14 +37,13 @@ model User {
   weddings              Wedding[]               @relation("UserToWedding")
   adminWeddings         Wedding[]               @relation("AdminToWedding")
   profilePicture        String?
-  lastName             String?
+  lastName              String?
   partnerName           String?
   partnerLastName       String?
   weddingDate           DateTime?
   role                  ROLE                    @default(ADMIN)
   partnerRole           ROLE                    @default(ADMIN)
-  expenses  Expenses[]
-
+  expenses              Expenses[]
 }
 
 model Wedding {
@@ -59,48 +58,42 @@ model Wedding {
   inviteTokens          InviteToken[]
   adminId               Int
   admin                 User                    @relation("AdminToWedding", fields: [adminId], references: [id])
-  expense              Expenses[]
-
+  expense               Expenses[]
+  tokenForInvitation  String?
 }
 
 enum ROLE {
-ADMIN
-BRIDE
-GROOM
-WEDDING_PLANNER
+  ADMIN
+  BRIDE
+  GROOM
+  WEDDING_PLANNER
 }
 
-
-model Expenses{
-  id          Int      @id @default(autoincrement())
+model Expenses {
+  id          Int       @id @default(autoincrement())
   name        String
   description String
   amount      Float
-  wedding     Wedding  @relation(fields: [weddingId], references: [id])
+  wedding     Wedding   @relation(fields: [weddingId], references: [id])
   weddingId   Int
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  alreadyPay Boolean @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  alreadyPay  Boolean   @default(false)
   paymentDate DateTime?
-  paidBy      User?    @relation(fields: [paidById], references: [id])
+  paidBy      User?     @relation(fields: [paidById], references: [id])
   paidById    Int?
-
-
 }
 
-
-
-model InviteToken{
-  id          Int      @id @default(autoincrement())
-  token       Int   @unique
-  email       String
-  wedding     Wedding  @relation(fields: [weddingId], references: [id])
-  weddingId   Int
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  expiresAt   DateTime
+model InviteToken {
+  id        Int      @id @default(autoincrement())
+  token     Int      @unique
+  email     String
+  wedding   Wedding  @relation(fields: [weddingId], references: [id])
+  weddingId Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  expiresAt DateTime
 }
-
 
 model WeddingInvitationList {
   id               Int      @id @default(autoincrement())
@@ -123,6 +116,7 @@ model WeddingInvitationList {
   phoneNumber      String?
   wedding          Wedding  @relation(fields: [weddingId], references: [id])
   weddingId        Int
+  avatar         String?
 }
 
 model Group {

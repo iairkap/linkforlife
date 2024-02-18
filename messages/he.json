@@ -34,6 +34,7 @@
     "notConfirmed": "לא מאשרים"
   },
   "ModalAddInv": {
+    "addInvBis": "בבקשה הוסף אורח",
     "addInv": "להוסיף אורח",
     "name": "שם",
     "lastName": "שם משפחה",

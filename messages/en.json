@@ -3,7 +3,7 @@
     "title": "Hello"
   },
   "Sidebar": {
-    "dashboard": "dashboard",
+    "dashboard": "Dashboard",
     "rsvp": "RSVP",
     "charts": "Charts",
     "calendar": "Calendar"
@@ -36,6 +36,7 @@
   },
 
   "ModalAddInv": {
+    "addInvBis": "Please fill the form",
     "addInv": "Add guest",
     "name": "Name",
     "lastName": "Last Name",

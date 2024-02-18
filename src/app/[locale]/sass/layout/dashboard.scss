@@ -14,19 +14,20 @@
   width: 100vw;
 }
 
-.flex {
+.flexa {
   display: flex;
   width: 100%;
   flex-direction: column !important;
   position: relative;
-  padding: 0rem 0.75rem 0rem 0.75rem;
-  width: 80%;
-  margin-right: 5%;
 }
 
+.padding-header {
+  padding: 0rem 3rem 0rem 3rem;
+}
+/*   padding: 0rem 0.75rem 0rem 0.75rem;
+*/
 .content {
   display: flex;
-  width: 100%;
   height: 100%;
 }
 
@@ -35,12 +36,13 @@ padding: 2rem 0.75rem 0rem 0.75rem;
  */
 
 .containerDash {
-  width: calc(100% - 2.5rem);
-  padding: 0rem 1.25rem;
+  width: 100%;
   gap: 2rem;
   display: flex;
   flex-direction: column;
   height: 100%;
+  background-color: #f8f9f9;
+  padding: 3rem 3rem 0rem 3rem;
 }
 
 .graph-container-pair {

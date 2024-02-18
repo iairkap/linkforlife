@@ -10,15 +10,20 @@ import Image from 'next/image';
 import HamburguerIcon from './hamburguerIcon';
 import ButtonSideBarContainer from './buttonSideBarContainer';
 import { signOut } from "next-auth/react"
-
+import { usePathname } from 'next/navigation';
+import { extractLocaleFromPathName } from '../utils/getLocale';
 const Sidebar = () => {
     /*     const [isExpanded, setIsExpanded] = useState(true);
         const animation = useSpring({
             width: isExpanded ? 200 : 50,
         }); */
 
+
+    const pathname = usePathname()
+    const extraction = extractLocaleFromPathName(pathname)
+
     return (
-        <section className='side-bar'>
+        <section className={`'side-bar' ${extraction == "he" ? "side-bar-he" : "side-bar-en-es"}`}>
             <animated.div className="sidebar">
                 <div className='logo-container'>
                     <Image src="/finalLogoB.png" alt="logo" width={196} height={38.33} />

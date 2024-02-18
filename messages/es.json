@@ -35,6 +35,7 @@
     "notConfirmed": "No Confirmados"
   },
   "ModalAddInv": {
+    "addInvBis": "Por favor complete el formulario",
     "addInv": "Agregar Invitado",
     "name": "Nombre",
     "lastName": "Apellido",

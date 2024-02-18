@@ -21,7 +21,7 @@ import { DashboardDataB as DashboardData, Groups } from '@/types/types';
 import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import { extractLocaleFromPathName } from '../utils/getLocale';
-
+import DashboardLastConfirmed from '../ui/lastConfirmed';
 
 
 
@@ -63,12 +63,12 @@ function DashboardGeneral() {
 
     return (
         <article className='containerDash'>
-            <h1>{t("title")}</h1>
-            <HeaderDashboard weddingDate={weddingDate} extraction={extraction} />
-            <DashboardGraph userInvitationList={userInvitationList} user={user} />
+            {/*             <HeaderDashboard weddingDate={weddingDate} extraction={extraction} />
+ */}            <DashboardGraph userInvitationList={userInvitationList} user={user} extraction={extraction} />
             <div className='graph-container-pair'>
-                <DashboardGroups groups={groups} setIsModalOpen={setIsModalGroupOpen} extraction={extraction} />
-                <DashboardWithPiechart userInvitationList={userInvitationList} extraction={extraction} />
+                {/*                 <DashboardGroups groups={groups} setIsModalOpen={setIsModalGroupOpen} extraction={extraction} />
+ */}                <DashboardWithPiechart userInvitationList={userInvitationList} extraction={extraction} />
+                <DashboardLastConfirmed userInvitationList={userInvitationList} extraction={extraction} />
             </div>
             {
                 isModalGroupOpen && <ModalGroup isOpen={isModalGroupOpen} contentLabel="Add Group" onRequestClose={() => setIsModalGroupOpen(false)} onRequestCloseGeneral={() => setIsModalGroupOpen(false)} weddings={weddings} />

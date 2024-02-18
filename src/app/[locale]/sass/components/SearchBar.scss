@@ -15,14 +15,30 @@
   padding-right: 44px;
 }
 
-.searchD {
-  background-color: transparent;
-  border: none;
-  position: absolute;
-  right: 0;
+.search-inputB-he {
+  padding-right: 44px;
+  padding-left: 0;
+}
+
+.search-inputB-en-es {
+  padding-left: 44px;
+  padding-right: 0;
 }
 
 .search-containerB {
   position: relative;
   display: flex;
+}
+.searchD {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+}
+
+.searchD-he {
+  right: 0;
+}
+
+.searchD-en-es {
+  left: 0;
 }

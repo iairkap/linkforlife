@@ -16,8 +16,10 @@ const DashboardLayout = ({ children }: any) => {
         <GlobalProvider>
             <div className="dashboard-layout">
                 <Sidebar />
-                <div className="flex">
-                    <Header />
+                <div className="flexa">
+                    <div className="padding-header">
+                        <Header />
+                    </div>
                     <div className='content'>{children}</div>
                 </div>
 

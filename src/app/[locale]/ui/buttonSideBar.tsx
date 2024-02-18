@@ -1,6 +1,8 @@
 import React, { ReactNode } from 'react';
 import '../sass/components/buttonSideBar.scss';
 import { Link } from '@/navigation';
+import { usePathname } from 'next/navigation';
+import { extractLocaleFromPathName } from "../utils/getLocale"
 
 interface IconObject {
     src: string;
@@ -22,12 +24,15 @@ const ButtonSideBar = ({ icon, Tooltip, Link: linkPath, isActive }: Props) => {
         ? <img src={icon.src} height={icon.height} width={icon.width} style={{ filter: `blur(${icon.blurWidth}px ${icon.blurHeight}px)` }} />
         : icon;
 
+    const pathName = usePathname()
+    const extraction = extractLocaleFromPathName(pathName)
+
 
     console.log(isActive)
     const buttonClass = isActive ? 'buttonactive' : 'button'; // Aplica la clase 'active' si el botón está activo
 
     return (
-        <div>
+        <div className={`${extraction === "he" ? "font-hebrew" : "font-regular"}`}>
             <Link href={linkPath}>
                 <button className={buttonClass}>
                     {iconElement}

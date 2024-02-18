@@ -11,12 +11,18 @@ $material-icons-fill-color: red;
   color: #818369;
 }
 
+.font-hebrew {
+  font-family: $font-family-hebrew;
+}
+.font-regular {
+  font-family: $es-en-font;
+}
+
 .button {
   position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
-  font-family: $font-family-hebrew;
   display: flex;
   width: 12.25rem;
   padding: 0.5rem 0.75rem;
@@ -47,7 +53,6 @@ a {
   display: flex;
   flex-direction: row;
   align-items: center;
-  font-family: $font-family-hebrew;
   display: flex;
   width: 12.25rem;
   padding: 0.5rem 0.75rem;
@@ -59,9 +64,10 @@ a {
   gap: 0.75rem;
   align-self: stretch;
   color: #818369;
+  border: transparent;
 }
 
-button {
+.button {
   border: none;
   background: none;
   cursor: pointer;
@@ -74,7 +80,6 @@ button {
   display: flex;
   flex-direction: row;
   align-items: center;
-  font-family: $font-family-hebrew;
   display: flex;
   width: 12.25rem;
   padding: 0.5rem 0.75rem;

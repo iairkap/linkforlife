@@ -6,7 +6,7 @@ import InputField from '../ui/InputField';
 import "../sass/pages/signup.scss"
 import Image from 'next/image';
 import SaveTheDateInitialSignUp from '../ui/saveTheDateInitialSignUp';
-import backgroundSign from "../../../public/backC.jpeg"
+import backgroundSign from "../../../../public/backC.jpeg"
 import Button from '../ui/button';
 import { signUp, signUpWithGoogle } from '../../handlers/singUp';
 import ModalNotification from '../ui/modalNotification';

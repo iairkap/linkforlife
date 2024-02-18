@@ -37,7 +37,7 @@ interface DashboardGraphProps {
     user: any;
 }
 
-function DashboardGraph({ userInvitationList, user }: { userInvitationList: any[], user: any }): JSX.Element {
+function DashboardGraph({ userInvitationList, user, extraction }: { userInvitationList: any[], user: any, extraction: string | undefined }): JSX.Element {
 
     const { confirmedByBride,
         confirmedByGroom,
@@ -85,15 +85,15 @@ function DashboardGraph({ userInvitationList, user }: { userInvitationList: any[
     const t = useTranslations('DashboardStats');
 
     return (
-        <div className='dash-card-container'>
+        <div className={`dash-card-container ${extraction === "he" ? "font-hebrew" : "font-regular"}`}>
             <div className='DashboardGraphCard'>
-                <DashboardGraphCard cardTitle={`${t("invitedBy")} ${user.partnerName}`} icon={iconPartner} confirmed={confirmedByGroom} attending={isAttendingByGroom} notAttending={notAttendingByGroom} notConfirmed={notConfirmedByGroom} total={invitedByGroom} />
+                <DashboardGraphCard cardTitle={`${t("invitedBy")} ${user.partnerName}`} icon={iconPartner} confirmed={confirmedByGroom} attending={isAttendingByGroom} notAttending={notAttendingByGroom} notConfirmed={notConfirmedByGroom} total={invitedByGroom} extraction={extraction} />
             </div>
             <div className='DashboardGraphCard'>
-                <DashboardGraphCard cardTitle={`${t("invitedBy")} ${splitName(user.name)}`} icon={iconUser} confirmed={confirmedByBride} attending={isAttendingByBride} notAttending={notAttendingByBride} notConfirmed={notConfirmedByBride} total={invitedByBride} />
+                <DashboardGraphCard cardTitle={`${t("invitedBy")} ${splitName(user.name)}`} icon={iconUser} confirmed={confirmedByBride} attending={isAttendingByBride} notAttending={notAttendingByBride} notConfirmed={notConfirmedByBride} total={invitedByBride} extraction={extraction} />
             </div>
             <div className='DashboardGraphCard'>
-                <DashboardGraphCard cardTitle={`${t("totalInvited")}`} icon={Both} confirmed={confirmedTotal} attending={isAttendingTotal} notAttending={notAttendingTotal} notConfirmed={notConfirmedTotal} total={invitedTotal} />
+                <DashboardGraphCard cardTitle={`${t("totalInvited")}`} icon={Both} confirmed={confirmedTotal} attending={isAttendingTotal} notAttending={notAttendingTotal} notConfirmed={notConfirmedTotal} total={invitedTotal} extraction={extraction} />
             </div>
         </div>
     );
