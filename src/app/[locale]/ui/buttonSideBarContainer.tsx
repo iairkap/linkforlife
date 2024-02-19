@@ -27,7 +27,7 @@ function ButtonSideBarContainer() {
         {
             icon: charts,
             Tooltip: t("charts"),
-            Link: "./payments"
+            Link: "/dashboard/payments"
         },
         {
             icon: calendar,
