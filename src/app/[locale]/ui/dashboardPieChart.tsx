@@ -4,9 +4,15 @@ import "../sass/components/dashboardPieChart.scss"
 import ChartLegend from './chartLegend';
 import { getInvitationStats } from '@/utils/userInvitationListExtactionData';
 import { getAdjustedInvitationStats } from '@/utils/userInvitationListExtactionData';
+import type { UserInvitation } from '../../../types/types';
+
+interface userInvitationList {
+    userInvitationList: UserInvitation[];
+    extraction: string | undefined;
+}
 
 
-function DashboardWithPiechart({ userInvitationList, extraction }): any {
+function DashboardWithPiechart({ userInvitationList, extraction }: userInvitationList) {
     const {
         isAttendingTotal,
         notAttendingTotal,

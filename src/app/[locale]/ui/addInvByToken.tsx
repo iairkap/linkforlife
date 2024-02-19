@@ -24,7 +24,7 @@ function AddInvByToken({ weddingId }: AddInvProps) {
     const [phoneNumber, setPhoneNumber] = React.useState('');
     const [status, setStatus] = useState(200);
     const [isOpen, setIsOpen] = useState(false);
-    const [image, setImage] = useState(null);
+    const [image, setImage] = useState<File | null>(null);
     const [avatar, setAvatar] = useState('');
 
     console.log(avatar)
@@ -64,25 +64,26 @@ function AddInvByToken({ weddingId }: AddInvProps) {
         }
     }
     const handleUpload = () => {
-        const storageRef = ref(storage, `images/${image.name}`);
-        const uploadTask = uploadBytesResumable(storageRef, image);
+        if (image) {
+            const storageRef = ref(storage, `images/${image.name}`);
+            const uploadTask = uploadBytesResumable(storageRef, image);
 
-        uploadTask.on('state_changed',
-            (snapshot) => {
-                // Handle the upload progress
-            },
-            (error) => {
-                console.log(error);
-            },
-            () => {
-                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                    console.log('File available at', downloadURL);
-                    setAvatar(downloadURL);
-                });
-            }
-        );
+            uploadTask.on('state_changed',
+                (snapshot) => {
+                    // Handle the upload progress
+                },
+                (error) => {
+                    console.log(error);
+                },
+                () => {
+                    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                        console.log('File available at', downloadURL);
+                        setAvatar(downloadURL);
+                    });
+                }
+            );
+        }
     };
-
     return (
 
         <section className='containerModalInvitationWedding'>

@@ -3,9 +3,25 @@ export interface Group {
 }
 
 export interface UserInvitation {
+  id: number;
+  name: string;
+  lastName: string;
+  emailInvitation: string;
+  createdAt: string;
+  updatedAt: string;
+  plusOne: boolean;
+  userId: number;
+  invitedBy: string[];
+  specialRole: string[];
+  isAttending: boolean;
   isConfirmed: boolean;
+  plusOneConfirmed: boolean;
+  groupId: null | number;
+  Table: any;
   groups: Group[];
+  phoneNumber: string;
   weddingId: number;
+  avatar?: string;
 }
 
 export interface Wedding {
@@ -47,4 +63,17 @@ export interface Groups {
   name: string;
   userId: number;
   weddingId: number;
+}
+
+export interface Expense {
+  id?: number;
+  name?: string;
+  description?: string;
+  amount?: number;
+  weddingId?: number;
+  createdAt?: Date;
+  updatedAt?: Date;
+  alreadyPay?: boolean;
+  paymentDate?: Date;
+  paidById?: number;
 }

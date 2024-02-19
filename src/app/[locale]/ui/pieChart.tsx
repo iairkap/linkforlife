@@ -2,10 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 
 interface DonutChartProps {
-    invitedTotal: number;
-    isAttendingTotal: number;
-    notAttendingTotal: number;
-    notConfirmedTotal: number;
+    invitedTotal?: number;
+    isAttendingTotal?: number;
+    notAttendingTotal?: number;
+    notConfirmedTotal?: number;
     data: number[];
     colors: string[];
 }
@@ -13,7 +13,7 @@ interface DonutChartProps {
 function DonutChart({ colors, data }: DonutChartProps) {
 
 
-    const ref = useRef();
+    const ref = useRef<SVGSVGElement>(null);
     /*     const [data, setData, ] = useState([0, 0, 0]);
      */
 
@@ -35,7 +35,7 @@ function DonutChart({ colors, data }: DonutChartProps) {
             .data(pie(data))
             .enter()
             .append('path')
-            .attr('d', arc)
+            .attr('d', arc as any)
             .attr('fill', (d, i) => colors[i]);
 
         const total = data.reduce((a, b) => a + b, 0); // Esto calcula el total de los datos

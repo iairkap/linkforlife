@@ -1,7 +1,8 @@
 import React from 'react';
 import { useTranslations } from 'next-intl';
 import "../sass/components/SearchBar.scss"
-function SearchBar({ extraction }): JSX.Element {
+
+function SearchBar({ extraction }: any): JSX.Element {
     const t = useTranslations('SearchBar');
 
     console.log(extraction)

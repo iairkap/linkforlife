@@ -2,7 +2,7 @@ import React from 'react';
 import SignUpPart2 from '../ui/signUpPart2';
 import "../sass/pages/signup.scss"
 import Image from 'next/image';
-import backgroundSign from "../../../public/backC.jpeg"
+import backgroundSign from "../../../../public/backC.jpeg"
 
 
 function SignUpGooglePart2() {

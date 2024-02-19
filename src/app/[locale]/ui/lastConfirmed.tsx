@@ -4,18 +4,21 @@ import Image from 'next/image';
 import logo from "../../../../public/logo.png"
 import { timeToMinutes } from '../utils/timeToMinutes';
 import { useState } from 'react';
+import type { UserInvitation } from '../../../types/types';
 
-function DashboardLastConfirmed({ userInvitationList, extraction }) {
+interface userInvitationList {
+    userInvitationList: UserInvitation[];
+    extraction: string | undefined;
+}
+function DashboardLastConfirmed({ userInvitationList, extraction }: userInvitationList) {
     console.log(userInvitationList)
-    const [menuOpen, setMenuOpen] = useState({ 0: true });
+    const [menuOpen, setMenuOpen] = useState<Record<number, boolean>>({ 0: true });
     console.log(menuOpen)
 
     const confirmedUsers = userInvitationList
         .filter(user => user?.isAttending)
-        .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
+        .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())
         .slice(0, 3);
-
-
 
     return (
         <div className='general-container'>
@@ -33,7 +36,7 @@ function DashboardLastConfirmed({ userInvitationList, extraction }) {
                                     </div>
                                     <div>
                                         <p className='name-title'>{user.name}</p>
-                                        <p>{timeToMinutes(user.updatedAt, extraction)}</p>
+                                        <p>{extraction && timeToMinutes(user.updatedAt, extraction)}</p>
                                     </div>
                                 </div>
                                 <button onClick={() => setMenuOpen(prevState => ({ ...prevState, [index]: true }))}>

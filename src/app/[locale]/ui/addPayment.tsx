@@ -1,6 +1,11 @@
 import React from 'react';
+import { Wedding } from '@/types/types';
 
-function AddPayment({ weddings }) {
+
+interface Props {
+    weddings: Wedding[];
+}
+function AddPayment({ weddings }: Props) {
 
     console.log(weddings[0])
 

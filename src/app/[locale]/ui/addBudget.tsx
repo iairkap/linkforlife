@@ -5,7 +5,26 @@ import Button from './button';
 import axios from 'axios';
 import "../sass/components/budget.scss"
 
-function AddBudget({ expenseData, weddings, refreshData }) {
+interface Expense {
+    id?: number;
+    name?: string;
+    description?: string;
+    amount?: number;
+    weddingId?: number;
+    createdAt?: Date;
+    updatedAt?: Date;
+    alreadyPay?: boolean;
+    paymentDate?: Date;
+    paidById?: number;
+}
+
+interface Props {
+    expenseData: Expense[];
+    weddings: any;
+    refreshData: any;
+}
+
+function AddBudget({ expenseData, weddings, refreshData }: Props) {
 
     const [budget, setBudget] = useState("");
     const handleAddBudget = async () => {

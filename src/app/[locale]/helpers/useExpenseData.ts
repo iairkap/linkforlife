@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import type { Expense } from "../../../types/types";
 export const useExpenseData = () => {
-  const [expenseData, setExpenseData] = useState<any>([]);
+  const [expenseData, setExpenseData] = useState<Expense[]>([]);
   const [loading, setLoading] = useState(true);
 
   console.log(loading);
