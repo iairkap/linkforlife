@@ -7,7 +7,7 @@ import { formatISO } from 'date-fns';
 import { roleOptions } from './roleOptions';
 import "../sass/components/selector.scss"
 import { signIn } from 'next-auth/react';
-import { usePathname } from 'next/navigation';
+import { usePathname } from '@/navigation';
 import path from 'path';
 import { sign } from 'crypto';
 import { useRouter } from 'next/navigation';

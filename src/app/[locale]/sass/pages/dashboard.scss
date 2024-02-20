@@ -67,3 +67,10 @@
   background-color: transparent;
   border: 1px solid var(--Grey-Grey-300, #989fad);
 }
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}

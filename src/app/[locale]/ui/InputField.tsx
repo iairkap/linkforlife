@@ -12,8 +12,8 @@ function InputField({
     onBlur = () => { }
 }: {
     disabled?: boolean,
-    value: string,
-    type: string | undefined,
+    value: any;
+    type: any;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
     placeholder: string,
     error?: string,

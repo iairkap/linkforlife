@@ -44,6 +44,8 @@ model User {
   role                  ROLE                    @default(ADMIN)
   partnerRole           ROLE                    @default(ADMIN)
   expenses              Expenses[]
+  superAdmin  Boolean @default(false)
+
 }
 
 model Wedding {
@@ -58,10 +60,14 @@ model Wedding {
   inviteTokens          InviteToken[]
   adminId               Int
   admin                 User                    @relation("AdminToWedding", fields: [adminId], references: [id])
-  expense               Expenses[]
+  weddingExpenses Expenses[]
   tokenForInvitation  String?
   budget                Float?
+  splitBetween          String[]
 }
+
+
+
 
 enum ROLE {
   ADMIN
@@ -80,10 +86,15 @@ model Expenses {
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
   alreadyPay  Boolean   @default(false)
+  pagado      Float?  
   paymentDate DateTime?
+  splitBetween String[]
   paidBy      User?     @relation(fields: [paidById], references: [id])
   paidById    Int?
+  status     STATUS    @default(PENDING)
+ installments Installment[]
 }
+
 
 model InviteToken {
   id        Int      @id @default(autoincrement())
@@ -96,6 +107,20 @@ model InviteToken {
   expiresAt DateTime
 }
 
+model Installment {
+  id          Int      @id @default(autoincrement())
+  amount      Float
+  dueDate     DateTime
+  paid        Boolean  @default(false)
+  expense     Expenses @relation(fields: [expenseId], references: [id])
+  expenseId   Int
+}
+
+enum STATUS {
+  PENDING
+  PAID
+  CANCELLED
+}
 model WeddingInvitationList {
   id               Int      @id @default(autoincrement())
   name             String

@@ -1,0 +1,48 @@
+table {
+  text-align: left;
+  margin: 0px;
+  padding: 0px;
+}
+
+.table {
+  width: 50%;
+  text-align: left;
+  margin: 0px;
+  padding: 0px;
+  border-spacing: 0;
+}
+.th {
+  margin: 0px;
+  padding: 1rem 1rem;
+}
+
+.tr {
+  margin: 0px;
+  border-spacing: 0;
+}
+
+.td {
+  border-bottom: 1px solid black;
+  margin: 0px;
+  gap: 0px;
+  padding: 1rem 1rem;
+}
+
+.tr:hover {
+  background-color: #e9eadd;
+}
+
+.th:nth-child(1) {
+  // Target the first column
+  width: 70%;
+}
+
+.th:nth-child(2) {
+  // Target the second column
+  width: 15%;
+}
+
+.th:nth-child(3) {
+  // Target the third column
+  width: 15%;
+}

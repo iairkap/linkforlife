@@ -30,6 +30,7 @@ export interface Wedding {
   weddingName: string;
   weddingId: number;
   weddingInvitationList: UserInvitation[];
+  users?: any;
 }
 
 export interface DashboardData {
@@ -76,4 +77,24 @@ export interface Expense {
   alreadyPay?: boolean;
   paymentDate?: Date;
   paidById?: number;
+  status?: string;
+  installment?: boolean;
+}
+
+export interface Installments {
+  id: number;
+  amount: number;
+  dueDate: Date;
+  paid: boolean;
+  expenseId: number;
+}
+
+export interface ModalType {
+  isOpen: boolean;
+  contentLabel: string;
+  onRequestClose: () => void;
+  onRequestCloseGeneral?: () => void;
+  refreshData?: () => void;
+  user?: any;
+  splitBetween?: string[] | undefined;
 }

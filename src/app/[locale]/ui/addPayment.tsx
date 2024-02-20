@@ -4,17 +4,19 @@ import { Wedding } from '@/types/types';
 
 interface Props {
     weddings: Wedding[];
+    isOpen: boolean;
+    setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
-function AddPayment({ weddings }: Props) {
 
-    console.log(weddings[0])
+
+function AddPayment({ weddings, isOpen, setIsOpen }: Props) {
+
 
 
     return (
         <div>
             <h2>Add Expense</h2>
-            <button>Add</button>
-        </div>
+            <button onClick={() => setIsOpen(true)}>Add</button>        </div>
     );
 }
 

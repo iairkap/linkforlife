@@ -38,7 +38,6 @@ function AddBudget({ expenseData, weddings, refreshData }: Props) {
         }
     }
 
-    console.log(weddings[0])
 
 
     return (

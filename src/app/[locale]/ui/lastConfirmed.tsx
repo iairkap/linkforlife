@@ -12,8 +12,7 @@ interface userInvitationList {
 }
 function DashboardLastConfirmed({ userInvitationList, extraction }: userInvitationList) {
     console.log(userInvitationList)
-    const [menuOpen, setMenuOpen] = useState<Record<number, boolean>>({ 0: true });
-    console.log(menuOpen)
+    const [menuOpen, setMenuOpen] = useState<Record<number, boolean>>({});
 
     const confirmedUsers = userInvitationList
         .filter(user => user?.isAttending)

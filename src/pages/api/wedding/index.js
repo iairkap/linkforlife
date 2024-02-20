@@ -1,6 +1,6 @@
 import prisma from "../../../utils/prismaClient";
 import { getToken } from "next-auth/jwt";
-
+import { expenseDataTemplate } from "../utils/expenseDataTemplate";
 export default async function handler(req, res) {
   const token = await getToken({ req });
   const userEmail = token.email;
@@ -34,6 +34,13 @@ export default async function handler(req, res) {
           connect: {
             id: user.id,
           },
+        },
+        weddingExpenses: {
+          create: expenseDataTemplate.map((expense) => ({
+            name: expense.name,
+            description: expense.description,
+            amount: expense.amount,
+          })),
         },
       },
     });

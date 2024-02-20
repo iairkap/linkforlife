@@ -71,5 +71,16 @@
   "AddUserToWeddingList": {
     "email": "Email",
     "send": "Send"
+  },
+  "ModalAddExpense": {
+    "addExpense": "Add Expense",
+    "description": "Description",
+    "name": "Name",
+    "amount": "Amount",
+    "paymentDate": "Payment Date",
+    "date": "Date",
+    "save": "Save",
+    "cuotas": "Numero de cuotas",
+    "dueDate": "Vencimiento cuotas"
   }
 }

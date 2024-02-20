@@ -1,0 +1,44 @@
+@import "../abstracts//variables.scss";
+.checkbox {
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  outline: none;
+  min-height: 2rem;
+  padding: 14px 40px;
+}
+
+.checkbox {
+  width: calc(100% + 90px);
+  display: flex;
+  align-items: center;
+}
+
+.checkbox input {
+  margin-right: 10px;
+}
+
+.checkbox-custom {
+  position: relative;
+  height: 15px;
+  width: 15px;
+  border: 2px solid $accent-color;
+  background: #f9f9f9;
+  display: inline-block;
+}
+
+.checkbox-custom.checked {
+  background: $accent-color;
+}
+
+.checkbox-custom::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 15px;
+  height: 15px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  display: none;
+}

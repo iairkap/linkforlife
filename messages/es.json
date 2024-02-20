@@ -67,5 +67,12 @@
     "next": "Siguiente >",
     "prev": "< Anterior"
   },
-  "AddUserToWeddingList": { "email": "Email", "send": "Enviar   " }
+  "AddUserToWeddingList": { "email": "Email", "send": "Enviar   " },
+  "ModalAddExpense": {
+    "addExpense": "Agregar Gasto",
+    "name": "Nombre",
+    "amount": "Total",
+    "date": "Fecha",
+    "save": "Guardar"
+  }
 }

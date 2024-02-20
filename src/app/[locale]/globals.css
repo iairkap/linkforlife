@@ -5,6 +5,10 @@ body {
   margin: 0px;
 }
 
+button {
+  border: transparent;
+  background-color: transparent;
+}
 /* :root {
   --max-width: 1100px;
   --border-radius: 12px;
