@@ -1,15 +1,61 @@
 @import "../abstracts/variables.scss";
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  font-family: $es-en-font;
+}
+
 .card-container {
   border-color: 1px solid $secondary-color;
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
-  padding: 1.5rem 2rem;
+  padding: 2rem 2rem;
   gap: 2rem;
   position: relative;
   background-color: white;
   color: black;
   background-color: white;
   position: relative;
+  min-width: 30%;
+}
+
+.span {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1rem;
+}
+.fila-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.progress-bar-container {
+  position: relative;
+  background-color: rgb(208, 208, 208);
+  width: 100%;
+  height: 20px;
+  border-radius: 2rem;
+}
+
+.alreadypaid-percentage {
+  position: absolute;
+  background-color: $accent-color;
+  height: 100%;
+  border-radius: 2rem;
+  z-index: 2;
+}
+
+.debt-percentage {
+  position: absolute;
+  background-color: #e9eadd;
+  height: 100%;
+  border-radius: 2rem;
+  z-index: 1;
 }

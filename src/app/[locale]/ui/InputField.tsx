@@ -1,7 +1,9 @@
 import React from 'react';
 import "../sass/components/inputs.scss"
+import { Property } from 'csstype';
 
 function InputField({
+    textAlign,
     disabled,
     value,
     type,
@@ -11,6 +13,7 @@ function InputField({
     onFocus = () => { },
     onBlur = () => { }
 }: {
+    textAlign?: Property.TextAlign,
     disabled?: boolean,
     value: any;
     type: any;
@@ -24,6 +27,10 @@ function InputField({
     const inputClass = error ? 'my-input error' : 'my-input'; // Cambia la clase si hay un error
     const displayPlaceholder = error ? error : placeholder; // Cambia el placeholder si hay un error
 
+    if (!textAlign) {
+        textAlign = "start";
+    }
+
     return (
         <div>
             <input
@@ -35,6 +42,7 @@ function InputField({
                 autoComplete={autoComplete}
                 onFocus={onFocus}
                 onBlur={onBlur}
+                style={{ textAlign: textAlign }}
             />
         </div>
     );

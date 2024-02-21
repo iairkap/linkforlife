@@ -21,7 +21,7 @@ import ModalPaymentChange from '../../ui/modalPaymentChange';
 function Payments() {
 
 
-    const { expenseData, loading, fetchData } = useExpenseData();
+    const { expenseData, loading, fetchData, totalPaid, totalAmount } = useExpenseData();
     const { weddings, refreshData } = useDashboardData();
     const [isOpen, setIsOpen] = useState(false);
     const [configuration, setConfiguration] = useState(false);
@@ -30,6 +30,11 @@ function Payments() {
     let [splitBetween, setSplitBetween] = useState([]);
     const [expenseDataSelected, setExpenseDataSelected] = useState({});
     const [modalPaymentChange, setModalPaymentChange] = useState(false);
+
+
+    console.log(expenseData)
+
+    /*     console.log(expenseData.find(expense => expense.name === "Photographer")) */
 
 
     useEffect(() => {
@@ -44,12 +49,9 @@ function Payments() {
             }
         }
     }, [weddings]);
-    console.log(expenseData)
-
-    console.log(rowClicked)
 
     useEffect(() => {
-        if (rowClicked && expenseData && expenseData.length > 0) {
+        if (rowClicked && expenseData && expenseData.length > 0 && !modalPaymentChange) {
             const selectedExpense = expenseData.find(expense => expense.id === rowClicked);
             if (selectedExpense) {
                 setExpenseDataSelected(selectedExpense);
@@ -58,8 +60,9 @@ function Payments() {
                 console.log(`No expense found with id ${rowClicked}`);
             }
         }
-    }, [rowClicked, expenseData]); // Add expenseData to the dependency array
+    }, [rowClicked, expenseData, modalPaymentChange]);  // Add expenseData to the dependency array
     console.log(expenseDataSelected)
+
 
 
 
@@ -73,24 +76,30 @@ function Payments() {
     }
 
     return (
-        <article className='containerDash'>
-            <header className='header'>
-                <AddBudget expenseData={expenseData} weddings={weddings} refreshData={refreshData} />
-                <AddPayment weddings={weddings} isOpen={isOpen} setIsOpen={setIsOpen} />
-                <ConfigurationPaymentsCard setConfiguration={setConfiguration} />
-            </header>
+        <article className='containerDashA'>
+            <ConfigurationPaymentsCard setConfiguration={setConfiguration} />
 
-            {/* TABLE */}
+            <section className='layout'>
+                <div className='izq'>
+                    <AddBudget expenseData={expenseData} weddings={weddings} refreshData={refreshData} totalPaid={totalPaid} totalAmount={totalAmount} />
+                    <AddPayment weddings={weddings} isOpen={isOpen} setIsOpen={setIsOpen} />
+                </div>
 
-            <TableVendors expenseData={expenseData} setRowClick={setRowClicked} />
+                {/* TABLE */}
+                <div className='table'>
+                    <TableVendors expenseData={expenseData} setRowClick={setRowClicked} />
+                </div>
 
-
-
-
+            </section>
             {/* MODALES */}
+
             <AddExpense isOpen={isOpen} contentLabel={"Add Expense"} onRequestClose={() => setIsOpen(false)} refreshData={refreshData} onRequestCloseGeneral={() => setIsOpen(false)} splitBetween={splitBetween} />
             <PaymentConfiguration isOpen={configuration} onRequestClose={() => setConfiguration(false)} contentLabel={"Payment Configuration"} />
-            <ModalPaymentChange isOpen={modalPaymentChange} onRequestClose={() => setModalPaymentChange(false)} contentLabel={"Payment Configuration"} expenseDataSelected={expenseDataSelected} setExpenseDataSelected={setExpenseDataSelected} />
+            <ModalPaymentChange isOpen={modalPaymentChange} onRequestClose={() => {
+                setModalPaymentChange(false);
+                setExpenseDataSelected({});
+                setRowClicked(null);
+            }} contentLabel={"Payment Configuration"} expenseDataSelected={expenseDataSelected} setExpenseDataSelected={setExpenseDataSelected} fetchData={fetchData} />
         </article>
     );
 }

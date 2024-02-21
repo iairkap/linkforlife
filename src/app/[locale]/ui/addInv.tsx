@@ -38,8 +38,9 @@ function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList, u
 
     splitName(user.name)
 
-    const wedding = userInvitationList[0]?.weddingId
 
+    console.log(user.weddings[0].id)
+    const wedding = user.weddings[0].id
 
 
 

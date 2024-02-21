@@ -92,7 +92,9 @@ model Expenses {
   paidBy      User?     @relation(fields: [paidById], references: [id])
   paidById    Int?
   status     STATUS    @default(PENDING)
- installments Installment[]
+  installments Installment[]
+  erase Boolean @default(false)  
+  categories  String[]
 }
 
 
@@ -110,7 +112,7 @@ model InviteToken {
 model Installment {
   id          Int      @id @default(autoincrement())
   amount      Float
-  dueDate     DateTime
+  dueDate     DateTime?
   paid        Boolean  @default(false)
   expense     Expenses @relation(fields: [expenseId], references: [id])
   expenseId   Int

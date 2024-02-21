@@ -42,3 +42,38 @@
   transform: rotate(45deg);
   display: none;
 }
+
+.layoutbis {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 50%;
+  margin-top: 1rem;
+}
+
+.fila {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.place-holder-money {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 20px;
+}
+
+.absolute {
+  position: relative;
+}
+
+.buttoncontainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+}

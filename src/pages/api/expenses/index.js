@@ -91,6 +91,44 @@ export default async function handler(req, res) {
       res.status(500).json({ message: "Internal server error" });
       return;
     }
+  } else if (req.method === "PATCH") {
+    const user = await prisma.user.findUnique({
+      where: {
+        email: userEmail,
+      },
+      include: {
+        weddings: true,
+      },
+    });
+
+    if (!user || user.weddings.length === 0) {
+      res.status(404).json({ message: "No wedding found for this user" });
+      return;
+    }
+
+    try {
+      const weddingId = user.weddings[0].id;
+      const updatedExpense = await prisma.expenses.update({
+        where: {
+          id: req.body.expenseId,
+        },
+        data: {
+          name: req.body.name,
+          description: req.body.description,
+          amount: req.body.amount,
+          splitBetween: req.body.splitBetween,
+          alreadyPay: req.body.alreadyPay,
+          paymentDate: new Date(req.body.paymentDate),
+          status: req.body.status,
+          weddingId: weddingId,
+        },
+      });
+
+      res.status(200).json(updatedExpense);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Internal server error" });
+    }
   } else if (req.method === "DELETE") {
     try {
       // First, delete all related installments

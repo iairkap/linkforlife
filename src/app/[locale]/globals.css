@@ -9,6 +9,12 @@ button {
   border: transparent;
   background-color: transparent;
 }
+
+fieldset {
+  border: none !important;
+  outline: none !important;
+}
+
 /* :root {
   --max-width: 1100px;
   --border-radius: 12px;

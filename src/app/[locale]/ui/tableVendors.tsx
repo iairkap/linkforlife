@@ -21,10 +21,8 @@ function TableVendors({ expenseData, setRowClick }: ExpenseData) {
 
     const memoizedData = useMemo(() => expenseData, [expenseData]);
 
-    console.log(expenseData)
 
 
-    console.log(data)
     const columns = useMemo(
         () => [
             {
@@ -34,21 +32,37 @@ function TableVendors({ expenseData, setRowClick }: ExpenseData) {
             },
             {
                 Header: "Due",
-                accessor: "amount",
-                Cell: ({ value }) => {
-                    const formattedValue = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
-                    return <span>{formattedValue}</span>;
+                id: "dueAmount", // use 'id' instead of 'accessor'
+                style: { width: '15%' },
+                Cell: ({ row }) => {
+                    if (row.original.installments && row.original.installments.length > 0) {
+                        const alreadyPayed = row.original.installments.reduce((sum, installment) => sum + installment.amount, 0);
+                        const dueAmount = row.original.amount - alreadyPayed;
+                        const formattedValue = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(dueAmount);
+                        return <span>{formattedValue}</span>;
+                    }
+                    return null; // or return a default value
                 },
             },
             {
-                Header: "Installments Amount",
+                Header: "Already payed",
                 id: "installmentsAmount", // use 'id' instead of 'accessor'
                 style: { width: '15%' },
                 Cell: ({ row }) => {
                     if (row.original.installments && row.original.installments.length > 0) {
-                        return <span>{row.original.installments[0].amount}</span>;
+                        const totalAmount = row.original.installments.reduce((sum, installment) => sum + installment.amount, 0);
+                        const formattedValue = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(totalAmount);
+                        return <span>{formattedValue}</span>;
                     }
                     return null; // or return a default value
+                },
+            },
+            {
+                Header: "total",
+                accessor: "amount",
+                Cell: ({ value }) => {
+                    const formattedValue = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
+                    return <span>{formattedValue}</span>;
                 },
             },
             {

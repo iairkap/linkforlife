@@ -22,11 +22,15 @@ interface Props {
     expenseData: Expense[];
     weddings: any;
     refreshData: any;
+    totalPaid: number;
+    totalAmount: number;
 }
 
-function AddBudget({ expenseData, weddings, refreshData }: Props) {
+function AddBudget({ expenseData, weddings, refreshData, totalPaid, totalAmount }: Props) {
 
     const [budget, setBudget] = useState("");
+
+
     const handleAddBudget = async () => {
         try {
             const { data } = await axios.post("/api/budget", {
@@ -38,24 +42,58 @@ function AddBudget({ expenseData, weddings, refreshData }: Props) {
         }
     }
 
+    if (weddings[0].budget === null) {
+        weddings[0].budget = 0;
+    }
+
+    const moneyFormat = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(weddings[0].budget);
+
+    const amountFormat = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(totalAmount);
+
+
+    const due = totalAmount - totalPaid;
+    const dueFormat = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(due);
+
+    const paidPercentage = (totalPaid / weddings[0].budget) * 100;
+
+    const amountPercentage = (totalAmount / weddings[0].budget) * 100;
+
+    const barFromPayment = (totalPaid / totalAmount) * 100;
+
+
 
 
     return (
         <div>
-            {
-                weddings[0].budget === null &&
-                <div className='card-container'>
-                    <InputField type='number' value={budget} onChange={(e) => setBudget(e.target.value)} placeholder='Add Budget' />
-                    <button onClick={handleAddBudget}>Enviar</button>
+            <div className='card-container'>
+                <span className='span'>+</span>
+                <div className='fila-info'>
+                    <h4>Budget:</h4>
+                    <h4>{moneyFormat}</h4>
                 </div>
-            }
-            {
-                weddings[0].budget !== null &&
-                <div className='card-container'>
-                    <h1>{weddings[0].budget}</h1>
-                    <button onClick={handleAddBudget}>Modificar</button>
+                <span>budget bar:</span>
+                <div className='progress-bar-container'>
+                    <div className='alreadypaid-percentage' style={{ width: `${paidPercentage}%` }}></div>
+                    <div className="debt-percentage" style={{ width: `${amountPercentage}%` }}></div>
                 </div>
-            }
+                <span>sobre costos reales:</span>
+                <div className='progress-bar-container'>
+                    <div className='alreadypaid-percentage' style={{ width: `${barFromPayment}%` }}></div>
+                </div>
+                <div className='fila-info'>
+                    <h4>Gastos Registrados:</h4>
+                    <h4>{amountFormat}</h4>
+                </div>
+                <div className='fila-info'>
+                    <h4>Ya Pagaste</h4>
+                    <h4>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(totalPaid)}</h4>
+                </div>
+                <div className='fila-info'>
+                    <h4>Falta pagar:</h4>
+                    <h4>{dueFormat}</h4>
+                </div>
+
+            </div>
         </div>
     );
 }

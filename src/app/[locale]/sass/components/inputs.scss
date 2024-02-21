@@ -3,6 +3,7 @@
 
 .my-input {
   @include input-styles;
+  width: 100%;
 }
 
 .my-input.error {

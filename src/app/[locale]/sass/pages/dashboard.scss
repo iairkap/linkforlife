@@ -74,3 +74,29 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.layout {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.izq {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 30%;
+}
+
+.table {
+  width: 70%;
+}
+.containerDashA {
+  width: 100%;
+  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  background-color: #f8f9f9;
+  padding: 3rem 3rem 0rem 3rem;
+}

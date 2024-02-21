@@ -40,6 +40,7 @@ export default async function handler(req, res) {
             name: expense.name,
             description: expense.description,
             amount: expense.amount,
+            categories: expense.category,
           })),
         },
       },

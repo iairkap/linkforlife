@@ -47,8 +47,10 @@ function Modal({ isOpen, contentLabel, onRequestClose, children, icon }: ModalPr
                     </span>
                 </div>
             </div>
+            <div className='children-container'>
+                {children}
+            </div>
 
-            {children}
 
         </ReactModal>
     );
