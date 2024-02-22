@@ -54,7 +54,12 @@ const HeaderFilter = ({
         <div className="filter-first">
           <div
             onClick={() => setMenuOpen(!isMenuOpen)}
-            style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              position: "relative",
+            }}
             className="filter-b"
           >
             <svg
