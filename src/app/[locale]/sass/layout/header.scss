@@ -1,10 +1,10 @@
 .general {
   display: flex;
   flex-direction: row;
-  width: calc(100% - 2.5rem);
+  width: 100%;
   justify-content: space-between;
   align-items: center;
-  padding: 1.75rem 1.25rem;
+  padding: 1.75rem;
 }
 
 .image-container {

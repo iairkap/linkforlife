@@ -124,6 +124,7 @@ function Dashboard() {
                         handleOpenModal={handleOpenModal}
                         setFilter={setFilter}
                         filter={filter}
+                        extraction={extraction}
 
                     />
                     {renderTable}
