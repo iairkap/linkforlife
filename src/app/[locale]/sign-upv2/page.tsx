@@ -16,6 +16,9 @@ import { update } from '@react-spring/web';
 import axios from 'axios';
 import SignUpPart1 from '../ui/signUpPart1';
 import SignUpPart2 from '../ui/signUpPart2';
+import { usePathname } from 'next/navigation';
+import { extractLocaleFromPathName } from '../utils/getLocale';
+
 
 interface SignUpFormData {
     email: string;
@@ -35,7 +38,10 @@ function SignUp() {
     const [formData, setFormData] = useState({});
 
     console.log(formData)
+    const pathName = usePathname();
+    const extraction = extractLocaleFromPathName(pathName)
 
+    console.log(extraction)
 
     const handleNext = (data: SignUpFormData) => {
         setFormData(prevData => ({ ...prevData, ...data }));
@@ -54,31 +60,30 @@ function SignUp() {
 
 
     return (
-        <main className='main-container' dir='rtl'>
-            <section className='pictureContainer'>
-                <div className='overflow-picture-container'>
-                    {
-                        currentPage === 1 &&
-                        <Image
-                            src={backgroundSign}
-                            alt="Picture of the author"
-                            layout="fill"
-                            objectFit="cover"
-                        />
-                    }
-                    {
-                        currentPage === 2 &&
-                        <Image
-                            src={backgroundSign}
-                            alt="Picture of the author"
-                            layout="fill"
-                            objectFit="cover"
-                        />
+        <main className='main-container' dir={extraction === "he" ? "rtl" : "ltr"}>            <section className='pictureContainer'>
+            <div className='overflow-picture-container'>
+                {
+                    currentPage === 1 &&
+                    <Image
+                        src={backgroundSign}
+                        alt="Picture of the author"
+                        layout="fill"
+                        objectFit="cover"
+                    />
+                }
+                {
+                    currentPage === 2 &&
+                    <Image
+                        src={backgroundSign}
+                        alt="Picture of the author"
+                        layout="fill"
+                        objectFit="cover"
+                    />
 
-                    }
-                </div>
+                }
+            </div>
 
-            </section>
+        </section>
             <section className='form'>
                 {currentPage === 1 ? (
                     <SignUpPart1 onNext={handleNext} />

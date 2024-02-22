@@ -82,5 +82,21 @@
     "save": "Save",
     "cuotas": "Numero de cuotas",
     "dueDate": "Vencimiento cuotas"
+  },
+  "SignUp": {
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "signUp": "Sign Up",
+    "orSignInWithGoogle": "Or Sign In With Google",
+    "signWithGoogle": "Sign In With Google",
+    "name": "Name",
+    "lastName": "Last Name",
+    "partnerName": "Partner Name",
+    "partnerLastName": "Partner Last Name",
+    "weddingDate": "Wedding Date",
+    "youRole": "Your Role",
+    "partnerRole": "Partner Role",
+    "dontKnow": "I don't know"
   }
 }

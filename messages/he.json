@@ -69,5 +69,21 @@
   "AddUserToWeddingList": {
     "email": "אימייל",
     "send": "שלח הזמנה לשיתוף"
+  },
+  "SignUp": {
+    "email": "אימייל",
+    "password": "סיסמא",
+    "confirmPassword": "אשר סיסמה",
+    "signUp": "הרשמה",
+    "orSignInWithGoogle": "או התחבר עם גוגל",
+    "signWithGoogle": "התחבר עם גוגל",
+    "name": "שם",
+    "lastName": "שם משפחה",
+    "partnerName": "שם בן זוג",
+    "partnerLastName": "שם משפחה של בן זוג",
+    "weddingDate": "תאריך חתונה",
+    "youRole": "תפקידך בחתונה",
+    "partnerRole": "תפקיד בן זוגך בחתונה",
+    "dontKnow": "לא יודע"
   }
 }

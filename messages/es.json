@@ -74,5 +74,21 @@
     "amount": "Total",
     "date": "Fecha",
     "save": "Guardar"
+  },
+  "SignUp": {
+    "email": "Email",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar Contraseña",
+    "signUp": "Registrarse",
+    "orSignInWithGoogle": "O registrarse con Google",
+    "signWithGoogle": "Registrarse con Google",
+    "name": "Nombre",
+    "lastName": "Apellido",
+    "partnerName": "Nombre de tu pareja",
+    "partnerLastName": "Apellido de tu pareja",
+    "weddingDate": "Fecha de Casamiento",
+    "youRole": "Tu Rol",
+    "partnerRole": "Rol de tu pareja",
+    "dontKnow": "No lo se"
   }
 }

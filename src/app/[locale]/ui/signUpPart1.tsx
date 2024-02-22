@@ -4,7 +4,7 @@ import Button from './button';
 import { signIn, getSession } from "next-auth/react";
 import Cookies from "js-cookie"
 import CryptoJS from 'crypto-js';
-
+import { useTranslations } from 'next-intl';
 interface SignUpFormData {
     email: string;
     password: string;
@@ -28,6 +28,7 @@ const SignUpPart1: React.FC<SignUpPart1Props> = ({ onNext }) => {
     });
 
     const [errors, setErrors] = useState<Errors>({});
+    const t = useTranslations("SignUp");
 
 
     const validateForm = (): Errors => {
@@ -95,20 +96,20 @@ const SignUpPart1: React.FC<SignUpPart1Props> = ({ onNext }) => {
     return (
         <div>
             <div className='container-inputB'>
-                <InputField value={formData.email} type="text" onChange={(e: ChangeEvent<HTMLInputElement>) => updateFormData("email", e.target.value)} placeholder='אמייל' error={errors.email} />
-                <InputField value={formData.password} type="password" onChange={(e: ChangeEvent<HTMLInputElement>) => updateFormData("password", e.target.value)} placeholder='סיסמה' error={errors.password} />
-                <InputField value={formData.passwordConfirmation} type="password" onChange={(e: ChangeEvent<HTMLInputElement>) => updateFormData("passwordConfirmation", e.target.value)} placeholder='אשר סיסמה' error={errors.passwordConfirmation} />
+                <InputField value={formData.email} type="text" onChange={(e: ChangeEvent<HTMLInputElement>) => updateFormData("email", e.target.value)} placeholder={t("email")} error={errors.email} />
+                <InputField value={formData.password} type="password" onChange={(e: ChangeEvent<HTMLInputElement>) => updateFormData("password", e.target.value)} placeholder={t("password")} error={errors.password} />
+                <InputField value={formData.passwordConfirmation} type="password" onChange={(e: ChangeEvent<HTMLInputElement>) => updateFormData("passwordConfirmation", e.target.value)} placeholder={t("confirmPassword")} error={errors.passwordConfirmation} />
             </div>
             <div className='button-container-sign-up'>
                 <Button
-                    label='הרשם'
+                    label={t("signUp")}
                     onClick={handleSubmit}
                     className={formData.email && formData.password && formData.passwordConfirmation ? 'button-a' : 'button-a-disabled'}
                     disabled={!(formData.email && formData.password && formData.passwordConfirmation)}
                 />
-                <span>OR SIGN IN WITH GOOGE</span>
+                <span>{t("orSignInWithGoogle")}</span>
                 <Button
-                    label='הרשם עם Google'
+                    label={t("signWithGoogle")}
                     type="submit"
                     className='button-b'
                     onClick={handleGoogleSignIn}

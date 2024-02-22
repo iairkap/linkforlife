@@ -4,7 +4,7 @@ import InputField from './InputField';
 import Button from './button';
 import axios from 'axios';
 import { formatISO } from 'date-fns';
-import { roleOptions } from './roleOptions';
+import { roleOptionsEn, roleOptionsHe, roleOptionsEs } from './roleOptions';
 import "../sass/components/selector.scss"
 import { signIn } from 'next-auth/react';
 import { usePathname } from '@/navigation';
@@ -13,6 +13,10 @@ import { sign } from 'crypto';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
 import CryptoJS from 'crypto-js';
+import { useTranslations } from 'next-intl';
+import { extractLocaleFromPathName } from '../utils/getLocale';
+import { usePathname as usPathnameforExtraction } from 'next/navigation';
+
 interface FormData {
     name: string;
     lastName: string;
@@ -41,6 +45,10 @@ interface SignUpPart2Props {
 }
 
 const SignUpPart2: React.FC<SignUpPart2Props> = ({ formDataEmail }) => {
+
+
+    const t = useTranslations('SignUp');
+
     const [formData, setFormData] = useState<FormData>({
         name: "",
         lastName: "",
@@ -55,9 +63,12 @@ const SignUpPart2: React.FC<SignUpPart2Props> = ({ formDataEmail }) => {
     });
 
     const pathName = usePathname();
-    console.log(pathName, 'pathName')
     const router = useRouter();
 
+
+
+    const pathNameForExtraction = usPathnameforExtraction()
+    const extraction = extractLocaleFromPathName(pathNameForExtraction)
     const [errors, setErrors] = useState<Errors>({});
 
     const validateForm = (): Errors => {
@@ -158,28 +169,28 @@ const SignUpPart2: React.FC<SignUpPart2Props> = ({ formDataEmail }) => {
             }}>
                 <div className='container-input'>
                     <InputField
-                        placeholder="Name"
+                        placeholder={t('name')}
                         type="text"
                         value={formData.name}
                         onChange={(e) => updateFormData("name", e.target.value)}
                         error={errors.name}
                     />
                     <InputField
-                        placeholder="Last Name"
+                        placeholder={t('lastName')}
                         type="text"
                         value={formData.lastName}
                         onChange={(e) => updateFormData("lastName", e.target.value)}
                         error={errors.lastName}
                     />
                     <InputField
-                        placeholder="Partner's Name"
+                        placeholder={t("partnerName")}
                         type="text"
                         value={formData.partnerName}
                         onChange={(e) => updateFormData("partnerName", e.target.value)}
                         error={errors.partnerName}
                     />
                     <InputField
-                        placeholder="Partner's Last Name"
+                        placeholder={t("partnerLastName")}
                         type="text"
                         value={formData.partnerLastName}
                         onChange={(e) => updateFormData("partnerLastName", e.target.value)}
@@ -192,8 +203,8 @@ const SignUpPart2: React.FC<SignUpPart2Props> = ({ formDataEmail }) => {
                         onChange={e => updateFormData("role", e.target.value)}
                         className='selector-container'
                     >
-                        <option value="">You Role</option>
-                        {roleOptions.map((role, index) => (
+                        <option value="">{t("youRole")}</option>
+                        {(extraction === "en" ? roleOptionsEn : extraction === "he" ? roleOptionsHe : roleOptionsEs).map((role, index) => (
                             <option key={index} value={role}>{role}</option>
                         ))}
                     </select>
@@ -205,14 +216,14 @@ const SignUpPart2: React.FC<SignUpPart2Props> = ({ formDataEmail }) => {
                         className='selector-container'
 
                     >
-                        <option value="">Your Partner's Role</option>
+                        <option value="">{t("partnerRole")}</option>
 
-                        {roleOptions.map((role, index) => (
+                        {(extraction === "en" ? roleOptionsEn : extraction === "he" ? roleOptionsHe : roleOptionsEs).map((role, index) => (
                             <option key={index} value={role}>{role}</option>
                         ))}
                     </select>
                     <InputField
-                        placeholder="Wedding Date"
+                        placeholder={t("weddingDate")}
                         /*   type={formDataBis.weddingDateUnknown ? "text" : (formDataBis.weddingDate ? "date" : "text")} */
                         type={formData.weddingDateUnknown ? "text" : (formData.weddingDate ? "date" : "text")}
                         value={formData.weddingDate}
@@ -231,7 +242,7 @@ const SignUpPart2: React.FC<SignUpPart2Props> = ({ formDataEmail }) => {
                                 style={{ display: 'none' }}
                             />
                             <span className={formData.weddingDateUnknown ? 'checkbox-custom checked' : 'checkbox-custom'}></span>
-                            אנחנו לא יודעים
+                            {t('dontKnow')}
                         </label>
 
 
@@ -269,8 +280,8 @@ const SignUpPart2: React.FC<SignUpPart2Props> = ({ formDataEmail }) => {
                             : 'button-a-disabled'
                     }
                 />
-            </form>
-        </div>
+            </form >
+        </div >
     );
 }
 
