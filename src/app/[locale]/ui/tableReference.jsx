@@ -19,22 +19,6 @@ const HeaderFilter = ({
   filter,
   extraction,
 }) => {
-  /* 
-  const [filter, setFilter] = useState('all');
-
-
-  const filteredUserInvitationList = preGlobalFilteredRows.filter(
-    (invitation) => {
-      if (filter === "confirmed") {
-        return invitation.isConfirmed;
-      } else if (filter === "notConfirmed") {
-        return !invitation.isConfirmed;
-      } else {
-        return true;
-      }
-    }
-  ); */
-
   const t = useTranslations("RSVPTABLE");
 
   return (
@@ -90,7 +74,6 @@ const HeaderFilter = ({
             </svg>
             <span>{t("filter")}</span>
           </div>
-
           {isMenuOpen && (
             <ToggleMenu
               isMenuOpen={isMenuOpen}

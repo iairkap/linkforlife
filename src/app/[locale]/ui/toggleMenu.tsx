@@ -2,7 +2,11 @@ import React from 'react';
 import DropDown from './dropDown';
 import { useTranslations } from 'next-intl';
 import "../sass/components/menuFilter.scss"
-function ToggleMenu({ setMenuOpen, isMenuOpen, getToggleHideAllColumnsProps, allColumns, t, extraction }) {
+
+
+
+
+function ToggleMenu({ setMenuOpen, isMenuOpen, getToggleHideAllColumnsProps, allColumns, t, extraction }: any) {
 
     console.log(allColumns)
 
@@ -17,7 +21,7 @@ function ToggleMenu({ setMenuOpen, isMenuOpen, getToggleHideAllColumnsProps, all
                 />
                 <label htmlFor="toggle-all">{t("togleAll")}</label>
             </div>
-            {allColumns.map((column) => (
+            {allColumns.map((column: any) => (
                 <div key={column.id} className='togglecontainer'>
                     <label>
                         <input
