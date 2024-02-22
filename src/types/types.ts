@@ -79,6 +79,8 @@ export interface Expense {
   paidById?: number;
   status?: string;
   installment?: boolean;
+  isCategoryRow?: boolean;
+  category?: string[];
 }
 
 export interface Installments {

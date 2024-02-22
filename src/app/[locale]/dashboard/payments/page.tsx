@@ -15,26 +15,23 @@ import PaymentConfiguration from '../../ui/paymentConfiguration';
 import ConfigurationPaymentsCard from '../../ui/configurationPayments';
 import TableVendors from '../../ui/tableVendors';
 import { Tab } from '@mui/material';
-
+import type { Expense } from '@/types/types';
 import ModalPaymentChange from '../../ui/modalPaymentChange';
 
 function Payments() {
 
 
-    const { expenseData, loading, fetchData, totalPaid, totalAmount } = useExpenseData();
+    const { expenseData, loading, fetchData, totalPaid, totalAmount, categories } = useExpenseData();
     const { weddings, refreshData } = useDashboardData();
     const [isOpen, setIsOpen] = useState(false);
     const [configuration, setConfiguration] = useState(false);
     const [tableData, setTableData] = useState(expenseData);
-    const [rowClicked, setRowClicked] = useState(null);
-    let [splitBetween, setSplitBetween] = useState([]);
-    const [expenseDataSelected, setExpenseDataSelected] = useState({});
+    const [rowClicked, setRowClicked] = useState<number | null>(null);
+    let [splitBetween, setSplitBetween] = useState<string[]>([]);
+    const [expenseDataSelected, setExpenseDataSelected] = useState<Expense | {}>({});
     const [modalPaymentChange, setModalPaymentChange] = useState(false);
+    const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({});
 
-
-    console.log(expenseData)
-
-    /*     console.log(expenseData.find(expense => expense.name === "Photographer")) */
 
 
     useEffect(() => {
@@ -49,6 +46,18 @@ function Payments() {
             }
         }
     }, [weddings]);
+    const onRowClick = (id: number) => {
+        const selectedRow = expenseData.find(row => row.id === id);
+        if (selectedRow?.isCategoryRow) {
+            setExpandedCategories(prevState => ({
+                ...prevState,
+                [String(selectedRow.category)]: !prevState[String(selectedRow.category)],
+            }));
+        } else {
+            setRowClicked(id);
+        }
+    };
+
 
     useEffect(() => {
         if (rowClicked && expenseData && expenseData.length > 0 && !modalPaymentChange) {
@@ -62,7 +71,6 @@ function Payments() {
         }
     }, [rowClicked, expenseData, modalPaymentChange]);  // Add expenseData to the dependency array
     console.log(expenseDataSelected)
-
 
 
 
@@ -87,13 +95,16 @@ function Payments() {
 
                 {/* TABLE */}
                 <div className='table'>
-                    <TableVendors expenseData={expenseData} setRowClick={setRowClicked} />
+                    <TableVendors expenseData={expenseData} setRowClick={onRowClick} categories={categories} setExpandedCategories={setExpandedCategories} expandedCategories={expandedCategories} />
                 </div>
 
             </section>
             {/* MODALES */}
 
-            <AddExpense isOpen={isOpen} contentLabel={"Add Expense"} onRequestClose={() => setIsOpen(false)} refreshData={refreshData} onRequestCloseGeneral={() => setIsOpen(false)} splitBetween={splitBetween} />
+            <AddExpense categories={categories} isOpen={isOpen} contentLabel={"Add Expense"} onRequestClose={() => setIsOpen(false)} refreshData={refreshData} onRequestCloseGeneral={() => setIsOpen(false)} splitBetween={splitBetween}
+                fetchData={fetchData} />
+
+
             <PaymentConfiguration isOpen={configuration} onRequestClose={() => setConfiguration(false)} contentLabel={"Payment Configuration"} />
             <ModalPaymentChange isOpen={modalPaymentChange} onRequestClose={() => {
                 setModalPaymentChange(false);

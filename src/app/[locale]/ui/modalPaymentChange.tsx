@@ -22,7 +22,7 @@ function ModalPaymentChange({ isOpen, onRequestClose, contentLabel, expenseDataS
     const [form, setForm] = useState({
         name: expenseDataSelected.name,
         description: expenseDataSelected.description,
-        amount: null,
+        amount: "",
         alreadyPay: false,
         paymentDate: "",
         splitBetween: [],
@@ -73,7 +73,8 @@ function ModalPaymentChange({ isOpen, onRequestClose, contentLabel, expenseDataS
                 description: form.description,
                 amount: parseFloat(form.amount),
                 alreadyPay: form.alreadyPay,
-                paymentDate: form.paymentDate.toISOString(), status: form.status,
+                paymentDate: new Date(form.paymentDate).toISOString(),
+                status: form.status,
                 installments: form.installment,
                 installmentAmout: parseFloat(form.installmentAmout),
                 installmentDueDate: `${form.installmentDueDate}T00:00:00.000Z`,
@@ -92,7 +93,7 @@ function ModalPaymentChange({ isOpen, onRequestClose, contentLabel, expenseDataS
         setForm({
             name: expenseDataSelected.name,
             description: expenseDataSelected.description,
-            amount: null,
+            amount: "",
             alreadyPay: false,
             paymentDate: "",
             splitBetween: [],
@@ -151,7 +152,7 @@ function ModalPaymentChange({ isOpen, onRequestClose, contentLabel, expenseDataS
                         <div className='fila'>
                             <h4>Vencimiento</h4>
                             <ReactDayPicker date={form.paymentDate}
-                                onChange={(date) => updateFormData("paymentDate", date)}
+                                onChange={(date: any) => updateFormData("paymentDate", date)}
                             />
                         </div>
                         <div className='buttoncontainer'>

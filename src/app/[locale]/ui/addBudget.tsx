@@ -68,10 +68,10 @@ function AddBudget({ expenseData, weddings, refreshData, totalPaid, totalAmount 
             <div className='card-container'>
                 <span className='span'>+</span>
                 <div className='fila-info'>
-                    <h4>Budget:</h4>
+                    <h4>Presupuesto asignado: </h4>
                     <h4>{moneyFormat}</h4>
                 </div>
-                <span>budget bar:</span>
+                <span>Indicador de gasto:</span>
                 <div className='progress-bar-container'>
                     <div className='alreadypaid-percentage' style={{ width: `${paidPercentage}%` }}></div>
                     <div className="debt-percentage" style={{ width: `${amountPercentage}%` }}></div>
@@ -81,15 +81,15 @@ function AddBudget({ expenseData, weddings, refreshData, totalPaid, totalAmount 
                     <div className='alreadypaid-percentage' style={{ width: `${barFromPayment}%` }}></div>
                 </div>
                 <div className='fila-info'>
-                    <h4>Gastos Registrados:</h4>
+                    <h4>Gastos documentados:</h4>
                     <h4>{amountFormat}</h4>
                 </div>
                 <div className='fila-info'>
-                    <h4>Ya Pagaste</h4>
+                    <h4>Pagos efectuados:</h4>
                     <h4>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(totalPaid)}</h4>
                 </div>
                 <div className='fila-info'>
-                    <h4>Falta pagar:</h4>
+                    <h4>Importe por pagar:</h4>
                     <h4>{dueFormat}</h4>
                 </div>
 

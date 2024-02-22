@@ -52,7 +52,6 @@ export default function DatePickerMaterialUI({ date, onChange }: any) {
                     value={date}
                     onChange={onChange}
                     sx={{ borderColor: "red" }}
-                    renderInput={(props: any) => <TextField {...props} />}
                 />
             </LocalizationProvider>
         </ThemeProvider>

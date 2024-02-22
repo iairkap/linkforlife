@@ -7,8 +7,14 @@ import axios from 'axios';
 import "../sass/components/payments.scss"
 import MultiSelect from './Select';
 import Button from './button';
+import ReactDayPicker from './datePicker';
 
-function AddExpense({ isOpen, contentLabel, onRequestClose, refreshData, onRequestCloseGeneral, splitBetween }: ModalType) {
+interface ExpenseDataProps {
+    categories: string[];
+    fetchData: () => void;
+}
+
+function AddExpense({ isOpen, contentLabel, onRequestClose, refreshData, onRequestCloseGeneral, splitBetween, categories, fetchData }: ModalType & ExpenseDataProps) {
 
     const [form, setForm] = useState({
         name: "",
@@ -19,21 +25,21 @@ function AddExpense({ isOpen, contentLabel, onRequestClose, refreshData, onReque
         splitBetween: [],
         status: "PENDING",
         paidById: null,
-        installment: false,
-        installmentAmout: "",
-        installmentDueDate: "",
-        installmentPaid: false,
+        categories: [] as string[], // Aquí especificamos que `categories` es un array de strings
     });
+    const [isOther, setIsOther] = useState(false);
+    const [otherCategory, setOtherCategory] = useState("");
 
     const updateFormData = (key: keyof typeof form, value: string | boolean | number | string[]) => {
         setForm(prevData => ({ ...prevData, [key]: value }));
     }
-
     const t = useTranslations('ModalAddExpense');
 
 
     /*     console.log(form.splitBetween)
      */
+
+
 
     const handleForm = async () => {
         try {
@@ -42,19 +48,23 @@ function AddExpense({ isOpen, contentLabel, onRequestClose, refreshData, onReque
                 description: form.description,
                 amount: parseFloat(form.amount),
                 alreadyPay: form.alreadyPay,
-/*                 splitBetween: form.splitBetween,
- */                paymentDate: `${form.paymentDate}T00:00:00.000Z`,
+                paymentDate: new Date(form.paymentDate).toISOString(),
                 status: form.status,
-                installments: form.installment,
-                installmentAmout: parseFloat(form.installmentAmout),
-                installmentDueDate: `${form.installmentDueDate}T00:00:00.000Z`,
-                installmentPaid: form.installmentPaid,
+                categories: form.categories.includes('other') ? otherCategory : form.categories,
             };
 
             const response = await axios.post('/api/expenses', expense);
+            fetchData();
+            onRequestClose();
         } catch (error) {
             console.error(error);
         }
+    }
+
+    const handleCategoryChange = (event: any) => {
+        const selectedCategory = event.target.value;
+        form.categories = selectedCategory;
+        setIsOther(selectedCategory === 'other');
     }
 
 
@@ -62,13 +72,11 @@ function AddExpense({ isOpen, contentLabel, onRequestClose, refreshData, onReque
     return (
         <div>
             <Modal isOpen={isOpen} contentLabel={contentLabel} onRequestClose={onRequestClose} icon={"Paid"}>
-
                 <section className='containerModalInvitationWedding'>
-
                     <h1 className='title-container'>
                         {t("addExpense")}
                     </h1>
-                    <article className="layout">
+                    <article className='layoutbis'>
                         <InputField
                             value={form.name}
                             type="text"
@@ -90,67 +98,48 @@ function AddExpense({ isOpen, contentLabel, onRequestClose, refreshData, onReque
                             onChange={(e) => updateFormData("amount", e.target.value)}
                             error=''
                         />
-                        <InputField
-                            type={form.paymentDate ? "date" : "text"}
-                            value={form.paymentDate}
-                            placeholder={t("paymentDate")}
-                            onChange={(e) => updateFormData("paymentDate", e.target.value)}
+                        <ReactDayPicker date={form.paymentDate}
+                            onChange={(date: any) => updateFormData("paymentDate", date)}
                             error=''
                         />
 
-                        <MultiSelect span='Split between' value={form.splitBetween} onChange={(e) => updateFormData("splitBetween", e)} options={splitBetween} />
-                        <br />
-                        <div>
-                            <label className='checkbox'>
-                                <input
+                        <select
+                            name="categories"
+                            id="categories"
+                            value={form.categories}
+                            onChange={(e) => {
+                                updateFormData("categories", e.target.value);
+                                handleCategoryChange(e);
+                            }}
+                        >
+                            <option value="">Please choose a Categorie</option>
+                            {
+                                categories.map((categorie, index) => {
+                                    return <option key={index} value={categorie}>{categorie}</option>
+                                })
+                            }
+                            <option value="other">other</option>
+                        </select>
+                        {isOther && (
 
-                                    type="checkbox"
-                                    checked={form.alreadyPay}
-                                    onChange={e => updateFormData("alreadyPay", e.target.checked)}
-                                    style={{ display: 'none' }}
-                                />
-                                <span className={form.alreadyPay ? 'checkbox-custom checked' : 'checkbox-custom'}></span>
-                                Already pay?                        </label>
-                        </div>
-                        <div>
-                            <label className='checkbox'>
-                                <input
+                            <InputField value={otherCategory} type={"text"} onChange={(e) => setOtherCategory(e.target.value)} placeholder="Enter other category" />
 
-                                    type="checkbox"
-                                    checked={form.installment}
-                                    onChange={e => updateFormData("installment", e.target.checked)}
-                                    style={{ display: 'none' }}
-                                />
-                                <span className={form.installment ? 'checkbox-custom checked' : 'checkbox-custom'}></span>
-                                Cuotas  </label>
-                        </div>
+
+                        )}
                         {
-                            form.installment && (
-                                <div>
 
-                                    <InputField
-                                        value={form.installmentAmout}
-                                        type="number"
-                                        placeholder={t("cuotas")}
-                                        onChange={(e) => updateFormData("installmentAmout", e.target.value)}
-                                        error=''
-                                    />
-                                    <InputField
-                                        type={form.installmentDueDate ? "date" : "text"}
-                                        value={form.installmentDueDate}
-                                        placeholder={t("dueDate")}
-                                        onChange={(e) => updateFormData("installmentDueDate", e.target.value)}
-                                        error=''
-                                    />
-                                </div>
-
-                            )
                         }
+
+                        {/*       <MultiSelect span='Split between' value={form.splitBetween} onChange={(e) => updateFormData("splitBetween", e)} options={splitBetween} />
+
+
+ */}
+
                     </article>
                 </section >
                 <Button label={t("save")} onClick={handleForm} className='button-a' />
             </Modal>
-        </div>
+        </div >
     );
 }
 

@@ -60,6 +60,7 @@ export default async function handler(req, res) {
       return;
     }
     try {
+      const categoriesArray = req.body.categories.split(",");
       const weddingId = user.weddings[0].id;
       const newExpense = await prisma.expenses.create({
         data: {
@@ -71,6 +72,7 @@ export default async function handler(req, res) {
           paymentDate: new Date(req.body.paymentDate),
           status: req.body.status,
           weddingId: weddingId,
+          categories: categoriesArray,
         },
       });
 
@@ -127,7 +129,7 @@ export default async function handler(req, res) {
       res.status(200).json(updatedExpense);
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: "Internal server error" });
+      res.status(500).json({ message: error.message });
     }
   } else if (req.method === "DELETE") {
     try {
