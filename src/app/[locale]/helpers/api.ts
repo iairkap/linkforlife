@@ -19,3 +19,9 @@ export const fetchGroups = async () => {
   console.log(response.data);
   return response.data;
 };
+
+export const fetchUpcomingExpenses = async () => {
+  const response = await axios.get("/api/upcomingPayment", {});
+  console.log(response.data);
+  return response.data;
+};

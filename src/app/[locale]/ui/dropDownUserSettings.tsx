@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import DropDown from './dropDown';
+import { Link } from '@/navigation';
 import Image from 'next/image';
 import "../sass/components/dropdown.scss"
 import { signOut } from 'next-auth/react';
@@ -41,11 +42,11 @@ function DropDownUserSettings({ isOpen, setIsOpen, profilePicture, email, name, 
                     <div className='image-container'>
                         {
                             profilePicture && (
-                                <Image src={profilePicture} width="70" height="70" alt='profile-picture' />
+                                <Image src={profilePicture} width="50" height="50" alt='profile-picture' />
                             )
                         }{
                             !profilePicture && (
-                                <Image src={logo} width="60" height="60" alt='profile-picture' />
+                                <Image src={logo} width="70" height="70" alt='profile-picture' />
                             )
                         }
 
@@ -55,12 +56,19 @@ function DropDownUserSettings({ isOpen, setIsOpen, profilePicture, email, name, 
                         <p className='user-data-email'>{email}</p>
                     </div>
                 </header>
-                <div className={`line-divisor ${extraction === 'he' ? 'line-divisor-he' : 'line-divisor-en-es'}`}></div>                <section>
+                <div className={`line-divisor ${extraction === 'he' ? 'line-divisor-he' : 'line-divisor-en-es'}`}></div>
+                <section>
                     <ul className='ul'>
                         {listItems.map((item, index) => (
                             <li className='li' key={index} onClick={item.onClick}>
                                 <span className="material-symbols-outlined">{item.symbol}</span>
-                                <span>{item.text}</span>
+                                {item.Link ? (
+                                    <Link href={item.Link}>
+                                        <span>{item.text}</span>
+                                    </Link>
+                                ) : (
+                                    <span>{item.text}</span>
+                                )}
                             </li>
                         ))}
                     </ul>

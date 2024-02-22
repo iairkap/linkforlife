@@ -1,8 +1,9 @@
-export const getListItems = (setIsOpenModalAddUser: any, setIsOpen: any, signOut: any, t: any) => [
+export const getListItems = (setIsOpenModalAddUser: any, setIsOpen: any, signOut: any, t: any, Link?: any) => [
     {
         symbol: "settings_heart",
         text: t("settings"),
-        onClick: () => { }
+        onClick: () => { },
+        Link: "./settings"
     },
     {
         symbol: "group",
@@ -12,7 +13,9 @@ export const getListItems = (setIsOpenModalAddUser: any, setIsOpen: any, signOut
     {
         symbol: "help",
         text: t("help"),
-        onClick: () => { }
+        onClick: () => { },
+        Link: "./help"
+
     },
     {
         symbol: "logout",

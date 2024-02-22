@@ -22,14 +22,14 @@ import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import { extractLocaleFromPathName } from '../utils/getLocale';
 import DashboardLastConfirmed from '../ui/lastConfirmed';
-
+import UpcomingPayment from '../ui/upcomingPayment';
 
 
 function DashboardGeneral() {
 
 
     const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations, selectedWedding, setSelectedWedding, weddings, setWeddings, /* handleWeddingChange */
-        ModalFirstSteps, setModalFirstSteps, refreshData, user } = useDashboardData();
+        ModalFirstSteps, setModalFirstSteps, refreshData, user, upcomingExpenses, setUpcomingExpenses } = useDashboardData();
 
 
     const [weddingDate, setWeddingDate] = useState(new Date());
@@ -49,12 +49,14 @@ function DashboardGeneral() {
         }
     }, [weddings]);
 
+    console.log(upcomingExpenses)
+
+
 
     const areWedding = weddings && weddings.length > 0;
 
     if (isLoading) {
         return (<main className='main'>
-
             <Loader />
         </main>
 
@@ -63,11 +65,11 @@ function DashboardGeneral() {
 
     return (
         <article className='containerDash'>
-            {/*             <HeaderDashboard weddingDate={weddingDate} extraction={extraction} />
- */}            <DashboardGraph userInvitationList={userInvitationList} user={user} extraction={extraction} />
+            <div className='containerDashito'>
+                <DashboardGraph userInvitationList={userInvitationList} user={user} extraction={extraction} />
+                <UpcomingPayment upcomingExpenses={upcomingExpenses ? (Array.isArray(upcomingExpenses) ? upcomingExpenses : [upcomingExpenses]) : []} extraction={extraction} />            </div>
             <div className='graph-container-pair'>
-                {/*                 <DashboardGroups groups={groups} setIsModalOpen={setIsModalGroupOpen} extraction={extraction} />
- */}                <DashboardWithPiechart userInvitationList={userInvitationList} extraction={extraction} />
+                <DashboardWithPiechart userInvitationList={userInvitationList} extraction={extraction} />
                 <DashboardLastConfirmed userInvitationList={userInvitationList} extraction={extraction} />
             </div>
             {

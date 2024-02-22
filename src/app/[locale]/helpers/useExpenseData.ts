@@ -21,9 +21,8 @@ export const useExpenseData = () => {
           new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
       );
 
-      // Agrupar los datos por categoría
       const groupedData = sortedData.reduce((groups: any, item: any): any => {
-        const category = item.categories[0]; // Asume que cada elemento tiene al menos una categoría
+        const category = item.categories[0];
         if (!groups[category]) {
           groups[category] = [];
         }

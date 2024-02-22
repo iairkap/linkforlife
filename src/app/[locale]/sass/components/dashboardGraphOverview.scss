@@ -11,15 +11,13 @@
 .dash-card-container {
   display: flex;
   flex-direction: row;
+  border-radius: 1rem;
+
   width: 100%;
   justify-content: space-between;
   .DashboardGraphCard:nth-child(2) {
     margin: 0px 1.5rem;
   }
-}
-.DashboardGraphCard {
-  flex: 1 1 0px;
-  max-width: calc(100% / 3);
 }
 
 .card-container {
@@ -29,10 +27,10 @@
   flex-direction: column;
   padding: 1.5rem 2rem;
   gap: 2rem;
+  border-radius: 1rem;
+
   position: relative;
-  background-color: white;
-  color: black;
-  background-color: white;
+
   position: relative;
 }
 .groom-container {
@@ -45,17 +43,18 @@
   height: 3.75rem;
 }
 
-.title-container {
+.title-inside {
   display: flex;
   flex-direction: row;
-  gap: 1.5rem;
   align-items: center;
+  gap: 1rem;
 }
 
 .all-stats-container {
   display: flex;
   flex-direction: row;
   gap: 1rem;
+  border-radius: 1rem;
 }
 
 .number-container {
@@ -120,4 +119,16 @@
   position: absolute;
   bottom: 0;
   right: 0;
+}
+
+.fa {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+  background-color: white;
+  color: black;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 1rem;
 }

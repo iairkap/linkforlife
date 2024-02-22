@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useGlobalContext } from '../dashboard/globalContext';
 import { getInvitationStats } from '@/utils/userInvitationListExtactionData';
 import NumberPortion from './numberPortion';
@@ -38,7 +38,7 @@ interface DashboardGraphProps {
 }
 
 function DashboardGraph({ userInvitationList, user, extraction }: { userInvitationList: any[], user: any, extraction: string | undefined }): JSX.Element {
-
+    const [currentPage, setCurrentPage] = useState(1);
     const { confirmedByBride,
         confirmedByGroom,
         confirmedTotal,
@@ -84,17 +84,25 @@ function DashboardGraph({ userInvitationList, user, extraction }: { userInvitati
 
     const t = useTranslations('DashboardStats');
 
+    const handleNext = () => {
+        setCurrentPage((prevPage) => prevPage + 1);
+    };
+
+    const handlePrev = () => {
+        setCurrentPage((prevPage) => prevPage - 1);
+    };
+    const cards = [
+        <DashboardGraphCard cardTitle={`${t("invitedBy")} ${user.partnerName}`} icon={iconPartner} confirmed={confirmedByGroom} attending={isAttendingByGroom} notAttending={notAttendingByGroom} notConfirmed={notConfirmedByGroom} total={invitedByGroom} extraction={extraction} next={handleNext} currentPage={currentPage} setCurrentPage={setCurrentPage} />,
+        <DashboardGraphCard cardTitle={`${t("invitedBy")} ${splitName(user.name)}`} icon={iconUser} confirmed={confirmedByBride} attending={isAttendingByBride} notAttending={notAttendingByBride} notConfirmed={notConfirmedByBride} total={invitedByBride} extraction={extraction} next={handleNext} previous={handlePrev} currentPage={currentPage} setCurrentPage={setCurrentPage} />,
+        <DashboardGraphCard cardTitle={`${t("totalInvited")}`} icon={Both} confirmed={confirmedTotal} attending={isAttendingTotal} notAttending={notAttendingTotal} notConfirmed={notConfirmedTotal} total={invitedTotal} extraction={extraction} previous={handlePrev} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+    ];
+
     return (
         <div className={`dash-card-container ${extraction === "he" ? "font-hebrew" : "font-regular"}`}>
             <div className='DashboardGraphCard'>
-                <DashboardGraphCard cardTitle={`${t("invitedBy")} ${user.partnerName}`} icon={iconPartner} confirmed={confirmedByGroom} attending={isAttendingByGroom} notAttending={notAttendingByGroom} notConfirmed={notConfirmedByGroom} total={invitedByGroom} extraction={extraction} />
+                {cards[currentPage]}
             </div>
-            <div className='DashboardGraphCard'>
-                <DashboardGraphCard cardTitle={`${t("invitedBy")} ${splitName(user.name)}`} icon={iconUser} confirmed={confirmedByBride} attending={isAttendingByBride} notAttending={notAttendingByBride} notConfirmed={notConfirmedByBride} total={invitedByBride} extraction={extraction} />
-            </div>
-            <div className='DashboardGraphCard'>
-                <DashboardGraphCard cardTitle={`${t("totalInvited")}`} icon={Both} confirmed={confirmedTotal} attending={isAttendingTotal} notAttending={notAttendingTotal} notConfirmed={notConfirmedTotal} total={invitedTotal} extraction={extraction} />
-            </div>
+
         </div>
     );
 }

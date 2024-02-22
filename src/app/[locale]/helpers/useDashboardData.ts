@@ -2,26 +2,14 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { AxiosError } from "axios";
-import { fetchUserDataBis, fetchGroups, fetchInvitationList } from "./api";
+import {
+  fetchUserDataBis,
+  fetchGroups,
+  fetchInvitationList,
+  fetchUpcomingExpenses,
+} from "./api";
 import { Group, UserInvitation, Wedding } from "@/types/types";
-
-/* interface Group {
-  id: number;
-} */
-
-/* interface UserInvitation {
-  isConfirmed: boolean;
-  groups: Group[];
-  weddingId: number;
-}
-
-interface Wedding {
-  id: number;
-  weddingDate: Date;
-  weddingName: string;
-  weddingId: number;
-  weddingInvitationList: UserInvitation[]; // Asegúrate de definir UserInvitation
-} */
+import type { Expense } from "@/types/types";
 export const useDashboardData = () => {
   const [userInvitationList, setUserInvitationList] = useState<
     UserInvitation[]
@@ -35,6 +23,9 @@ export const useDashboardData = () => {
     Record<number, UserInvitation[]>
   >({});
   const [user, setUser] = useState<any>([]);
+  const [upcomingExpenses, setUpcomingExpenses] = useState<Expense | null>(
+    null
+  );
 
   const router = useRouter();
 
@@ -47,12 +38,19 @@ export const useDashboardData = () => {
       setWeddings(data);
       const dataGroups = await fetchGroups();
       setGroups(dataGroups);
+
+      const upcomingExpenses = await fetchUpcomingExpenses();
+      setUpcomingExpenses(upcomingExpenses);
+
       if (data.length > 0) {
         setSelectedWedding(data[0].id);
         const filteredInvitations = data[0].weddingInvitationList.filter(
           (invitation: UserInvitation) => invitation.weddingId === data[0].id
         );
         setUserInvitationList(filteredInvitations);
+      } else {
+        setSelectedWedding(null);
+        setUserInvitationList([]);
       }
     } catch (error) {
       const axiosError = error as AxiosError;
@@ -66,6 +64,8 @@ export const useDashboardData = () => {
       setIsLoading(false);
     }
   };
+
+  console.log(upcomingExpenses);
 
   useEffect(() => {
     fetchData();
@@ -108,27 +108,7 @@ export const useDashboardData = () => {
     setModalFirstSteps,
     user,
     setUser,
+    upcomingExpenses,
+    setUpcomingExpenses,
   };
 };
-
-/* useEffect(() => {
-    if (!userInvitationList || !selectedWedding) {
-      return;
-    }
-
-    const filteredInvitations = userInvitationList.filter(
-      (invitation) => invitation.weddingId === selectedWedding
-    );
-    const newGroups = filteredInvitations.map((user) => user.groups);
-    setGroups(newGroups);
-  }, [userInvitationList, selectedWedding]);
-
-  useEffect(() => {
-    if (!userInvitationList || !selectedWedding) {
-      console.log("no hay invitaciones");
-      return;
-    }
-
-    const filteredInvitations = userInvitationList.filter(
-      (invitation) => invitation.weddingId === selectedWedding
-    ); */

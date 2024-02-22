@@ -1,0 +1,67 @@
+@import "../abstracts//variables.scss";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: $es-en-font;
+}
+
+.card-container-payments-upcoming {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border-color: 1px solid $secondary-color;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 2rem;
+  position: relative;
+  position: relative;
+}
+
+.expense-container- {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.container-expense-genral {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.header-payment-upcoming {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.spanda {
+  font-size: 0.875rem;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.spanda::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease-in-out;
+}
+
+.spanda:hover::before {
+  transform: scaleX(1);
+}
