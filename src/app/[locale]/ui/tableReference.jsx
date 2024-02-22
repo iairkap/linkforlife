@@ -58,7 +58,6 @@ const HeaderFilter = ({
               display: "flex",
               alignItems: "center",
               gap: "0.5rem",
-              position: "relative",
             }}
             className="filter-b"
           >
