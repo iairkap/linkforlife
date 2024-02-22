@@ -33,14 +33,12 @@ function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList, u
     const [specialRole, setSpecialRole] = React.useState<string[]>([]);
     const [phoneNumber, setPhoneNumber] = React.useState('');
 
-    console.log(user)
     const t = useTranslations('ModalAddInv');
 
-    splitName(user.name)
+    splitName(user?.name)
 
 
-    console.log(user.weddings[0].id)
-    const wedding = user.weddings[0].id
+    const wedding = user.weddings[0]?.id
 
 
 

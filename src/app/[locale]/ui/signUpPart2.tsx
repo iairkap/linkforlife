@@ -113,6 +113,7 @@ const SignUpPart2: React.FC<SignUpPart2Props> = ({ formDataEmail }) => {
         if (Object.keys(errors).length === 0) {
 
             let formDataISO = { ...formData };
+            console.log(formDataISO, 'formDataISO')
 
             if (formData.weddingDate) {
                 const weddingDateISO = formatISO(new Date(formData.weddingDate));

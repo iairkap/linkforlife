@@ -8,7 +8,6 @@ export default async function handler(req, res) {
   if (token?.email) {
     userEmail = token.email;
   } else if (req.query.email) {
-    // Aquí se cambió req.body por req.query
     userEmail = req.query.email;
   }
 

@@ -85,17 +85,3 @@ function DashboardGeneral() {
 export default DashboardGeneral;
 
 
-
-
-/*   
-
-    const [isModalOpenCreateWedding, setIsModalOpenCreateWedding] = useState(false);
-    const [isInvitationModalOpen, setIsInvitationModalOpen] = useState(false);
-    const [isAccesTableWithTokenOpen, setIsAccesTableWithTokenOpen] = useState(false);
-
-
-<button onClick={() => { setIsModalOpenCreateWedding(true) }}>Create Wedding</button>
-            <button onClick={() => { setIsInvitationModalOpen(true) }}>Invite someone to your wedding list</button>
-            <AddUserCollaborator isOpen={isInvitationModalOpen} contentLabel="Add Collaborator" onRequestClose={() => setIsInvitationModalOpen(false)} />
-            <button onClick={() => { setIsAccesTableWithTokenOpen(true) }}>Join Table</button>
-            <AccesTableWithToken isOpen={isAccesTableWithTokenOpen} contentLabel="Join existent table" onRequestClose={() => setIsAccesTableWithTokenOpen(false)} /> */
