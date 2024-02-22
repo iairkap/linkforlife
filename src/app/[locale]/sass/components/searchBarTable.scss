@@ -5,7 +5,7 @@
 .searchInput-f {
   display: flex;
   width: 18.75rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 2rem;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
@@ -21,6 +21,6 @@
 
 .search-icon {
   position: absolute;
-  top: 50%;
-  left: 0;
+  left: 5px;
+  bottom: 5px;
 }

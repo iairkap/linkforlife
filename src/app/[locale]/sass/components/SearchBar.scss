@@ -13,6 +13,7 @@
   border: 1px solid var(--Dashboard, #eef0f2);
   background: var(--Grey-Grey-50, #f7f9fc);
   padding-right: 44px;
+  position: relative;
 }
 
 .search-inputB-he {
@@ -36,9 +37,15 @@
 }
 
 .searchD-he {
-  right: 0;
+  position: absolute;
+  right: 10px;
+  transform: translateY(25%);
+  top: 0;
 }
 
 .searchD-en-es {
-  left: 0;
+  position: absolute;
+  left: 10px;
+  transform: translateY(25%);
+  top: 0;
 }

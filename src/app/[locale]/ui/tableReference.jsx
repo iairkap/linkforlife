@@ -70,7 +70,7 @@ const HeaderFilter = ({
         <div className="filter-first">
           <div
             onClick={() => setMenuOpen(!isMenuOpen)}
-            style={{ display: "flex", alignItems: "center" }}
+            style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
             className="filter-b"
           >
             <svg
@@ -100,31 +100,6 @@ const HeaderFilter = ({
               t={t}
               extraction={extraction}
             />
-            /*   <div className="menu menu-open">
-              <div>
-                <button onClick={() => setMenuOpen(false)}>x</button>{" "}
-                <input
-                  type="checkbox"
-                  {...getToggleHideAllColumnsProps()}
-                  id="toggle-all"
-                />
-                <label htmlFor="toggle-all">{t("togleAll")}</label>
-              </div>
-              {allColumns.map((column) => (
-                <div key={column.id}>
-                  <label>
-                    <input
-                      type="checkbox"
-                      {...column.getToggleHiddenProps()}
-                      id={`checkbox-${column.id}`}
-                    />
-                    <label htmlFor={`checkbox-${column.id}`}>
-                      {column.Header}
-                    </label>
-                  </label>
-                </div>
-              ))}
-            </div> */
           )}
 
           <GlobalFilter
