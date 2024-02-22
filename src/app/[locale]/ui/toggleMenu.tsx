@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import DropDown from './dropDown';
 import { useTranslations } from 'next-intl';
 import "../sass/components/menuFilter.scss"
@@ -8,11 +8,29 @@ import "../sass/components/menuFilter.scss"
 
 function ToggleMenu({ setMenuOpen, isMenuOpen, getToggleHideAllColumnsProps, allColumns, t, extraction }: any) {
 
-    console.log(allColumns)
+    useEffect(() => {
+        const closeMenu = () => {
+            setMenuOpen(false);
+        };
 
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                closeMenu();
+            }
+        };
+
+        document.addEventListener('click', closeMenu);
+        document.addEventListener('keydown', handleKeyDown);
+
+        // Clean up the event listeners when the component unmounts
+        return () => {
+            document.removeEventListener('click', closeMenu);
+            document.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [setMenuOpen]);
 
     return (
-        <DropDown isOpen={isMenuOpen} extraction={extraction}>
+        <section className={`menu-dropdownda ${isMenuOpen ? 'openda ' : ''} ${extraction === 'he' ? 'menu-dropdownda-he' : 'menu-dropdownda-en-es'}`}>
             <div className='menuOpenContainer'>
                 <input
                     type="checkbox"
@@ -35,7 +53,7 @@ function ToggleMenu({ setMenuOpen, isMenuOpen, getToggleHideAllColumnsProps, all
                     </label>
                 </div>
             ))}
-        </DropDown>
+        </section>
     );
 }
 

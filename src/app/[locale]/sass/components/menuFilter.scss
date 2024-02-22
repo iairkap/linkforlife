@@ -14,7 +14,7 @@
   font-family: $es-en-font;
 }
 
-.menu-dropdown {
+.menu-dropdownda {
   position: absolute;
   top: 100%;
   z-index: 1000000;
@@ -32,13 +32,13 @@
   padding: 1rem 2rem;
 }
 
-.menu-dropdown-he {
-  left: 10%;
+.menu-dropdownda-he {
+  right: 0;
 }
 
-.menu-dropdown-en-es {
-  right: 10%;
+.menu-dropdownda-en-es {
+  left: 0;
 }
-.menu-dropdown.open {
+.menu-dropdownda.openda {
   display: block;
 }
