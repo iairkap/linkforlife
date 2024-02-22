@@ -272,7 +272,7 @@ const SignUpPart2: React.FC<SignUpPart2Props> = ({ formDataEmail }) => {
                     />
                 } */}
                 <Button
-                    label='הרשם'
+                    label={t('save')}
                     type="submit"
                     className={
                         (formData.name && formData.lastName && formData.partnerName && formData.partnerLastName && (formData.weddingDate || formData.weddingDateUnknown))

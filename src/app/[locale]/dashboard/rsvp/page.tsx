@@ -91,9 +91,7 @@ function Dashboard() {
 
     return (
         <main className="main">
-            <h4 className='subtitle'>
-                {t("subtitle")}
-            </h4>
+
             <section className='table-container'>
                 <div>
                     <AddInv
@@ -104,6 +102,14 @@ function Dashboard() {
                         userInvitationList={userInvitationList}
                         user={user}
                     />
+                    <div className='first-header'>
+                        <h4 className='subtitle'>
+                            {t("subtitle")}
+                        </h4>
+                        <button onClick={handleOpenModal} className="buttonPLus">
+                            {t("addInv")}{" "}
+                        </button>
+                    </div>
 
                     <HeaderFilter
                         getToggleHideAllColumnsProps={tableProps.getToggleHideAllColumnsProps} // Pasa esto aquí

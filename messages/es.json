@@ -89,6 +89,7 @@
     "weddingDate": "Fecha de Casamiento",
     "youRole": "Tu Rol",
     "partnerRole": "Rol de tu pareja",
-    "dontKnow": "No lo se"
+    "dontKnow": "No lo se",
+    "save": "Guardar"
   }
 }

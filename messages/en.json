@@ -47,7 +47,7 @@
     "save": "Save"
   },
   "RSVPTABLE": {
-    "name": "name",
+    "name": "Name",
     "lastName": "Last Name",
     "email": "Email",
     "phone": "Phone",
@@ -97,6 +97,7 @@
     "weddingDate": "Wedding Date",
     "youRole": "Your Role",
     "partnerRole": "Partner Role",
-    "dontKnow": "I don't know"
+    "dontKnow": "I don't know",
+    "save": "save"
   }
 }

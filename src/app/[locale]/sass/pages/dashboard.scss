@@ -1,5 +1,12 @@
 @import "../../sass/abstracts/variables.scss";
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0px;
+}
+
 .main {
   display: flex;
   align-items: center;
@@ -34,8 +41,9 @@
   font-weight: 500;
   line-height: 150%; /* 1.125rem */
   place-self: flex-start;
-  padding: 0 1.25rem;
   height: 32px;
+  margin: 0px;
+  padding: 0px;
   margin: 0px;
 }
 
@@ -99,4 +107,12 @@
   height: fit-content;
   background-color: #f8f9f9;
   padding: 3rem 3rem 0rem 3rem;
+}
+
+.first-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 0.5rem;
 }

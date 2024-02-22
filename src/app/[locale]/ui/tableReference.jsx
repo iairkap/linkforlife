@@ -38,9 +38,6 @@ const HeaderFilter = ({
     <div className="headOfHeader">
       <div className="headito">
         <div className="button-first-container">
-          <button onClick={handleOpenModal} className="buttonPLus">
-            {t("addInv")}{" "}
-          </button>
           <div className="button-container">
             <button
               className={
