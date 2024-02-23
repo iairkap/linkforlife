@@ -57,8 +57,8 @@ function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList, u
             };
 
             const response = await axios.post('/api/invitationListGeneral', invitation);
-
-            if (response.status === 200) {
+            console.log(response)
+            if (response.status === 201) {
                 setUserInvitationList([...userInvitationList, invitation]);
                 fetchData();
                 console.log(isLoading)
