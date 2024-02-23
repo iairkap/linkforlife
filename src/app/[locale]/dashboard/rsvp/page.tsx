@@ -25,11 +25,7 @@ function Dashboard() {
     const [filteredUserInvitationList, setFilteredUserInvitationList] = useState(userInvitationList);
     const pathName = usePathname();
     const extraction = extractLocaleFromPathName(pathName)
-
     const t = useTranslations("RSVPTABLE");
-
-
-
     useEffect(() => {
         const newFilteredUserInvitationList = userInvitationList.filter(invitation => {
             if (filter === 'confirmed') {
@@ -40,11 +36,8 @@ function Dashboard() {
                 return true;
             }
         });
-
         setFilteredUserInvitationList(newFilteredUserInvitationList);
     }, [userInvitationList, filter]);
-
-
     useEffect(() => {
         refreshData();
     }, []);
