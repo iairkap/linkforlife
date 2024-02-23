@@ -101,9 +101,10 @@ function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList, u
                         onChange={(e) => setPhoneNumber(e.target.value)}
                         error=''
                     />
-                    <MultiSelect span={t("invitedBy")} value={invitedBy} onChange={setInvitedBy} options={[`${splitName(user.name)}`, `${user?.partnerName}`, `${splitName(user.name)
+                    {/*        <MultiSelect span={t("invitedBy")} value={invitedBy} onChange={setInvitedBy} options={[`${splitName(user.name)}`, `${user?.partnerName}`, `${splitName(user.name)
                         }'s family`, `${user?.partnerName}'s family`, `Both`]} id={t("invitedBy")} />
                     <MultiSelect span={t("specialRole")} value={specialRole} onChange={setSpecialRole} options={['Best Man', 'Maid Of Honor', 'Parent', 'None']} id={"specialRole"} />
+ */}
 
 
                     <Button label={t("save")} onClick={handleAddInv} className='button-a' />
