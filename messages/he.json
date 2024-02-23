@@ -86,6 +86,10 @@
     "partnerRole": "תפקיד בן זוגך בחתונה",
     "dontKnow": "לא יודע",
     "save": "שמור"
+  },
+  "FirstSteps": {
+    "thereIsNotWedding": "אין חתונה קיימת",
+    "addWedding": "הוסף חתונה",
+    "joinWedding": "הצטרף לחתונה"
   }
 }
-

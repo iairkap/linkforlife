@@ -91,5 +91,10 @@
     "partnerRole": "Rol de tu pareja",
     "dontKnow": "No lo se",
     "save": "Guardar"
+  },
+  "FirstSteps": {
+    "thereIsNotWedding": "No hay casamiento registrado",
+    "addWedding": "Agregar Casamiento",
+    "joinWedding": "Unirse a un Casamiento"
   }
 }
