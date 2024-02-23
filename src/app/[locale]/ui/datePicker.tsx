@@ -23,13 +23,13 @@ const theme = createTheme({
         MuiInputBase: {
             styleOverrides: {
                 root: {
-                    justifySelf: "flex-end",
-                    fontSize: "1rem",
-                    border: "1.5px solid #818369",
-                    borderRadius: "0.5rem",
-                    outline: "none",
-                    minHeight: "2rem",
-                    width: "calc(100% )",
+                    /*           justifySelf: "flex-end",
+                              fontSize: "1rem",
+                              border: "1.5px solid #818369",
+                              borderRadius: "0.5rem",
+                              outline: "none",
+                              minHeight: "2rem",
+                              width: "calc(100% )", */
 
                 }
 
@@ -45,7 +45,21 @@ const theme = createTheme({
 
         MuiOutlinedInput: {
             styleOverrides: {
+                notchedOutline: {
+                    borderColor: "#818369",
+                    borderWidth: "1.5px",
+                    borderRadius: "0.5rem",
+                    '&.Mui-focused': {
+                        borderColor: 'yellow !important',
+                    },
+                },
                 root: {
+                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#818369', // Cambia esto al color que desees
+                        borderWidth: '2px', // Cambia esto al ancho que desees
+                        // Agrega aquí cualquier otro estilo que desees
+                    },
+
                     '&.Mui-focused fieldset': {
                         borderColor: 'yellow',
                     },
@@ -57,13 +71,13 @@ const theme = createTheme({
                 root: {
                     '&.Mui-focused': {
                         color: '#bbbda0', // Cambia esto al color que desees
-                        top: "-10px",
-                        left: "-10px"
+                        /*      top: "-10px",
+                             left: "-10px" */
                     },
                     "&.Mui-error": {
                         color: "#DB6C6F",
-                        top: "-10px",
-                        left: "-10px"
+                        /*      top: "-10px",
+                             left: "-10px" */
 
                     }
                 },
@@ -75,7 +89,8 @@ const theme = createTheme({
 });
 
 export default function DatePickerMaterialUI({ date, onChange }: any) {
-    const [isFocused, setIsFocused] = useState(false);
+
+    console.log(date)
 
     return (
         <ThemeProvider theme={theme}>

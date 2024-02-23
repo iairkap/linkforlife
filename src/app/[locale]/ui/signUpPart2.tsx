@@ -95,7 +95,7 @@ const SignUpPart2: React.FC<SignUpPart2Props> = ({ formDataEmail }) => {
         if (!formData.partnerRole) {
             newErrors.partnerRole = "Partner's role is required";
         }
-
+        console.log(newErrors, 'newErrors')
         return newErrors;
     }
 
@@ -248,27 +248,7 @@ const SignUpPart2: React.FC<SignUpPart2Props> = ({ formDataEmail }) => {
                     </div>
                 </div>
 
-                {/*      <div>
-                    <label className='checkbox'>
-                        <input
-                            type="checkbox"
-                            checked={formData.emailPartnerDontRequired}
-                            onChange={e => updateFormData("emailPartnerDontRequired", e.target.checked)}
-                            style={{ display: 'none' }}
-                        />
-                        <span className={formData.emailPartnerDontRequired ? 'checkbox-custom checked' : 'checkbox-custom'}></span>
-                        Would you like to invite your partner to collaborate on the dashboard by sharing their email?
-                    </label>
-                </div> */}
-                {/*          {
-                    formData.emailPartnerDontRequired &&
-                    <InputField
-                        placeholder="Partner's Email"
-                        type="email"
-                        value={formData.emailPartner}
-                        onChange={(e) => updateFormData("emailPartner", e.target.value)}
-                    />
-                } */}
+
                 <Button
                     label={t('save')}
                     type="submit"
