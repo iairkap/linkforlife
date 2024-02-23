@@ -99,8 +99,8 @@ const SignUpPart2: React.FC<SignUpPart2Props> = ({ formDataEmail }) => {
         return newErrors;
     }
 
+    console.log(errors)
 
-    console.log(formDataEmail, 'formDataEmail')
 
     const updateFormData = (key: keyof FormData, value: string | boolean) => {
         setFormData(prevData => ({ ...prevData, [key]: value }));
@@ -224,10 +224,12 @@ const SignUpPart2: React.FC<SignUpPart2Props> = ({ formDataEmail }) => {
                             <option key={index} value={role}>{role}</option>
                         ))}
                     </select>
-                    <div className='demo'>
 
-                        <ReactDayPicker date={formData.weddingDate} onChange={(date: any) => updateFormData("weddingDate", date)} />
-                    </div>
+                    <ReactDayPicker
+                        date={formData.weddingDate || null}
+                        onChange={(date: any) => updateFormData("weddingDate", date)}
+                        error={errors.weddingDate}
+                    />
 
                     <div>
 
