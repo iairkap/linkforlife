@@ -8,6 +8,7 @@ import AccesTableWithToken from './accesTableWithToken';
 import firstIcon from "../../../../public/firstIcon.svg"
 import Image from 'next/image';
 import Button from './button';
+import { useTranslations } from 'next-intl';
 interface FirstStepsProps {
     isOpen: boolean;
     contentLabel: string;
@@ -25,17 +26,17 @@ function FirstSteps({ isOpen, contentLabel, onRequestClose, refreshData, user }:
     const [isAccesTableWithTokenOpen, setIsAccesTableWithTokenOpen] = useState(false);
 
 
-
+    const t = useTranslations("FirstSteps");
 
     return (
 /*         <ModalFistSteps isOpen={isOpen} contentLabel={contentLabel} onRequestClose={onRequestClose}>
  */            <div className='container'>
             <Image src={firstIcon} alt="First Icon" />
-            <h1 className='title'>עדיין לא חתונה</h1>
+            <h1 className='title'>{t("thereIsNotWedding")}</h1>
             <div className='buttoncito-container'>
-                <button onClick={() => { setIsModalOpenCreateWedding(true) }} className='buttoncito'>צור חתונה</button>
-                <AddWedding isOpen={isModalOpenCreateWedding} contentLabel="Add Wedding" onRequestClose={() => setIsModalOpenCreateWedding(false)} refreshData={refreshData} onRequestCloseGeneral={onRequestClose} user={user} />
-                <button onClick={() => { setIsAccesTableWithTokenOpen(true) }} className='buttoncito'>הצטרף לחתונה</button>
+                <button onClick={() => { setIsModalOpenCreateWedding(true) }} className='buttoncito'>{t("addWedding")}</button>
+                <AddWedding isOpen={isModalOpenCreateWedding} contentLabel={t("addWedding")} onRequestClose={() => setIsModalOpenCreateWedding(false)} refreshData={refreshData} onRequestCloseGeneral={onRequestClose} user={user} />
+                <button onClick={() => { setIsAccesTableWithTokenOpen(true) }} className='buttoncito'>{t("joinWedding")}</button>
                 <AccesTableWithToken isOpen={isAccesTableWithTokenOpen} contentLabel="Join existent table" onRequestClose={() => setIsAccesTableWithTokenOpen(false)} />
             </div>
 

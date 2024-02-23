@@ -99,5 +99,10 @@
     "partnerRole": "Partner Role",
     "dontKnow": "I don't know",
     "save": "save"
+  },
+  "FirstSteps": {
+    "thereIsNotWedding": "There is not wedding registered",
+    "addWedding": "Add Wedding",
+    "joinWedding": "Join Wedding"
   }
 }
