@@ -49,6 +49,8 @@ function Dashboard() {
     const handleCloseModal = () => {
         setIsModalOpen(false);
     };
+    const isWeddingsEmpty = weddings && weddings.length === 0;
+
 
     const [isMenuOpen, setMenuOpen] = useState(false);
 
@@ -99,9 +101,12 @@ function Dashboard() {
                         <h4 className='subtitle'>
                             {t("subtitle")}
                         </h4>
-                        <button onClick={handleOpenModal} className="buttonPLus">
-                            {t("addInv")}{" "}
-                        </button>
+                        {
+                            isWeddingsEmpty && (<button onClick={handleOpenModal} className="buttonPLus">
+                                {t("addInv")}{" "}
+                            </button>
+                            )}
+
                     </div>
 
                     <HeaderFilter
