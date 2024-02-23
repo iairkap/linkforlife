@@ -71,7 +71,7 @@ function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList, u
         <Modal isOpen={isOpen} onRequestClose={onRequestClose} contentLabel={contentLabel} icon={"person_add"}>
             <section className='containerModalInvitationWedding'>
                 <h1 className='title-container'>{t("addInv")}</h1>
-                <article className="layout">
+                <article className="layoutb">
                     <InputField
                         value={name}
                         type="text"
