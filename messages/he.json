@@ -91,5 +91,17 @@
     "thereIsNotWedding": "אין חתונה קיימת",
     "addWedding": "הוסף חתונה",
     "joinWedding": "הצטרף לחתונה"
+  },
+  "AddWedding": {
+    "addWedding": "הוסף חתונה",
+    "name": "שם חתונה",
+    "weddingPlace": "מקום חתונה",
+    "weddingDate": "תאריך חתונה",
+    "save": "שמור"
+  },
+  "AccesTableWithToken": {
+    "joinWedding": "הצטרף לחתונה",
+    "enterToken": "הכנס טוקן",
+    "join": "הצטרף"
   }
 }

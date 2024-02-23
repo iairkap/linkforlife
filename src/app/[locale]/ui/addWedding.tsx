@@ -7,7 +7,7 @@ import axios from 'axios';
 import { useDashboardData } from '../helpers/useDashboardData';
 import MultiSelect from './Select';
 import { useSession } from 'next-auth/react';
-
+import { useTranslations } from 'next-intl';
 interface AddInvProps {
     isOpen: boolean;
     contentLabel: string;
@@ -30,6 +30,7 @@ function AddWedding({ isOpen, contentLabel, onRequestClose, refreshData, onReque
     const [weddingName, setWeddingName] = React.useState(posibleNameEvent);
     const [weddingPlace, setWeddingPLace] = React.useState('');
     const [weddingDate, setWeddingDate] = useState<string>('');
+    const t = useTranslations('AddWedding');
 
 
     const data = {
@@ -62,26 +63,26 @@ function AddWedding({ isOpen, contentLabel, onRequestClose, refreshData, onReque
     return (
         <Modal isOpen={isOpen} onRequestClose={onRequestClose} contentLabel={contentLabel} icon={"celebration"}>
             <section className='containerModalInvitationWedding'>
-                <h1 className='title-container'>Creacion de Boda</h1>
+                <h1 className='title-container'>{t("addWedding")}</h1>
                 <article className="layout">
                     <InputField
                         value={weddingName}
                         type="text"
-                        placeholder={posibleNameEvent ? posibleNameEvent : 'שם חתונה'}
+                        placeholder={posibleNameEvent ? posibleNameEvent : t("name")}
                         onChange={(e) => setWeddingName(e.target.value)}
                         error=''
                     />
                     <InputField
                         value={weddingPlace}
                         type="text"
-                        placeholder='מקום חתונה'
+                        placeholder={t("weddingPlace")}
                         onChange={(e) => setWeddingPLace(e.target.value)}
                         error=''
                     />
                     <InputField
                         value={weddingDate}
                         type={weddingDate ? "date" : "text"}
-                        placeholder='תאריך חתונה'
+                        placeholder={t("weddingDate")}
                         onFocus={(e) => e.currentTarget.type = 'date'}
                         onBlur={(e) => {
                             if (!e.currentTarget.value) {
@@ -91,7 +92,7 @@ function AddWedding({ isOpen, contentLabel, onRequestClose, refreshData, onReque
                         onChange={(e) => setWeddingDate(e.target.value)}
                         error=''
                     />
-                    <Button label='שמור והוסף לרשימה' onClick={handleWeddingaAddition} className='button-a' />
+                    <Button label={t("save")} onClick={handleWeddingaAddition} className='button-a' />
                 </article>
             </section>
         </Modal>

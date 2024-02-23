@@ -54,12 +54,12 @@ export const useDashboardData = () => {
       }
     } catch (error) {
       const axiosError = error as AxiosError;
-
+      /* 
       if (axiosError.response && axiosError.response.status === 404) {
         router.replace("/dashboard/rsvp");
         setModalFirstSteps(true);
         console.error("No weddings found");
-      }
+      } */
     } finally {
       setIsLoading(false);
     }

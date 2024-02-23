@@ -96,5 +96,17 @@
     "thereIsNotWedding": "No hay casamiento registrado",
     "addWedding": "Agregar Casamiento",
     "joinWedding": "Unirse a un Casamiento"
+  },
+  "AddWedding": {
+    "addWedding": "Agregar Casamiento",
+    "name": "Nombre",
+    "weddingPlace": "Lugar de Casamiento",
+    "weddingDate": "Fecha de Casamiento",
+    "save": "Guardar"
+  },
+  "AccesTableWithToken": {
+    "joinWedding": "Unirse a un Casamiento",
+    "enterToken": "Ingresar Token",
+    "join": "Unirse"
   }
 }

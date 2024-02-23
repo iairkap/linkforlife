@@ -104,5 +104,17 @@
     "thereIsNotWedding": "There is not wedding registered",
     "addWedding": "Add Wedding",
     "joinWedding": "Join Wedding"
+  },
+  "AddWedding": {
+    "addWedding": "Add Wedding",
+    "name": "Wedding Name",
+    "weddingPlace": "Wedding Place",
+    "weddingDate": "Wedding Date",
+    "save": "Save"
+  },
+  "AccesTableWithToken": {
+    "joinWedding": "Join Wedding",
+    "enterToken": "Enter Token",
+    "join": "Join"
   }
 }
