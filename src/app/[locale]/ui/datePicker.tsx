@@ -13,6 +13,9 @@ const theme = createTheme({
         action: {
             active: "#818369",
             focus: "#818369",
+        },
+        secondary: {
+            main: "#818369"
         }
 
     },
@@ -26,7 +29,7 @@ const theme = createTheme({
                     borderRadius: "0.5rem",
                     outline: "none",
                     minHeight: "2rem",
-                    width: "calc(100% - 23px)",
+                    width: "calc(100% )",
 
                 }
 
@@ -35,23 +38,53 @@ const theme = createTheme({
         MuiFormControl: {
             styleOverrides: {
                 root: {
-/*                     width: "calc(100% - 43px)",
- */                    flexDirection: "row-reverse",
+                    flexDirection: "row-reverse",
                 },
             },
         },
 
+        MuiOutlinedInput: {
+            styleOverrides: {
+                root: {
+                    '&.Mui-focused fieldset': {
+                        borderColor: 'yellow',
+                    },
+                },
+            },
+        },
+        MuiInputLabel: {
+            styleOverrides: {
+                root: {
+                    '&.Mui-focused': {
+                        color: '#bbbda0', // Cambia esto al color que desees
+                        top: "-10px",
+                        left: "-10px"
+                    },
+                    "&.Mui-error": {
+                        color: "#DB6C6F",
+                        top: "-10px",
+                        left: "-10px"
+
+                    }
+                },
+
+
+            },
+        },
     },
 });
 
 export default function DatePickerMaterialUI({ date, onChange }: any) {
+    const [isFocused, setIsFocused] = useState(false);
+
     return (
         <ThemeProvider theme={theme}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DatePicker
                     value={date}
                     onChange={onChange}
-                    sx={{ borderColor: "red" }}
+                    label="Wedding Date"
+
                 />
             </LocalizationProvider>
         </ThemeProvider>

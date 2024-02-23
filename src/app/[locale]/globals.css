@@ -14,7 +14,10 @@ fieldset {
   border: none !important;
   outline: none !important;
 }
-
+.css-1jy569b-MuiFormLabel-root-MuiInputLabel-root {
+  /*   color: red !important;
+ */
+}
 /* :root {
   --max-width: 1100px;
   --border-radius: 12px;

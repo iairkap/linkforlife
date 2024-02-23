@@ -16,7 +16,7 @@ import CryptoJS from 'crypto-js';
 import { useTranslations } from 'next-intl';
 import { extractLocaleFromPathName } from '../utils/getLocale';
 import { usePathname as usPathnameforExtraction } from 'next/navigation';
-
+import ReactDayPicker from './datePicker';
 interface FormData {
     name: string;
     lastName: string;
@@ -224,14 +224,10 @@ const SignUpPart2: React.FC<SignUpPart2Props> = ({ formDataEmail }) => {
                             <option key={index} value={role}>{role}</option>
                         ))}
                     </select>
-                    <InputField
-                        placeholder={t("weddingDate")}
-                        /*   type={formDataBis.weddingDateUnknown ? "text" : (formDataBis.weddingDate ? "date" : "text")} */
-                        type={formData.weddingDateUnknown ? "text" : (formData.weddingDate ? "date" : "text")}
-                        value={formData.weddingDate}
-                        onChange={(e) => updateFormData("weddingDate", e.target.value)}
-                        error={errors.weddingDate}
-                    />
+                    <div className='demo'>
+
+                        <ReactDayPicker date={formData.weddingDate} onChange={(date: any) => updateFormData("weddingDate", date)} />
+                    </div>
 
                     <div>
 
