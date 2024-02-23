@@ -102,7 +102,7 @@ function Dashboard() {
                             {t("subtitle")}
                         </h4>
                         {
-                            isWeddingsEmpty && (<button onClick={handleOpenModal} className="buttonPLus">
+                            !isWeddingsEmpty && (<button onClick={handleOpenModal} className="buttonPLus">
                                 {t("addInv")}{" "}
                             </button>
                             )}
