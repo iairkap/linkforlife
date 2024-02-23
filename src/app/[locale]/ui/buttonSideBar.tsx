@@ -36,7 +36,7 @@ const ButtonSideBar = ({ icon, Tooltip, Link: linkPath, isActive }: Props) => {
             <Link href={linkPath}>
                 <button className={buttonClass}>
                     {iconElement}
-                    <span>{Tooltip}</span>
+                    <span className='tooltip'>{Tooltip}</span>
                 </button>
             </Link>
         </div>

@@ -10,7 +10,7 @@ export default async function handler(req, res) {
       const existingUser = await prisma.user.findUnique({ where: { email } });
       if (existingUser) {
         console.log("existingUser", existingUser);
-        return res.status(400).json({ error: "האימייל כבר בשימוש" });
+        return res.status(444).json({ error: "email already in use" });
       }
 
       const hashedPassword = await hash(password, 10);

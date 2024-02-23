@@ -44,6 +44,7 @@ function InputField({
                 onBlur={onBlur}
                 style={{ textAlign: textAlign }}
             />
+            <span>{error}</span>
         </div>
     );
 }

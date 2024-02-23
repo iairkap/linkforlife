@@ -5,6 +5,8 @@ import { signIn, getSession } from "next-auth/react";
 import Cookies from "js-cookie"
 import CryptoJS from 'crypto-js';
 import { useTranslations } from 'next-intl';
+import ModalNotification from './modalNotification';
+import { error } from 'console';
 interface SignUpFormData {
     email: string;
     password: string;
@@ -20,6 +22,8 @@ interface Errors {
 interface SignUpPart1Props {
     onNext: (data: SignUpFormData) => void;
 }
+
+
 const SignUpPart1: React.FC<SignUpPart1Props> = ({ onNext }) => {
     const [formData, setFormData] = useState<SignUpFormData>({
         email: "",
@@ -28,7 +32,9 @@ const SignUpPart1: React.FC<SignUpPart1Props> = ({ onNext }) => {
     });
 
     const [errors, setErrors] = useState<Errors>({});
+    const [modalIsOpen, setIsOpen] = useState(false);
     const t = useTranslations("SignUp");
+    const [modalError, setModalError] = useState<any>("");
 
 
     const validateForm = (): Errors => {
@@ -52,7 +58,6 @@ const SignUpPart1: React.FC<SignUpPart1Props> = ({ onNext }) => {
     const updateFormData = (key: keyof SignUpFormData, value: string) => {
         setFormData(prevData => ({ ...prevData, [key]: value }));
     }
-
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
 
@@ -71,6 +76,12 @@ const SignUpPart1: React.FC<SignUpPart1Props> = ({ onNext }) => {
                     body: JSON.stringify(formData),
                 });
 
+                if (response.status === 444) {
+                    setModalError("Email en uso");
+                    setIsOpen(true);
+                    return;
+                }
+
                 if (!response.ok) {
                     throw new Error('Error al registrarse');
                 }
@@ -78,11 +89,12 @@ const SignUpPart1: React.FC<SignUpPart1Props> = ({ onNext }) => {
                 const data = await response.json();
 
                 onNext(data);
-            } catch (error) {
+            } catch (error: any) {
                 console.error(error);
             }
         }
-    };
+    }
+
 
     const handleGoogleSignIn = async () => {
         try {
@@ -92,7 +104,6 @@ const SignUpPart1: React.FC<SignUpPart1Props> = ({ onNext }) => {
             console.error(error);
         }
     }
-
     return (
         <div>
             <div className='container-inputB'>
@@ -115,8 +126,15 @@ const SignUpPart1: React.FC<SignUpPart1Props> = ({ onNext }) => {
                     onClick={handleGoogleSignIn}
                 />
             </div>
+            <ModalNotification
+                message={modalError}
+                status={500}
+                isOpen={modalIsOpen}
+                onRequestClose={() => setIsOpen(false)}
+            />
         </div>
     );
 }
+
 
 export default SignUpPart1;

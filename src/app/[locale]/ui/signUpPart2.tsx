@@ -127,6 +127,7 @@ const SignUpPart2: React.FC<SignUpPart2Props> = ({ formDataEmail }) => {
                             'Content-Type': 'application/json',
                         },
                     });
+                console.log(response, 'response')
                 if (response.status !== 200) {
                     throw new Error('Something went wrong');
                 } else if (pathName === "/sign-upv2") {
