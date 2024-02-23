@@ -118,7 +118,11 @@ const SignUpPart1: React.FC<SignUpPart1Props> = ({ onNext }) => {
                     className={formData.email && formData.password && formData.passwordConfirmation ? 'button-a' : 'button-a-disabled'}
                     disabled={!(formData.email && formData.password && formData.passwordConfirmation)}
                 />
-                <span>{t("orSignInWithGoogle")}</span>
+                <div className='google'>
+                    <div className='linef' />
+                    <span >{t("orSignInWithGoogle")}</span>
+                    <div className='linef' />
+                </div>
                 <Button
                     label={t("signWithGoogle")}
                     type="submit"

@@ -85,6 +85,7 @@ function SignUp() {
 
         </section>
             <section className='form'>
+                <h2 className='title'>Welcome!</h2>
                 {currentPage === 1 ? (
                     <SignUpPart1 onNext={handleNext} />
                 ) : (

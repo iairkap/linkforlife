@@ -1,6 +1,14 @@
 @import "../abstracts/mixin.scss";
 @import "../abstracts/variables.scss";
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .main-container {
   display: flex;
   flex-direction: row-reverse;
@@ -171,4 +179,30 @@ form {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
+}
+
+.title {
+  font-weight: 900;
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  font-family: $es-en-font;
+}
+
+.google {
+  align-self: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.linef {
+  width: 25%;
+  height: 2px;
+  background-color: #b7ba96;
+  margin: 1.5rem 0;
 }
