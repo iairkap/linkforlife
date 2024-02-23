@@ -86,13 +86,23 @@ function SignUp() {
         </section>
             <section className='form'>
                 <h2 className='title'>Welcome!</h2>
+
+                <div className='pagination'>
+                    <div className={currentPage === 1 ? "activepag" : "deactivepag"}>
+                        <span>1</span>
+                    </div>
+
+                    <div className={currentPage != 1 ? "activepag" : "deactivepag"}>
+                        <span>2</span>
+                    </div>
+                </div>
                 {currentPage === 1 ? (
                     <SignUpPart1 onNext={handleNext} />
                 ) : (
                     <SignUpPart2 formDataEmail={formData} />
                 )}
             </section>
-        </main>
+        </main >
     )
 }
 

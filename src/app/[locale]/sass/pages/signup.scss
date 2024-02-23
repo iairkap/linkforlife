@@ -206,3 +206,31 @@ form {
   background-color: #b7ba96;
   margin: 1.5rem 0;
 }
+
+.pagination {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.activepag {
+  background-color: $accent-color;
+  color: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deactivepag {
+  background-color: #b7ba9658;
+  color: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
