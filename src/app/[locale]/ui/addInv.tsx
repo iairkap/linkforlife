@@ -43,7 +43,7 @@ function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList, u
 
 
 
-    const { refreshData } = useDashboardData();
+    const { fetchData, isLoading, setIsLoading } = useDashboardData();
     const handleAddInv = async () => {
         try {
             const invitation = {
@@ -60,7 +60,8 @@ function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList, u
 
             if (response.status === 200) {
                 setUserInvitationList([...userInvitationList, invitation]);
-                refreshData();
+                fetchData();
+                console.log(isLoading)
                 onRequestClose();
             }
         } catch (error) {

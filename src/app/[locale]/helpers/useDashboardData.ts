@@ -110,5 +110,6 @@ export const useDashboardData = () => {
     setUser,
     upcomingExpenses,
     setUpcomingExpenses,
+    fetchData,
   };
 };
