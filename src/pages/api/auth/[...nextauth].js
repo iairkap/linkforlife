@@ -9,6 +9,7 @@ import { compare } from "bcrypt";
 const authOptions = {
   session: {
     strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60,
   },
   providers: [
     GoogleProvider({
