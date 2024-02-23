@@ -17,6 +17,7 @@ function SignUpGooglePart2() {
 
     return (
         <main className='main-container' dir={extraction === "he" ? "rtl" : "ltr"}>
+
             <section className='pictureContainer'>
                 <div className='overflow-picture-container'>
 
@@ -31,6 +32,16 @@ function SignUpGooglePart2() {
 
 
             <section className='form'>
+                <h2 className='title'>Welcome!</h2>
+                <div className='pagination'>
+                    <div className="deactivepag">
+                        <span>1</span>
+                    </div>
+
+                    <div className="activepag">
+                        <span>2</span>
+                    </div>
+                </div>
                 <SignUpPart2 />
             </section>
         </main>
