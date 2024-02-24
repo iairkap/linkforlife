@@ -18,7 +18,7 @@ export default async function handler(req, res) {
       return;
     }
     if (req.method === "POST") {
-      const {
+      let {
         name,
         lastName,
         partnerName,
@@ -26,7 +26,34 @@ export default async function handler(req, res) {
         weddingDate: weddingDateInput,
         partnerRole,
         role,
+        extraction,
       } = req.body;
+
+      const roleMapping = {
+        BRIDE: {
+          en: "BRIDE",
+          he: "כלה",
+          es: "NOVIA",
+        },
+        GROOM: {
+          en: "GROOM",
+          he: "חתן",
+          es: "NOVIO",
+        },
+        ADMIN: {
+          en: "ADMIN",
+          he: "מנהל",
+          es: "ADMIN",
+        },
+      };
+      role =
+        Object.keys(roleMapping).find(
+          (key) => roleMapping[key][extraction] === role
+        ) || role;
+      partnerRole =
+        Object.keys(roleMapping).find(
+          (key) => roleMapping[key][extraction] === partnerRole
+        ) || partnerRole;
 
       const user = await prisma.user.findUnique({
         where: {
@@ -65,5 +92,6 @@ export default async function handler(req, res) {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: error.message });
+    console.log(error.message);
   }
 }

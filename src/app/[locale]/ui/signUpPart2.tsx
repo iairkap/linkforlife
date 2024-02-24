@@ -63,13 +63,35 @@ const SignUpPart2: React.FC<SignUpPart2Props> = ({ formDataEmail }) => {
     });
 
     const pathName = usePathname();
+    console.log(pathName, 'pathName')
     const router = useRouter();
 
 
 
     const pathNameForExtraction = usPathnameforExtraction()
+    console.log(pathNameForExtraction, 'pathNameForExtraction')
     const extraction = extractLocaleFromPathName(pathNameForExtraction)
     const [errors, setErrors] = useState<Errors>({});
+
+
+    const roleMapping = {
+        "BRIDE": {
+            "en": "BRIDE",
+            "he": "כלה",
+            "es": "NOVIA"
+        },
+        "GROOM": {
+            "en": "GROOM",
+            "he": "חתן",
+            "es": "NOVIO"
+        },
+        "ADMIN": {
+            "en": "ADMIN",
+            "he": "מנהל",
+            "es": "ADMIN"
+        }
+    };
+
 
     const validateForm = (): Errors => {
         const newErrors: Errors = {};
@@ -100,11 +122,17 @@ const SignUpPart2: React.FC<SignUpPart2Props> = ({ formDataEmail }) => {
     }
 
     console.log(errors)
-
-
     const updateFormData = (key: keyof FormData, value: string | boolean) => {
-        setFormData(prevData => ({ ...prevData, [key]: value }));
-    }
+        let newValue = value;
+        if ((key === 'role' || key === 'partnerRole') && typeof value === 'string') {
+            if (extraction) {
+                const roleInEnglish = Object.entries(roleMapping).find(([role, translations]) => translations[extraction as keyof typeof roleMapping["BRIDE"]] === value);
+                newValue = roleInEnglish ? roleInEnglish[0] : value;
+            }
+        }
+
+        setFormData(prevData => ({ ...prevData, [key]: newValue }));
+    };
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
 
@@ -121,7 +149,7 @@ const SignUpPart2: React.FC<SignUpPart2Props> = ({ formDataEmail }) => {
             }
 
             try {
-                const response = await axios.post(`/api/signin/part2?email=${formDataEmail?.user.email}`, formDataISO,
+                const response = await axios.post(`/api/signin/part2?email=${formDataEmail?.user.email}`, { ...formDataISO, extraction },
                     {
                         headers: {
                             'Content-Type': 'application/json',
@@ -131,8 +159,9 @@ const SignUpPart2: React.FC<SignUpPart2Props> = ({ formDataEmail }) => {
                 if (response.status !== 200) {
                     throw new Error('Something went wrong');
                 } else if (pathName === "/sign-upv2") {
+                    console.log('Path name:', pathName); // Add this line
                     const encryptedPassword = Cookies.get('tempPassword');
-
+                    console.log('Encrypted password:', encryptedPassword); // Add this line
                     if (!encryptedPassword) {
                         throw new Error("No se encontró la cookie 'tempPassword'");
                     }
@@ -148,6 +177,7 @@ const SignUpPart2: React.FC<SignUpPart2Props> = ({ formDataEmail }) => {
                     });
 
                 } else if (pathName === "/sign-up-step2") {
+                    console.log('Path name:', pathName); // Add this line
                     router.push('/dashboard/rsvp');
                 }
 
