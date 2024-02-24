@@ -41,7 +41,6 @@ function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList, u
     const wedding = user.weddings[0]?.id
 
 
-    console.log(groups)
 
     console.log(selectedGroups)
     const { fetchData, isLoading, setIsLoading, } = useDashboardData();

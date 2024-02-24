@@ -28,10 +28,7 @@ function TableInvitationList({
 }) {
   const data = useMemo(() => userInvitationList, [userInvitationList]);
   const t = useTranslations("RSVPTABLE");
-  console.log(extraction);
-
   const isWeddingsEmpty = weddings && weddings.length === 0;
-
   const columns = useMemo(
     () => [
       {

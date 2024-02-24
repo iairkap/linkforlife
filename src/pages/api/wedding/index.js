@@ -55,7 +55,11 @@ export default async function handler(req, res) {
       include: {
         weddings: {
           include: {
-            weddingInvitationList: true,
+            weddingInvitationList: {
+              include: {
+                groups: true,
+              },
+            },
             groups: true,
             users: true,
           },

@@ -27,6 +27,8 @@ export const useDashboardData = () => {
     null
   );
 
+  console.log(groups);
+  console.log(userInvitationList);
   const router = useRouter();
 
   const fetchData = async () => {
