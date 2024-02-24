@@ -43,7 +43,8 @@
     "phone": "Teléfono",
     "invitedBy": "Invitado Por",
     "specialRole": "Rol Especial",
-    "save": "Guardar"
+    "save": "Guardar",
+    "other": "Agregar un nuevo Grupo"
   },
   "RSVPTABLE": {
     "name": "Nombre",

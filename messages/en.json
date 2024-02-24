@@ -44,7 +44,8 @@
     "phone": "Phone",
     "invitedBy": "Invited by",
     "specialRole": "Special Role",
-    "save": "Save"
+    "save": "Save",
+    "other": "Add a new group"
   },
   "RSVPTABLE": {
     "name": "Name",

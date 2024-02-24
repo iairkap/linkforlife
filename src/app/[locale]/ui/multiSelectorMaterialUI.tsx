@@ -112,12 +112,16 @@ export default function MultipleSelectChip({ valueselct, selectedValueSelector, 
         const {
             target: { value },
         } = event;
+        const otherId = valueselct.find((group: any) => group.name === 'other')?.id;
         setSelectedValueSelector(
             value.includes('other')
-                ? [...value.filter((val: string) => val !== 'other'), valueselct.find((group: any) => group.name === 'other')?.id]
+                ? selectedValueSelector.includes(otherId)
+                    ? selectedValueSelector
+                    : [...value.filter((val: string) => val !== 'other'), otherId]
                 : value as unknown as number[]
         );
     };
+
     return (
         <div>
             <ThemeProvider theme={themeGeneral}>
@@ -133,9 +137,11 @@ export default function MultipleSelectChip({ valueselct, selectedValueSelector, 
                         input={<OutlinedInput id="select-multiple-chip" label="Groups" />}
                         renderValue={(selected) => (
                             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                                {selected.map((value: any) => (
-                                    <Chip key={value} label={valueselct.find((group: any) => group.id === value)?.name || ''} />
-                                ))}
+                                {selected.map((value: any) => {
+                                    const group = valueselct.find((group: any) => group.id === value);
+                                    const label = group ? group.name : (value == undefined ? 'other' : '');
+                                    return <Chip key={value} label={label} />;
+                                })}
                             </Box>
                         )}
                         MenuProps={MenuProps}
@@ -149,7 +155,7 @@ export default function MultipleSelectChip({ valueselct, selectedValueSelector, 
                                 {group.name}
                             </MenuItem>
                         ))}
-                        <MenuItem value="other">
+                        <MenuItem value="other" id='other'>
                             <em>Other...</em>
                         </MenuItem>
                     </Select>

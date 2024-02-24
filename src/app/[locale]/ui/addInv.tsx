@@ -57,21 +57,30 @@ function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList, u
                 invitedBy,
                 specialRole,
                 phoneNumber,
-                groups: selectedGroups
+                groups: selectedGroups.filter(group => typeof group === "number")
             };
 
+            const newGroups = otherValue ? [otherValue] : [];
             const response = await axios.post('/api/invitationListGeneral', invitation);
-            console.log(response)
-            if (response.status === 201) {
+            const invitationId = response.data[0].id;
+            console.log('Invitation ID in handleAddInv:', invitationId); // Add this line
+
+            if (newGroups.length > 0) {
+                await axios.post('/api/createGroups', { groups: newGroups, weddingId: wedding, invitationId });
+            }
+
+            if (response.status === 201 || response.status === 500) {
                 setUserInvitationList([...userInvitationList, invitation]);
                 fetchData();
-                console.log(isLoading)
                 onRequestClose();
             }
         } catch (error) {
             console.error('Failed to add invitation:', error);
+            setUserInvitationList([...userInvitationList]);
+            fetchData();
+            onRequestClose();
         }
-    };
+    }
 
     return (
         <Modal isOpen={isOpen} onRequestClose={onRequestClose} contentLabel={contentLabel} icon={"person_add"}>

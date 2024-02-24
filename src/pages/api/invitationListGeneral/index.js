@@ -60,15 +60,16 @@ export default async function handler(req, res) {
         invitationsArray = [invitations];
       }
       let createInvitations = invitationsArray.map((invitation) => {
-        const { weddingId, ...invitationWithoutWeddingId } = invitation;
+        const { weddingId, groups, ...invitationWithoutGroups } = invitation;
         return prisma.weddingInvitationList.create({
           data: {
-            ...invitationWithoutWeddingId,
+            ...invitationWithoutGroups,
             user: {
               connect: {
                 id: Number(userId),
               },
             },
+
             wedding: {
               connect: {
                 id: weddingId,
