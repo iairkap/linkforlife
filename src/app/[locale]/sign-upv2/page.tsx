@@ -37,11 +37,9 @@ function SignUp() {
     const [currentPage, setCurrentPage] = useState(1);
     const [formData, setFormData] = useState({});
 
-    console.log(formData)
     const pathName = usePathname();
     const extraction = extractLocaleFromPathName(pathName)
 
-    console.log(extraction)
 
     const handleNext = (data: SignUpFormData) => {
         setFormData(prevData => ({ ...prevData, ...data }));

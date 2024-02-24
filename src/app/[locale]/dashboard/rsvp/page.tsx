@@ -51,7 +51,6 @@ function Dashboard() {
     };
     const isWeddingsEmpty = weddings && weddings.length === 0;
 
-
     const [isMenuOpen, setMenuOpen] = useState(false);
 
     const { tableProps, renderTable } = TableInvitationList({
@@ -86,7 +85,6 @@ function Dashboard() {
 
     return (
         <main className="main">
-
             <section className='table-container'>
                 <div>
                     <AddInv
@@ -96,6 +94,7 @@ function Dashboard() {
                         setUserInvitationList={setUserInvitationList}
                         userInvitationList={userInvitationList}
                         user={user}
+                        groups={groups}
                     />
                     <div className='first-header'>
                         <h4 className='subtitle'>

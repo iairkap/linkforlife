@@ -65,8 +65,6 @@ export const useDashboardData = () => {
     }
   };
 
-  console.log(upcomingExpenses);
-
   useEffect(() => {
     fetchData();
   }, []);
@@ -97,6 +95,7 @@ export const useDashboardData = () => {
     isLoading,
     setIsLoading,
     groups,
+    setGroups,
     groupInvitations,
     refreshData: fetchData,
     /*     handleWeddingChange,

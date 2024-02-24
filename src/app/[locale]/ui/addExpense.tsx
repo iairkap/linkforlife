@@ -36,8 +36,6 @@ function AddExpense({ isOpen, contentLabel, onRequestClose, refreshData, onReque
     const t = useTranslations('ModalAddExpense');
 
 
-    /*     console.log(form.splitBetween)
-     */
 
 
 

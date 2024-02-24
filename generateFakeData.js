@@ -113,4 +113,3 @@ const weddingInvitationListIds = [
   ...Array.from({ length: 64 }, (_, i) => i + 29),
 ];
 const data = generateData(weddingInvitationListIds, 3, 36, 5);
-console.log(JSON.stringify(data, null, 2));

@@ -70,7 +70,6 @@ function Payments() {
             }
         }
     }, [rowClicked, expenseData, modalPaymentChange]);  // Add expenseData to the dependency array
-    console.log(expenseDataSelected)
 
 
 

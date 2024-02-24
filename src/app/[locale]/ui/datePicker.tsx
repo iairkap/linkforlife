@@ -8,7 +8,7 @@ import { createTheme, ThemeProvider } from "@mui/material";
 
 /* MuiFormControl-root MuiTextField-root css-z3c6am-MuiFormControl-root-MuiTextField-root
  */
-const theme = createTheme({
+export const themeGeneral = createTheme({
     palette: {
         action: {
             active: "#818369",
@@ -93,7 +93,7 @@ export default function DatePickerMaterialUI({ date, onChange }: any) {
     console.log(date)
 
     return (
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={themeGeneral}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DatePicker
                     value={date}

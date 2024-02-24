@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Modal from './modal';
 import InputField from './InputField';
 import "../sass/layout/modalContent.scss"
@@ -8,8 +8,7 @@ import { useDashboardData } from '../helpers/useDashboardData';
 import MultiSelect from './Select';
 import { useTranslations } from 'next-intl';
 import { splitName } from '../utils/splitName';
-
-
+import MultipleSelectChip from './multiSelectorMaterialUI';
 interface AddInvProps {
     isOpen: boolean;
     contentLabel: string;
@@ -23,27 +22,31 @@ interface AddInvProps {
     onRequestClose: () => void;
     userInvitationList: any[]; // Add this line
     setUserInvitationList: (list: any[]) => void; // Add this line
+    groups: any;
 }
 
-function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList, userInvitationList, user }: AddInvProps) {
+function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList, userInvitationList, user, groups }: AddInvProps) {
     const [name, setName] = React.useState('');
     const [lastName, setLastName] = React.useState('');
     const [email, setEmail] = React.useState('');
     const [invitedBy, setInvitedBy] = React.useState<string[]>([]);
     const [specialRole, setSpecialRole] = React.useState<string[]>([]);
     const [phoneNumber, setPhoneNumber] = React.useState('');
-
+    const [selectedGroups, setSelectedGroups] = React.useState<number[]>([]);
+    const [otherValue, setOtherValue] = React.useState('');
     const t = useTranslations('ModalAddInv');
-
     splitName(user?.name)
 
 
     const wedding = user.weddings[0]?.id
 
 
+    console.log(groups)
+
+    console.log(selectedGroups)
+    const { fetchData, isLoading, setIsLoading, } = useDashboardData();
 
 
-    const { fetchData, isLoading, setIsLoading } = useDashboardData();
     const handleAddInv = async () => {
         try {
             const invitation = {
@@ -53,7 +56,8 @@ function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList, u
                 emailInvitation: email,
                 invitedBy,
                 specialRole,
-                phoneNumber
+                phoneNumber,
+                groups: selectedGroups
             };
 
             const response = await axios.post('/api/invitationListGeneral', invitation);
@@ -68,6 +72,7 @@ function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList, u
             console.error('Failed to add invitation:', error);
         }
     };
+
     return (
         <Modal isOpen={isOpen} onRequestClose={onRequestClose} contentLabel={contentLabel} icon={"person_add"}>
             <section className='containerModalInvitationWedding'>
@@ -101,12 +106,23 @@ function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList, u
                         onChange={(e) => setPhoneNumber(e.target.value)}
                         error=''
                     />
-                    {/*        <MultiSelect span={t("invitedBy")} value={invitedBy} onChange={setInvitedBy} options={[`${splitName(user.name)}`, `${user?.partnerName}`, `${splitName(user.name)
-                        }'s family`, `${user?.partnerName}'s family`, `Both`]} id={t("invitedBy")} />
-                    <MultiSelect span={t("specialRole")} value={specialRole} onChange={setSpecialRole} options={['Best Man', 'Maid Of Honor', 'Parent', 'None']} id={"specialRole"} />
- */}
 
+                    <MultipleSelectChip
+                        valueselct={groups}
+                        selectedValueSelector={selectedGroups}
+                        setSelectedValueSelector={setSelectedGroups}
+                        otherValue={otherValue}
 
+                    />
+                    {selectedGroups.includes(groups.find(group => group.name === 'other')?.id) &&
+                        <InputField
+                            value={otherValue}
+                            type="text"
+                            placeholder={t("other")}
+                            onChange={(e) => setOtherValue(e.target.value)}
+                            error=''
+                        />
+                    }
                     <Button label={t("save")} onClick={handleAddInv} className='button-a' />
                 </article>
             </section>

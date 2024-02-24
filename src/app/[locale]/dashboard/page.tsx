@@ -49,7 +49,6 @@ function DashboardGeneral() {
         }
     }, [weddings]);
 
-    console.log(upcomingExpenses)
 
 
 

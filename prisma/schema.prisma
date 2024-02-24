@@ -45,7 +45,6 @@ model User {
   partnerRole           ROLE                    @default(ADMIN)
   expenses              Expenses[]
   superAdmin  Boolean @default(false)
-
 }
 
 model Wedding {
@@ -145,6 +144,7 @@ model WeddingInvitationList {
   wedding          Wedding  @relation(fields: [weddingId], references: [id])
   weddingId        Int
   avatar         String?
+  groupby         String[]
 }
 
 model Group {
