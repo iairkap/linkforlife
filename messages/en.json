@@ -63,7 +63,8 @@
     "togleAll": "Togle All",
     "addInv": "Add guest",
     "filter": "Filter",
-    "subtitle": "Guest List"
+    "subtitle": "Guest List",
+    "createGroup": "Create Group"
   },
   "Pagination": {
     "next": "Next >",

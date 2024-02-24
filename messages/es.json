@@ -62,7 +62,8 @@
     "togleAll": "Seleccionar Todo",
     "addInv": "Agregar Invitado",
     "filter": "Filtrar",
-    "subtitle": "Lista de Invitados"
+    "subtitle": "Lista de Invitados",
+    "createGroup": "Crear Grupo"
   },
   "Pagination": {
     "next": "Siguiente >",

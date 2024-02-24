@@ -61,7 +61,8 @@
     "togleAll": "החלף הכל",
     "addInv": "להוסיף אורח",
     "filter": "סנן",
-    "subtitle": "רשימת מוזמנים"
+    "subtitle": "רשימת מוזמנים",
+    "createGroup": "צור קבוצה"
   },
   "Pagination": {
     "next": "הבא >",

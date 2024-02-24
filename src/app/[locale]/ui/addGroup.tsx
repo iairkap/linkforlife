@@ -8,7 +8,6 @@ import { useDashboardData } from '../helpers/useDashboardData';
 import MultiSelect from './Select';
 import { useSession } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
-
 interface AddInvProps {
     isOpen: boolean;
     contentLabel: string;
@@ -24,20 +23,18 @@ interface AddInvProps {
     onRequestCloseGeneral: () => void;
 }
 
-function AddWedding({ isOpen, contentLabel, onRequestClose, refreshData, onRequestCloseGeneral, user }: AddInvProps) {
+function AddGroup({ isOpen, contentLabel, onRequestClose, refreshData, onRequestCloseGeneral, user }: AddInvProps) {
 
     const posibleNameEvent = user?.name + ' ' + "&" + " " + user?.partnerName
     console.log(posibleNameEvent)
     const [weddingName, setWeddingName] = React.useState(posibleNameEvent);
-    const [weddingPlace, setWeddingPLace] = React.useState('');
-    const [weddingDate, setWeddingDate] = useState<string>('');
+
     const t = useTranslations('AddWedding');
 
 
     const data = {
         weddingName: weddingName,
-        weddingPlace: weddingPlace,
-        weddingDate: weddingDate
+
     }
 
 
@@ -47,9 +44,7 @@ function AddWedding({ isOpen, contentLabel, onRequestClose, refreshData, onReque
     const handleWeddingaAddition = async () => {
         try {
             const wedding = {
-                weddingName,
-                weddingPlace,
-                weddingDate
+                weddingName
             };
 
             const response = await axios.post('/api/wedding', wedding);
@@ -73,26 +68,6 @@ function AddWedding({ isOpen, contentLabel, onRequestClose, refreshData, onReque
                         onChange={(e) => setWeddingName(e.target.value)}
                         error=''
                     />
-                    <InputField
-                        value={weddingPlace}
-                        type="text"
-                        placeholder={t("weddingPlace")}
-                        onChange={(e) => setWeddingPLace(e.target.value)}
-                        error=''
-                    />
-                    <InputField
-                        value={weddingDate}
-                        type={weddingDate ? "date" : "text"}
-                        placeholder={t("weddingDate")}
-                        onFocus={(e) => e.currentTarget.type = 'date'}
-                        onBlur={(e) => {
-                            if (!e.currentTarget.value) {
-                                e.currentTarget.type = 'text';
-                            }
-                        }}
-                        onChange={(e) => setWeddingDate(e.target.value)}
-                        error=''
-                    />
                     <Button label={t("save")} onClick={handleWeddingaAddition} className='button-a' />
                 </article>
             </section>
@@ -100,4 +75,4 @@ function AddWedding({ isOpen, contentLabel, onRequestClose, refreshData, onReque
     );
 }
 
-export default AddWedding;
+export default AddGroup;

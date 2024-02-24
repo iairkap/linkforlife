@@ -16,11 +16,13 @@ import { usePathname } from 'next/navigation';
 import { extractLocaleFromPathName } from "../../utils/getLocale"
 import { Modal } from '@mui/material';
 import { useTranslations } from 'next-intl';
+import AddGroup from '../../ui/addGroup';
 
 function Dashboard() {
     const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations, selectedWedding, setSelectedWedding, weddings, setWeddings, /* handleWeddingChange */
         ModalFirstSteps, setModalFirstSteps, refreshData, user } = useDashboardData();
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isGroupModalOpen, setIsGroupModalOpen] = useState(false);
     const [filter, setFilter] = useState('all');
     const [filteredUserInvitationList, setFilteredUserInvitationList] = useState(userInvitationList);
     const pathName = usePathname();
@@ -45,14 +47,15 @@ function Dashboard() {
     const handleOpenModal = () => {
         setIsModalOpen(true);
     };
+    const handleOpenGroupModal = () => {
+        setIsGroupModalOpen(true);
+    }
 
     const handleCloseModal = () => {
         setIsModalOpen(false);
     };
     const isWeddingsEmpty = weddings && weddings.length === 0;
-
     const [isMenuOpen, setMenuOpen] = useState(false);
-
     const { tableProps, renderTable } = TableInvitationList({
         userInvitationList: filteredUserInvitationList,
         groupInvitations,
@@ -101,11 +104,14 @@ function Dashboard() {
                             {t("subtitle")}
                         </h4>
                         {
-                            !isWeddingsEmpty && (<button onClick={handleOpenModal} className="buttonPLus">
-                                {t("addInv")}{" "}
-                            </button>
-                            )}
-
+                            !isWeddingsEmpty &&
+                            <div className='button-container-header-table'>
+                                <button onClick={handleOpenModal} className="buttonPLus">
+                                    {t("addInv")}{" "}
+                                </button>
+                                <button onClick={handleOpenGroupModal} className='buttonPlusGroup'>{t("createGroup")}</button>
+                            </div>
+                        }
                     </div>
 
                     <HeaderFilter
