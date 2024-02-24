@@ -100,15 +100,21 @@ const MenuProps = {
         },
     },
 };
+interface MultipleSelectChipProps {
+    valueselct: any;
+    selectedValueSelector: any;
+    setSelectedValueSelector: any;
+    otherValue: string;
+}
 
-export default function MultipleSelectChip({ valueselct, selectedValueSelector, setSelectedValueSelector, otherValue }: { valueselct: any, setValueSelect: any, selectedValueSelector: any, setSelectedValueSelector: any }) {
+export default function MultipleSelectChip({ valueselct, selectedValueSelector, setSelectedValueSelector, otherValue }: MultipleSelectChipProps) {
     const handleChange = (event: SelectChangeEvent<typeof selectedValueSelector>) => {
         const {
             target: { value },
         } = event;
         setSelectedValueSelector(
             value.includes('other')
-                ? [...value.filter(val => val !== 'other'), valueselct.find(group => group.name === 'other')?.id]
+                ? [...value.filter((val: string) => val !== 'other'), valueselct.find((group: any) => group.name === 'other')?.id]
                 : value as unknown as number[]
         );
     };
@@ -127,14 +133,14 @@ export default function MultipleSelectChip({ valueselct, selectedValueSelector, 
                         input={<OutlinedInput id="select-multiple-chip" label="Groups" />}
                         renderValue={(selected) => (
                             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                                {selected.map((value) => (
-                                    <Chip key={value} label={valueselct.find(group => group.id === value)?.name || ''} />
+                                {selected.map((value: any) => (
+                                    <Chip key={value} label={valueselct.find((group: any) => group.id === value)?.name || ''} />
                                 ))}
                             </Box>
                         )}
                         MenuProps={MenuProps}
                     >
-                        {valueselct.map((group) => (
+                        {valueselct.map((group: any) => (
                             <MenuItem
                                 key={group.id}
                                 value={group.id}

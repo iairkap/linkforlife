@@ -114,7 +114,7 @@ function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList, u
                         otherValue={otherValue}
 
                     />
-                    {selectedGroups.includes(groups.find(group => group.name === 'other')?.id) &&
+                    {selectedGroups.includes(groups.find((group: any) => group.name === 'other')?.id) &&
                         <InputField
                             value={otherValue}
                             type="text"
