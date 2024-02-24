@@ -3,7 +3,7 @@ import Modal from './modal';
 import InputField from './InputField';
 import "../sass/layout/modalContent.scss"
 import axios from 'axios';
-
+import { useDashboardData } from '../helpers/useDashboardData';
 
 interface modalGroupProps {
     isOpen: boolean;
@@ -11,12 +11,14 @@ interface modalGroupProps {
     onRequestClose: () => void;
     onRequestCloseGeneral: () => void;
     weddings: any[];
+    setGroups: (groups: any) => void;
 
 }
 
 
-function ModalGroup({ isOpen, contentLabel, onRequestClose, onRequestCloseGeneral, weddings }: modalGroupProps) {
+function ModalGroup({ isOpen, contentLabel, onRequestClose, onRequestCloseGeneral, weddings, setGroups }: modalGroupProps) {
 
+    const { fetchData, isLoading, setIsLoading, } = useDashboardData();
 
     const [form, setForm] = useState({
         name: "",
@@ -30,7 +32,10 @@ function ModalGroup({ isOpen, contentLabel, onRequestClose, onRequestCloseGenera
         e.preventDefault();
         try {
             const response = await axios.post('/api/groupsList', form);
-            console.log(response);
+            const newGroup = response.data; // assuming the response contains the new group
+            setGroups((prevGroups: any[]): any => [...prevGroups, newGroup]); // update the groups state immediately
+            fetchData();
+            onRequestCloseGeneral();
         } catch (error) {
             console.error(error);
         }
@@ -38,10 +43,9 @@ function ModalGroup({ isOpen, contentLabel, onRequestClose, onRequestCloseGenera
 
     return (
         <Modal isOpen={isOpen} contentLabel={contentLabel} onRequestClose={onRequestClose}>
-            <div className='modal-content'>
+            <section className='containerModalInvitationWedding'>
                 <h1 className='title-container'>Creacion de grupos</h1>
                 <form onSubmit={handleSubmit}>
-                    <h6>este es el modal para agregar grupos</h6>
                     <InputField
                         type="text"
                         placeholder="nombre del grupo"
@@ -49,8 +53,7 @@ function ModalGroup({ isOpen, contentLabel, onRequestClose, onRequestCloseGenera
                         onChange={(e) => setForm({ ...form, name: e.target.value })}
                     />
                     <button type='submit'>Enviar</button>                </form>
-                <button onClick={onRequestCloseGeneral}>סגירה</button>
-            </div>
+            </section>
         </Modal>
     );
 }

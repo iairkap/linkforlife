@@ -27,11 +27,10 @@ export const useDashboardData = () => {
     null
   );
 
-  console.log(groups);
-  console.log(userInvitationList);
   const router = useRouter();
 
   const fetchData = async () => {
+    console.log("fetching data");
     setIsLoading(true);
     try {
       const databis = await fetchUserDataBis();
@@ -40,10 +39,8 @@ export const useDashboardData = () => {
       setWeddings(data);
       const dataGroups = await fetchGroups();
       setGroups(dataGroups);
-
       const upcomingExpenses = await fetchUpcomingExpenses();
       setUpcomingExpenses(upcomingExpenses);
-
       if (data.length > 0) {
         setSelectedWedding(data[0].id);
         const filteredInvitations = data[0].weddingInvitationList.filter(
@@ -56,12 +53,6 @@ export const useDashboardData = () => {
       }
     } catch (error) {
       const axiosError = error as AxiosError;
-      /* 
-      if (axiosError.response && axiosError.response.status === 404) {
-        router.replace("/dashboard/rsvp");
-        setModalFirstSteps(true);
-        console.error("No weddings found");
-      } */
     } finally {
       setIsLoading(false);
     }

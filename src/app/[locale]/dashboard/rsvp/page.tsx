@@ -17,10 +17,10 @@ import { extractLocaleFromPathName } from "../../utils/getLocale"
 import { Modal } from '@mui/material';
 import { useTranslations } from 'next-intl';
 import AddGroup from '../../ui/addGroup';
-
+import ModalGroup from '../../ui/modalGroup';
 function Dashboard() {
     const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations, selectedWedding, setSelectedWedding, weddings, setWeddings, /* handleWeddingChange */
-        ModalFirstSteps, setModalFirstSteps, refreshData, user } = useDashboardData();
+        ModalFirstSteps, setModalFirstSteps, refreshData, user, setGroups } = useDashboardData();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isGroupModalOpen, setIsGroupModalOpen] = useState(false);
     const [filter, setFilter] = useState('all');
@@ -98,6 +98,14 @@ function Dashboard() {
                         userInvitationList={userInvitationList}
                         user={user}
                         groups={groups}
+                    />
+                    <ModalGroup
+                        isOpen={isGroupModalOpen}
+                        onRequestClose={() => setIsGroupModalOpen(false)}
+                        contentLabel="My Modal"
+                        onRequestCloseGeneral={() => setIsGroupModalOpen(false)}
+                        weddings={weddings}
+                        setGroups={setGroups} // pass setGroups here
                     />
                     <div className='first-header'>
                         <h4 className='subtitle'>
