@@ -38,11 +38,8 @@ export const useExpenseData = () => {
         });
         rows.push(...groupedData[category]);
       }
-
       setExpenseData(rows);
-
       let amount = 0;
-
       for (let expense of sortedData) {
         amount += expense.amount;
       }

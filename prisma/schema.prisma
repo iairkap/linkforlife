@@ -63,6 +63,7 @@ model Wedding {
   tokenForInvitation  String?
   budget                Float?
   splitBetween          String[]
+  picture               String?
 }
 
 
@@ -124,14 +125,15 @@ enum STATUS {
 }
 model WeddingInvitationList {
   id               Int      @id @default(autoincrement())
-  name             String
-  lastName         String
-  emailInvitation  String
+  name             String[]
+  lastName         String[]
+  emailInvitation  String[]
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
-  plusOne          Boolean  @default(false)
   user             User     @relation(fields: [userId], references: [id])
   userId           Int
+  plusOne Boolean @default(false)
+  family           Boolean  @default(false)
   invitedBy        String[]
   specialRole      String[]
   isAttending      Boolean  @default(false)
@@ -143,9 +145,11 @@ model WeddingInvitationList {
   phoneNumber      String?
   wedding          Wedding  @relation(fields: [weddingId], references: [id])
   weddingId        Int
-  avatar         String?
+  avatar         String[]
   groupby         String[]
 }
+
+
 
 model Group {
   id                    Int                     @id @default(autoincrement())
@@ -155,4 +159,12 @@ model Group {
   weddingInvitationList WeddingInvitationList[]
   wedding               Wedding                 @relation(fields: [weddingId], references: [id])
   weddingId             Int
+}
+
+
+model weddingInvitationCard{
+  id               Int      @id @default(autoincrement())
+  model             String
+  url               String
+
 }

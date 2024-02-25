@@ -1,0 +1,8 @@
+@import "../abstracts//variables.scss";
+.card-container-invitation-card {
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-family: $es-en-font;
+}

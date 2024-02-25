@@ -42,7 +42,7 @@ function ModalGroup({ isOpen, contentLabel, onRequestClose, onRequestCloseGenera
     }
 
     return (
-        <Modal isOpen={isOpen} contentLabel={contentLabel} onRequestClose={onRequestClose}>
+        <Modal isOpen={isOpen} contentLabel={contentLabel} onRequestClose={onRequestClose} icon={"groups_3"}>
             <section className='containerModalInvitationWedding'>
                 <h1 className='title-container'>Creacion de grupos</h1>
                 <form onSubmit={handleSubmit}>

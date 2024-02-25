@@ -1,0 +1,31 @@
+@import "../abstracts/variables";
+.linkContainer {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #e0e0e0;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0rem 5rem 5rem 0rem;
+  padding-left: 1rem;
+}
+
+.copylink {
+  background-color: $accent-color;
+  color: white;
+  border-radius: 0rem 5rem 5rem 0rem;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.fafa {
+  border: transparent;
+  stroke: transparent;
+  width: 100%;
+}
+
+.fafa:focus {
+  border: transparent;
+  stroke: transparent;
+  width: 100%;
+  outline: none;
+}

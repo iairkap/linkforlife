@@ -26,13 +26,13 @@ export default async function handle(req, res) {
       await prisma.group.deleteMany();
       await prisma.weddingInvitationList.deleteMany();
       await prisma.wedding.deleteMany();
-      await prisma.user.deleteMany({
+      await prisma.user.deleteMany(/* {
         where: {
           superAdmin: {
             not: true,
           },
         },
-      });
+      } */);
 
       res.status(200).json({
         message: "All users and associated data deleted successfully",

@@ -7,8 +7,8 @@ import axios from 'axios';
 import { useDashboardData } from '../helpers/useDashboardData';
 import MultiSelect from './Select';
 import { useTranslations } from 'next-intl';
-import { splitName } from '../utils/splitName';
 import MultipleSelectChip from './multiSelectorMaterialUI';
+import AddInvOnePerson from './addInvOnePerson';
 interface AddInvProps {
     isOpen: boolean;
     contentLabel: string;
@@ -34,13 +34,40 @@ function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList, u
     const [phoneNumber, setPhoneNumber] = React.useState('');
     const [selectedGroups, setSelectedGroups] = React.useState<number[]>([]);
     const [otherValue, setOtherValue] = React.useState('');
+    const [plusOne, setPluseOne] = useState(false);
+    const [family, setFamily] = useState(false);
     const t = useTranslations('ModalAddInv');
-    splitName(user?.name)
+    const [addInvOnePerson, setAddInvOnePerson] = useState(true);
+    const [addInvCouple, setAddInvCouple] = useState(false);
+    const [addInvFamily, setAddInvFamily] = useState(false);
 
+    const handleClick = (type: any) => {
+        switch (type) {
+            case 'one':
+                setAddInvOnePerson(true);
+                setAddInvCouple(false);
+                setAddInvFamily(false);
+                break;
+            case 'couple':
+                setAddInvOnePerson(false);
+                setAddInvCouple(true);
+                setAddInvFamily(false);
+                break;
+            case 'family':
+                setAddInvOnePerson(false);
+                setAddInvCouple(false);
+                setAddInvFamily(true);
+                break;
+            default:
+                break;
+        }
+    };
 
     const wedding = user.weddings[0]?.id
 
-
+    console.log(addInvFamily)
+    console.log(addInvCouple)
+    console.log(addInvOnePerson)
 
     console.log(selectedGroups)
     const { fetchData, isLoading, setIsLoading, } = useDashboardData();
@@ -61,6 +88,7 @@ function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList, u
 
             const newGroups = otherValue ? [otherValue] : [];
             const response = await axios.post('/api/invitationListGeneral', invitation);
+            console.log(response)
             const invitationId = response.data[0].id;
             console.log('Invitation ID in handleAddInv:', invitationId); // Add this line
 
@@ -85,56 +113,33 @@ function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList, u
         <Modal isOpen={isOpen} onRequestClose={onRequestClose} contentLabel={contentLabel} icon={"person_add"}>
             <section className='containerModalInvitationWedding'>
                 <h1 className='title-container'>{t("addInv")}</h1>
-                <article className="layoutb">
-                    <InputField
-                        value={name}
-                        type="text"
-                        placeholder={t("name")}
-                        onChange={(e) => setName(e.target.value)}
-                        error=''
-                    />
-                    <InputField
-                        value={lastName}
-                        type="text"
-                        placeholder={t("lastName")}
-                        onChange={(e) => setLastName(e.target.value)}
-                        error=''
-                    />
-                    <InputField
-                        value={email}
-                        type="text"
-                        placeholder={t("email")}
-                        onChange={(e) => setEmail(e.target.value)}
-                        error=''
-                    />
-                    <InputField
-                        value={phoneNumber}
-                        type="text"
-                        placeholder={t("phone")}
-                        onChange={(e) => setPhoneNumber(e.target.value)}
-                        error=''
-                    />
+                <header>
+                    <button onClick={() => handleClick('one')}>One Person</button>
+                    <button onClick={() => handleClick('couple')}>Couple</button>
+                    <button onClick={() => handleClick('family')}>Family</button>
+                </header>
+                {addInvOnePerson &&
 
-                    <MultipleSelectChip
-                        valueselct={groups}
-                        selectedValueSelector={selectedGroups}
-                        setSelectedValueSelector={setSelectedGroups}
+                    <AddInvOnePerson
+                        name={name}
+                        setName={setName}
+                        lastName={lastName}
+                        setLastName={setLastName}
+                        email={email}
+                        setEmail={setEmail}
+                        phoneNumber={phoneNumber}
+                        setPhoneNumber={setPhoneNumber}
+                        groups={groups}
+                        selectedGroups={selectedGroups}
+                        setSelectedGroups={setSelectedGroups}
                         otherValue={otherValue}
-
+                        setOtherValue={setOtherValue}
+                        t={t}
                     />
-                    {selectedGroups.includes(groups.find((group: any) => group.name === 'other')?.id) &&
-                        <InputField
-                            value={otherValue}
-                            type="text"
-                            placeholder={t("other")}
-                            onChange={(e) => setOtherValue(e.target.value)}
-                            error=''
-                        />
-                    }
-                    <Button label={t("save")} onClick={handleAddInv} className='button-a' />
-                </article>
+                }
+                <Button label={t("save")} onClick={handleAddInv} className='button-a' />
             </section>
-        </Modal>
+        </Modal >
     );
 }
 

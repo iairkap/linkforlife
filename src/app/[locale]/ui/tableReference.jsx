@@ -58,6 +58,8 @@ const HeaderFilter = ({
               display: "flex",
               alignItems: "center",
               gap: "0.5rem",
+              cursor: "pointer",
+              transition: "all 0.3s ease-in-out",
             }}
             className="filter-b"
           >

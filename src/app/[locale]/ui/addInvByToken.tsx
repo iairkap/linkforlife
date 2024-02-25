@@ -7,7 +7,6 @@ import axios from 'axios';
 import { useDashboardData } from '../helpers/useDashboardData';
 import MultiSelect from './Select';
 import { useTranslations } from 'next-intl';
-import { splitName } from '../utils/splitName';
 import ModalNotification from './modalNotification';
 import { useState } from 'react';
 import { storage } from '@/firebase';

@@ -8,7 +8,6 @@ import DashboardGraphCard from './DashboardGraphCard';
 import Groom from "../../../../public/groom.svg"
 import Bride from "../../../../public/bride.svg"
 import Both from "../../../../public/both.svg"
-import { splitName } from '../utils/splitName';
 import { useTranslations } from 'next-intl';
 
 interface UserInvitation {
@@ -93,7 +92,7 @@ function DashboardGraph({ userInvitationList, user, extraction }: { userInvitati
     };
     const cards = [
         <DashboardGraphCard cardTitle={`${t("invitedBy")} ${user.partnerName}`} icon={iconPartner} confirmed={confirmedByGroom} attending={isAttendingByGroom} notAttending={notAttendingByGroom} notConfirmed={notConfirmedByGroom} total={invitedByGroom} extraction={extraction} next={handleNext} currentPage={currentPage} setCurrentPage={setCurrentPage} />,
-        <DashboardGraphCard cardTitle={`${t("invitedBy")} ${splitName(user.name)}`} icon={iconUser} confirmed={confirmedByBride} attending={isAttendingByBride} notAttending={notAttendingByBride} notConfirmed={notConfirmedByBride} total={invitedByBride} extraction={extraction} next={handleNext} previous={handlePrev} currentPage={currentPage} setCurrentPage={setCurrentPage} />,
+        <DashboardGraphCard cardTitle={`${t("invitedBy")} ${(user.name)}`} icon={iconUser} confirmed={confirmedByBride} attending={isAttendingByBride} notAttending={notAttendingByBride} notConfirmed={notConfirmedByBride} total={invitedByBride} extraction={extraction} next={handleNext} previous={handlePrev} currentPage={currentPage} setCurrentPage={setCurrentPage} />,
         <DashboardGraphCard cardTitle={`${t("totalInvited")}`} icon={Both} confirmed={confirmedTotal} attending={isAttendingTotal} notAttending={notAttendingTotal} notConfirmed={notConfirmedTotal} total={invitedTotal} extraction={extraction} previous={handlePrev} currentPage={currentPage} setCurrentPage={setCurrentPage} />
     ];
 
