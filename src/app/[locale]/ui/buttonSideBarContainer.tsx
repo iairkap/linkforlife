@@ -4,7 +4,7 @@ import rsvp from "../../../../public/rsvp.svg"
 import home from "../../../../public/home.svg"
 import charts from "../../../../public/charts.svg"
 import calendar from "../../../../public/calendar.svg"
-import invitation from "../../../../public/invitation.svg.svg"
+import invitation from "../../../../public/invitation.svg"
 import { useState } from "react";
 import { useTranslations } from 'next-intl';
 import { usePathname } from "../../../navigation"
