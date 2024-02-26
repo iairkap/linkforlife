@@ -6,7 +6,8 @@
     "dashboard": "לוח בקרה",
     "rsvp": "רשימת מוזמנים",
     "charts": "תשלומים",
-    "calendar": "לוח שנה"
+    "calendar": "לוח שנה",
+    "invitation": "הזמנות"
   },
   "MenuDropDown": {
     "settings": "הגדרות",
@@ -62,7 +63,8 @@
     "addInv": "להוסיף אורח",
     "filter": "סנן",
     "subtitle": "רשימת מוזמנים",
-    "createGroup": "צור קבוצה"
+    "createGroup": "צור קבוצה",
+    "shareRSVP": "שתף רשימת מוזמנים"
   },
   "Pagination": {
     "next": "הבא >",
@@ -105,5 +107,12 @@
     "joinWedding": "הצטרף לחתונה",
     "enterToken": "הכנס טוקן",
     "join": "הצטרף"
+  },
+  "CreateToken": {
+    "title": "צור אסימון לשיתוף חתונה",
+    "subtitle": "שתף את הקישור עם האסימון שבחרת לאנשי הקשר שלך כדי לקבל את המידע שלהם",
+    "token": "אסימון",
+    "copy": "העתק קישור",
+    "updateToken": "עדכן את האסימון"
   }
 }

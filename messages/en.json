@@ -6,7 +6,8 @@
     "dashboard": "Dashboard",
     "rsvp": "RSVP",
     "charts": "Charts",
-    "calendar": "Calendar"
+    "calendar": "Calendar",
+    "invitation": "Invitation"
   },
   "MenuDropDown": {
     "settings": "Settings",
@@ -64,7 +65,8 @@
     "addInv": "Add guest",
     "filter": "Filter",
     "subtitle": "Guest List",
-    "createGroup": "Create Group"
+    "createGroup": "Create Group",
+    "shareRSVP": "Share RSVP"
   },
   "Pagination": {
     "next": "Next >",
@@ -118,5 +120,12 @@
     "joinWedding": "Join Wedding",
     "enterToken": "Enter Token",
     "join": "Join"
+  },
+  "CreateToken": {
+    "title": "Share RSVP Link",
+    "subtitle": "Share the link with the token you choose for your contacts to obtain their information ",
+    "token": "Token",
+    "copy": "Copy Link",
+    "updateToken": "Update Token"
   }
 }

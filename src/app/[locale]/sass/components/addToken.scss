@@ -1,20 +1,38 @@
 @import "../abstracts/variables";
 .linkContainer {
-  display: flex;
-  flex-direction: row;
-  border: 1px solid #e0e0e0;
-  align-items: center;
+  font-size: 1rem;
+  border: 1.5px solid #818369;
+  border-radius: 0.5rem;
+  outline: none;
+  min-height: 2rem;
+  width: calc(100% - 43px);
+  padding: 14px 20px;
+  width: 100%;
   justify-content: space-between;
-  border-radius: 0rem 5rem 5rem 0rem;
-  padding-left: 1rem;
+  position: relative;
 }
 
 .copylink {
-  background-color: $accent-color;
+  border-radius: 0.35056rem;
+  background: #e3e4cd;
   color: white;
-  border-radius: 0rem 5rem 5rem 0rem;
-  padding: 1rem;
+  width: 4.875rem;
+  padding: 0.43819rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #818369;
+  font-family: $es-en-font;
+  font-size: 0.70113rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
   cursor: pointer;
+  position: absolute;
+  right: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 90%;
 }
 
 .fafa {
@@ -28,4 +46,25 @@
   stroke: transparent;
   width: 100%;
   outline: none;
+}
+
+.text-align {
+  text-align: center !important;
+  color: $accent-color;
+  display: flex;
+  width: 70%;
+  align-self: center;
+  justify-self: center;
+  margin: 0 auto;
+}
+
+.token-span {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translate(0, -50%);
+}
+
+.container-input-text {
+  position: relative;
 }

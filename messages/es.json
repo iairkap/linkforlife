@@ -6,7 +6,8 @@
     "dashboard": "Dashboard",
     "rsvp": "RSVP",
     "charts": "Pagos",
-    "calendar": "Calendario"
+    "calendar": "Calendario",
+    "invitation": "Invitaciones"
   },
   "MenuDropDown": {
     "settings": "Configuración",
@@ -63,7 +64,8 @@
     "addInv": "Agregar Invitado",
     "filter": "Filtrar",
     "subtitle": "Lista de Invitados",
-    "createGroup": "Crear Grupo"
+    "createGroup": "Crear Grupo",
+    "shareRSVP": "Compartir RSVP"
   },
   "Pagination": {
     "next": "Siguiente >",
@@ -110,5 +112,12 @@
     "joinWedding": "Unirse a un Casamiento",
     "enterToken": "Ingresar Token",
     "join": "Unirse"
+  },
+  "CreateToken": {
+    "title": "Compartir formulario RSVP",
+    "subtitle": "Comparte el link con el token que elijas para tus contactos para obtener su información ",
+    "token": "Token",
+    "copy": "Copiar Link",
+    "updateToken": "Actualizar Token"
   }
 }

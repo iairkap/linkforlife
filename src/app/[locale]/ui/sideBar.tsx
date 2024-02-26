@@ -23,7 +23,6 @@ const Sidebar = () => {
             <animated.div className="sidebar">
                 <div className='logo-container'>
                     <Image src="/finalLogoB.png" alt="logo" width={196} height={38.33} />
-
                     <button onClick={() => { }} className='button'>
                     </button>
                 </div>

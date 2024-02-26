@@ -4,7 +4,7 @@ import type { ModalType } from '@/types/types';
 import axios from 'axios';
 import InputField from './InputField';
 import { useRef } from 'react';
-
+import { useTranslations } from 'next-intl';
 import "../sass/components/addToken.scss"
 interface CreateTokenProps {
     weddingId: string;
@@ -13,10 +13,8 @@ interface CreateTokenProps {
 
 
 function CreateToken({ isOpen, contentLabel, onRequestClose, weddingId, extraction }: ModalType & CreateTokenProps) {
-
     const [token, setToken] = useState('');
-
-    console.log(weddingId);
+    const t = useTranslations('CreateToken');
 
     const handleSubmit = async () => {
         try {
@@ -45,37 +43,38 @@ function CreateToken({ isOpen, contentLabel, onRequestClose, weddingId, extracti
 
 
     return (
-        <Modal isOpen={isOpen} contentLabel={contentLabel} onRequestClose={onRequestClose} icon={"groups_3"}>
+        <Modal isOpen={isOpen} contentLabel={contentLabel} onRequestClose={onRequestClose} icon={"person_add"}>
             <section className='containerModalInvitationWedding'>
                 <article style={{
                 }}>
-                    <h1 className='title-container'>Compartir formulario RSVP</h1>
+                    <h1 className='title-container'>{t("title")}</h1>
+                    <span className='text-align'>
+                        {t("subtitle")}
+                    </span>
                     <div className='layoutbis' style={{
                         width: '70%',
                         alignSelf: "center",
                         marginTop: "2rem",
                         marginLeft: "15%",
                     }}>
-                        <span style={{ marginBottom: "2rem" }}>
-                            Comparte el link con el token que elijas con tus contactos para obtener su información
-                        </span>
-                        <br />
-                        <br />
-                        <InputField
-                            type="text"
-                            placeholder="Token"
-                            value={token}
-                            onChange={(e) => setToken(e.target.value)}
-                        />
+                        <div className='container-input-text'>
+                            <InputField
+                                type="text"
+                                placeholder=""
+                                value={token}
+                                onChange={(e) => setToken(e.target.value)}
+                            />
+                            <span className='token-span'>{t("token")}</span>
+                        </div>
                         <br />
                         <div className='linkContainer'>
-                            <input ref={linkRef} value={`https://weddingplanningdashboard.vercel.app/${extraction}/invitationList/${weddingId}`} readOnly className='fafa' />
+                            <input ref={linkRef} value={`weddingplanningdashboard.com/${extraction}/invitationList/${weddingId}`} readOnly className='fafa' />
 
-                            <h5 onClick={copyToClipboard} className='copylink'>Copy Link</h5>
+                            <h5 onClick={copyToClipboard} className='copylink'>{t("copy")}</h5>
                         </div>
                         <br />
 
-                        <button onClick={handleSubmit} className='button-a'>Update Token</button>
+                        <button onClick={handleSubmit} className='button-a'>{t("updateToken")}</button>
                     </div>
                 </article>
             </section>

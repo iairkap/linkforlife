@@ -19,8 +19,12 @@ import { useTranslations } from 'next-intl';
 import AddGroup from '../../ui/addGroup';
 import ModalGroup from '../../ui/modalGroup';
 import CreateToken from '../../ui/createToken';
-/* import DragAndDropPicture from '../../ui/DragAndDropPicture';
- */function Dashboard() {
+import HearderRSVP from '../../ui/headerRSVP';
+
+
+
+
+function Dashboard() {
     const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations, selectedWedding, setSelectedWedding, weddings, setWeddings, /* handleWeddingChange */
         ModalFirstSteps, setModalFirstSteps, refreshData, user, setGroups } = useDashboardData();
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,6 +35,9 @@ import CreateToken from '../../ui/createToken';
     const pathName = usePathname();
     const extraction = extractLocaleFromPathName(pathName)
     const t = useTranslations("RSVPTABLE");
+
+
+
     useEffect(() => {
         const newFilteredUserInvitationList = userInvitationList.filter(invitation => {
             if (filter === 'confirmed') {
@@ -91,10 +98,10 @@ import CreateToken from '../../ui/createToken';
         );
     }
 
-    let weddingsId = ""; // Declare the variable 'weddingsId'
+    let weddingsId = "";
 
     if (weddings.length > 0) {
-        weddingsId = String(weddings[0].id); // Convert the value to a string before assigning it to 'weddingsId'
+        weddingsId = String(weddings[0].id);
     }
 
 
@@ -126,39 +133,9 @@ import CreateToken from '../../ui/createToken';
                         weddingId={weddingsId}
                         extraction={extraction}
                     />
-                    <div className='first-header'>
-                        <div>
-                            <h4 className='subtitle'>
-                                {t("subtitle")}
-                            </h4>
-                            {
-                                !isWeddingsEmpty &&
-                                <button onClick={handleOpenTokenModal}>Compartir formulario RSVP</button>
-                            }
-                        </div>
-                        {
-
-                            !isWeddingsEmpty &&
-                            <div className='button-container-header-table'>
-                                <button onClick={handleOpenModal} className="buttonPLus">
-                                    {t("addInv")}{" "}
-                                </button>
-                                <button onClick={handleOpenGroupModal} className='buttonPlusGroup'>{t("createGroup")}</button>
-                            </div>
-                        }
-                    </div>
-                    {/* 
-                    <div><span>Share this link to your contacts to reach their information</span>
-                        <div>
-                            <span>
-                                <a href={`/invitationList/${weddingsId}`} as={`/${extraction}/invitationList/${weddingsId}`}>http://localhost.com{extraction}/invitationList/{weddingsId}</a>
-                            </span>
-                        </div>
-                    </div> */}
-
-                    <div></div>
+                    <HearderRSVP t={t} isWeddingsEmpty={isWeddingsEmpty} handleOpenTokenModal={handleOpenTokenModal} handleOpenModal={handleOpenModal} handleOpenGroupModal={handleOpenGroupModal} />
                     <HeaderFilter
-                        getToggleHideAllColumnsProps={tableProps.getToggleHideAllColumnsProps} // Pasa esto aquí
+                        getToggleHideAllColumnsProps={tableProps.getToggleHideAllColumnsProps}
                         isMenuOpen={isMenuOpen}
                         setMenuOpen={setMenuOpen}
                         allColumns={tableProps.allColumns}
@@ -185,8 +162,7 @@ import CreateToken from '../../ui/createToken';
                     />
 
                 </div>
-                {/*                 <DragAndDropPicture />
- */}            </section>
+            </section>
         </main >
     );
 }

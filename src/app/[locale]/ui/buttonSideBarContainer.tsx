@@ -10,9 +10,6 @@ import { useTranslations } from 'next-intl';
 import { usePathname } from "../../../navigation"
 function ButtonSideBarContainer() {
     const pathName = usePathname();
-    console.log(pathName)
-
-
     const t = useTranslations('Sidebar');
     const icons = [
         {
