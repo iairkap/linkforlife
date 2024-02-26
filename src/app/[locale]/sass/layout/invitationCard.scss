@@ -1,8 +1,100 @@
 @import "../abstracts//variables.scss";
+
+button {
+  cursor: pointer;
+}
 .card-container-invitation-card {
-  border: 1px solid black;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
   font-family: $es-en-font;
+  border: 0.3px solid black;
+  padding: 2.5rem;
+  box-shadow: 0 0 0 0.3 px black;
+  gap: 1rem;
+}
+
+.image-containerCard {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.image {
+  width: 215px;
+  height: auto;
+}
+
+@media (max-width: 1024px) {
+  .image {
+    width: 200px;
+  }
+}
+
+.name-style-card {
+  font-size: 1rem;
+  font-weight: 900;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.buttonA {
+  background-color: $accent-color;
+  padding: 0.5rem 0.5rem;
+  border-radius: 1.5rem;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.buttonB {
+  background-color: transparent;
+  border: 0.5px solid $accent-color;
+  padding: 0.5rem 0.5rem;
+  border-radius: 1.5rem;
+  color: $accent-color;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.button-group {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 1rem;
+}
+
+.button-container-card {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 1rem;
+}
+
+.free-label {
+  display: block;
+}
+
+.button-group {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+}
+
+.button-container-card:hover .button-group {
+  display: block;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 1rem;
+}
+
+.button-container-card:hover .free-label {
+  display: none;
+}
+
+.buttonLike {
+  margin-left: 1rem;
 }

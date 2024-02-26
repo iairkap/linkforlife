@@ -21,3 +21,8 @@ export const fetchUpcomingExpenses = async () => {
   const response = await axios.get("/api/upcomingPayment", {});
   return response.data;
 };
+
+export const fetInvitationCards = async () => {
+  const response = await axios.get("/api/invitationCard", {});
+  return response.data;
+};

@@ -100,3 +100,12 @@ export interface ModalType {
   user?: any;
   splitBetween?: string[] | undefined;
 }
+
+export interface InvitationCard {
+  id: number;
+  image: string | undefined;
+  name: string;
+  favorite: boolean;
+  toggleFavorite: () => void;
+  url?: string | undefined;
+}

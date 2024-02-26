@@ -22,3 +22,19 @@ const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 
 export { storage, ref, listAll, getDownloadURL };
+
+function extractImageNameFromURL(url: string) {
+  let urlParts = url.split("/");
+  console.log(urlParts);
+  let imageNameWithExtension = urlParts[urlParts.length - 1].split("?")[0];
+  let imageNameParts = imageNameWithExtension.split(".");
+  let imageName = imageNameParts[0];
+  let imageNameWithoutDirectory = imageName.replace(
+    "invitationTemplate%2F",
+    ""
+  );
+  return imageNameWithoutDirectory;
+}
+const directoryRef = ref(storage, "/invitationTemplate");
+
+export { extractImageNameFromURL, directoryRef };

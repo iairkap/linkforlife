@@ -44,7 +44,7 @@ model User {
   role                  ROLE                    @default(ADMIN)
   partnerRole           ROLE                    @default(ADMIN)
   expenses              Expenses[]
-  superAdmin  Boolean @default(false)
+  superAdmin  Boolean @default(false)  
 }
 
 model Wedding {
@@ -166,5 +166,5 @@ model weddingInvitationCard{
   id               Int      @id @default(autoincrement())
   model             String
   url               String
-
+  likes             Int      @default(0)
 }
