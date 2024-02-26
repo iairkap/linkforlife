@@ -13,10 +13,6 @@ import { signOut } from "next-auth/react"
 import { usePathname } from 'next/navigation';
 import { extractLocaleFromPathName } from '../utils/getLocale';
 const Sidebar = () => {
-    /*     const [isExpanded, setIsExpanded] = useState(true);
-        const animation = useSpring({
-            width: isExpanded ? 200 : 50,
-        }); */
 
 
     const pathname = usePathname()
