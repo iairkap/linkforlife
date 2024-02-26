@@ -1,8 +1,7 @@
 // pages/api/mapAndSave.js
 import { extractImageNameFromURL, directoryRef } from "../../../firebase";
-import { listAll, getDownloadURL } from "../../../firebase/storage";
-import prisma from "../../../prisma/client";
-
+import { listAll, getDownloadURL } from "../../../firebase";
+import prisma from "../../../utils/prismaClient";
 export default async function handler(req, res) {
   if (req.method === "POST") {
     try {

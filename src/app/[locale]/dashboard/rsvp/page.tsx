@@ -19,8 +19,8 @@ import { useTranslations } from 'next-intl';
 import AddGroup from '../../ui/addGroup';
 import ModalGroup from '../../ui/modalGroup';
 import CreateToken from '../../ui/createToken';
-import DragAndDropPicture from '../../ui/DragAndDropPicture';
-function Dashboard() {
+/* import DragAndDropPicture from '../../ui/DragAndDropPicture';
+ */function Dashboard() {
     const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations, selectedWedding, setSelectedWedding, weddings, setWeddings, /* handleWeddingChange */
         ModalFirstSteps, setModalFirstSteps, refreshData, user, setGroups } = useDashboardData();
     const [isModalOpen, setIsModalOpen] = useState(false);

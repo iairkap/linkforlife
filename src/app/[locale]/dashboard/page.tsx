@@ -28,7 +28,7 @@ import UpcomingPayment from '../ui/upcomingPayment';
 function DashboardGeneral() {
 
 
-    const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations, selectedWedding, setSelectedWedding, weddings, setWeddings, /* handleWeddingChange */
+    const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations, selectedWedding, setSelectedWedding, weddings, setWeddings, /* handleWeddingChange */setGroups,
         ModalFirstSteps, setModalFirstSteps, refreshData, user, upcomingExpenses, setUpcomingExpenses } = useDashboardData();
 
 
@@ -72,7 +72,7 @@ function DashboardGeneral() {
                 <DashboardLastConfirmed userInvitationList={userInvitationList} extraction={extraction} />
             </div>
             {
-                isModalGroupOpen && <ModalGroup isOpen={isModalGroupOpen} contentLabel="Add Group" onRequestClose={() => setIsModalGroupOpen(false)} onRequestCloseGeneral={() => setIsModalGroupOpen(false)} weddings={weddings} />
+                isModalGroupOpen && <ModalGroup isOpen={isModalGroupOpen} contentLabel="Add Group" onRequestClose={() => setIsModalGroupOpen(false)} onRequestCloseGeneral={() => setIsModalGroupOpen(false)} weddings={weddings} setGroups={setGroups} />
             }
 
 

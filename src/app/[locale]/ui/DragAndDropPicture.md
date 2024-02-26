@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+/\* import React, { useState } from 'react';
 import { FilePond, registerPlugin } from 'react-filepond'
 import 'filepond/dist/filepond.min.css'
 import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation'
@@ -23,10 +23,11 @@ function DragAndDropPicture() {
                 maxFiles={3}
                 server="/api"
                 name="files" /* sets the file input name, it's filepond by default */
-                labelIdle={`<img src="${drag}" alt="drag" /><br>Drag & Drop your files or <span class="filepond--label-action">Browse</span>`}
-            />
-        </div>
-    );
+
+labelIdle = {`<img src="${drag}" alt="drag" /><br>Drag & Drop your files or <span class="filepond--label-action">Browse</span>`}
+/>
+</div >
+);
 }
 
-export default DragAndDropPicture;
+export default DragAndDropPicture; \* /
