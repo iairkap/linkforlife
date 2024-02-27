@@ -9,6 +9,7 @@ import Image from 'next/image';
 import { useDashboardData } from '@/app/[locale]/helpers/useDashboardData';
 import type { InvitationCard } from "../../../../../types/types"
 
+
 function InvitationId() {
     const pathName = usePathname();
     const invitationId = Number(pathName?.split('/')[4]);
@@ -16,10 +17,6 @@ function InvitationId() {
 
     const { weddings, isLoading } = useDashboardData();
 
-    console.log(weddings)
-
-
-    console.log(isLoading)
 
 
     if (isLoading) {
@@ -32,7 +29,9 @@ function InvitationId() {
     return (
         <main className='layout-invitation-card'>
             <section className='invitation-card-imagen-container'>
-                <Image src={invitationCard?.url || 'defaultImageUrl'} alt="invitation card" layout='fill' objectFit='cover' />
+                {invitationCard &&
+                    <Image src={invitationCard?.url ?? ''} alt="invitation card" layout='fill' objectFit='cover' />
+                }
             </section>
             <article className='form-container'>
 

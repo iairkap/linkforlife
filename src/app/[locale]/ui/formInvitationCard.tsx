@@ -2,7 +2,8 @@ import React from 'react';
 import InputField from './InputField';
 import { useState } from 'react';
 import type { InvitationCard, Wedding } from '@/types/types';
-
+import ReactDayPicker from "./datePicker"
+import axios from 'axios';
 
 interface Weddings {
     weddings: Wedding[];
@@ -12,113 +13,89 @@ interface Weddings {
 
 
 function formInvitationCard({ invitationCard, weddings }: any) {
-    const [isReadOnly, setIsReadOnly] = useState({
-        name: true,
-        lastName: true,
-        partnerName: true,
-        partnerLastName: true,
-        weddingDate: true,
-        weddingPlace: true
-    });
-    const [form, setForm] = useState({
-        name: '',
-        lastName: '',
-        partnerName: '',
-        partnerLastName: '',
-        weddingDate: '',
-        weddingPlace: ''
-    });
+    const [name, setName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [partnerName, setPartnerName] = useState('');
+    const [partnerLastName, setPartnerLastName] = useState('');
+    const [weddingDate, setWeddingDate] = useState<Date | null>(null);
+    const [weddingTime, setWeddingTime] = useState('');
+    const [weddingPlace, setWeddingPlace] = useState('');
+    const [comments, setComments] = useState('')
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
 
+        try {
+            const response = await axios.post('/api/weddingInvitationCard', {
+                name,
+                lastName,
+                partnerName,
+                partnerLastName,
+                weddingDate,
+                weddingTime,
+                weddingPlace,
+                comments,
+                invitationCardModel: invitationCard.model,
+                invitationCardId: invitationCard.id
+            });
 
-
-
-    const updateChanges = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value
-        });
-    }
-    const handleFocus = (name: string) => {
-        setIsReadOnly({
-            ...isReadOnly,
-            [name]: false
-        });
-    }
-
+            console.log(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     return (
-        <div className='all-container'>
-            <h2 className='title-form-card'>{invitationCard.model}</h2>
+        <main className='all-containeFr'>
+            <div className='title-a'>
+                <h2 className='title-form-card'>{invitationCard.model}</h2>
+                <h4 className='subtitle-form-card'>Personaliza los datos de las invitaciones</h4>
+            </div>
             <section className='form-layout'>
-                <h4>Chequea la informacion para las invitaciones</h4>
-                {weddings && weddings[0] &&
-                    <article className='article-container-text'>
-                        <div className='input-container'>
-                            <h4>Your Name:</h4>
-                            <div className="input-containerBisaBis">
-                                <InputField readOnly={isReadOnly.name} placeholder={weddings[0].users[0].name} value={form.name} name='name' onChange={updateChanges} onFocus={() => handleFocus('name')} type={"text"} />
-                                <button className='edit-button'>Edit</button>
-                            </div>
+                <article className='article-container-text'>
+                    <div className='input-container'>
+                        <div className="input-containerBisaBis">
+                            <InputField placeholder={"Name"} value={name} name='name' onChange={(e) => setName(e.target.value)} type="text" />
                         </div>
-                        <div className='input-container'>
-                            <h4>Your Lastname:</h4>
-                            <div className="input-containerBisaBis">
-                                <InputField readOnly={isReadOnly.lastName} placeholder={weddings[0].users[0].lastName} value={form.lastName} name='lastName' onChange={updateChanges} onFocus={() => handleFocus('lastName')} type={"text"} />
-                                <button className='edit-button'>Edit</button>
-                            </div>
+                    </div>
+                    <div className='input-container'>
+                        <div className="input-containerBisaBis">
+                            <InputField placeholder={"Last Name"} value={lastName} name='lastName' onChange={(e) => setLastName(e.target.value)} type="text" />
                         </div>
-                        <div className='input-container'>
-                            <h4>Your Partner Name:</h4>
-                            <div className="input-containerBisaBis">
-                                <InputField readOnly={isReadOnly.partnerName} placeholder={weddings[0].users[0].partnerName} value={form.partnerName} name='partnerName' onChange={updateChanges} onFocus={() => handleFocus('partnerName')} type={"text"} />
-                                <button className='edit-button'>Edit</button>
-                            </div>
+                    </div>
+                    <div className='input-container'>
+                        <div className="input-containerBisaBis">
+                            <InputField placeholder={"Fiancee's Name"} value={partnerName} name="Fiancee's Name" onChange={(e) => setPartnerName(e.target.value)} type="text" />
                         </div>
-                        <div className='input-container'>
-                            <h4>Your Partner Last Name:</h4>
-                            <div className="input-containerBisaBis">
-                                <InputField readOnly={isReadOnly.partnerLastName} placeholder={weddings[0].users[0].partnerLastName} value={form.partnerLastName} name='partnerLastName' onChange={updateChanges} onFocus={() => handleFocus('partnerLastName')} type={"text"} />
-                                <button className='edit-button'>Edit</button>
-                            </div>
+                    </div>
+                    <div className='input-container'>
+                        <div className="input-containerBisaBis">
+                            <InputField placeholder={"Fiancee's Last Name"} value={partnerLastName} name="Fiancee's Name" onChange={(e) => setPartnerLastName(e.target.value)} type="text" />
                         </div>
-                        <div className='input-container'>
-                            <h4>Your Wedding Date:</h4>
-                            <div className="input-containerBisaBis">
-                                <InputField readOnly={isReadOnly.weddingDate} placeholder={weddings[0].users[0].weddingDate} value={form.weddingDate} name='weddingDate' onChange={updateChanges} onFocus={() => handleFocus('weddingDate')} type={"text"} />
-                                <button className='edit-button'>Edit</button>
-                            </div>
+                    </div>
+                    <div className='input-container'>
+                        <div className="input-containerBisaBis">
+                            <ReactDayPicker date={weddingDate} onChange={(date: any) => setWeddingDate(date)} />
                         </div>
-                        <div className='input-container'>
-                            <h4>Your Wedding Time:</h4>
-                            <div className="input-containerBisaBis">
-                                <InputField readOnly={isReadOnly.weddingDate} placeholder="Wedding time" value={form.weddingDate} name='weddingDate' onChange={updateChanges} onFocus={() => handleFocus('weddingDate')} type={"text"} />
-                                <button className='edit-button'>Edit</button>
-                            </div>
+                    </div>
+                    <div className='input-container'>
+                        <div className="input-containerBisaBis">
+                            <InputField placeholder={"Wedding starting hour"} value={weddingTime} name="Wedding starting hour" onChange={(e) => setWeddingTime(e.target.value)} type="text" />
                         </div>
-                        <div className='input-container'>
-                            <h4>Your Wedding Place:</h4>
-                            <div className="input-containerBisaBis">
-                                <InputField readOnly={isReadOnly.weddingPlace} placeholder="Adress" value={form.weddingPlace} name='weddingPlace' onChange={updateChanges} onFocus={() => handleFocus('weddingPlace')} type={"text"} />
-                                <button className='edit-button'>Edit</button>
-                            </div>
+                    </div>
+                    <div className='input-container'>
+                        <div className="input-containerBisaBis">
+                            <InputField placeholder={"Wedding Place"} value={weddingPlace} name="Wedding Place" onChange={(e) => setWeddingPlace(e.target.value)} type="text" />
                         </div>
-                        <div className='input-container'>
-                            <h4>Comments:</h4>
-                            <div className="input-containerBisaBis">
-                                <InputField readOnly={isReadOnly.weddingPlace} placeholder={weddings[0].weddingPlace} value={form.weddingPlace} name='weddingPlace' onChange={updateChanges} onFocus={() => handleFocus('weddingPlace')} type={"text"} />
-                                <button className='edit-button'>Edit</button>
-                            </div>
+                    </div>
+                    <div className='input-container'>
+                        <div className="input-containerBisaBis">
+                            <InputField placeholder={"Comments"} value={comments} name="Comments" onChange={(e) => setComments(e.target.value)} type="text" />
                         </div>
-
-
-
-
-                    </article>
-                }
-
-
+                    </div>
+                </article>
+                <button className='button-a' onClick={handleSubmit}>Enviar</button>
             </section>
-        </div >
+        </main >
     );
 }
 

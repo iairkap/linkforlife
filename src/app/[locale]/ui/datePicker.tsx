@@ -30,6 +30,7 @@ export const themeGeneral = createTheme({
                               outline: "none",
                               minHeight: "2rem",
                               width: "calc(100% )", */
+                    width: "100%"
 
                 }
 
@@ -90,7 +91,6 @@ export const themeGeneral = createTheme({
 
 export default function DatePickerMaterialUI({ date, onChange }: any) {
 
-    console.log(date)
 
     return (
         <ThemeProvider theme={themeGeneral}>

@@ -45,6 +45,9 @@ model User {
   partnerRole           ROLE                    @default(ADMIN)
   expenses              Expenses[]
   superAdmin  Boolean @default(false)  
+  credits               Int                     @default(2)
+  weddingInvitationCard weddingInvitationCard[] @relation("UserToInvitation")
+
 }
 
 model Wedding {
@@ -168,4 +171,5 @@ model weddingInvitationCard{
   url               String
   likes             Int      @default(0)
   filter            String[]
+  Users User[] @relation("UserToInvitation")
 }

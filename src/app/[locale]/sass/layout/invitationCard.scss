@@ -42,10 +42,14 @@ button {
 .buttonA {
   background-color: $accent-color;
   padding: 0.5rem 0.5rem;
-  border-radius: 1.5rem;
+  border-radius: 0.31081rem;
   color: white;
+  padding: 0.36906rem 0.93244rem;
   font-size: 0.9rem;
   font-weight: 600;
+}
+.buttonA:hover {
+  opacity: 1.1;
 }
 
 .buttonB {
@@ -83,16 +87,14 @@ button {
   display: none;
 }
 
-.button-container-card:hover .button-group {
+.button-container-card {
   display: block;
   display: flex;
+  justify-content: space-between;
   flex-direction: row;
   width: 100%;
   gap: 1rem;
-}
-
-.button-container-card:hover .free-label {
-  display: none;
+  align-items: center;
 }
 
 .buttonLike {

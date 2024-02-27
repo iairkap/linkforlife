@@ -10,6 +10,12 @@ button {
   background-color: transparent;
 }
 
+.MuiFormControl-root
+  MuiTextField-root
+  css-183kv37-MuiFormControl-root-MuiTextField-root {
+  width: 100%;
+}
+
 /* fieldset {
   border: none !important;
   outline: none !important;

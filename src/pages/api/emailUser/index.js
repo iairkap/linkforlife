@@ -48,7 +48,6 @@ export default async function handler(req, res) {
         pass: process.env.EMAIL_PASSWORD, // your email password
       },
     });
-
     const mjml = `
     <mjml>
     <mj-body>
@@ -68,21 +67,15 @@ export default async function handler(req, res) {
           </mj-column>
           </mj-section>
           </mj-body>
-          </mjml>
-          
-          
+          </mjml>   
           `;
-
-    /*           <mj-button href="https://weddingplanningdashboard.vercel.app/token=${inviteToken}" font-family="helvetica" border-radius="0.5rem" background-color="818369" >Accept Invitation</mj-button>
-     */ const htmlOutput = mjml2html(mjml).html;
-
+    const htmlOutput = mjml2html(mjml).html;
     let mailOptions = {
       from: process.env.EMAIL,
       to: emailUser,
       subject: "Weddinginvitation",
       html: htmlOutput,
     };
-
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         res.status(500).send(error);
