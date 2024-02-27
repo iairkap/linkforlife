@@ -21,8 +21,6 @@ function InvitationCardContainer({ cards }: InvitationCardContainer) {
             [id]: !prevFavorites[id]
         }));
     };
-    console.log(cards)
-
     return (
         <article className='cardGridContainerA'>
             {cards.map((card) => (
@@ -32,8 +30,7 @@ function InvitationCardContainer({ cards }: InvitationCardContainer) {
                     image={card.url}
                     name={card.name}
                     favorite={favorites[card.id]}
-                    toggleFavorite={() => toggleFavorite(card.id)}
-                />
+                    toggleFavorite={() => toggleFavorite(card.id)} url={undefined} />
             ))}
         </article>
     );

@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { downloadImage } from '../helpers/download';
 
 
-function InvitationCard({ image, name, favorite, toggleFavorite, id }: InvitationCard) {
+function InvitationCard({ image, name, favorite, toggleFavorite, id, url }: InvitationCard) {
 
 
     const [hover, setHover] = useState(false);
