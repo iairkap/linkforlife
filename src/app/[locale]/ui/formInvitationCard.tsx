@@ -4,7 +4,8 @@ import { useState } from 'react';
 import type { InvitationCard, Wedding } from '@/types/types';
 import ReactDayPicker from "./datePicker"
 import axios from 'axios';
-
+import ModalNotification from './modalNotification';
+import { useTranslations } from 'next-intl';
 interface Weddings {
     weddings: Wedding[];
 
@@ -12,7 +13,10 @@ interface Weddings {
 
 
 
-function formInvitationCard({ invitationCard, weddings }: any) {
+function formInvitationCard({ invitationCard, weddings, credits }: any) {
+
+    const t = useTranslations('FormInvitationCard');
+
     const [name, setName] = useState('');
     const [lastName, setLastName] = useState('');
     const [partnerName, setPartnerName] = useState('');
@@ -21,6 +25,11 @@ function formInvitationCard({ invitationCard, weddings }: any) {
     const [weddingTime, setWeddingTime] = useState('');
     const [weddingPlace, setWeddingPlace] = useState('');
     const [comments, setComments] = useState('')
+    const [notification, setNotification] = useState(false)
+    const [res, setRes] = useState<number>(0);
+    const [message, setMessage] = useState("");
+    const [remaingingCredits, setRemainingCredits] = useState<number>(credits);
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
@@ -38,9 +47,26 @@ function formInvitationCard({ invitationCard, weddings }: any) {
                 invitationCardId: invitationCard.id
             });
 
+            if (response.status === 502) {
+                setMessage(t("NoCredits"));
+                setRes(500);
+                setNotification(true); // Abre el modal
+                return;
+            }
+
+            if (response.status === 200) {
+                setMessage(t("invitationSent"));
+                setRemainingCredits(credits - 1);
+                setRes(200);
+                setNotification(true); // Abre el modal
+                return;
+            }
             console.log(response.data);
         } catch (error) {
             console.error(error);
+            setMessage(t("NoCredits"));
+            setRes(500);
+            setNotification(true); // Abre el modal
         }
     };
 
@@ -48,7 +74,7 @@ function formInvitationCard({ invitationCard, weddings }: any) {
         <main className='all-containeFr'>
             <div className='title-a'>
                 <h2 className='title-form-card'>{invitationCard.model}</h2>
-                <h4 className='subtitle-form-card'>Personaliza los datos de las invitaciones</h4>
+                <h4 className='subtitle-form-card'>{t("personalizaLosDatosDeLasInvitaciones")}</h4>
             </div>
             <section className='form-layout'>
                 <article className='article-container-text'>
@@ -93,8 +119,15 @@ function formInvitationCard({ invitationCard, weddings }: any) {
                         </div>
                     </div>
                 </article>
-                <button className='button-a' onClick={handleSubmit}>Enviar</button>
+                <button className='button-a' onClick={handleSubmit}>{t("send")}</button>
             </section>
+            <ModalNotification
+                status={res}
+                isOpen={notification}
+                message={message}
+                onRequestClose={() => setNotification(false)}
+                credits={remaingingCredits}
+            />
         </main >
     );
 }

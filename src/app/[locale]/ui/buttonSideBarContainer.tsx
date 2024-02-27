@@ -27,11 +27,11 @@ function ButtonSideBarContainer() {
             Tooltip: t("charts"),
             Link: "/dashboard/payments"
         },
-        {
-            icon: calendar,
-            Tooltip: t("calendar"),
-            Link: "./calendar"
-        },
+        /*       {
+                  icon: calendar,
+                  Tooltip: t("calendar"),
+                  Link: "./calendar"
+              }, */
         {
             icon: invitation,
             Tooltip: t("invitation"),

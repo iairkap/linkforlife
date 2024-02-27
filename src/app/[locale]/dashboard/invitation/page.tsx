@@ -8,7 +8,7 @@ import Loader from '../../ui/loader';
 
 function InvitationPage() {
 
-    const { invitationCards, isLoading } = useInvitationData();
+    const { invitationCards, isLoading, creditsData } = useInvitationData();
 
     if (isLoading) {
         return (<main className='main'>
@@ -17,11 +17,10 @@ function InvitationPage() {
 
         )
     }
-
-
     return (
         <main className='layout-card-container'>
-            <InvitationCardContainer cards={invitationCards} />
+            <span className='title-header'>Remaining Credits:{creditsData}</span>
+            <InvitationCardContainer cards={invitationCards} credits={creditsData} />
         </main>
     );
 }

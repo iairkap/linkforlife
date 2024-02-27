@@ -14,8 +14,9 @@ function InvitationId() {
     const pathName = usePathname();
     const invitationId = Number(pathName?.split('/')[4]);
     const { invitationCard }: { invitationCard: InvitationCard | null } = useInvitationData(invitationId);
+    const { creditsData } = useInvitationData();
+    const { weddings, isLoading, user } = useDashboardData();
 
-    const { weddings, isLoading } = useDashboardData();
 
 
 
@@ -34,8 +35,7 @@ function InvitationId() {
                 }
             </section>
             <article className='form-container'>
-
-                <FormInvitationCard invitationCard={invitationCard} weddings={weddings} />
+                <FormInvitationCard invitationCard={invitationCard} weddings={weddings} credits={creditsData} />
             </article>
         </main>
     );

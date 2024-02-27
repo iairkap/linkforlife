@@ -11,8 +11,6 @@ function InvitationCard({ image, name, favorite, toggleFavorite, id, url }: Invi
 
     const [hover, setHover] = useState(false);
 
-    console.log(image)
-
     return (
         <div className='card-container-invitation-card'>
             <div className='image-containerCard'>

@@ -127,5 +127,17 @@
     "token": "Token",
     "copy": "Copy Link",
     "updateToken": "Update Token"
+  },
+  "FormInvitationCard": {
+    "NoCredits": "You don't have enought credits to get a free design",
+    "personalizaLosDatosDeLasInvitaciones": "Personalize the data of the invitations",
+    "send": "Send",
+    "invitationSent": "Order successfully placed, our designers will be working on the invitation and will send it to you within the next 48 hours."
+  },
+  "ModalNotification": {
+    "done": "Done",
+    "error": "Error",
+    "close": "Close",
+    "creditosRestantes": "Remaining credits"
   }
 }

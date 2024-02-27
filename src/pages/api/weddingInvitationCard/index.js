@@ -2,6 +2,7 @@ import nodemailer from "nodemailer";
 import { getToken } from "next-auth/jwt";
 import { v4 as uuidv4 } from "uuid";
 import mjml2html from "mjml";
+import prisma from "../../../utils/prismaClient";
 
 export default async function handler(req, res) {
   const token = await getToken({ req });
@@ -19,6 +20,23 @@ export default async function handler(req, res) {
   } = req.body;
 
   const email = token.email;
+
+  if (!email) {
+    res.status(401).json({ message: "Invalid token" });
+    return;
+  }
+
+  const user = await prisma.user.findUnique({
+    where: {
+      email: email,
+    },
+  });
+
+  const credits = user.credits;
+  if (credits === 0) {
+    res.status(502).json({ message: "No Credits" });
+    return;
+  }
 
   if (req.method === "POST") {
     let transporter = nodemailer.createTransport({
@@ -55,6 +73,8 @@ export default async function handler(req, res) {
           <mj-text>Hora de Casamiento: ${weddingTime} </mj-text>
           <mj-text>Lugar: ${weddingPlace} </mj-text>
           <mj-text>Comentarios: ${comments} </mj-text>
+          <mj-text> creddits: ${credits} </mj-text>
+
         </mj-column>
       </mj-section>
     </mj-body>
@@ -65,15 +85,25 @@ export default async function handler(req, res) {
 
     let mailOptions = {
       from: process.env.EMAIL,
-      to: `iairkap@gmail.com, javgandolfo@gmail.com`,
+      to: `iairkap@gmail.com`,
       subjetct: "Nueva wedding invitation card",
       html: htmlOutput,
     };
 
-    transporter.sendMail(mailOptions, (error, info) => {
+    transporter.sendMail(mailOptions, async (error, info) => {
       if (error) {
         res.status(500).send(error);
       } else {
+        await prisma.user.update({
+          where: {
+            email: email,
+          },
+          data: {
+            credits: {
+              decrement: 1,
+            },
+          },
+        });
         res.status(200).send("Email sent: " + info.response);
       }
     });

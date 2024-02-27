@@ -31,3 +31,8 @@ export const fetchInvitationCardById = async (id: number) => {
   const response = await axios.get(`/api/invitationCard/${id}`, {});
   return response.data;
 };
+
+export const fetchCreditsData = async () => {
+  const response = await axios.get("/api/credits", {});
+  return response.data;
+};

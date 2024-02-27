@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import { fetInvitationCards, fetchInvitationCardById } from "./api";
+import {
+  fetInvitationCards,
+  fetchInvitationCardById,
+  fetchCreditsData,
+} from "./api";
 import type { InvitationCard } from "@/types/types";
 
 export const useInvitationData = (id?: number | undefined) => {
@@ -8,11 +12,14 @@ export const useInvitationData = (id?: number | undefined) => {
   const [invitationCard, setInvitationCard] = useState<InvitationCard | null>(
     null
   );
+  const [creditsData, setCreditsData] = useState<number>(0);
   const fetchData = async () => {
     setIsLoading(true);
     try {
       const data = await fetInvitationCards();
+      const dataCredits = await fetchCreditsData();
       setInvitationCards(data);
+      setCreditsData(dataCredits);
     } catch (error) {
       console.log("error", error);
     } finally {
@@ -45,5 +52,5 @@ export const useInvitationData = (id?: number | undefined) => {
     }
   }, [id]);
 
-  return { invitationCards, isLoading, invitationCard };
+  return { invitationCards, isLoading, invitationCard, creditsData };
 };

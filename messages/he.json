@@ -114,5 +114,17 @@
     "token": "אסימון",
     "copy": "העתק קישור",
     "updateToken": "עדכן את האסימון"
+  },
+  "FormInvitationCard": {
+    "NoCredits": "אין קרדיטים",
+    "personalizaLosDatosDeLasInvitaciones": "התאמת נתוני ההזמנה",
+    "send": "שלח",
+    "invitationSent": "ההזמנה בוצעה בהצלחה, המעצבים שלנו יעבדו על ההזמנה וישלחו לך בתוך 48 שעות הקרובות."
+  },
+  "ModalNotification": {
+    "done": "זדול",
+    "error": "שגיאה",
+    "close": "סגור",
+    "creditosRestantes": "קרדיטים נותרים"
   }
 }
