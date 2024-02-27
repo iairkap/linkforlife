@@ -31,6 +31,7 @@ export interface Wedding {
   weddingId: number;
   weddingInvitationList: UserInvitation[];
   users?: any;
+  weddingPlace?: string | undefined;
 }
 
 export interface DashboardData {

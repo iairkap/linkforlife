@@ -1,10 +1,17 @@
 import React from 'react';
 import InputField from './InputField';
 import { useState } from 'react';
+import type { InvitationCard, Wedding } from '@/types/types';
+
+
+interface Weddings {
+    weddings: Wedding[];
+
+}
 
 
 
-function formInvitationCard({ invitationCard, weddings }) {
+function formInvitationCard({ invitationCard, weddings }: any) {
     const [isReadOnly, setIsReadOnly] = useState({
         name: true,
         lastName: true,
@@ -21,6 +28,8 @@ function formInvitationCard({ invitationCard, weddings }) {
         weddingDate: '',
         weddingPlace: ''
     });
+
+
 
 
     const updateChanges = (e: React.ChangeEvent<HTMLInputElement>) => {

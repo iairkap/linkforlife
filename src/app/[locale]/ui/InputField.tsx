@@ -21,7 +21,7 @@ function InputField({
     value: any;
     type: any;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
-    placeholder: string,
+    placeholder?: string | undefined,
     error?: string,
     onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void,
     onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
