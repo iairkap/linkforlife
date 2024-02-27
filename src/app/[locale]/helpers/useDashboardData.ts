@@ -30,7 +30,6 @@ export const useDashboardData = () => {
   const router = useRouter();
 
   const fetchData = async () => {
-    console.log("fetching data");
     setIsLoading(true);
     try {
       const databis = await fetchUserDataBis();
@@ -103,5 +102,6 @@ export const useDashboardData = () => {
     upcomingExpenses,
     setUpcomingExpenses,
     fetchData,
+    isLoadingBis: isLoading,
   };
 };

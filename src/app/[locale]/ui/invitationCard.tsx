@@ -2,18 +2,23 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import "../sass/layout/invitationCard.scss"
 import type { InvitationCard } from "../../../types/types"
+import Link from 'next/link';
+import { downloadImage } from '../helpers/download';
 
 
-
-function InvitationCard({ image, name, favorite, toggleFavorite }: InvitationCard) {
+function InvitationCard({ image, name, favorite, toggleFavorite, id }: InvitationCard) {
 
 
     const [hover, setHover] = useState(false);
 
+    console.log(image)
+
     return (
         <div className='card-container-invitation-card'>
             <div className='image-containerCard'>
-                <Image src={image ?? ''} alt="Invitation Card" className='image' width={250} height={250} />
+                <Link href={`invitation/${id}`}>
+                    <Image src={image ?? ''} alt="Invitation Card" className='image' width={250} height={250} />
+                </Link>
                 <button
                     onClick={toggleFavorite}
                     onMouseEnter={() => setHover(true)}
@@ -35,8 +40,9 @@ function InvitationCard({ image, name, favorite, toggleFavorite }: InvitationCar
             <section className='button-container-card'>
                 <span className='free-label'>Free</span>
                 <div className='button-group'>
-                    <button className='buttonA'>Download Sample</button>
-                    <button className='buttonB'>Customize</button>
+                    <a href={image} download>
+                        <button className='buttonA'>Download Sample</button>
+                    </a>                    <button className='buttonB'>Customize</button>
                 </div>
             </section>
         </div>

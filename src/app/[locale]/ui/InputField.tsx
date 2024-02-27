@@ -11,7 +11,10 @@ function InputField({
     placeholder,
     error,
     onFocus = () => { },
-    onBlur = () => { }
+    onBlur = () => { },
+    name,
+    onClick,
+    readOnly
 }: {
     textAlign?: Property.TextAlign,
     disabled?: boolean,
@@ -22,6 +25,11 @@ function InputField({
     error?: string,
     onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void,
     onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
+    name?: string
+    onClick?: () => void
+    readOnly?: boolean
+
+
 }) {
     const autoComplete = type === 'password' ? 'current-password' : '';
     const inputClass = error ? 'my-input error' : 'my-input'; // Cambia la clase si hay un error
@@ -40,9 +48,12 @@ function InputField({
                 onChange={onChange}
                 placeholder={displayPlaceholder}
                 autoComplete={autoComplete}
-                onFocus={onFocus}
+                onFocus={(e) => { onFocus(e); onClick && onClick(); }}
                 onBlur={onBlur}
                 style={{ textAlign: textAlign }}
+                onClick={onClick}
+                readOnly={readOnly}
+
             />
             <span>{error}</span>
         </div>

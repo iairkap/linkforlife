@@ -5,6 +5,7 @@ import InvitationCardA from "./invitationCard" // Fix the casing of the import s
 import "../sass/layout/invitationCardContainergrid.scss"
 import { useState } from 'react';
 import type { InvitationCard } from "../../../types/types"
+import Link from 'next/link';
 
 interface InvitationCardContainer {
     cards: InvitationCard[];

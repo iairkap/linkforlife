@@ -167,4 +167,5 @@ model weddingInvitationCard{
   model             String
   url               String
   likes             Int      @default(0)
+  filter            String[]
 }

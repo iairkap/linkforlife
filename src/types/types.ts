@@ -107,5 +107,5 @@ export interface InvitationCard {
   name: string;
   favorite: boolean;
   toggleFavorite: () => void;
-  url?: string | undefined;
+  url: string | undefined;
 }
