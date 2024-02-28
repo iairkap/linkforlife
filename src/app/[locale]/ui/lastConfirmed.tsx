@@ -11,7 +11,6 @@ interface userInvitationList {
     extraction: string | undefined;
 }
 function DashboardLastConfirmed({ userInvitationList, extraction }: userInvitationList) {
-    console.log(userInvitationList[0].avatar)
     const [menuOpen, setMenuOpen] = useState<Record<number, boolean>>({});
 
     const confirmedUsers = userInvitationList

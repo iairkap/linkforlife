@@ -3,16 +3,17 @@
 import React from 'react';
 import InputField from './InputField';
 import MultipleSelectChip from './multiSelectorMaterialUI';
+import { MuiPhone } from './phoneInput';
+import "../sass/layout/modalContent.scss"
 
 
 function AddInvCouple({ name, coupleName, setCoupleName, setName, lastName, setLastName, coupleLastName, setCoupleLastName, email, emailCouple, setEmailCouple, setEmail, phoneNumber, setPhoneNumber, phoneNumberCouple, setPhoneNumberCouple, groups, selectedGroups, setSelectedGroups, otherValue, setOtherValue, setNames, names, t, selectedGroupsCouple, setSelectedGroupsCouple }: any) {
 
-    console.log('name', name);
-    console.log(names)
+
     return (
-        <div>
-            <span>Guess 1:</span>
-            <article className="layoutb">
+        <div className='couple-modal-container'>
+            <span className='guess-span'>Guess 1:</span>
+            <article className="layoutModalAddInv">
                 <InputField
                     value={name}
                     type="text"
@@ -34,12 +35,9 @@ function AddInvCouple({ name, coupleName, setCoupleName, setName, lastName, setL
                     onChange={(e) => setEmail(e.target.value)}
                     error=''
                 />
-                <InputField
+                <MuiPhone
                     value={phoneNumber}
-                    type="text"
-                    placeholder={t("phone")}
-                    onChange={(e) => setPhoneNumber(e.target.value)}
-                    error=''
+                    onChange={(e: any) => setPhoneNumber(e)}
                 />
                 <MultipleSelectChip
                     valueselct={groups}
@@ -48,18 +46,9 @@ function AddInvCouple({ name, coupleName, setCoupleName, setName, lastName, setL
                     otherValue={otherValue}
 
                 />
-                {/*   {selectedGroups.includes(groups.find((group: any) => group.name === 'other')?.id) &&
-                    <InputField
-                        value={otherValue}
-                        type="text"
-                        placeholder={t("other")}
-                        onChange={(e) => setOtherValue(e.target.value)}
-                        error=''
-                    />
-                } */}
             </article>
-            <span>Guess 2</span>
-            <article className="layoutb">
+            <span className='guess-span'>Guess 2</span>
+            <article className="layoutModalAddInv">
                 <InputField
                     value={coupleName}
                     type="text"
@@ -82,14 +71,12 @@ function AddInvCouple({ name, coupleName, setCoupleName, setName, lastName, setL
                     onChange={(e) => setEmailCouple(e.target.value)}
                     error=''
                 />
-
-                <InputField
+                <MuiPhone
                     value={phoneNumberCouple}
-                    type="text"
-                    placeholder={t("phone")}
-                    onChange={(e) => setPhoneNumberCouple(e.target.value)}
-                    error=''
+                    onChange={(e: any) => setPhoneNumberCouple(e)}
                 />
+
+
                 <MultipleSelectChip
                     valueselct={groups}
                     selectedValueSelector={selectedGroupsCouple}

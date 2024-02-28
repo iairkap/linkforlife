@@ -16,7 +16,7 @@
 
 .myModal {
   position: relative;
-  width: 50%;
+  width: 60%;
   border-radius: 1.25rem;
   border: 1px solid $accent-color;
   background: var(--Color, #fff);
@@ -33,12 +33,6 @@
   translate: transform(50%, -50%);
   display: flex;
 }
-
-/* border-radius: 4.25rem;
-background: #a86869;
-width: 4.25rem;
-height: 4.25rem;
-flex-shrink: 0; */
 
 .icon-containerBis {
   border-radius: 4.25rem;

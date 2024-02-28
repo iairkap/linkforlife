@@ -58,6 +58,7 @@
     "react-day-picker": "^8.10.0",
     "react-dom": "^18",
     "react-filepond": "^7.1.2",
+    "react-international-phone": "^4.2.6",
     "react-modal": "^3.16.1",
     "react-table": "^7.8.0",
     "sass": "^1.70.0",

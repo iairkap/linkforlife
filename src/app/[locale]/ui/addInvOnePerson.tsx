@@ -3,12 +3,16 @@
 import React from 'react';
 import InputField from './InputField';
 import MultipleSelectChip from './multiSelectorMaterialUI';
+import { MuiPhone } from './phoneInput';
+import "../sass/layout/modalContent.scss"
+
+
+
 function AddInvOnePerson({ name, setName, lastName, setLastName, email, setEmail, phoneNumber, setPhoneNumber, groups, selectedGroups, setSelectedGroups, otherValue, setOtherValue, t }: any) {
     return (
         <div>
-
-
-            <article className="layoutb">
+            <span>Single Guest</span>
+            <article className="layoutModalAddInv">
                 <InputField
                     value={name}
                     type="text"
@@ -30,13 +34,11 @@ function AddInvOnePerson({ name, setName, lastName, setLastName, email, setEmail
                     onChange={(e) => setEmail(e.target.value)}
                     error=''
                 />
-                <InputField
+                <MuiPhone
                     value={phoneNumber}
-                    type="text"
-                    placeholder={t("phone")}
-                    onChange={(e) => setPhoneNumber(e.target.value)}
-                    error=''
+                    onChange={(e: any) => setPhoneNumber(e)}
                 />
+
 
                 <MultipleSelectChip
                     valueselct={groups}

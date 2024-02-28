@@ -33,7 +33,8 @@
     "src/app/[locale]/lib/getUserSession.jsx",
     "src/pages/api/auth/[...nextauth].js",
     "src/app/[locale]/ui/tableReference.jsx",
-    "src/app/[locale]/ui/tableVendors.jsx"
+    "src/app/[locale]/ui/tableVendors.jsx",
+    "src/app/[locale]/props/addInvProps.jsx"
   ],
   "exclude": ["node_modules"]
 }

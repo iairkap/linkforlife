@@ -9,7 +9,6 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
 import { createTheme, ThemeProvider } from "@mui/material";
 
-
 const themeGeneral = createTheme({
     palette: {
         action: {
@@ -25,13 +24,6 @@ const themeGeneral = createTheme({
         MuiInputBase: {
             styleOverrides: {
                 root: {
-                    /*           justifySelf: "flex-end",
-                              fontSize: "1rem",
-                              border: "1.5px solid #818369",
-                              borderRadius: "0.5rem",
-                              outline: "none",
-                              minHeight: "2rem",
-                              width: "calc(100% )", */
                     width: "100%",
                 }
 
@@ -41,6 +33,9 @@ const themeGeneral = createTheme({
             styleOverrides: {
                 root: {
                     flexDirection: "row-reverse",
+                    width: "100%",
+                    margin: "0px",
+                    height: "100%"
                 },
             },
         },
@@ -126,7 +121,7 @@ export default function MultipleSelectChip({ valueselct, selectedValueSelector, 
         <div>
             <ThemeProvider theme={themeGeneral}>
 
-                <FormControl sx={{ m: 1, width: 300 }}>
+                <FormControl>
                     <InputLabel id="demo-multiple-chip-label">Group</InputLabel>
                     <Select
                         labelId="demo-multiple-chip-label"
@@ -155,9 +150,9 @@ export default function MultipleSelectChip({ valueselct, selectedValueSelector, 
                                 {group.name}
                             </MenuItem>
                         ))}
-                        <MenuItem value="other" id='other'>
+                        {/*      <MenuItem value="other" id='other'>
                             <em>Other...</em>
-                        </MenuItem>
+                        </MenuItem> */}
                     </Select>
                 </FormControl>
             </ThemeProvider>

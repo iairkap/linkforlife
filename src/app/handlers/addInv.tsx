@@ -1,12 +1,17 @@
 import axios from "axios";
 
 
-export const handleAddInv = async (wedding: any, name: string, lastName: string, email: string, invitedBy: string[], specialRole: string[], phoneNumber: string, selectedGroups: number[], otherValue: string, setUserInvitationList: any, userInvitationList: any, fetchData: any, onRequestClose: any, coupleName?: string, coupleLastName?: string, emailCouple?: string, phoneNumberCouple?: string, selectedGroupsCouple?: number[],) => {
+export const handleAddInv = async (wedding: any, name: string, lastName: string, email: string, invitedBy: string[], specialRole: string[], phoneNumber: string, selectedGroups: number[], otherValue: string, setUserInvitationList: any, userInvitationList: any, fetchData: any, onRequestClose: any, coupleName?: string, coupleLastName?: string, emailCouple?: string, phoneNumberCouple?: string, selectedGroupsCouple?: number[], childName?: string, childLastName?: string, childsName?: string[], childsLastName?: string[], childSelectedGroups?: number[], childsSelectedGroups?: number[], children?: any) => {
     try {
-        const family = Boolean(coupleName);
+
+
+        const family = Boolean(coupleName || childName);
         const familyID = family ? Math.floor(Math.random() * 1000000) : null;
 
-        console.log(coupleName, coupleLastName, emailCouple, phoneNumberCouple, selectedGroupsCouple)
+        console.log(children)
+
+        console.log(coupleName, coupleLastName, emailCouple, phoneNumberCouple, selectedGroupsCouple, childName,
+            childLastName, childSelectedGroups)
 
         const invitation = {
             weddingId: wedding,
@@ -37,22 +42,37 @@ export const handleAddInv = async (wedding: any, name: string, lastName: string,
             };
             invitations.push(coupleInvitation);
         }
+        if (children) {
+            children.forEach((child: any) => {
+                const childInvitation = {
+                    weddingId: wedding,
+                    name: child.name,
+                    lastName: child.lastName || '',
+                    emailInvitation: '',
+                    invitedBy,
+                    specialRole,
+                    phoneNumber: '',
+                    groups: child.selectedGroups?.filter((group: number) => typeof group === "number") ?? [],
+                    family,
+                    familyID
+                };
+                invitations.push(childInvitation);
+            });
 
-        console.log(invitations)
+        }
+
+
+
         const newGroups = otherValue ? [otherValue] : [];
         const response = await axios.post('/api/invitationListGeneral', invitations);
-        console.log(response)
         const invitationId = response.data[0].id;
-        console.log('Invitation ID in handleAddInv:', invitationId); // Add this line
 
         if (newGroups.length > 0) {
             await axios.post('/api/createGroups', { groups: newGroups, weddingId: wedding, invitationId });
         }
 
         if (response.status === 201 || response.status === 500) {
-            console.log(response.data)
             setUserInvitationList([...userInvitationList, ...response.data]);
-
             fetchData();
             onRequestClose();
         }

@@ -49,3 +49,79 @@
 .subtitles-modal-credits {
   font-family: $es-en-font;
 }
+
+.layoutModalAddInv {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  height: 100%;
+  padding: 10px 0 0 0;
+}
+.css-i6aj45-MuiFormControl-root {
+  width: 100% !important;
+  margin: 0px;
+}
+
+.css-hysz7r-MuiFormControl-root {
+  width: 100% !important;
+  margin: 0px;
+}
+
+.couple-modal-container {
+  display: flex;
+  flex-direction: column;
+}
+.guess-span {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color: $accent-color;
+}
+
+.child {
+  margin-top: 4rem;
+}
+
+.add-other-children {
+  margin: 0px;
+  padding: 0px;
+  align-self: flex-end;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button-add-children {
+  background: transparent;
+  border-radius: 0.5rem;
+  padding: 0.59375rem 1.5rem;
+  border: 1px solid #818369;
+  color: #818369;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-self: flex-end;
+}
+
+.button-add-children:hover {
+  background: #dfe1d3;
+}
+
+.plus {
+  font-weight: 900;
+  font-size: 1.5rem;
+}
+
+.modalChild {
+  margin-top: 1rem;
+  height: 100%;
+}
+
+.family-container {
+  max-height: 50vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #818369;
+}

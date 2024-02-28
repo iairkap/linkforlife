@@ -11,6 +11,10 @@ import MultipleSelectChip from './multiSelectorMaterialUI';
 import AddInvOnePerson from './addInvOnePerson';
 import AddInvCouple from './addInvCouple';
 import { handleAddInv } from '@/app/handlers/addInv';
+import { handleClickSwitch } from '@/app/handlers/clickAddInvChangeCouple';
+import ButtonHeaderModal from './buttonHeaderContainerModalAddInv';
+import AddInvFamily from './addInvFamily';
+
 
 interface AddInvProps {
     isOpen: boolean;
@@ -51,43 +55,28 @@ function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList, u
     const [names, setNames] = useState<string[]>([]);
     const [emails, setEmails] = useState<string[]>([]);
     const [phoneNumbers, setPhoneNumbers] = useState<string[]>([]);
-
-
-    const handleClick = (type: any) => {
-        switch (type) {
-            case 'one':
-                setAddInvOnePerson(true);
-                setAddInvCouple(false);
-                setAddInvFamily(false);
-                break;
-            case 'couple':
-                setAddInvOnePerson(false);
-                setAddInvCouple(true);
-                setAddInvFamily(false);
-                break;
-            case 'family':
-                setAddInvOnePerson(false);
-                setAddInvCouple(false);
-                setAddInvFamily(true);
-                break;
-            default:
-                break;
-        }
-    };
+    const [childName, setChildName] = useState<string>('');
+    const [childLastName, setChildLastName] = useState<string>('');
+    const [childsName, setChildsName] = useState<string[]>([]);
+    const [childsLastName, setChildsLastName] = useState<string[]>([]);
+    const [childSelectedGroups, setChildSelectedGroups] = useState<number[]>([]);
+    const [childsSelectedGroups, setChildsSelectedGroups] = useState<number[]>([]);
+    const [addChildren, setAddChilder] = useState<boolean>(false);
+    const [children, setChildren] = useState([{ name: '', lastName: '', selectedGroups: [] }]);
     const wedding = user.weddings[0]?.id
+
+
     const { fetchData, isLoading, setIsLoading, } = useDashboardData();
 
+    console.log(childName)
+    console.log(children)
     return (
         <Modal isOpen={isOpen} onRequestClose={onRequestClose} contentLabel={contentLabel} icon={"person_add"}>
             <section className='containerModalInvitationWedding'>
                 <h1 className='title-container'>{t("addInv")}</h1>
-                <header>
-                    <button onClick={() => handleClick('one')}>One Person</button>
-                    <button onClick={() => handleClick('couple')}>Couple</button>
-                    <button onClick={() => handleClick('family')}>Family</button>
-                </header>
-                {addInvOnePerson &&
 
+                <ButtonHeaderModal t={t} handleClickSwitch={handleClickSwitch} setAddInvCouple={setAddInvCouple} setAddInvFamily={setAddInvFamily} setAddInvOnePerson={setAddInvOnePerson} />
+                {addInvOnePerson &&
                     <AddInvOnePerson
                         name={name}
                         setName={setName}
@@ -136,7 +125,53 @@ function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList, u
                         setSelectedGroupsCouple={setSelectedGroupsCouple}
                     />
                 }
-                <Button label={t("save")} onClick={() => handleAddInv(wedding, name, lastName, email, invitedBy, specialRole, phoneNumber, selectedGroups, otherValue, setUserInvitationList, userInvitationList, fetchData, onRequestClose, coupleName, coupleLastName, emailCouple, phoneNumberCouple, selectedGroupsCouple)} className='button-a' />
+                {
+                    addInvFamily &&
+                    <AddInvFamily
+                        name={name}
+                        setName={setName}
+                        lastName={lastName}
+                        setLastName={setLastName}
+                        email={email}
+                        setEmail={setEmail}
+                        phoneNumber={phoneNumber}
+                        setPhoneNumber={setPhoneNumber}
+                        groups={groups}
+                        selectedGroups={selectedGroups}
+                        setSelectedGroups={setSelectedGroups}
+                        otherValue={otherValue}
+                        setOtherValue={setOtherValue}
+                        t={t}
+                        emailCouple={emailCouple}
+                        setEmailCouple={setEmailCouple}
+                        setNames={setNames}
+                        coupleName={coupleName}
+                        setCoupleName={setCoupleName}
+                        coupleLastName={coupleLastName}
+                        setCoupleLastName={setCoupleLastName}
+                        phoneNumberCouple={phoneNumberCouple}
+                        setPhoneNumberCouple={setPhoneNumberCouple}
+                        names={names}
+                        selectedGroupsCouple={selectedGroupsCouple}
+                        setSelectedGroupsCouple={setSelectedGroupsCouple}
+                        childName={childName}
+                        setChildName={setChildName}
+                        childLastName={childLastName}
+                        setChildLastName={setChildLastName}
+                        childsName={childsName}
+                        setChildsName={setChildsName}
+                        childsLastName={childsLastName}
+                        setChildsLastName={setChildsLastName}
+                        childSelectedGroups={childSelectedGroups}
+                        setChildSelectedGroups={setChildSelectedGroups}
+                        childsSelectedGroups={childsSelectedGroups}
+                        setChildsSelectedGroups={setChildsSelectedGroups}
+                        addChildren={addChildren}
+                        children={children}
+                        setChildren={setChildren}
+                    />
+                }
+                <Button label={t("save")} onClick={() => handleAddInv(wedding, name, lastName, email, invitedBy, specialRole, phoneNumber, selectedGroups, otherValue, setUserInvitationList, userInvitationList, fetchData, onRequestClose, coupleName, coupleLastName, emailCouple, phoneNumberCouple, selectedGroupsCouple, childName, childLastName, childsName, childsLastName, childSelectedGroups, childsSelectedGroups, children)} className='button-a' />
             </section>
         </Modal >
     );
@@ -144,4 +179,3 @@ function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList, u
 
 export default AddInv;
 
-// Path: src/app/%5Blocale%5D/ui/addInvCouple.tsx

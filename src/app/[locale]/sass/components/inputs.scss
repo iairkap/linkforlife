@@ -4,6 +4,7 @@
 .my-input {
   @include input-styles;
   width: 100%;
+  min-height: 65px;
 }
 
 .my-input.error {
