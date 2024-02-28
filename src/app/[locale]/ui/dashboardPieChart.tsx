@@ -11,7 +11,6 @@ interface userInvitationList {
     extraction: string | undefined;
 }
 
-
 function DashboardWithPiechart({ userInvitationList, extraction }: userInvitationList) {
     const {
         isAttendingTotal,
@@ -20,10 +19,6 @@ function DashboardWithPiechart({ userInvitationList, extraction }: userInvitatio
     } = getAdjustedInvitationStats(userInvitationList);
 
     const invitedTotal = userInvitationList.length;
-    console.log(invitedTotal)
-    console.log(isAttendingTotal)
-    console.log(notAttendingTotal)
-    console.log(notConfirmedTotal)
 
     let data = [
         { label: 'Is Attending', value: isAttendingTotal },
@@ -35,10 +30,9 @@ function DashboardWithPiechart({ userInvitationList, extraction }: userInvitatio
         data.push({ label: 'Not Attending', value: notAttendingTotal });
     }
 
-    let colors = ['#818369', '#B5B793', '#DBDEAE'];
+    let colors = ['#818369', '#B5B793', '#DBDEAE', "#F3F6C3"];
 
-    // Filtrar datos y colores para eliminar categorías sin datos
-    data = data.filter(item => item.value > 0);
+    // data = data.filter(item => item.value > 0); // Elimina esta línea
     colors = colors.slice(0, data.length);
 
     const labels = data.map(item => item.label);

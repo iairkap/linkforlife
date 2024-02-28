@@ -139,5 +139,9 @@
     "error": "Error",
     "close": "Close",
     "creditosRestantes": "Remaining credits"
+  },
+  "ModalCredits": {
+    "title": "Credits:",
+    "span": "To ensure that all our customers have the opportunity to enjoy our free service, we offer up to two invitation designs at no cost per customer and event."
   }
 }

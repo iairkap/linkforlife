@@ -13,14 +13,11 @@ interface DonutChartProps {
 function DonutChart({ colors, data }: DonutChartProps) {
 
 
+    console.log(data)
+
     const ref = useRef<SVGSVGElement>(null);
-    /*     const [data, setData, ] = useState([0, 0, 0]);
-     */
-
-
     useEffect(() => {
         d3.select(ref.current).selectAll("*").remove();
-
         const totalRadius = 125; // Esto establece el radio total del gráfico de rosquilla
         const arcWidth = 30; // Esto establece el grosor de los arcos
         const arc = d3.arc().innerRadius(totalRadius - arcWidth).outerRadius(totalRadius).cornerRadius(10); // Esto ajusta el grosor de los arcos
@@ -36,7 +33,7 @@ function DonutChart({ colors, data }: DonutChartProps) {
             .enter()
             .append('path')
             .attr('d', arc as any)
-            .attr('fill', (d, i) => colors[i]);
+            .attr('fill', (d, i) => colors[i % colors.length]);
 
         const total = data.reduce((a, b) => a + b, 0); // Esto calcula el total de los datos
         svg.append('text') // Esto agrega el total al centro del gráfico de rosquilla

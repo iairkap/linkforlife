@@ -14,7 +14,7 @@ button {
   background-color: transparent;
   border: none;
 }
-.general-container {
+.general-containeras {
   width: 50%;
   font-family: $es-en-font;
 }
@@ -24,7 +24,7 @@ button {
   margin: 0px;
   padding: 0px;
   height: 5rem;
-  width: calc(100% - 4rem);
+  width: calc(100%);
   border-radius: 1rem;
   display: flex;
   align-items: center;
@@ -50,13 +50,15 @@ button {
 }
 
 .imagen-container {
-  padding: 2.5px;
   width: 50px;
   height: 50px;
   border-radius: 50%;
   overflow: hidden;
-  background-color: $accent-color;
+  background-color: #d5d8ab;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .first-container {
@@ -74,11 +76,11 @@ button {
   border-radius: 1rem;
   display: flex;
   justify-content: flex-end;
-  padding-right: 2rem;
+  padding-right: 1rem;
 }
 
 .menu-open {
-  width: 70%;
+  width: 100%;
 }
 
 .display {
@@ -87,6 +89,7 @@ button {
   gap: 0px;
   height: 5rem;
   align-items: center;
+  width: 100%;
 }
 
 .fafa {

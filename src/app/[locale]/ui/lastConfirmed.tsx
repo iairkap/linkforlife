@@ -11,7 +11,7 @@ interface userInvitationList {
     extraction: string | undefined;
 }
 function DashboardLastConfirmed({ userInvitationList, extraction }: userInvitationList) {
-    console.log(userInvitationList)
+    console.log(userInvitationList[0].avatar)
     const [menuOpen, setMenuOpen] = useState<Record<number, boolean>>({});
 
     const confirmedUsers = userInvitationList
@@ -20,18 +20,18 @@ function DashboardLastConfirmed({ userInvitationList, extraction }: userInvitati
         .slice(0, 3);
 
     return (
-        <div className='general-container'>
+        <div className='general-containeras'>
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
             <h2>Last Attendees</h2>
             <ul className='list-ul'>
                 {confirmedUsers.map((user, index) => {
-                    const avatar = user.avatar || logo;
+                    const avatar = (Array.isArray(user.avatar) && user.avatar.length === 0) ? '/logo.png' : user.avatar; console.log(avatar)
                     return (
                         <li key={index} className='display' >
                             <div className={`list-container ${menuOpen[index] ? 'menu-open' : 'regular-width'}`}>
                                 <div className='first-container'>
                                     <div className='imagen-container'>
-                                        <Image src={avatar} alt='profile-picture' layout='fill' objectFit='cover' />
+                                        <Image src={avatar ?? '/logo.png'} alt='profile-picture' width={45} height={45} />
                                     </div>
                                     <div>
                                         <p className='name-title'>{user.name}</p>

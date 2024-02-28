@@ -27,14 +27,10 @@ import UpcomingPayment from '../ui/upcomingPayment';
 
 function DashboardGeneral() {
 
-
     const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations, selectedWedding, setSelectedWedding, weddings, setWeddings, /* handleWeddingChange */setGroups,
         ModalFirstSteps, setModalFirstSteps, refreshData, user, upcomingExpenses, setUpcomingExpenses } = useDashboardData();
-
-
     const [weddingDate, setWeddingDate] = useState(new Date());
     const [isModalGroupOpen, setIsModalGroupOpen] = useState(false);
-
     const t = useTranslations('Dashboard');
     const pathName = usePathname();
     const extraction = extractLocaleFromPathName(pathName)
@@ -44,16 +40,10 @@ function DashboardGeneral() {
     useEffect(() => {
         if (weddings && weddings.length > 0) {
             setUserInvitationList(weddings[0]?.weddingInvitationList);
-/*             setWeddingDate(weddings[0].weddingDate);
- */   setWeddingDate(weddings[0].weddingDate);
+            setWeddingDate(weddings[0].weddingDate);
         }
     }, [weddings]);
-
-
-
-
     const areWedding = weddings && weddings.length > 0;
-
     if (isLoading) {
         return (<main className='main'>
             <Loader />
@@ -61,7 +51,6 @@ function DashboardGeneral() {
 
         )
     }
-
     return (
         <article className='containerDash'>
             <div className='containerDashito'>
