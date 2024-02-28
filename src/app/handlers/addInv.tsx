@@ -8,10 +8,7 @@ export const handleAddInv = async (wedding: any, name: string, lastName: string,
         const family = Boolean(coupleName || childName);
         const familyID = family ? Math.floor(Math.random() * 1000000) : null;
 
-        console.log(children)
 
-        console.log(coupleName, coupleLastName, emailCouple, phoneNumberCouple, selectedGroupsCouple, childName,
-            childLastName, childSelectedGroups)
 
         const invitation = {
             weddingId: wedding,
