@@ -3,11 +3,15 @@
 import React from 'react';
 import InputField from './InputField';
 import MultipleSelectChip from './multiSelectorMaterialUI';
-function AddInvCouple({ name, setName, lastName, setLastName, email, setEmail, phoneNumber, setPhoneNumber, groups, selectedGroups, setSelectedGroups, otherValue, setOtherValue, t }: any) {
+
+
+function AddInvCouple({ name, coupleName, setCoupleName, setName, lastName, setLastName, coupleLastName, setCoupleLastName, email, emailCouple, setEmailCouple, setEmail, phoneNumber, setPhoneNumber, phoneNumberCouple, setPhoneNumberCouple, groups, selectedGroups, setSelectedGroups, otherValue, setOtherValue, setNames, names, t, selectedGroupsCouple, setSelectedGroupsCouple }: any) {
+
+    console.log('name', name);
+    console.log(names)
     return (
         <div>
-
-
+            <span>Guess 1:</span>
             <article className="layoutb">
                 <InputField
                     value={name}
@@ -37,7 +41,6 @@ function AddInvCouple({ name, setName, lastName, setLastName, email, setEmail, p
                     onChange={(e) => setPhoneNumber(e.target.value)}
                     error=''
                 />
-
                 <MultipleSelectChip
                     valueselct={groups}
                     selectedValueSelector={selectedGroups}
@@ -45,7 +48,7 @@ function AddInvCouple({ name, setName, lastName, setLastName, email, setEmail, p
                     otherValue={otherValue}
 
                 />
-                {selectedGroups.includes(groups.find((group: any) => group.name === 'other')?.id) &&
+                {/*   {selectedGroups.includes(groups.find((group: any) => group.name === 'other')?.id) &&
                     <InputField
                         value={otherValue}
                         type="text"
@@ -53,8 +56,58 @@ function AddInvCouple({ name, setName, lastName, setLastName, email, setEmail, p
                         onChange={(e) => setOtherValue(e.target.value)}
                         error=''
                     />
-                }
+                } */}
             </article>
+            <span>Guess 2</span>
+            <article className="layoutb">
+                <InputField
+                    value={coupleName}
+                    type="text"
+                    placeholder={t("name")}
+                    onChange={(e) => setCoupleName(e.target.value)}
+                    error=''
+                />
+                <InputField
+                    value={coupleLastName}
+                    type="text"
+                    placeholder={t("lastName")}
+                    onChange={(e) => setCoupleLastName(e.target.value)}
+                    error=''
+                />
+
+                <InputField
+                    value={emailCouple}
+                    type="text"
+                    placeholder={t("email")}
+                    onChange={(e) => setEmailCouple(e.target.value)}
+                    error=''
+                />
+
+                <InputField
+                    value={phoneNumberCouple}
+                    type="text"
+                    placeholder={t("phone")}
+                    onChange={(e) => setPhoneNumberCouple(e.target.value)}
+                    error=''
+                />
+                <MultipleSelectChip
+                    valueselct={groups}
+                    selectedValueSelector={selectedGroupsCouple}
+                    setSelectedValueSelector={setSelectedGroupsCouple}
+                    otherValue={otherValue}
+
+                />
+                {/*    {selectedGroups.includes(groups.find((group: any) => group.name === 'other')?.id) &&
+                    <InputField
+                        value={otherValue}
+                        type="text"
+                        placeholder={t("other")}
+                        onChange={(e) => setOtherValue(e.target.value)}
+                        error=''
+                    />
+                } */}
+            </article>
+
         </div>
     );
 }

@@ -53,5 +53,6 @@ padding: 2rem 0.75rem 0rem 0.75rem;
 
 .containerDashito {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 2rem;
 }

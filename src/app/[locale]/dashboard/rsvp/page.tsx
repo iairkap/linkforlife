@@ -20,10 +20,6 @@ import AddGroup from '../../ui/addGroup';
 import ModalGroup from '../../ui/modalGroup';
 import CreateToken from '../../ui/createToken';
 import HearderRSVP from '../../ui/headerRSVP';
-
-
-
-
 function Dashboard() {
     const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations, selectedWedding, setSelectedWedding, weddings, setWeddings, /* handleWeddingChange */
         ModalFirstSteps, setModalFirstSteps, refreshData, user, setGroups } = useDashboardData();
@@ -35,9 +31,6 @@ function Dashboard() {
     const pathName = usePathname();
     const extraction = extractLocaleFromPathName(pathName)
     const t = useTranslations("RSVPTABLE");
-
-
-
     useEffect(() => {
         const newFilteredUserInvitationList = userInvitationList.filter(invitation => {
             if (filter === 'confirmed') {

@@ -48,7 +48,7 @@ export default async function handler(req, res) {
       console.error("Error fetching data:", error); // Log any errors
       res.status(500).json({ error: "Unable to fetch data" });
     }
-  } else if (req.method === "POST") {
+    /* } else if (req.method === "POST") {
     const invitations = req.body;
 
     try {
@@ -75,6 +75,74 @@ export default async function handler(req, res) {
                 id: weddingId,
               },
             },
+          },
+        });
+      });
+      const newInvitations = await prisma.$transaction(createInvitations);
+
+      res.status(201).json(newInvitations);
+    } catch (error) {
+      console.error("Failed to create invitations:", error);
+      res.status(500).json({ error: "Unable to create invitations" });
+    }
+  } else {
+    res.status(405).json({ error: "Method not allowed" });
+  }
+} */
+  } else if (req.method === "POST") {
+    const invitations = req.body;
+
+    try {
+      let invitationsArray;
+
+      if (Array.isArray(invitations)) {
+        invitationsArray = invitations;
+      } else {
+        invitationsArray = [invitations];
+      }
+
+      let createInvitations = invitationsArray.flatMap((invitation) => {
+        const {
+          weddingId,
+          groups,
+          name,
+          lastName,
+          emailInvitation,
+          invitedBy,
+          specialRole,
+          phoneNumber,
+          family,
+          familyID,
+          ...otherFields
+        } = invitation;
+
+        return prisma.weddingInvitationList.create({
+          data: {
+            ...otherFields,
+            name: name,
+            lastName: lastName,
+            emailInvitation: emailInvitation,
+            invitedBy: invitedBy,
+            specialRole: specialRole,
+            phoneNumber: phoneNumber,
+            family: family,
+            familyID: familyID,
+            user: {
+              connect: {
+                id: Number(userId),
+              },
+            },
+            wedding: {
+              connect: {
+                id: weddingId,
+              },
+            },
+            groups: {
+              connect: groups.map((groupId) => ({ id: groupId })),
+            },
+          },
+          include: {
+            groups: true,
           },
         });
       });

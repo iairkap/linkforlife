@@ -1,30 +1,18 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
-import { useGlobalContext } from './globalContext';
 import DashboardGraph from '../ui/dashboardGraphOverview';
-import AddWedding from '../ui/addWedding';
-import AddUserCollaborator from '../ui/addUserToTheWeddingList';
-import AccesTableWithToken from '../ui/accesTableWithToken';
-import { useRouter } from 'next/navigation';
-import HeaderDashboard from '../ui/headerDashboard';
 import { useDashboardData } from '../helpers/useDashboardData';
 import Loader from '../ui/loader';
 import ModalGroup from '../ui/modalGroup';
 import "../sass/layout/dashboard.scss"
-import PieChart from "../ui/pieChart";
 import DashboardWithPiechart from '../ui/dashboardPieChart';
-import { getInvitationStats } from '@/utils/userInvitationListExtactionData';
-import DashboardGroups from '../ui/DashboardGroups';
-import { Pie } from 'react-chartjs-2';
-import { DashboardDataB as DashboardData, Groups } from '@/types/types';
 import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import { extractLocaleFromPathName } from '../utils/getLocale';
 import DashboardLastConfirmed from '../ui/lastConfirmed';
 import UpcomingPayment from '../ui/upcomingPayment';
-
-
+import RemainingCredits from '../ui/remainingCredits';
 function DashboardGeneral() {
 
     const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations, selectedWedding, setSelectedWedding, weddings, setWeddings, /* handleWeddingChange */setGroups,
@@ -55,6 +43,7 @@ function DashboardGeneral() {
         <article className='containerDash'>
             <div className='containerDashito'>
                 <DashboardGraph userInvitationList={userInvitationList} user={user} extraction={extraction} />
+                <RemainingCredits credits={user?.credits} />
                 <UpcomingPayment upcomingExpenses={upcomingExpenses ? (Array.isArray(upcomingExpenses) ? upcomingExpenses : [upcomingExpenses]) : []} extraction={extraction} />            </div>
             <div className='graph-container-pair'>
                 <DashboardWithPiechart userInvitationList={userInvitationList} extraction={extraction} />

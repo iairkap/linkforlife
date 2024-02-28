@@ -39,6 +39,8 @@ export function getInvitationStats(userInvitationList: UserInvitation[]) {
   );
   const invitedBy = userInvitationList?.map((inv) => inv.invitedBy);
 
+  console.log(userInvitationList);
+
   const flattenedInvitedBy = invitedBy?.flat();
   const invitedByBride = flattenedInvitedBy?.filter(
     (inv) => inv == "Bride"

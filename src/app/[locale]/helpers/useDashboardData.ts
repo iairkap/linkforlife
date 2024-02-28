@@ -10,6 +10,7 @@ import {
 } from "./api";
 import { Group, UserInvitation, Wedding } from "@/types/types";
 import type { Expense } from "@/types/types";
+
 export const useDashboardData = () => {
   const [userInvitationList, setUserInvitationList] = useState<
     UserInvitation[]
