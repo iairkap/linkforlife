@@ -9,6 +9,8 @@ export const handleAddInv = async (wedding: any, name: string, lastName: string,
         const familyID = family ? Math.floor(Math.random() * 1000000) : null;
 
 
+        console.log(coupleName)
+        console.log(children)
 
         const invitation = {
             weddingId: wedding,
@@ -24,7 +26,7 @@ export const handleAddInv = async (wedding: any, name: string, lastName: string,
         };
         const invitations = [invitation];
 
-        if (coupleName) {
+        if (coupleName !== "" && coupleName !== undefined) {
             const coupleInvitation = {
                 weddingId: wedding,
                 name: coupleName,
@@ -39,7 +41,7 @@ export const handleAddInv = async (wedding: any, name: string, lastName: string,
             };
             invitations.push(coupleInvitation);
         }
-        if (children) {
+        if (children && children.some((child: any) => child.name)) {
             children.forEach((child: any) => {
                 const childInvitation = {
                     weddingId: wedding,
@@ -55,13 +57,13 @@ export const handleAddInv = async (wedding: any, name: string, lastName: string,
                 };
                 invitations.push(childInvitation);
             });
-
         }
 
-
+        console.log(invitations)
 
         const newGroups = otherValue ? [otherValue] : [];
         const response = await axios.post('/api/invitationListGeneral', invitations);
+
         const invitationId = response.data[0].id;
 
         if (newGroups.length > 0) {

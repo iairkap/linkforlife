@@ -26,7 +26,11 @@ function TableInvitationList({
   user,
   extraction,
 }) {
-  const data = useMemo(() => userInvitationList, [userInvitationList]);
+  const sortedUserInvitationList = [...userInvitationList].sort(
+    (a, b) => b.id - a.id
+  );
+  const data = useMemo(() => sortedUserInvitationList, [userInvitationList]);
+
   const t = useTranslations("RSVPTABLE");
   const isWeddingsEmpty = weddings && weddings.length === 0;
   const columns = useMemo(

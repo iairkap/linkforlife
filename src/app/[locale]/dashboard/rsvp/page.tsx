@@ -98,6 +98,8 @@ function Dashboard() {
     }
 
 
+    console.log(tableProps)
+
     return (
         <main className="main">
             <section className='table-container'>
