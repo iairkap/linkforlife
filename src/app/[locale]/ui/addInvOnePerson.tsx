@@ -5,10 +5,11 @@ import InputField from './InputField';
 import MultipleSelectChip from './multiSelectorMaterialUI';
 import { MuiPhone } from './phoneInput';
 import "../sass/layout/modalContent.scss"
+import SingleSelect from './singleSelect';
 
 
+function AddInvOnePerson({ name, setName, lastName, setLastName, email, setEmail, phoneNumber, setPhoneNumber, groups, selectedGroups, setSelectedGroups, otherValue, setOtherValue, invitedBy, setInvitedBy, t, invitedByOptions }: any) {
 
-function AddInvOnePerson({ name, setName, lastName, setLastName, email, setEmail, phoneNumber, setPhoneNumber, groups, selectedGroups, setSelectedGroups, otherValue, setOtherValue, t }: any) {
     return (
         <div>
             <span>Single Guest</span>
@@ -46,6 +47,13 @@ function AddInvOnePerson({ name, setName, lastName, setLastName, email, setEmail
                     setSelectedValueSelector={setSelectedGroups}
                     otherValue={otherValue}
 
+                />
+                <SingleSelect
+                    valueSelect={invitedByOptions}
+                    selectedValueSelector={invitedBy}
+                    setSelectedValueSelector={setInvitedBy}
+                    otherValue={otherValue}
+                    label={t("invitedBy")}
                 />
                 {selectedGroups.includes(groups.find((group: any) => group.name === 'other')?.id) &&
                     <InputField

@@ -20,7 +20,7 @@ function DonutChart({ colors, data }: DonutChartProps) {
         d3.select(ref.current).selectAll("*").remove();
         const totalRadius = 125; // Esto establece el radio total del gráfico de rosquilla
         const arcWidth = 30; // Esto establece el grosor de los arcos
-        const arc = d3.arc().innerRadius(totalRadius - arcWidth).outerRadius(totalRadius).cornerRadius(10); // Esto ajusta el grosor de los arcos
+        const arc = d3.arc().innerRadius(totalRadius - arcWidth).outerRadius(totalRadius).cornerRadius(2); // Esto ajusta el grosor de los arcos
         const pie = d3.pie().padAngle(0.05); // Esto agrega un espacio entre los segmentos
 
         const svg = d3.select(ref.current)

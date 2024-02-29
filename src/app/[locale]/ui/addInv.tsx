@@ -30,46 +30,41 @@ interface AddInvProps {
     userInvitationList: any[]; // Add this line
     setUserInvitationList: (list: any[]) => void; // Add this line
     groups: any;
+    invitedByOptions: any[];
 }
 
-function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList, userInvitationList, user, groups }: AddInvProps) {
+function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList, userInvitationList, user, groups, invitedByOptions }: AddInvProps) {
     const [name, setName] = useState<string>('');
     const [lastName, setLastName] = useState<string>('');
     const [coupleName, setCoupleName] = useState<string>('');
     const [coupleLastName, setCoupleLastName] = useState<string>('');
     const [email, setEmail] = useState<string>('');
     const [emailCouple, setEmailCouple] = useState<string>('');
-    const [invitedBy, setInvitedBy] = useState<string[]>([]);
+    const [invitedBy, setInvitedBy] = useState<string>('');
+    const [invitedByCouple, setInvitedByCouple] = useState<string>('');
     const [specialRole, setSpecialRole] = useState<string[]>([]);
     const [phoneNumber, setPhoneNumber] = useState<string>('');
     const [phoneNumberCouple, setPhoneNumberCouple] = useState<string>('');
     const [selectedGroups, setSelectedGroups] = useState<number[]>([]);
     const [selectedGroupsCouple, setSelectedGroupsCouple] = useState<number[]>([]);
     const [otherValue, setOtherValue] = useState('');
-    const [plusOne, setPluseOne] = useState(false);
-    const [family, setFamily] = useState(false);
     const t = useTranslations('ModalAddInv');
     const [addInvOnePerson, setAddInvOnePerson] = useState(true);
     const [addInvCouple, setAddInvCouple] = useState(false);
     const [addInvFamily, setAddInvFamily] = useState(false);
     const [names, setNames] = useState<string[]>([]);
-    const [emails, setEmails] = useState<string[]>([]);
-    const [phoneNumbers, setPhoneNumbers] = useState<string[]>([]);
     const [childName, setChildName] = useState<string>('');
+    const [invitedByChild, setInvitedByChild] = useState<string>('');
     const [childLastName, setChildLastName] = useState<string>('');
     const [childsName, setChildsName] = useState<string[]>([]);
+    const [invitedByChilds, setInvitedByChilds] = useState<string[]>([]);
     const [childsLastName, setChildsLastName] = useState<string[]>([]);
     const [childSelectedGroups, setChildSelectedGroups] = useState<number[]>([]);
     const [childsSelectedGroups, setChildsSelectedGroups] = useState<number[]>([]);
     const [addChildren, setAddChilder] = useState<boolean>(false);
     const [children, setChildren] = useState([{ name: '', lastName: '', selectedGroups: [] }]);
     const wedding = user.weddings[0]?.id
-
-
     const { fetchData, isLoading, setIsLoading, } = useDashboardData();
-
-    console.log(childName)
-    console.log(children)
     return (
         <Modal isOpen={isOpen} onRequestClose={onRequestClose} contentLabel={contentLabel} icon={"person_add"}>
             <section className='containerModalInvitationWedding'>
@@ -92,6 +87,9 @@ function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList, u
                         otherValue={otherValue}
                         setOtherValue={setOtherValue}
                         t={t}
+                        invitedByOptions={invitedByOptions}
+                        invitedBy={invitedBy}
+                        setInvitedBy={setInvitedBy}
                     />
                 }
                 {
@@ -123,6 +121,11 @@ function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList, u
                         names={names}
                         selectedGroupsCouple={selectedGroupsCouple}
                         setSelectedGroupsCouple={setSelectedGroupsCouple}
+                        invitedByOptions={invitedByOptions}
+                        invitedBy={invitedBy}
+                        setInvitedBy={setInvitedBy}
+                        invitedByCouple={invitedByCouple}
+                        setInvitedByCouple={setInvitedByCouple}
                     />
                 }
                 {
@@ -169,13 +172,24 @@ function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList, u
                         addChildren={addChildren}
                         children={children}
                         setChildren={setChildren}
+                        invitedByOptions={invitedByOptions}
+                        invitedBy={invitedBy}
+                        setInvitedBy={setInvitedBy}
+                        invitedByCouple={invitedByCouple}
+                        setInvitedByCouple={setInvitedByCouple}
+                        invitedByChild={invitedByChild}
+                        setInvitedByChild={setInvitedByChild}
+                        invitedByChilds={invitedByChilds}
+                        setInvitedByChilds={setInvitedByChilds}
+
+
                     />
                 }
                 <div style={{
                     width: "20%",
                     marginTop: "2rem"
                 }}>
-                    <Button label={t("save")} onClick={() => handleAddInv(wedding, name, lastName, email, invitedBy, specialRole, phoneNumber, selectedGroups, otherValue, setUserInvitationList, userInvitationList, fetchData, onRequestClose, coupleName, coupleLastName, emailCouple, phoneNumberCouple, selectedGroupsCouple, childName, childLastName, childsName, childsLastName, childSelectedGroups, childsSelectedGroups, children)} className='button-a' />
+                    <Button label={t("save")} onClick={() => handleAddInv(wedding, name, lastName, email, invitedBy, specialRole, phoneNumber, selectedGroups, otherValue, setUserInvitationList, userInvitationList, fetchData, onRequestClose, coupleName, coupleLastName, emailCouple, phoneNumberCouple, selectedGroupsCouple, childName, childLastName, childsName, childsLastName, childSelectedGroups, childsSelectedGroups, children, invitedByCouple)} className='button-a' />
                 </div>
             </section>
         </Modal >

@@ -17,7 +17,10 @@ interface UserInvitation {
   groups: any[];
 }
 
-export function getInvitationStats(userInvitationList: UserInvitation[]) {
+export function getInvitationStats(
+  userInvitationList: UserInvitation[],
+  user: any
+) {
   function countInvitationsByFilter(
     invitations: UserInvitation[],
     filter: string
@@ -38,48 +41,134 @@ export function getInvitationStats(userInvitationList: UserInvitation[]) {
     (inv) => inv.isAttending === false
   );
   const invitedBy = userInvitationList?.map((inv) => inv.invitedBy);
+  console.log(invitedBy);
 
-  console.log(userInvitationList);
+  console.log(user);
 
   const flattenedInvitedBy = invitedBy?.flat();
-  const invitedByBride = flattenedInvitedBy?.filter(
-    (inv) => inv == "Bride"
+  const invitedByUser = flattenedInvitedBy?.filter(
+    (inv) => inv == user.name
   ).length;
-  const invitedByGroom = flattenedInvitedBy?.filter(
-    (inv) => inv == "Groom"
+  const invitedByUserPartner = flattenedInvitedBy?.filter(
+    (inv) => inv == user.partnerName
+  ).length;
+  const invitedByUserPartnerFamily = flattenedInvitedBy?.filter(
+    (inv) => inv == `${user.partnerName}'s family`
+  ).length;
+  const invitedByUserFamily = flattenedInvitedBy?.filter(
+    (inv) => inv == `${user.name}'s family`
+  ).length;
+  const invitedByBothUserAndUserPartner = flattenedInvitedBy?.filter(
+    (inv) => inv == `${user.name} ${user.partnerName}`
   ).length;
 
-  const confirmedByBride = countInvitationsByFilter(confirmed, "Bride");
-  const confirmedByGroom = countInvitationsByFilter(confirmed, "Groom");
+  const confirmedByUser = countInvitationsByFilter(confirmed, user.name);
+  const confirmedByUserPartner = countInvitationsByFilter(
+    confirmed,
+    user.partnerName
+  );
+  const confirmedByUserFamily = countInvitationsByFilter(
+    confirmed,
+    `${user.name}'s family`
+  );
+  const confirmedByUserPartnerFamily = countInvitationsByFilter(
+    confirmed,
+    `${user.partnerName}'s family`
+  );
+  const confirmedByBothUserAndUserPartner = countInvitationsByFilter(
+    confirmed,
+    `${user.name} ${user.partnerName}`
+  );
   const confirmedTotal = confirmed?.length;
 
-  const notConfirmedByBride = countInvitationsByFilter(notConfirmed, "Bride");
-  const notConfirmedByGroom = countInvitationsByFilter(notConfirmed, "Groom");
+  const notConfirmedByUser = countInvitationsByFilter(notConfirmed, user.name);
+  const notConfirmedByUserPartner = countInvitationsByFilter(
+    notConfirmed,
+    user.partnerName
+  );
+  const notConfirmedByUserFamily = countInvitationsByFilter(
+    notConfirmed,
+    `${user.name}'s family`
+  );
+  const notConfirmedByUserPartnerFamily = countInvitationsByFilter(
+    notConfirmed,
+    `${user.partnerName}'s family`
+  );
+  const notConfirmedByBothUserAndUserPartner = countInvitationsByFilter(
+    notConfirmed,
+    `${user.name} ${user.partnerName}`
+  );
   const notConfirmedTotal = notConfirmed?.length;
 
-  const isAttendingByBride = countInvitationsByFilter(isAttending, "Bride");
-  const isAttendingByGroom = countInvitationsByFilter(isAttending, "Groom");
+  const isAttendingByUser = countInvitationsByFilter(isAttending, user.name);
+  const isAttendingByUserPartner = countInvitationsByFilter(
+    isAttending,
+    user.partnerName
+  );
+  const isAttendingByUserFamily = countInvitationsByFilter(
+    isAttending,
+    `${user.name}'s family`
+  );
+  const isAttendingByUserPartnerFamily = countInvitationsByFilter(
+    isAttending,
+    `${user.partnerName}'s family`
+  );
+  const isAttendingByBothUserAndUserPartner = countInvitationsByFilter(
+    isAttending,
+    `${user.name} ${user.partnerName}`
+  );
+
   const isAttendingTotal = isAttending?.length;
 
-  const notAttendingByBride = countInvitationsByFilter(notAttending, "Bride");
-  const notAttendingByGroom = countInvitationsByFilter(notAttending, "Groom");
+  const notAttendingByUser = countInvitationsByFilter(notAttending, user.name);
+  const notAttendingByUserPartner = countInvitationsByFilter(
+    notAttending,
+    user.partnerName
+  );
+  const notAttendingByUserFamily = countInvitationsByFilter(
+    notAttending,
+    `${user.name}'s family`
+  );
+  const notAttendingByUserPartnerFamily = countInvitationsByFilter(
+    notAttending,
+    `${user.partnerName}'s family`
+  );
+  const notAttendingByBothUserAndUserPartner = countInvitationsByFilter(
+    notAttending,
+    `${user.name} ${user.partnerName}`
+  );
   const notAttendingTotal = notAttending?.length;
 
   return {
-    confirmedByBride,
-    confirmedByGroom,
+    confirmedByUser,
+    confirmedByUserPartner,
     confirmedTotal,
-    notConfirmedByBride,
-    notConfirmedByGroom,
+    notConfirmedByUser,
+    notConfirmedByUserPartner,
     notConfirmedTotal,
-    isAttendingByBride,
-    isAttendingByGroom,
+    isAttendingByUser,
+    isAttendingByUserPartner,
     isAttendingTotal,
-    notAttendingByBride,
-    notAttendingByGroom,
+    notAttendingByUser,
+    notAttendingByUserPartner,
     notAttendingTotal,
-    invitedByBride,
-    invitedByGroom,
+    invitedByUser,
+    invitedByUserPartner,
+    confirmedByUserFamily,
+    confirmedByUserPartnerFamily,
+    confirmedByBothUserAndUserPartner,
+    notConfirmedByUserFamily,
+    notConfirmedByUserPartnerFamily,
+    notConfirmedByBothUserAndUserPartner,
+    isAttendingByUserFamily,
+    isAttendingByUserPartnerFamily,
+    isAttendingByBothUserAndUserPartner,
+    notAttendingByUserFamily,
+    notAttendingByUserPartnerFamily,
+    notAttendingByBothUserAndUserPartner,
+    invitedByUserPartnerFamily,
+    invitedByUserFamily,
+    invitedByBothUserAndUserPartner,
   };
 }
 

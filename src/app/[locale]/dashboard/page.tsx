@@ -22,9 +22,6 @@ function DashboardGeneral() {
     const t = useTranslations('Dashboard');
     const pathName = usePathname();
     const extraction = extractLocaleFromPathName(pathName)
-
-
-
     useEffect(() => {
         if (weddings && weddings.length > 0) {
             setUserInvitationList(weddings[0]?.weddingInvitationList);
@@ -32,13 +29,15 @@ function DashboardGeneral() {
         }
     }, [weddings]);
     const areWedding = weddings && weddings.length > 0;
+
     if (isLoading) {
         return (<main className='main'>
             <Loader />
         </main>
-
         )
     }
+
+
     return (
         <article className='containerDash'>
             <div className='containerDashito'>

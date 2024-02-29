@@ -1,13 +1,11 @@
 import * as React from 'react';
-import { Theme, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import Chip from '@mui/material/Chip';
 import { createTheme, ThemeProvider } from "@mui/material";
+
 
 const themeGeneral = createTheme({
     palette: {
@@ -91,68 +89,36 @@ const MenuProps = {
         },
     },
 };
-interface MultipleSelectChipProps {
-    valueselct: any;
-    selectedValueSelector: any;
-    setSelectedValueSelector: any;
-    otherValue: string;
-}
+export default function SingleSelect({ valueSelect, selectedValueSelector, setSelectedValueSelector, otherValue, label }: any) {
 
-export default function MultipleSelectChip({ valueselct, selectedValueSelector, setSelectedValueSelector, otherValue }: MultipleSelectChipProps) {
-    const handleChange = (event: SelectChangeEvent<typeof selectedValueSelector>) => {
-        const {
-            target: { value },
-        } = event;
-        const otherId = valueselct.find((group: any) => group.name === 'other')?.id;
-        setSelectedValueSelector(
-            value.includes('other')
-                ? selectedValueSelector.includes(otherId)
-                    ? selectedValueSelector
-                    : [...value.filter((val: string) => val !== 'other'), otherId]
-                : value as unknown as number[]
-        );
+    const handleChange = (event: SelectChangeEvent<string>) => {
+        setSelectedValueSelector(event.target.value ? [event.target.value] : []);
     };
 
-    return (
-        <div>
-            <ThemeProvider theme={themeGeneral}>
 
-                <FormControl>
-                    <InputLabel id="demo-multiple-chip-label">Group</InputLabel>
+
+    return (
+        <ThemeProvider theme={themeGeneral}>
+
+            <Box sx={{ minWidth: 120 }}>
+                <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">{label}</InputLabel>
                     <Select
-                        labelId="demo-multiple-chip-label"
-                        id="demo-multiple-chip"
-                        multiple
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
                         value={selectedValueSelector}
+                        label={label}
                         onChange={handleChange}
-                        input={<OutlinedInput id="select-multiple-chip" label="Groups" />}
-                        renderValue={(selected) => (
-                            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                                {selected.map((value: any) => {
-                                    const group = valueselct.find((group: any) => group.id === value);
-                                    const label = group ? group.name : (value == undefined ? 'other' : '');
-                                    return <Chip key={value} label={label} />;
-                                })}
-                            </Box>
-                        )}
-                        MenuProps={MenuProps}
                     >
-                        {valueselct.map((group: any) => (
-                            <MenuItem
-                                key={group.id}
-                                value={group.id}
-                                style={{ backgroundColor: selectedValueSelector.includes(group.id) ? 'lightgray' : 'white' }}
-                            >
-                                {group.name}
+                        {valueSelect.map((value: string, index: number) => (
+                            <MenuItem key={index} value={value}>
+                                {value}
                             </MenuItem>
                         ))}
-                        {/*      <MenuItem value="other" id='other'>
-                            <em>Other...</em>
-                        </MenuItem> */}
                     </Select>
                 </FormControl>
-            </ThemeProvider>
+            </Box>
+        </ThemeProvider>
 
-        </div>
     );
 }

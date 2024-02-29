@@ -5,10 +5,10 @@ import InputField from './InputField';
 import MultipleSelectChip from './multiSelectorMaterialUI';
 import { MuiPhone } from './phoneInput';
 import "../sass/layout/modalContent.scss"
+import SingleSelect from './singleSelect';
 
 
-function AddInvCouple({ name, coupleName, setCoupleName, setName, lastName, setLastName, coupleLastName, setCoupleLastName, email, emailCouple, setEmailCouple, setEmail, phoneNumber, setPhoneNumber, phoneNumberCouple, setPhoneNumberCouple, groups, selectedGroups, setSelectedGroups, otherValue, setOtherValue, setNames, names, t, selectedGroupsCouple, setSelectedGroupsCouple }: any) {
-
+function AddInvCouple({ name, coupleName, setCoupleName, setName, lastName, setLastName, coupleLastName, setCoupleLastName, email, emailCouple, setEmailCouple, setEmail, phoneNumber, setPhoneNumber, phoneNumberCouple, setPhoneNumberCouple, groups, selectedGroups, setSelectedGroups, otherValue, setOtherValue, setNames, names, t, selectedGroupsCouple, setSelectedGroupsCouple, invitedByOptions, invitedBy, setInvitedBy, invitedByCouple, setInvitedByCouple }: any) {
 
     return (
         <div className='couple-modal-container'>
@@ -45,6 +45,13 @@ function AddInvCouple({ name, coupleName, setCoupleName, setName, lastName, setL
                     setSelectedValueSelector={setSelectedGroups}
                     otherValue={otherValue}
 
+                />
+                <SingleSelect
+                    valueSelect={invitedByOptions}
+                    selectedValueSelector={invitedBy}
+                    setSelectedValueSelector={setInvitedBy}
+                    otherValue={otherValue}
+                    label={t("invitedBy")}
                 />
             </article>
             <span className='guess-span'>Guess 2</span>
@@ -83,6 +90,13 @@ function AddInvCouple({ name, coupleName, setCoupleName, setName, lastName, setL
                     setSelectedValueSelector={setSelectedGroupsCouple}
                     otherValue={otherValue}
 
+                />
+                <SingleSelect
+                    valueSelect={invitedByOptions}
+                    selectedValueSelector={invitedByCouple}
+                    setSelectedValueSelector={setInvitedByCouple}
+                    otherValue={otherValue}
+                    label={t("invitedBy")}
                 />
                 {/*    {selectedGroups.includes(groups.find((group: any) => group.name === 'other')?.id) &&
                     <InputField

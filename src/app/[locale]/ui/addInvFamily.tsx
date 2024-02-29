@@ -5,12 +5,13 @@ import InputField from './InputField';
 import MultipleSelectChip from './multiSelectorMaterialUI';
 import AddInvCouple from './addInvCouple';
 import "../sass/layout/modalContent.scss"
+import SingleSelect from './singleSelect';
 
 
-function AddInvFamily({ name, coupleName, setCoupleName, setName, lastName, setLastName, coupleLastName, setCoupleLastName, email, emailCouple, setEmailCouple, setEmail, phoneNumber, setPhoneNumber, phoneNumberCouple, setPhoneNumberCouple, groups, selectedGroups, setSelectedGroups, otherValue, setOtherValue, setNames, names, t, selectedGroupsCouple, setSelectedGroupsCouple, childName, setChildName, childLastName, setChildLastName, childsName, setChildsName, childsLastName, setChildsLastName, childSelectedGroups, setChildSelectedGroups, childsSelectedGroups, setChildsSelectedGroups, addChildren, children, setChildren }: any) {
+function AddInvFamily({ name, coupleName, setCoupleName, setName, lastName, setLastName, coupleLastName, setCoupleLastName, email, emailCouple, setEmailCouple, setEmail, phoneNumber, setPhoneNumber, phoneNumberCouple, setPhoneNumberCouple, groups, selectedGroups, setSelectedGroups, otherValue, setOtherValue, setNames, names, t, selectedGroupsCouple, setSelectedGroupsCouple, childName, setChildName, childLastName, setChildLastName, childsName, setChildsName, childsLastName, setChildsLastName, childSelectedGroups, setChildSelectedGroups, childsSelectedGroups, setChildsSelectedGroups, addChildren, children, setChildren, invitedByOptions, invitedBy, setInvitedBy, invitedByCouple, setInvitedByCouple, invitedByChild, invitedByChilds, sertInvitedByChild, setInvitedByChilds }: any) {
 
     const handleAddChildren = () => {
-        setChildren((prevChildren: any[]): any => [...prevChildren, { name: childName, lastName: childLastName, selectedGroups: childSelectedGroups }]);
+        setChildren((prevChildren: any[]): any => [...prevChildren, { name: childName, lastName: childLastName, selectedGroups: childSelectedGroups, invitedBy: invitedByChild }]);
         setChildName('');
         setChildLastName('');
         setChildSelectedGroups([]);
@@ -43,6 +44,12 @@ function AddInvFamily({ name, coupleName, setCoupleName, setName, lastName, setL
                 names={names}
                 selectedGroupsCouple={selectedGroupsCouple}
                 setSelectedGroupsCouple={setSelectedGroupsCouple}
+                invitedBy={invitedBy}
+                setInvitedBy={setInvitedBy}
+                invitedByCouple={invitedByCouple}
+                setInvitedByCouple={setInvitedByCouple}
+                invitedByOptions={invitedByOptions}
+
             />
             <br />
 
@@ -81,6 +88,17 @@ function AddInvFamily({ name, coupleName, setCoupleName, setName, lastName, setL
                                 setChildren(newChildren);
                             }}
                             otherValue={otherValue}
+                        />
+                        <SingleSelect
+                            valueSelect={invitedByOptions}
+                            selectedValueSelector={child.invitedBy}
+                            setSelectedValueSelector={(value: string) => {
+                                const newChildren = [...children];
+                                newChildren[index].invitedBy = value;
+                                setChildren(newChildren);
+                            }}
+                            otherValue={otherValue}
+                            label={t("invitedBy")}
                         />
                     </article>
                 ))}

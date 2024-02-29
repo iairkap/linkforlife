@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-export const handleAddInv = async (wedding: any, name: string, lastName: string, email: string, invitedBy: string[], specialRole: string[], phoneNumber: string, selectedGroups: number[], otherValue: string, setUserInvitationList: any, userInvitationList: any, fetchData: any, onRequestClose: any, coupleName?: string, coupleLastName?: string, emailCouple?: string, phoneNumberCouple?: string, selectedGroupsCouple?: number[], childName?: string, childLastName?: string, childsName?: string[], childsLastName?: string[], childSelectedGroups?: number[], childsSelectedGroups?: number[], children?: any) => {
+export const handleAddInv = async (wedding: any, name: string, lastName: string, email: string, invitedBy: string, specialRole: string[], phoneNumber: string, selectedGroups: number[], otherValue: string, setUserInvitationList: any, userInvitationList: any, fetchData: any, onRequestClose: any, coupleName?: string, coupleLastName?: string, emailCouple?: string, phoneNumberCouple?: string, selectedGroupsCouple?: number[], childName?: string, childLastName?: string, childsName?: string[], childsLastName?: string[], childSelectedGroups?: number[], childsSelectedGroups?: number[], children?: any, invitedByCouple?: any, setInvitedByCouple?: any) => {
     try {
 
 
@@ -32,7 +32,7 @@ export const handleAddInv = async (wedding: any, name: string, lastName: string,
                 name: coupleName,
                 lastName: coupleLastName || '',
                 emailInvitation: emailCouple || '',
-                invitedBy,
+                invitedBy: invitedByCouple || '',
                 specialRole,
                 phoneNumber: phoneNumberCouple || '',
                 groups: selectedGroupsCouple?.filter(group => typeof group === "number") ?? [],
@@ -48,7 +48,7 @@ export const handleAddInv = async (wedding: any, name: string, lastName: string,
                     name: child.name,
                     lastName: child.lastName || '',
                     emailInvitation: '',
-                    invitedBy,
+                    invitedBy: child.invitedBy || '',
                     specialRole,
                     phoneNumber: '',
                     groups: child.selectedGroups?.filter((group: number) => typeof group === "number") ?? [],

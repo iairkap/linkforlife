@@ -10,6 +10,7 @@ import {
 } from "./api";
 import { Group, UserInvitation, Wedding } from "@/types/types";
 import type { Expense } from "@/types/types";
+import { set } from "date-fns";
 
 export const useDashboardData = () => {
   const [userInvitationList, setUserInvitationList] = useState<
@@ -27,14 +28,25 @@ export const useDashboardData = () => {
   const [upcomingExpenses, setUpcomingExpenses] = useState<Expense | null>(
     null
   );
-
+  const [invitedByOptions, setInvitedByOptions] = useState<any[]>([]);
   const router = useRouter();
-
+  console.log(invitedByOptions);
   const fetchData = async () => {
     setIsLoading(true);
     try {
       const databis = await fetchUserDataBis();
       setUser(databis);
+
+      if (databis) {
+        setInvitedByOptions([
+          databis.name,
+          databis.partnerName,
+          `${databis.name} ${databis.partnerName}`,
+          `${databis.name}'s family`,
+          `${databis.partnerName}'s family`,
+        ]);
+      }
+
       const data = await fetchInvitationList();
       setWeddings(data);
       const dataGroups = await fetchGroups();
@@ -104,5 +116,6 @@ export const useDashboardData = () => {
     setUpcomingExpenses,
     fetchData,
     isLoadingBis: isLoading,
+    invitedByOptions,
   };
 };

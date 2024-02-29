@@ -20,9 +20,10 @@ import AddGroup from '../../ui/addGroup';
 import ModalGroup from '../../ui/modalGroup';
 import CreateToken from '../../ui/createToken';
 import HearderRSVP from '../../ui/headerRSVP';
+
 function Dashboard() {
     const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations, selectedWedding, setSelectedWedding, weddings, setWeddings, /* handleWeddingChange */
-        ModalFirstSteps, setModalFirstSteps, refreshData, user, setGroups } = useDashboardData();
+        ModalFirstSteps, setModalFirstSteps, refreshData, user, setGroups, invitedByOptions } = useDashboardData();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isShareModalOpen, setIsShareModalOpen] = useState(false);
     const [isGroupModalOpen, setIsGroupModalOpen] = useState(false);
@@ -75,7 +76,8 @@ function Dashboard() {
         weddings,
         selectedWedding,
         user,
-        extraction
+        extraction,
+
     });
 
     useEffect(() => {
@@ -98,7 +100,6 @@ function Dashboard() {
     }
 
 
-    console.log(tableProps)
 
     return (
         <main className="main">
@@ -112,6 +113,7 @@ function Dashboard() {
                         userInvitationList={userInvitationList}
                         user={user}
                         groups={groups}
+                        invitedByOptions={invitedByOptions}
                     />
                     <ModalGroup
                         isOpen={isGroupModalOpen}
