@@ -1,0 +1,28 @@
+.layout-table-page {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  width: 100%;
+  height: 100%;
+}
+
+.table-filter-container-dash {
+  position: relative;
+}
+
+.table-card-container-dash {
+}
+
+.divisorLine {
+  height: 100%;
+  width: 0.0625rem;
+  background-color: #c5c5c5;
+  position: absolute;
+  left: -30px;
+}
+
+.tableCardContainer-Layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  height: 100%;
+  gap: 1.5rem;
+}

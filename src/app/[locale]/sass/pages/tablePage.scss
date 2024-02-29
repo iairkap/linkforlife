@@ -1,0 +1,59 @@
+@import "../abstracts/variables.scss";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  font-family: $es-en-font;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 3rem 0 3rem;
+}
+
+.maina {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 0.4rem;
+  padding: 0 3rem 0 3rem;
+}
+.general-table {
+  width: calc(100% - 6rem);
+  margin-top: 1.5rem;
+  height: calc(100% - 6rem);
+}
+
+.button-filter-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.button-filter-table {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  color: #818369;
+  font-family: $es-en-font;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%;
+  gap: 1rem;
+}
+
+.dividier {
+  width: 0.0625rem;
+  height: var(--Number, 2.5rem);
+  background-color: #818369;
+}
