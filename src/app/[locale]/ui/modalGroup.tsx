@@ -19,40 +19,62 @@ interface modalGroupProps {
 function ModalGroup({ isOpen, contentLabel, onRequestClose, onRequestCloseGeneral, weddings, setGroups }: modalGroupProps) {
 
     const { fetchData, isLoading, setIsLoading, } = useDashboardData();
-
-    const [form, setForm] = useState({
+    const [form, setForm] = useState<{ name: string, names: string[], weddingId: number | undefined }>({
         name: "",
+        names: [],
         weddingId: weddings[0]?.id
     })
 
-
     const weddingId = weddings[0]?.id;
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    const handleAddOtherGroup = () => {
+        setForm({ ...form, names: [...form.names, form.name], name: "" });
+    }
+
+    const handleSubmit = async () => {
         try {
-            const response = await axios.post('/api/groupsList', form);
-            const newGroup = response.data; // assuming the response contains the new group
-            setGroups((prevGroups: any[]): any => [...prevGroups, newGroup]); // update the groups state immediately
+            const allGroupNames = [...form.names, form.name];
+            const groups = allGroupNames.map(name => ({ name, weddingId: form.weddingId }));
+            const response = await axios.post('/api/groupsList', groups);
+            const newGroup = response.data;
+            console.log(response.data)
+            setGroups((prevGroups: any[]): any => [...prevGroups, ...newGroup])
             fetchData();
             onRequestCloseGeneral();
         } catch (error) {
             console.error(error);
+            console.log(error)
         }
     }
-
     return (
+
         <Modal isOpen={isOpen} contentLabel={contentLabel} onRequestClose={onRequestClose} icon={"groups_3"}>
             <section className='containerModalInvitationWedding'>
                 <h1 className='title-container'>Creacion de grupos</h1>
-                <form onSubmit={handleSubmit}>
+                {form.names.map((name, index) => (
                     <InputField
+                        key={index}
                         type="text"
-                        placeholder="nombre del grupo"
-                        value={form.name}
-                        onChange={(e) => setForm({ ...form, name: e.target.value })}
+                        placeholder="Nombre del grupo"
+                        value={name}
+                        onChange={(e) => {
+                            const newNames = [...form.names];
+                            newNames[index] = e.target.value;
+                            setForm({ ...form, names: newNames });
+                        }}
                     />
-                    <button type='submit'>Enviar</button>                </form>
+                ))}
+                <InputField
+                    type="text"
+                    placeholder="Nombre del grupo"
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                />
+                <div className='add-other-children'>
+                    <button onClick={handleAddOtherGroup} className='button-add-children'>Agregar Otro Grupo</button>
+                </div>
+                <br />
+                <button onClick={handleSubmit} className='button-a'>Enviar</button>
             </section>
         </Modal>
     );

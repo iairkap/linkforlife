@@ -1,0 +1,26 @@
+@import "../abstracts/variables";
+
+.headerModalButtonContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.buttonModal {
+  background: transparent;
+  border: 1px solid $accent-color;
+  border-radius: 0.5rem;
+  display: flex;
+  padding: 0.59375rem 1.5rem;
+  justify-content: center;
+  align-items: center;
+  color: $accent-color;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover {
+    background-color: #dfe1d3;
+  }
+}

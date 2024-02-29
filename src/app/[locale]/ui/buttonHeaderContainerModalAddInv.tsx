@@ -1,11 +1,13 @@
 import React from 'react';
+import "../sass/components/headerModalAddInv.scss"
+
 
 function ButtonHeaderModal({ handleClickSwitch, setAddInvCouple, setAddInvOnePerson, setAddInvFamily, t }: any) {
     return (
-        <header>
-            <button onClick={() => handleClickSwitch('one', setAddInvCouple, setAddInvOnePerson, setAddInvFamily,)}>One Person</button>
-            <button onClick={() => handleClickSwitch('couple', setAddInvCouple, setAddInvOnePerson, setAddInvFamily,)}>Couple</button>
-            <button onClick={() => handleClickSwitch('family', setAddInvCouple, setAddInvOnePerson, setAddInvFamily,)}>Family</button>
+        <header className='headerModalButtonContainer'>
+            <button className='buttonModal' onClick={() => handleClickSwitch('one', setAddInvCouple, setAddInvOnePerson, setAddInvFamily,)}>One Person</button>
+            <button className='buttonModal' onClick={() => handleClickSwitch('couple', setAddInvCouple, setAddInvOnePerson, setAddInvFamily,)}>Couple</button>
+            <button className='buttonModal' onClick={() => handleClickSwitch('family', setAddInvCouple, setAddInvOnePerson, setAddInvFamily,)}>Family</button>
         </header>
     );
 }

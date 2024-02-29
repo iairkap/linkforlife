@@ -41,27 +41,37 @@ export default async function handler(req, res) {
   } else if (req.method === "POST") {
     const groups = req.body;
 
-    const wedding = groups.weddingId;
-    console.log(groups);
+    // Check if groups is an array
+    if (!Array.isArray(groups)) {
+      res.status(400).json({ error: "Expected an array of groups" });
+      return;
+    }
 
     try {
-      const newGroup = await prisma.group.create({
-        data: {
-          name: groups.name,
-          user: {
-            connect: {
-              id: Number(userId),
+      // Use Promise.all to create all groups concurrently
+      const newGroups = await Promise.all(
+        groups.map(async (group) => {
+          const newGroup = await prisma.group.create({
+            data: {
+              name: group.name,
+              user: {
+                connect: {
+                  id: Number(userId),
+                },
+              },
+              wedding: {
+                connect: {
+                  id: group.weddingId,
+                },
+              },
             },
-          },
-          wedding: {
-            connect: {
-              id: groups.weddingId,
-            },
-          },
-        },
-      });
+          });
 
-      res.status(201).json(newGroup);
+          return newGroup;
+        })
+      );
+
+      res.status(201).json(newGroups);
     } catch (error) {
       res.status(500).json({ error: error.message });
       console.log(error);
