@@ -9,10 +9,9 @@ import SingleSelect from './singleSelect';
 
 
 function AddInvCouple({ name, coupleName, setCoupleName, setName, lastName, setLastName, coupleLastName, setCoupleLastName, email, emailCouple, setEmailCouple, setEmail, phoneNumber, setPhoneNumber, phoneNumberCouple, setPhoneNumberCouple, groups, selectedGroups, setSelectedGroups, otherValue, setOtherValue, setNames, names, t, selectedGroupsCouple, setSelectedGroupsCouple, invitedByOptions, invitedBy, setInvitedBy, invitedByCouple, setInvitedByCouple }: any) {
-
     return (
         <div className='couple-modal-container'>
-            <span className='guess-span'>Guess 1:</span>
+            <span className='guess-span'>Guest 1:</span>
             <article className="layoutModalAddInv">
                 <InputField
                     value={name}
@@ -54,7 +53,7 @@ function AddInvCouple({ name, coupleName, setCoupleName, setName, lastName, setL
                     label={t("invitedBy")}
                 />
             </article>
-            <span className='guess-span'>Guess 2</span>
+            <span className='guess-span'>Guest 2:</span>
             <article className="layoutModalAddInv">
                 <InputField
                     value={coupleName}
@@ -98,15 +97,6 @@ function AddInvCouple({ name, coupleName, setCoupleName, setName, lastName, setL
                     otherValue={otherValue}
                     label={t("invitedBy")}
                 />
-                {/*    {selectedGroups.includes(groups.find((group: any) => group.name === 'other')?.id) &&
-                    <InputField
-                        value={otherValue}
-                        type="text"
-                        placeholder={t("other")}
-                        onChange={(e) => setOtherValue(e.target.value)}
-                        error=''
-                    />
-                } */}
             </article>
 
         </div>

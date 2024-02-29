@@ -38,6 +38,7 @@ interface DashboardGraphProps {
 
 function DashboardGraph({ userInvitationList, user, extraction }: { userInvitationList: any[], user: any, extraction: string | undefined }): JSX.Element {
     const [currentPage, setCurrentPage] = useState(1);
+
     const { confirmedByUser,
         confirmedByUserPartner,
         confirmedTotal,
