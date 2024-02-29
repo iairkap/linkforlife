@@ -127,22 +127,25 @@ function Dashboard() {
                         extraction={extraction}
                     />
                     <HearderRSVP t={t} isWeddingsEmpty={isWeddingsEmpty} handleOpenTokenModal={handleOpenTokenModal} handleOpenModal={handleOpenModal} handleOpenGroupModal={handleOpenGroupModal} />
-                    <HeaderFilter
-                        getToggleHideAllColumnsProps={tableProps.getToggleHideAllColumnsProps}
-                        isMenuOpen={isMenuOpen}
-                        setMenuOpen={setMenuOpen}
-                        allColumns={tableProps.allColumns}
-                        preGlobalFilteredRows={tableProps.preGlobalFilteredRows}
-                        globalFilter={""}
-                        setGlobalFilter={tableProps.setGlobalFilter}
-                        pageSize={tableProps.state.pageSize}
-                        setPageSize={tableProps.setPageSize}
-                        handleOpenModal={handleOpenModal}
-                        setFilter={setFilter}
-                        filter={filter}
-                        extraction={extraction}
+                    {!isWeddingsEmpty &&
 
-                    />
+                        <HeaderFilter
+                            getToggleHideAllColumnsProps={tableProps.getToggleHideAllColumnsProps}
+                            isMenuOpen={isMenuOpen}
+                            setMenuOpen={setMenuOpen}
+                            allColumns={tableProps.allColumns}
+                            preGlobalFilteredRows={tableProps.preGlobalFilteredRows}
+                            globalFilter={""}
+                            setGlobalFilter={tableProps.setGlobalFilter}
+                            pageSize={tableProps.state.pageSize}
+                            setPageSize={tableProps.setPageSize}
+                            handleOpenModal={handleOpenModal}
+                            setFilter={setFilter}
+                            filter={filter}
+                            extraction={extraction}
+
+                        />
+                    }
                     {renderTable}
                     <Pagination
                         previousPage={tableProps.previousPage}

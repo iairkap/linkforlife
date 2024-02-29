@@ -41,39 +41,50 @@ function ModalGroup({ isOpen, contentLabel, onRequestClose, onRequestCloseGenera
             setGroups((prevGroups: any[]): any => [...prevGroups, ...newGroup])
             fetchData();
             onRequestCloseGeneral();
+            setForm({ name: "", names: [], weddingId: weddings[0]?.id });
         } catch (error) {
             console.error(error);
             console.log(error)
         }
     }
+    const handleRemoveGroup = (index: number) => {
+        const newNames = [...form.names];
+        newNames.splice(index, 1);
+        setForm({ ...form, names: newNames });
+    }
     return (
-
         <Modal isOpen={isOpen} contentLabel={contentLabel} onRequestClose={onRequestClose} icon={"groups_3"}>
-            <section className='containerModalInvitationWedding'>
-                <h1 className='title-container'>Creacion de grupos</h1>
-                {form.names.map((name, index) => (
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+            <section className='containerModalInvitationWeddingA'>
+                <article className='layout-groups-container'>
+                    <h1 className='title-container'>Creacion de grupos</h1>
                     <InputField
-                        key={index}
                         type="text"
                         placeholder="Nombre del grupo"
-                        value={name}
-                        onChange={(e) => {
-                            const newNames = [...form.names];
-                            newNames[index] = e.target.value;
-                            setForm({ ...form, names: newNames });
-                        }}
+                        value={form.name}
+                        onChange={(e) => setForm({ ...form, name: e.target.value })}
                     />
-                ))}
-                <InputField
-                    type="text"
-                    placeholder="Nombre del grupo"
-                    value={form.name}
-                    onChange={(e) => setForm({ ...form, name: e.target.value })}
-                />
-                <div className='add-other-children'>
-                    <button onClick={handleAddOtherGroup} className='button-add-children'>Agregar Otro Grupo</button>
-                </div>
-                <br />
+                    {form.names.map((name, index) => (
+                        <div key={index} className='erase-container'>
+                            <InputField
+                                type="text"
+                                placeholder="Nombre del grupo"
+                                value={name}
+                                onChange={(e) => {
+                                    const newNames = [...form.names];
+                                    newNames[index] = e.target.value;
+                                    setForm({ ...form, names: newNames });
+                                }}
+                            />
+                            <button onClick={() => handleRemoveGroup(index)} className='erase-button'><span className="material-symbols-outlined">
+                                delete
+                            </span></button>
+                        </div>
+                    ))}
+                    <div className='add-other-children'>
+                        <button onClick={handleAddOtherGroup} className='button-add-children'>Agregar Otro Grupo</button>
+                    </div>
+                </article>
                 <button onClick={handleSubmit} className='button-a'>Enviar</button>
             </section>
         </Modal>

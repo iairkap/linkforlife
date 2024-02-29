@@ -32,7 +32,7 @@ function FirstSteps({ isOpen, contentLabel, onRequestClose, refreshData, user }:
 /*         <ModalFistSteps isOpen={isOpen} contentLabel={contentLabel} onRequestClose={onRequestClose}>
  */            <div className='container'>
             <Image src={firstIcon} alt="First Icon" />
-            <h1 className='title'>{t("thereIsNotWedding")}</h1>
+            <h1 className='titleA'>{t("thereIsNotWedding")}</h1>
             <div className='buttoncito-container'>
                 <button onClick={() => { setIsModalOpenCreateWedding(true) }} className='buttoncito'>{t("addWedding")}</button>
                 <AddWedding isOpen={isModalOpenCreateWedding} contentLabel={t("addWedding")} onRequestClose={() => setIsModalOpenCreateWedding(false)} refreshData={refreshData} onRequestCloseGeneral={onRequestClose} user={user} />
