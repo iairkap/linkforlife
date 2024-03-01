@@ -48,47 +48,6 @@ export default async function handler(req, res) {
       console.error("Error fetching data:", error); // Log any errors
       res.status(500).json({ error: "Unable to fetch data" });
     }
-    /* } else if (req.method === "POST") {
-    const invitations = req.body;
-
-    try {
-      let invitationsArray;
-
-      if (Array.isArray(invitations)) {
-        invitationsArray = invitations;
-      } else {
-        invitationsArray = [invitations];
-      }
-      let createInvitations = invitationsArray.map((invitation) => {
-        const { weddingId, groups, ...invitationWithoutGroups } = invitation;
-        return prisma.weddingInvitationList.create({
-          data: {
-            ...invitationWithoutGroups,
-            user: {
-              connect: {
-                id: Number(userId),
-              },
-            },
-
-            wedding: {
-              connect: {
-                id: weddingId,
-              },
-            },
-          },
-        });
-      });
-      const newInvitations = await prisma.$transaction(createInvitations);
-
-      res.status(201).json(newInvitations);
-    } catch (error) {
-      console.error("Failed to create invitations:", error);
-      res.status(500).json({ error: "Unable to create invitations" });
-    }
-  } else {
-    res.status(405).json({ error: "Method not allowed" });
-  }
-} */
   } else if (req.method === "POST") {
     const invitations = req.body;
 

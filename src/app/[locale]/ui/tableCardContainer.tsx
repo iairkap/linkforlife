@@ -6,13 +6,8 @@ import "../sass/layout/tableCardContainer.scss"
 function tableCardContainer() {
     return (
         <main className='tableCardContainer-Layout'>
-            <TableCard />
-            <TableCard />
-            <TableCard />
-            <TableCard />
-            <TableCard />
-            <TableCard />
-        </main>
+            {/*             <TableCard />
+ */}        </main>
     );
 }
 

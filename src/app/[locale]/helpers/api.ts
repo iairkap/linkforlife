@@ -36,3 +36,8 @@ export const fetchCreditsData = async () => {
   const response = await axios.get("/api/credits", {});
   return response.data;
 };
+
+export const fetchTableData = async () => {
+  const response = await axios.get("/api/tables", {});
+  return response.data;
+};

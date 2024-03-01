@@ -47,6 +47,7 @@ model User {
   superAdmin  Boolean @default(false)  
   credits               Int                     @default(2)
   weddingInvitationCard weddingInvitationCard[] @relation("UserToInvitation")
+  table                Table[]
 
 }
 
@@ -67,6 +68,7 @@ model Wedding {
   budget                Float?
   splitBetween          String[]
   picture               String?
+  table               Table[]
 }
 
 
@@ -142,7 +144,6 @@ model WeddingInvitationList {
   plusOneConfirmed Boolean  @default(false)
   groups           Group[]
   groupId          Int?
-  Table            Int?
   phoneNumber      String?
   wedding          Wedding  @relation(fields: [weddingId], references: [id])
   weddingId        Int
@@ -151,7 +152,10 @@ model WeddingInvitationList {
   plusOne          Boolean  @default(false)
   family           Boolean  @default(false)
   familyID         Int?   
+  tableId          Int?     // This field is now optional
+  table            Table?    @relation(fields: [tableId], references: [id])
 }
+
 
 
 
@@ -165,6 +169,15 @@ model Group {
   weddingId             Int
 }
 
+
+model Table{ 
+  id Int @id @default(autoincrement())
+  weddingInvitationLists WeddingInvitationList[]
+  userId Int
+  user   User   @relation(fields: [userId], references: [id])
+  wedding Wedding @relation(fields: [weddingId], references: [id])
+  weddingId Int
+}
 
 model weddingInvitationCard{
   id               Int      @id @default(autoincrement())
