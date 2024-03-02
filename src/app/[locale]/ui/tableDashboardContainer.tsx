@@ -2,11 +2,11 @@ import React from 'react';
 import TableCardContainer from './tableCardContainer';
 import "../sass/layout/tableCardContainer.scss"
 import TableFilter from './tableFilter';
-import type { TableData } from '@/types/types';
+import type { TableData, UserInvitation } from '@/types/types';
 
 
 
-function TableDashboardContainer({ tableData, userInvitationList }: { tableData: TableData[] }) {
+function TableDashboardContainer({ tableData, userInvitationList }: { tableData: TableData[]; userInvitationList: UserInvitation[] }) {
 
     console.log(tableData)
     return (

@@ -14,7 +14,7 @@ function TablesPage() {
     console.log(tableData)
     const [isOpen, setIsOpen] = useState(false)
 
-    const { userInvitationList } = useGlobalContext();
+    const { userInvitationList } = useGlobalContext() || {}; // Add null check here
     console.log(userInvitationList)
 
 

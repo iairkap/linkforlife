@@ -1,9 +1,9 @@
 import React from 'react';
 import TableCard from './tableCard';
 import "../sass/layout/tableCardContainer.scss"
-import type { TableData } from '@/types/types';
+import type { TableData, UserInvitation } from '@/types/types';
 
-function tableCardContainer({ tableData, userInvitationList }: { tableData: TableData[] }) {
+function tableCardContainer({ tableData, userInvitationList }: { tableData: TableData[], userInvitationList: UserInvitation[] }) {
     console.log(tableData)
 
 
