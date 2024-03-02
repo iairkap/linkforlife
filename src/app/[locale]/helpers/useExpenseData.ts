@@ -67,16 +67,16 @@ export const useExpenseData = () => {
       setCategories(categories);
       setLoading(false);
     } catch (error) {
-      console.log(error);
+      error;
     }
   };
-  console.log(totalPaid);
+  totalPaid;
   useEffect(() => {
     fetchData();
   }, []); // El array vacío como segundo argumento asegura que fetchData se llame solo cuando el componente se monta
 
-  console.log(expenseData);
-  console.log(totalAmount);
+  expenseData;
+  totalAmount;
   return {
     expenseData,
     loading,

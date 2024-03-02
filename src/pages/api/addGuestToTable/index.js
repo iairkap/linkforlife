@@ -53,7 +53,7 @@ export default async function handler(req, res) {
         });
       } catch (error) {
         res.status(400).json({ error: "An error occurred" });
-        console.log(error);
+        error;
       }
     } else if (req.method === "DELETE") {
       const { tableId, weddingInvitationID } = req.body;
@@ -86,11 +86,11 @@ export default async function handler(req, res) {
         });
       } catch (error) {
         res.status(400).json({ error: "An error occurred" });
-        console.log(error);
+        error;
       }
     }
   } catch (error) {
     res.status(500).json({ error: "An error occurred" });
-    console.log(error);
+    error;
   }
 }

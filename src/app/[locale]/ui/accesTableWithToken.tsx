@@ -27,7 +27,7 @@ function AccesTableWithToken({ isOpen, contentLabel, onRequestClose }: AccesTabl
         try {
             const response = await axios.post('/api/joinwedding', { accesToken: tokenAcces });
             if (response.status === 200) {
-                console.log('token added successfully');
+                ('token added successfully');
             }
         } catch (error) {
             console.error('Failed to add token:', error);

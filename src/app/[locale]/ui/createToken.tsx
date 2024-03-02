@@ -19,7 +19,7 @@ function CreateToken({ isOpen, contentLabel, onRequestClose, weddingId, extracti
     const handleSubmit = async () => {
         try {
             const response = await axios.post('/api/createToken', { token, weddingId });
-            console.log(response);
+            (response);
             onRequestClose();
         } catch (error) {
             console.error(error);

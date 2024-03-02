@@ -12,7 +12,7 @@ export default async function handler(req, res) {
       userEmail = req.query.email;
     }
 
-    console.log(userEmail);
+    userEmail;
     if (!userEmail) {
       res.status(401).json({ message: "Invalid token" });
       return;
@@ -92,6 +92,6 @@ export default async function handler(req, res) {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: error.message });
-    console.log(error.message);
+    error.message;
   }
 }

@@ -61,7 +61,7 @@ function formInvitationCard({ invitationCard, weddings, credits }: any) {
                 setNotification(true); // Abre el modal
                 return;
             }
-            console.log(response.data);
+            (response.data);
         } catch (error) {
             console.error(error);
             setMessage(t("NoCredits"));

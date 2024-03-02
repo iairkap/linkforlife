@@ -24,7 +24,7 @@ export default async function handler(req, res) {
   const userId = user.id;
   if (req.method === "POST") {
     const { groups, weddingId, invitationId } = req.body;
-    console.log("Invitation ID in createGroups:", invitationId);
+    "Invitation ID in createGroups:", invitationId;
 
     try {
       let createGroupsPromises = groups.map((group) => {

@@ -21,7 +21,7 @@ export const useInvitationData = (id?: number | undefined) => {
       setInvitationCards(data);
       setCreditsData(dataCredits);
     } catch (error) {
-      console.log("error", error);
+      "error", error;
     } finally {
       setIsLoading(false);
     }
@@ -40,7 +40,7 @@ export const useInvitationData = (id?: number | undefined) => {
       const data = await fetchInvitationCardById(id);
       setInvitationCard(data);
     } catch (error) {
-      console.log("error", error);
+      "error", error;
     } finally {
       setIsLoading(false);
     }

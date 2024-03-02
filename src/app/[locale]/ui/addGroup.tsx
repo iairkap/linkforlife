@@ -26,7 +26,7 @@ interface AddInvProps {
 function AddGroup({ isOpen, contentLabel, onRequestClose, refreshData, onRequestCloseGeneral, user }: AddInvProps) {
 
     const posibleNameEvent = user?.name + ' ' + "&" + " " + user?.partnerName
-    console.log(posibleNameEvent)
+        (posibleNameEvent)
     const [weddingName, setWeddingName] = React.useState(posibleNameEvent);
 
     const t = useTranslations('AddWedding');
@@ -38,7 +38,7 @@ function AddGroup({ isOpen, contentLabel, onRequestClose, refreshData, onRequest
     }
 
 
-    console.log(user)
+        (user)
 
 
     const handleWeddingaAddition = async () => {

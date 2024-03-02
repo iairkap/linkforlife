@@ -13,7 +13,7 @@ interface props {
 
 function TableDashboardContainer({ tableData, userInvitationList, setIsOpenAddInv, deleteGuestAndFetchData }: { tableData: TableData[]; userInvitationList: UserInvitation[], setIsOpenAddInv: (arg0: boolean) => void; deleteGuestAndFetchData: any; }) {
 
-    console.log(tableData)
+    (tableData)
     return (
         <main className='layout-table-page'>
             <article className='table-card-container-dash'>

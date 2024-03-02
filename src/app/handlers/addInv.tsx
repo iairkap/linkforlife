@@ -9,8 +9,8 @@ export const handleAddInv = async (wedding: any, name: string, lastName: string,
         const familyID = family ? Math.floor(Math.random() * 1000000) : null;
 
 
-        console.log(coupleName)
-        console.log(children)
+        (coupleName)
+            (children)
 
         const invitation = {
             weddingId: wedding,
@@ -59,7 +59,7 @@ export const handleAddInv = async (wedding: any, name: string, lastName: string,
             });
         }
 
-        console.log(invitations)
+        (invitations)
 
         const newGroups = otherValue ? [otherValue] : [];
         const response = await axios.post('/api/invitationListGeneral', invitations);

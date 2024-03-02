@@ -5,7 +5,7 @@ export default async function handler(req, res) {
   const { token, weddingId } = req.body;
   const weddingIdToNumber = Number(weddingId);
 
-  console.log(weddingIdToNumber, token, req.method);
+  weddingIdToNumber, token, req.method;
 
   if (req.method === "POST") {
     try {

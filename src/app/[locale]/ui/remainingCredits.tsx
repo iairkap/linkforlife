@@ -1,7 +1,7 @@
 import React from 'react';
 import "../sass/components/remainingCredit.scss"
 function RemainingCredits({ credits }: { credits: number }) {
-    console.log(credits)
+    (credits)
     return (
         <article className='remaining-credits-container'>
             <h4>You Have</h4>

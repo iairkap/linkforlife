@@ -74,7 +74,7 @@ export default async function handler(req, res) {
       res.status(201).json(newGroups);
     } catch (error) {
       res.status(500).json({ error: error.message });
-      console.log(error);
+      error;
     }
   } else {
     res.status(405).json({ error: "Method not allowed" });

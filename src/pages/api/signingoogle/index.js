@@ -3,10 +3,10 @@ import { getToken } from "next-auth/jwt";
 
 export default async function handler(req, res) {
   const token = await getToken({ req });
-  console.log("Token:", token);
+  "Token:", token;
 
   const email = token.email;
-  console.log("Email:", email);
+  "Email:", email;
 
   const formDataBis = req.query.formData;
   if (!formDataBis) {
@@ -16,7 +16,7 @@ export default async function handler(req, res) {
     return;
   }
 
-  console.log(formDataBis);
+  formDataBis;
 
   const {
     name,
@@ -26,7 +26,7 @@ export default async function handler(req, res) {
     weddingDate,
     weddingDateUnknown,
   } = formDataBis;
-  console.log("Request body:", req.body);
+  "Request body:", req.body;
 
   // Actualiza el usuario en la base de datos
   const updatedUser = await prisma.user.update({
@@ -40,7 +40,7 @@ export default async function handler(req, res) {
       partnerLastName: partnerLastName,
     },
   });
-  console.log("Updated user:", updatedUser);
+  "Updated user:", updatedUser;
 
   // Envía la respuesta
   res.json(updatedUser);

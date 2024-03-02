@@ -15,12 +15,10 @@ import { useSession } from 'next-auth/react';
 import { update } from '@react-spring/web';
 import axios from 'axios';
 
-
 interface SignUpResponse {
-    message: string;
-    status: string;
+message: string;
+status: string;
 }
-
 
 function SignUp() {
 
@@ -66,7 +64,7 @@ function SignUp() {
     };
 
 
-    console.log(formDataBis.modalMessage)
+    (formDataBis.modalMessage)
 
     const validateForm = () => {
         let newErrors: { [key: string]: string } = {};
@@ -101,7 +99,7 @@ function SignUp() {
         await updateFormData('formSubmitted', true);
         const response = await signUp(formDataBis);
         await updateFormData('modalMessage', response.message);
-        console.log(response.message)
+        (response.message)
         await updateFormData('modalStatus', typeof response.status === 'number' ? response.status : undefined);
         await updateFormData('modalIsOpen', true);
     };
@@ -138,22 +136,22 @@ function SignUp() {
         signIn("google");
     }
 
-    console.log(formDataBis)
+    (formDataBis)
 
     useEffect(() => {
-        console.log(formDataBis)
+        (formDataBis)
         const checkSession = async () => {
             const session = await getSession();
             if (session) {
                 try {
-                    console.log(formDataBis)
+                    (formDataBis)
                     const response = await axios.post('/api/signingoogle', formDataBis, {
                         headers: {
                             'Content-Type': 'application/json'
                         }
                     });
                     const data = response.data;
-                    console.log(data);
+                    (data);
                 } catch (error) {
                     console.error(error);
                 }
@@ -161,14 +159,14 @@ function SignUp() {
         }
         checkSession();
     }, [formDataBis]);
-    /* 
+    /*
     useEffect(() => {
-    
+
         if (isGoogleSignUp) {
             const formDataBis = JSON.parse(localStorage.getItem('formDataBis') as string);
             setTimeout(() => {
                 signUpWithGoogle(formDataBis);
-                console.log('signUpWithGoogle called with data:', formDataBis);
+                ('signUpWithGoogle called with data:', formDataBis);
                 setIsGoogleSignUp(false); // Reset the flag
             }, 2000);
         }
@@ -291,19 +289,14 @@ function SignUp() {
         </main >
 
     )
-}
 
+}
 
 export default SignUp;
 
+/\* useEffect(() => {
+if (formSubmitted) {
 
-
-
-
-
-/*     useEffect(() => {
-        if (formSubmitted) {
- 
             let newErrors = { ...errors };
             if (!name) newErrors.name = 'Name is required';
             if (!lastName) newErrors.lastName = 'Last name is required';
@@ -314,13 +307,14 @@ export default SignUp;
             else if (!/\S+@\S+\.\S+/.test(email)) newErrors.email = 'Email is not valid';
             if (!password) newErrors.password = 'Password is required';
             if (password !== passwordConfirmation) newErrors.passwordConfirmation = 'Passwords do not match';
- 
+
             setErrors(newErrors);
         }
     }, [name, lastName, partnerName, partnerLastName, weddingDate, weddingDateUnknown, email, password, passwordConfirmation]);
- */
 
-/* "use client"
+\*/
+
+/\* "use client"
 
 import React, { useEffect } from 'react';
 import { useState } from 'react';
@@ -333,10 +327,6 @@ import Button from '../ui/button';
 import { signUp } from '../handlers/singUp';
 import ModalNotification from '../ui/modalNotification';
 import { signIn, getSession } from "next-auth/react";
-
-
-
-
 
 interface SignUpResponse {
 message: string;
@@ -360,34 +350,33 @@ const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
 const [modalMessage, setModalMessage] = useState<string | undefined>();
 const [modalStatus, setModalStatus] = useState<string | undefined>();
 const [formDataBis, setFormData] = useState({
-    email: "",
-    password: "",
-    passwordConfirmation: "",
-    name: "",
-    lastName: "",
-    partnerName: "",
-    partnerLastName: "",
-    weddingDate: "",
-    weddingDateUnknown: false,
+email: "",
+password: "",
+passwordConfirmation: "",
+name: "",
+lastName: "",
+partnerName: "",
+partnerLastName: "",
+weddingDate: "",
+weddingDateUnknown: false,
 });
 
 useEffect(() => {
-    setFormData({
-        email,
-        password,
-        passwordConfirmation,
-        name,
-        lastName,
-        partnerName,
-        partnerLastName,
-        weddingDate,
-        weddingDateUnknown,
-    });
+setFormData({
+email,
+password,
+passwordConfirmation,
+name,
+lastName,
+partnerName,
+partnerLastName,
+weddingDate,
+weddingDateUnknown,
+});
 }, [email, password, passwordConfirmation, name, lastName, partnerName, partnerLastName, weddingDate, weddingDateUnknown]);
 
-
 const handleSubmit = async (event: any) => {
-    event.preventDefault();
+event.preventDefault();
 
     // Limpiar los errores
     let newErrors: { [key: string]: string } = {};
@@ -422,33 +411,29 @@ const handleSubmit = async (event: any) => {
             callbackUrl: "/dashboard/rsvp",
         });
     }
+
 };
 const [errors, setErrors] = useState({
-    email: "",
-    password: "",
-    passwordConfirmation: "",
-    name: "",
-    lastName: "",
-    partnerName: "",
-    partnerLastName: "",
-    weddingDate: "",
+email: "",
+password: "",
+passwordConfirmation: "",
+name: "",
+lastName: "",
+partnerName: "",
+partnerLastName: "",
+weddingDate: "",
 });
 
-
-
 useEffect(() => {
-    if (name && lastName && partnerName && partnerLastName && (weddingDate || weddingDateUnknown)) {
-        setInputsAreEmpty(false);
-    } else {
-        setInputsAreEmpty(true);
-    }
+if (name && lastName && partnerName && partnerLastName && (weddingDate || weddingDateUnknown)) {
+setInputsAreEmpty(false);
+} else {
+setInputsAreEmpty(true);
+}
 }, [name, lastName, partnerName, partnerLastName, weddingDate, weddingDateUnknown]);
 
-
-
-
 useEffect(() => {
-    if (formSubmitted) {
+if (formSubmitted) {
 
         let newErrors = { ...errors };
         if (!name) newErrors.name = 'Name is required';
@@ -463,49 +448,44 @@ useEffect(() => {
 
         setErrors(newErrors);
     }
+
 }, [name, lastName, partnerName, partnerLastName, weddingDate, weddingDateUnknown, email, password, passwordConfirmation]);
 
-
 const nextPage = () => {
-    if (currentPage === 1 && inputsAreEmpty) {
-        return;
-    }
-    setCurrentPage(currentPage + 1);
+if (currentPage === 1 && inputsAreEmpty) {
+return;
+}
+setCurrentPage(currentPage + 1);
 }; const prevPage = () => setCurrentPage(currentPage - 1);
 
-
-
-
-
-
 return (
-    <main className='main-container' dir='rtl'>
-        <section className='pictureContainer'>
-            <div className='overflow-picture-container'>
-                {
-                    currentPage === 1 &&
-                    <Image
+<main className='main-container' dir='rtl'>
+<section className='pictureContainer'>
+<div className='overflow-picture-container'>
+{
+currentPage === 1 &&
+<Image
                         src={backgroundSign}
                         alt="Picture of the author"
                         layout="fill"
                         objectFit="cover"
                     />
-                }
-                {
-                    currentPage === 2 &&
-                    <SaveTheDateInitialSignUp
+}
+{
+currentPage === 2 &&
+<SaveTheDateInitialSignUp
                         name={name}
                         partnerName={partnerName}
                         date={weddingDate}
                     />
-                }
-            </div>
-        </section>
-        <section className='form'>
-            <h1>ליצור חשבון</h1>
-            <div className="pagination">
-                <p className={currentPage === 1 ? 'active' : 'deactive'}>1</p>
-                <div className='line'></div>
+}
+</div>
+</section>
+<section className='form'>
+<h1>ליצור חשבון</h1>
+<div className="pagination">
+<p className={currentPage === 1 ? 'active' : 'deactive'}>1</p>
+<div className='line'></div>
 
                 <p className={currentPage === 2 ? 'active' : 'deactive'}>2</p>
             </div>
@@ -574,8 +554,9 @@ return (
             <ModalNotification message={modalMessage} status={modalStatus} isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)} />
         </section>
     </main >
+
 );
 }
 
 export default SignUp;
-*/
+\*/

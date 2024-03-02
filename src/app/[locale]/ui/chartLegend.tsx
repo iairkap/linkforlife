@@ -14,7 +14,7 @@ function Legend({ colors, labels, data, extraction }: LegendProps) {
     const t = useTranslations('DashboardPieCharts');
 
 
-    console.log(extraction)
+    (extraction)
 
     const hebrewLabels = labels.map((label) => {
         if (label === 'Is Attending') {

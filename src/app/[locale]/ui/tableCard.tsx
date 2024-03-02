@@ -22,7 +22,6 @@ function TableCard({ fa, id, numberOfChairs, weddingInvitationLists, name, userI
     const [chairNames, setChairNames] = useState(initialChairNames);
     const [hoverIndex, setHoverIndex] = useState(-1);
 
-    console.log(userInvitationList)
 
     const handleInputChange = (index: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
         const newChairNames = [...chairNames];
@@ -36,7 +35,7 @@ function TableCard({ fa, id, numberOfChairs, weddingInvitationLists, name, userI
                 weddingInvitationID: selectedInvitation.id,
             })
                 .then(response => {
-                    console.log(response.data);
+                    (response.data);
                 })
                 .catch((error) => {
                     console.error('Error:', error);

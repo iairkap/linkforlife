@@ -3,10 +3,10 @@ import { getToken } from "next-auth/jwt";
 import logo from "../../../../../public/logo.png";
 export default async function handler(req, res) {
   const token = await getToken({ req });
-  console.log("Token:", token);
+  "Token:", token;
 
   const email = token.email;
-  console.log("Email:", email);
+  "Email:", email;
 
   const {
     name,
@@ -16,7 +16,7 @@ export default async function handler(req, res) {
     weddingDate,
     weddingDateUnknown,
   } = req.body;
-  console.log("Request body:", req.body);
+  "Request body:", req.body;
 
   // Actualiza el usuario en la base de datos
   const updatedUser = await prisma.user.update({
@@ -31,7 +31,7 @@ export default async function handler(req, res) {
       profilePicture: logo,
     },
   });
-  console.log("Updated user:", updatedUser);
+  "Updated user:", updatedUser;
 
   // Envía la respuesta
   res.json(updatedUser);

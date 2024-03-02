@@ -35,7 +35,7 @@ export default async function handler(req, res) {
       res.status(200).json(tables);
     } else if (req.method === "POST") {
       const { numberTable, numberChairs } = req.body;
-      console.log(numberTable, numberChairs);
+      numberTable, numberChairs;
       const wedding = user.weddings[0];
       if (!wedding) {
         res.status(400).json({ message: "User doesn't have any weddings" });
@@ -98,6 +98,6 @@ export default async function handler(req, res) {
     }
   } catch (error) {
     res.status(500).json({ error: "An error occurred" });
-    console.log(error);
+    error;
   }
 }

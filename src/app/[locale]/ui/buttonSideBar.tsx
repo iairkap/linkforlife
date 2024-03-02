@@ -28,7 +28,7 @@ const ButtonSideBar = ({ icon, Tooltip, Link: linkPath, isActive }: Props) => {
     const extraction = extractLocaleFromPathName(pathName)
 
 
-    console.log(isActive)
+        (isActive)
     const buttonClass = isActive ? 'buttonactive' : 'button'; // Aplica la clase 'active' si el botón está activo
 
     return (

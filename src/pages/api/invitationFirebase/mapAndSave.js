@@ -9,7 +9,7 @@ export default async function handler(req, res) {
       await Promise.all(
         listRes.items.map(async (itemRef) => {
           const url = await getDownloadURL(itemRef);
-          console.log(url);
+          url;
           const model = extractImageNameFromURL(url);
           await prisma.weddingInvitationCard.create({
             data: {

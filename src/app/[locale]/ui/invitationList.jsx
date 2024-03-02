@@ -126,7 +126,7 @@ function TableInvitationList({
         Header: "Actions",
         Cell: ({ row }) => (
           <div>
-            <button onClick={() => console.log(row.original)}>
+            <button onClick={() => row.original}>
               <span class="material-symbols-outlined">more_horiz</span>
             </button>
           </div>

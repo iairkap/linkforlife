@@ -5,7 +5,7 @@ export default async function handler(req, res) {
   const token = await getToken({ req });
   const userEmail = token.email;
 
-  console.log("userEmail", userEmail);
+  "userEmail", userEmail;
 
   if (!userEmail) {
     res.status(401).json({ message: "Invalid token" });

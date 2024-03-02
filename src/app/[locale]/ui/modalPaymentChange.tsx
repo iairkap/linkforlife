@@ -107,7 +107,7 @@ function ModalPaymentChange({ isOpen, onRequestClose, contentLabel, expenseDataS
     }, [expenseDataSelected]);
 
 
-    console.log(isOpen)
+    (isOpen)
 
     const handleUpdateInstallment = async () => {
         try {
@@ -117,7 +117,7 @@ function ModalPaymentChange({ isOpen, onRequestClose, contentLabel, expenseDataS
             }
             const response = await axios.post('/api/cuotas', createInstallment);
             setPayment(false);
-            console.log(response)
+            (response)
         } catch (error) {
             console.error(error)
         }

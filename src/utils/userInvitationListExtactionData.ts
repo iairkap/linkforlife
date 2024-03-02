@@ -41,9 +41,9 @@ export function getInvitationStats(
     (inv) => inv.isAttending === false
   );
   const invitedBy = userInvitationList?.map((inv) => inv.invitedBy);
-  console.log(invitedBy);
+  invitedBy;
 
-  console.log(user);
+  user;
 
   const flattenedInvitedBy = invitedBy?.flat();
   const invitedByUser = flattenedInvitedBy?.filter(
