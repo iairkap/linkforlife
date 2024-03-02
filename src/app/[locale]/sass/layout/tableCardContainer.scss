@@ -1,3 +1,4 @@
+@import "../abstracts/variables";
 .layout-table-page {
   display: grid;
   grid-template-columns: 4fr 1fr;
@@ -27,4 +28,29 @@
   grid-template-columns: 1fr 1fr 1fr;
   height: 100%;
   gap: 1.5rem;
+}
+
+.no-tables-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  font-size: 1.5rem;
+  text-align: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.containerGen {
+  height: 100%;
+}
+
+.font-h4-sub {
+  color: #000;
+  font-family: $es-en-font;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 1.875rem */
 }

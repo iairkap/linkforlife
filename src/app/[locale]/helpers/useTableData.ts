@@ -1,6 +1,5 @@
 import { fetchTableData, deleteGuestTable } from "./api";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const useTableData = () => {
   const [tableData, setTableData] = useState([]);
@@ -10,6 +9,17 @@ export const useTableData = () => {
     setLoading(true);
     fetchTableData().then((data) => {
       setTableData(data);
+      setLoading(false);
+    });
+  };
+
+  const fetchDataAndUpdateExternal = (setTableDataExternal: any) => {
+    setLoading(true);
+    fetchTableData().then((data) => {
+      setTableData(data);
+      if (setTableDataExternal) {
+        setTableDataExternal(data);
+      }
       setLoading(false);
     });
   };
@@ -31,6 +41,6 @@ export const useTableData = () => {
     loading,
     deleteGuestAndFetchData,
     setTableData,
-    fetchData,
+    fetchDataAndUpdateExternal,
   };
 };

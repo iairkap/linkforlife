@@ -16,7 +16,6 @@ function TablesPage() {
     const [isOpenAddInv, setIsOpenAddInv] = useState(false)
     const { userInvitationList, user, groups, setUserInvitationList, invitedByOptions } = useGlobalContext() || {}; // Add null check here
 
-
     const handleCloseModal = () => {
         setIsOpenAddInv(false);
     }
@@ -34,25 +33,15 @@ function TablesPage() {
         <main className="maina">
             <header className="header">
                 <span>Event tables: <b>Iair & Javier Wedding</b></span>
-                <ButtonContainerTablesHeader
-                    setIsOpen={setIsOpen}
-
-                />
+                <ButtonContainerTablesHeader setIsOpen={setIsOpen} tableData={tableData} />
             </header>
             <section className='general-table'>
-                <TableDashboardContainer tableData={tableData} userInvitationList={userInvitationList} setIsOpenAddInv={setIsOpenAddInv} deleteGuestAndFetchData={deleteGuestAndFetchData} setTableData={setTableData} />
+                <TableDashboardContainer tableData={tableData} userInvitationList={userInvitationList} setIsOpenAddInv={setIsOpenAddInv} deleteGuestAndFetchData={deleteGuestAndFetchData} setTableData={setTableData}
+                    setIsOpen={setIsOpen}
+                />
             </section>
-
-            <AddTable isOpen={isOpen} contentLabel={"Agregar mesas"} onRequestClose={() => setIsOpen(false)} />
-            <AddInv
-                isOpen={isOpenAddInv}
-                onRequestClose={handleCloseModal}
-                contentLabel="My Modal"
-                setUserInvitationList={(list: any[]) => setUserInvitationList && setUserInvitationList(list)}
-                userInvitationList={userInvitationList}
-                user={user}
-                groups={groups}
-                invitedByOptions={invitedByOptions}
+            <AddTable isOpen={isOpen} contentLabel={"Agregar mesas"} onRequestClose={() => setIsOpen(false)} setTableData={setTableData} />
+            <AddInv isOpen={isOpenAddInv} onRequestClose={handleCloseModal} contentLabel="My Modal" setUserInvitationList={(list: any[]) => setUserInvitationList && setUserInvitationList(list)} userInvitationList={userInvitationList} user={user} groups={groups} invitedByOptions={invitedByOptions}
             />
         </main>
     );

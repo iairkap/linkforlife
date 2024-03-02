@@ -24,10 +24,7 @@ function TableCard({ fa, id, numberOfChairs, weddingInvitationLists, name, userI
     });
     const [chairNames, setChairNames] = useState(initialChairNames);
     const [hoverIndex, setHoverIndex] = useState(-1);
-
     const { fetchData } = useTableData();
-
-
     const handleInputChange = (index: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
         const newChairNames = [...chairNames];
         newChairNames[index] = event.target.value;
@@ -53,10 +50,7 @@ function TableCard({ fa, id, numberOfChairs, weddingInvitationLists, name, userI
         <article className='general-table-particle-container'>
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
             <header className='table-title'>
-                {
-                    name ? <span>{name}</span> : <span>Table {id}</span>
-                }
-
+                {name ? <span>{name}</span> : <span>Table {id}</span>}
                 <div className='button-settings'>
                     <span className="material-symbols-outlined">
                         settings

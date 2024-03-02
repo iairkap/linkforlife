@@ -2,26 +2,20 @@ import React, { useState } from 'react';
 import Modal from './modal';
 import table from "../../../../public/table.svg"
 import InputField from './InputField';
-import { InputsData } from './pbjectModalTable';
+import { InputsData } from '@/app/handlers/editTableInputsData';
 import { handleClickAddTable } from '@/app/handlers/addTable';
-import { useTableData } from '../helpers/useTableData';
 interface AddTableProps {
     isOpen: boolean;
     contentLabel: string;
     onRequestClose: () => void;
-    setTableData: any;
 }
 
-function AddTable({ isOpen, contentLabel, onRequestClose, setTableData }: AddTableProps) {
+function AddTable({ isOpen, contentLabel, onRequestClose, }: AddTableProps) {
     const iconElement = <img src={table.src} height={table.height} width={table.width} style={{ filter: `blur(${table.blurWidth}px ${table.blurHeight}px)` }} />
 
     const [numberChairs, setNumberChairs] = useState<number | null>(null)
     const [numberTables, setNumberTables] = useState<number | null>(null)
-    const { fetchDataAndUpdateExternal } = useTableData(); // Use useTableData to get fetchData
-    const [tableAdded, setTableAdded] = useState(false); // New state
 
-
-    console.log(tableAdded)
     const stateSetters: { [key: string]: React.Dispatch<React.SetStateAction<number | null>> } = {
         numberChairs: setNumberChairs,
         numberTable: setNumberTables,
@@ -47,14 +41,8 @@ function AddTable({ isOpen, contentLabel, onRequestClose, setTableData }: AddTab
                     </div>
                 ))}
 
+                <button className='button-a' onClick={() => handleClickAddTable(numberTables, numberChairs, onRequestClose)}>Save</button>
 
-                <button className='button-a' onClick={() => {
-                    handleClickAddTable(numberTables, numberChairs, onRequestClose)
-                        .then(() => {
-                            fetchDataAndUpdateExternal(setTableData);
-                            setTableAdded(!tableAdded); // Update state
-                        });
-                }}>Save</button>
             </section>
         </Modal>
     );

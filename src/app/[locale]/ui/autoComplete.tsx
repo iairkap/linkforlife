@@ -7,7 +7,7 @@ import axios from 'axios';
 import { themeGeneralA } from '../dashboard/themes/themeGenera';
 
 
-export default function FreeSolo({ userInvitationList, value, onChange, readOnly, initialChairNames, fa }: any) {
+export default function FreeSolo({ userInvitationList, value, onChange, readOnly, initialChairNames, fa, setUserInvitationList }: any) {
     const [active, setActive] = React.useState(false);
     const [hover, setHover] = React.useState(false);
 
