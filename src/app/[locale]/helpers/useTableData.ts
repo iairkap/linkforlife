@@ -26,5 +26,11 @@ export const useTableData = () => {
     fetchData();
   }, []);
 
-  return { tableData, loading, deleteGuestAndFetchData };
+  return {
+    tableData,
+    loading,
+    deleteGuestAndFetchData,
+    setTableData,
+    fetchData,
+  };
 };

@@ -11,7 +11,7 @@ import { useGlobalContext } from '../globalContext';
 import AddInv from '../../ui/addInv';
 function TablesPage() {
 
-    const { tableData, loading, deleteGuestAndFetchData } = useTableData();
+    const { tableData, loading, deleteGuestAndFetchData, setTableData } = useTableData();
     const [isOpen, setIsOpen] = useState(false)
     const [isOpenAddInv, setIsOpenAddInv] = useState(false)
     const { userInvitationList, user, groups, setUserInvitationList, invitedByOptions } = useGlobalContext() || {}; // Add null check here
@@ -40,7 +40,7 @@ function TablesPage() {
                 />
             </header>
             <section className='general-table'>
-                <TableDashboardContainer tableData={tableData} userInvitationList={userInvitationList} setIsOpenAddInv={setIsOpenAddInv} deleteGuestAndFetchData={deleteGuestAndFetchData} />
+                <TableDashboardContainer tableData={tableData} userInvitationList={userInvitationList} setIsOpenAddInv={setIsOpenAddInv} deleteGuestAndFetchData={deleteGuestAndFetchData} setTableData={setTableData} />
             </section>
 
             <AddTable isOpen={isOpen} contentLabel={"Agregar mesas"} onRequestClose={() => setIsOpen(false)} />

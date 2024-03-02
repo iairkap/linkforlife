@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import "../sass/components/tableCard.scss"
 import FreeSolo from './autoComplete';
 import axios from 'axios';
+import { useTableData } from '../helpers/useTableData';
+
 interface TableCardProps {
     fa?: number;
     numberOfChairs: number;
@@ -11,8 +13,9 @@ interface TableCardProps {
     userInvitationList: any[];
     deleteGuestAndFetchData?: any;
     setIsOpenAddInv?: any;
+    setTableData?: any;
 }
-function TableCard({ fa, id, numberOfChairs, weddingInvitationLists, name, userInvitationList, deleteGuestAndFetchData, setIsOpenAddInv }: TableCardProps) {
+function TableCard({ fa, id, numberOfChairs, weddingInvitationLists, name, userInvitationList, deleteGuestAndFetchData, setIsOpenAddInv, setTableData }: TableCardProps) {
     const initialChairNames = Array(numberOfChairs).fill('');
     weddingInvitationLists.forEach((list, index) => {
         if (index < numberOfChairs) {
@@ -22,7 +25,8 @@ function TableCard({ fa, id, numberOfChairs, weddingInvitationLists, name, userI
     const [chairNames, setChairNames] = useState(initialChairNames);
     const [hoverIndex, setHoverIndex] = useState(-1);
 
-    console.log(userInvitationList)
+    const { fetchData } = useTableData();
+
 
     const handleInputChange = (index: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
         const newChairNames = [...chairNames];
