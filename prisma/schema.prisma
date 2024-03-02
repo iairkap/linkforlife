@@ -172,6 +172,8 @@ model Group {
 
 model Table{ 
   id Int @id @default(autoincrement())
+  numberOfChairs Int
+  name String?
   weddingInvitationLists WeddingInvitationList[]
   userId Int
   user   User   @relation(fields: [userId], references: [id])

@@ -110,3 +110,12 @@ export interface InvitationCard {
   toggleFavorite: () => void;
   url: string | undefined;
 }
+
+export interface TableData {
+  id: number;
+  numberOfChairs: number;
+  userId: number;
+  weddingId: number;
+  weddingInvitationLists: UserInvitation[];
+  name?: string;
+}

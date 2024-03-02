@@ -13,6 +13,9 @@ export default async function handler(req, res) {
       where: {
         email: userEmail,
       },
+      include: {
+        weddings: true, // Add this line
+      },
     });
     if (!user) {
       res.status(404).json({ message: "User not found" });
@@ -31,6 +34,39 @@ export default async function handler(req, res) {
       });
       res.status(200).json(tables);
     } else if (req.method === "POST") {
+      const { numberTable, numberChairs } = req.body;
+      console.log(numberTable, numberChairs);
+      const wedding = user.weddings[0];
+      if (!wedding) {
+        res.status(400).json({ message: "User doesn't have any weddings" });
+        return;
+      }
+
+      const tables = [];
+      for (let i = 0; i < numberTable; i++) {
+        try {
+          const newTable = await prisma.table.create({
+            data: {
+              numberOfChairs: numberChairs,
+              user: {
+                connect: {
+                  id: userId,
+                },
+              },
+              wedding: {
+                connect: {
+                  id: wedding.id,
+                },
+              },
+            },
+          });
+          tables.push(newTable);
+        } catch (error) {
+          console.error(`Failed to create table: ${error}`);
+        }
+      }
+      res.json(tables);
+    } else if (req.method === "PATCH") {
       const tables = req.body;
       if (!Array.isArray(tables)) {
         res.status(400).json({ error: "Expected an array of tables" });
@@ -62,5 +98,6 @@ export default async function handler(req, res) {
     }
   } catch (error) {
     res.status(500).json({ error: "An error occurred" });
+    console.log(error);
   }
 }

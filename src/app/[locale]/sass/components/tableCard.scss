@@ -7,6 +7,7 @@
   margin: 0px;
   padding: 0px;
   font-family: $es-en-font;
+  border: none;
 }
 
 .general-table-particle-container {
@@ -46,4 +47,62 @@ ol {
   flex-direction: column;
   height: 100%;
   justify-content: space-between;
+}
+
+.input-li-table {
+  border: none;
+  outline: none;
+  background: transparent;
+  box-shadow: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  position: relative;
+}
+
+.input-hover-label {
+  display: none;
+  position: absolute;
+  top: 0;
+}
+
+.input-li-table:hover + .input-hover-label,
+.input-li-table-filled:hover + .input-hover-label {
+  display: block;
+}
+
+.input-li-table,
+.input-li-table-filled {
+  width: 100%;
+  padding: 0.5rem 1rem;
+}
+
+.input-li-table-filled:focus,
+.input-li-table:focus {
+  border: none;
+  outline: none;
+  background: transparent;
+  box-shadow: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.list-elementCont {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+}
+
+.list-element {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.index-span {
 }

@@ -65,7 +65,7 @@ function AddWedding({ isOpen, contentLabel, onRequestClose, refreshData, onReque
         <Modal isOpen={isOpen} onRequestClose={onRequestClose} contentLabel={contentLabel} icon={"celebration"}>
             <section className='containerModalInvitationWedding'>
                 <h1 className='title-container'>{t("addWedding")}</h1>
-                <article className="layout">
+                <div style={{ display: "flex", flexDirection: "column", width: "70%", gap: "1rem" }}>
                     <InputField
                         value={weddingName}
                         type="text"
@@ -94,9 +94,9 @@ function AddWedding({ isOpen, contentLabel, onRequestClose, refreshData, onReque
                         error=''
                     />
                     <Button label={t("save")} onClick={handleWeddingaAddition} className='button-a' />
-                </article>
+                </div>
             </section>
-        </Modal>
+        </Modal >
     );
 }
 
