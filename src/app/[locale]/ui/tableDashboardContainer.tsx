@@ -15,8 +15,6 @@ function TableDashboardContainer({ tableData, userInvitationList, setIsOpenAddIn
 
 
 
-
-
     return (
 
 
