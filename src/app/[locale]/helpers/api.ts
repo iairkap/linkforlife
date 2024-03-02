@@ -41,3 +41,16 @@ export const fetchTableData = async () => {
   const response = await axios.get("/api/tables", {});
   return response.data;
 };
+
+export const deleteGuestTable = async (
+  tableId: number,
+  weddingInvitationID: number
+) => {
+  const response = await axios.delete("/api/addGuestToTable", {
+    data: {
+      tableId,
+      weddingInvitationID,
+    },
+  });
+  return response.data;
+};

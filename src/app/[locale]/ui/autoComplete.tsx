@@ -11,16 +11,15 @@ export default function FreeSolo({ userInvitationList, value, onChange, readOnly
     const [active, setActive] = React.useState(false);
     const [hover, setHover] = React.useState(false);
 
-    const userInvitationListWithFullNames = userInvitationList.map((option: any) => ({
-        fullName: `${option.name} ${option.lastName}`,
-        ...option
-    }));
+    const userInvitationListWithFullNames = userInvitationList
+        .filter((option: any) => option.tableId === null) // Exclude invitations that already have a tableId
+        .map((option: any) => ({
+            fullName: `${option.name} ${option.lastName}`,
+            ...option
+        }));
 
     const trimmedInitialChairNames = initialChairNames.map((name: string) => name.trim());
-
     const filteredUserInvitationList = userInvitationListWithFullNames.filter((option: any) => !trimmedInitialChairNames.includes(option.fullName));
-
-
 
     return (
         <ThemeProvider theme={themeGeneralA}>

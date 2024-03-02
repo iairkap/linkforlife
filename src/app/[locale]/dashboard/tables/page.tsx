@@ -8,20 +8,25 @@ import Loader from '../../ui/loader';
 import AddTable from '../../ui/addTable';
 import { useState } from 'react';
 import { useGlobalContext } from '../globalContext';
+import AddInv from '../../ui/addInv';
 function TablesPage() {
 
-    const { tableData, loading } = useTableData();
-    console.log(tableData)
+    const { tableData, loading, deleteGuestAndFetchData } = useTableData();
     const [isOpen, setIsOpen] = useState(false)
+    const [isOpenAddInv, setIsOpenAddInv] = useState(false)
+    const { userInvitationList, user, groups, setUserInvitationList, invitedByOptions } = useGlobalContext() || {}; // Add null check here
 
-    const { userInvitationList } = useGlobalContext() || {}; // Add null check here
-    console.log(userInvitationList)
+
+    const handleCloseModal = () => {
+        setIsOpenAddInv(false);
+    }
 
 
     if (loading) {
-        return (<main className='main'>
-            <Loader />
-        </main>
+        return (
+            <main className='main'>
+                <Loader />
+            </main>
         )
     }
 
@@ -31,13 +36,25 @@ function TablesPage() {
                 <span>Event tables: <b>Iair & Javier Wedding</b></span>
                 <ButtonContainerTablesHeader
                     setIsOpen={setIsOpen}
+
                 />
             </header>
             <section className='general-table'>
-                <TableDashboardContainer tableData={tableData} userInvitationList={userInvitationList} />
+                <TableDashboardContainer tableData={tableData} userInvitationList={userInvitationList} setIsOpenAddInv={setIsOpenAddInv} deleteGuestAndFetchData={deleteGuestAndFetchData} />
             </section>
+
             <AddTable isOpen={isOpen} contentLabel={"Agregar mesas"} onRequestClose={() => setIsOpen(false)} />
-        </main >
+            <AddInv
+                isOpen={isOpenAddInv}
+                onRequestClose={handleCloseModal}
+                contentLabel="My Modal"
+                setUserInvitationList={(list: any[]) => setUserInvitationList && setUserInvitationList(list)}
+                userInvitationList={userInvitationList}
+                user={user}
+                groups={groups}
+                invitedByOptions={invitedByOptions}
+            />
+        </main>
     );
 }
 

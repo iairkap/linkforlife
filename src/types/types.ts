@@ -48,6 +48,7 @@ export interface DashboardData {
   isOpenModalAddUser: boolean;
   setIsOpenModalAddUser: any;
   user: any;
+  invitedByOptions: any[];
 }
 
 export interface DashboardDataB {

@@ -5,19 +5,24 @@ import TableFilter from './tableFilter';
 import type { TableData, UserInvitation } from '@/types/types';
 
 
+interface props {
+    setIsOpenAddInv: (arg0: boolean) => void;
+    deleteGuestAndFetchData: any;
+}
 
-function TableDashboardContainer({ tableData, userInvitationList }: { tableData: TableData[]; userInvitationList: UserInvitation[] }) {
+
+function TableDashboardContainer({ tableData, userInvitationList, setIsOpenAddInv, deleteGuestAndFetchData }: { tableData: TableData[]; userInvitationList: UserInvitation[], setIsOpenAddInv: (arg0: boolean) => void; deleteGuestAndFetchData: any; }) {
 
     console.log(tableData)
     return (
         <main className='layout-table-page'>
             <article className='table-card-container-dash'>
-                <TableCardContainer tableData={tableData} userInvitationList={userInvitationList} />
+                <TableCardContainer tableData={tableData} userInvitationList={userInvitationList} setIsOpenAddInv={setIsOpenAddInv} deleteGuestAndFetchData={deleteGuestAndFetchData} />
             </article>
             <section className='table-filter-container-dash'>
                 {/*                 <div className='divisorLine'></div>
  */}
-                <TableFilter />
+                <TableFilter setIsOpenAddInv={setIsOpenAddInv} />
             </section>
         </main>
     );

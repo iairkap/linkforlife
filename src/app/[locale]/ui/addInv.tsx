@@ -30,7 +30,7 @@ interface AddInvProps {
     userInvitationList: any[]; // Add this line
     setUserInvitationList: (list: any[]) => void; // Add this line
     groups: any;
-    invitedByOptions: any[];
+    invitedByOptions?: any[];
 }
 
 function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList, userInvitationList, user, groups, invitedByOptions }: AddInvProps) {

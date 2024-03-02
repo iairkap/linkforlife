@@ -9,13 +9,13 @@ import { DashboardData } from '@/types/types';
 const GlobalContext = createContext<DashboardData | null>(null);
 
 const GlobalProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations, weddings, setWeddings, refreshData, user } = useDashboardData();
+    const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations, weddings, setWeddings, refreshData, user, invitedByOptions } = useDashboardData();
     const { data: session, status } = useSession();
     const [isOpenModalAddUser, setIsOpenModalAddUser] = useState(false);
 
 
     return (
-        <GlobalContext.Provider value={{ userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations, weddings, setWeddings, session, refreshData, isOpenModalAddUser, setIsOpenModalAddUser, user }}>
+        <GlobalContext.Provider value={{ userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations, weddings, setWeddings, session, refreshData, isOpenModalAddUser, setIsOpenModalAddUser, user, invitedByOptions }}>
             {isLoading ? <div style={{ display: "flex", height: "100vh", width: "100vw", alignItems: "center", justifyContent: "center" }}>
                 <Loader />
             </div> : children}
