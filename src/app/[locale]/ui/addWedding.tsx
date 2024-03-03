@@ -27,7 +27,7 @@ interface AddInvProps {
 function AddWedding({ isOpen, contentLabel, onRequestClose, refreshData, onRequestCloseGeneral, user }: AddInvProps) {
 
     const posibleNameEvent = user?.name + ' ' + "&" + " " + user?.partnerName
-    console.log(posibleNameEvent)
+
     const [weddingName, setWeddingName] = React.useState(posibleNameEvent);
     const [weddingPlace, setWeddingPLace] = React.useState('');
     const [weddingDate, setWeddingDate] = useState<string>('');
@@ -41,7 +41,7 @@ function AddWedding({ isOpen, contentLabel, onRequestClose, refreshData, onReque
     }
 
 
-    console.log(user)
+
 
 
     const handleWeddingaAddition = async () => {

@@ -26,7 +26,7 @@ function AddInvByToken({ weddingId }: AddInvProps) {
     const [image, setImage] = useState<File | null>(null);
     const [avatar, setAvatar] = useState('');
 
-    console.log(avatar)
+
 
     const t = useTranslations('ModalAddInv');
 
@@ -46,11 +46,11 @@ function AddInvByToken({ weddingId }: AddInvProps) {
             const response = await axios.post(`/api/wedding/${id}`, invitation);
 
             if (response.status === 200) {
-                console.log('Invitation added');
+
                 setStatus(response.status); // Update the status state here
             }
         } catch (error) {
-            console.log(error);
+
             console.error('Failed to add invitation:', error);
             setStatus(500); // Update the status state here in case of error
         }
@@ -72,11 +72,11 @@ function AddInvByToken({ weddingId }: AddInvProps) {
                     // Handle the upload progress
                 },
                 (error) => {
-                    console.log(error);
+
                 },
                 () => {
                     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                        console.log('File available at', downloadURL);
+
                         setAvatar(downloadURL);
                     });
                 }

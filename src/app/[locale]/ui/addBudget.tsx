@@ -38,7 +38,7 @@ function AddBudget({ expenseData, weddings, refreshData, totalPaid, totalAmount 
             });
             refreshData(); // Llama a refreshData en lugar de refershData
         } catch (error) {
-            console.log(error);
+
         }
     }
 

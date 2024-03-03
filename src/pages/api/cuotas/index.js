@@ -27,7 +27,7 @@ export default async function handler(req, res) {
       res.status(201).json(createInstallment);
     } catch (error) {
       res.status(404).json(error);
-      console.log(error);
+
       return;
     }
   }

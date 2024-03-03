@@ -30,7 +30,7 @@ function buttonContainerTablesHeader({ setIsOpen, tableData }: Props) {
                 document.body.removeChild(link);
             })
             .catch((err) => {
-                console.log(err);
+
             });
     };
 

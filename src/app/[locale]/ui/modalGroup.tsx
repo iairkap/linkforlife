@@ -37,14 +37,14 @@ function ModalGroup({ isOpen, contentLabel, onRequestClose, onRequestCloseGenera
             const groups = allGroupNames.map(name => ({ name, weddingId: form.weddingId }));
             const response = await axios.post('/api/groupsList', groups);
             const newGroup = response.data;
-            console.log(response.data)
+
             setGroups((prevGroups: any[]): any => [...prevGroups, ...newGroup])
             fetchData();
             onRequestCloseGeneral();
             setForm({ name: "", names: [], weddingId: weddings[0]?.id });
         } catch (error) {
             console.error(error);
-            console.log(error)
+
         }
     }
     const handleRemoveGroup = (index: number) => {

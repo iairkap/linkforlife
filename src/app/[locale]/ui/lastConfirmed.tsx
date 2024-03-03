@@ -24,7 +24,7 @@ function DashboardLastConfirmed({ userInvitationList, extraction }: userInvitati
             <h2>Last Attendees</h2>
             <ul className='list-ul'>
                 {confirmedUsers.map((user, index) => {
-                    const avatar = (Array.isArray(user.avatar) && user.avatar.length === 0) ? '/logo.png' : user.avatar; console.log(avatar)
+                    const avatar = (Array.isArray(user.avatar) && user.avatar.length === 0) ? '/logo.png' : user.avatar;
                     return (
                         <li key={index} className='display' >
                             <div className={`list-container ${menuOpen[index] ? 'menu-open' : 'regular-width'}`}>

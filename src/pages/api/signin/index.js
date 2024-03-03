@@ -9,7 +9,6 @@ export default async function handler(req, res) {
 
       const existingUser = await prisma.user.findUnique({ where: { email } });
       if (existingUser) {
-        console.log("existingUser", existingUser);
         return res.status(444).json({ error: "email already in use" });
       }
 

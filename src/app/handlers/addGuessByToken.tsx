@@ -25,11 +25,11 @@ export const handleAddInvByToken = async (name: string, lastName: string, email:
 
 
         if (response.status === 200) {
-            console.log('Invitation added');
+
             return response.status;
         }
     } catch (error) {
-        console.log(error);
+
         console.error('Failed to add invitation:', error);
     }
     setIsOpen(true); // Move this line here

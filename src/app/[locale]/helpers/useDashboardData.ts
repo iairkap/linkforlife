@@ -30,7 +30,7 @@ export const useDashboardData = () => {
   );
   const [invitedByOptions, setInvitedByOptions] = useState<any[]>([]);
   const router = useRouter();
-  console.log(invitedByOptions);
+
   const fetchData = async () => {
     setIsLoading(true);
     try {

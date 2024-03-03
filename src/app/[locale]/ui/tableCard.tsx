@@ -40,7 +40,7 @@ function TableCard({ fa, id, numberOfChairs, weddingInvitationLists, name, userI
                 weddingInvitationID: selectedInvitation.id,
             })
                 .then(response => {
-                    console.log(response.data);
+
                 })
                 .catch((error) => {
                     console.error('Error:', error);
@@ -54,7 +54,6 @@ function TableCard({ fa, id, numberOfChairs, weddingInvitationLists, name, userI
         setIsOpen(true);
     }
 
-    console.log(idTable)
 
 
 

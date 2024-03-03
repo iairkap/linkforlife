@@ -13,7 +13,7 @@ interface DonutChartProps {
 function DonutChart({ colors, data }: DonutChartProps) {
 
 
-    console.log(data)
+
 
     const ref = useRef<SVGSVGElement>(null);
     useEffect(() => {

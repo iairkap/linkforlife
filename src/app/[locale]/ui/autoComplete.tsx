@@ -42,7 +42,7 @@ export default function FreeSolo({ userInvitationList, value, onChange, readOnly
                                 weddingInvitationID: selectedInvitation.id,
                             })
                                 .then(response => {
-                                    console.log(response.data);
+
                                 })
                                 .catch((error) => {
                                     console.error('Error:', error);

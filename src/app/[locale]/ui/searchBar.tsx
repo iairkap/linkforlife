@@ -5,7 +5,7 @@ import "../sass/components/SearchBar.scss"
 function SearchBar({ extraction }: any): JSX.Element {
     const t = useTranslations('SearchBar');
 
-    console.log(extraction)
+
 
     return (
         <div >

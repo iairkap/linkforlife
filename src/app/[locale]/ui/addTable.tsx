@@ -21,7 +21,7 @@ function AddTable({ isOpen, contentLabel, onRequestClose, setTableData }: AddTab
     const [tableAdded, setTableAdded] = useState(false); // New state
 
 
-    console.log(tableAdded)
+
     const stateSetters: { [key: string]: React.Dispatch<React.SetStateAction<number | null>> } = {
         numberChairs: setNumberChairs,
         numberTable: setNumberTables,

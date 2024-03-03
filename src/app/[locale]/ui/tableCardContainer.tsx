@@ -4,7 +4,7 @@ import "../sass/layout/tableCardContainer.scss"
 import type { TableData, UserInvitation } from '@/types/types';
 
 function tableCardContainer({ tableData, userInvitationList, setIsOpenAddInv, deleteGuestAndFetchData, setTableData }: { tableData: TableData[], userInvitationList: UserInvitation[], setIsOpenAddInv: (arg0: boolean) => void; deleteGuestAndFetchData: any; setTableData: any; }) {
-    console.log(tableData)
+
 
 
 

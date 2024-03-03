@@ -66,7 +66,7 @@ function Payments() {
                 setExpenseDataSelected(selectedExpense);
                 setModalPaymentChange(true);
             } else {
-                console.log(`No expense found with id ${rowClicked}`);
+
             }
         }
     }, [rowClicked, expenseData, modalPaymentChange]);  // Add expenseData to the dependency array

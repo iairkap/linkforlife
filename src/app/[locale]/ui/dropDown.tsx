@@ -11,7 +11,7 @@ interface DropDownProps {
 
 function DropDown({ children, isOpen, extraction }: DropDownProps) {
 
-    console.log(extraction)
+
 
     return (
         <section className={`menu-dropdown ${isOpen ? 'open' : ''} ${extraction === 'he' ? 'menu-dropdown-he' : 'menu-dropdown-en-es'}`}>

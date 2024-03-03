@@ -29,7 +29,7 @@ function UpcomingPayment({ upcomingExpenses, extraction }: UpcomingPaymentProps)
 
 
     if (upcomingExpenses) {
-        console.log(upcomingExpenses[0]?.paymentDate)
+
     }
 
 
