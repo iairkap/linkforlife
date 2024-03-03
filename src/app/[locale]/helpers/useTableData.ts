@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 export const useTableData = () => {
   const [tableData, setTableData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [editModalOpen, setEditModalOpen] = useState(false);
 
   const fetchData = () => {
     setLoading(true);

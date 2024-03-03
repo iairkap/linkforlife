@@ -10,11 +10,11 @@ export const InputsData = [
         }
     },
     {
-        "span": "Nombre de MEsa",
+        "span": "Nombre de Mesa",
         "inputField": {
             "type": "text",
             "placeholder": "Nombre de mesa",
-            "name": "tablNanme",
+            "name": "tableName",
             "value": "tableName",
             "onChange": "setTableName(Number(e.target.value))"
         }

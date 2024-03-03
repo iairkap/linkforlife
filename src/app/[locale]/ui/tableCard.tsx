@@ -3,7 +3,8 @@ import "../sass/components/tableCard.scss"
 import FreeSolo from './autoComplete';
 import axios from 'axios';
 import { useTableData } from '../helpers/useTableData';
-
+import EditTable from './editTable';
+import { set } from 'date-fns';
 interface TableCardProps {
     fa?: number;
     numberOfChairs: number;
@@ -14,6 +15,7 @@ interface TableCardProps {
     deleteGuestAndFetchData?: any;
     setIsOpenAddInv?: any;
     setTableData?: any;
+
 }
 function TableCard({ fa, id, numberOfChairs, weddingInvitationLists, name, userInvitationList, deleteGuestAndFetchData, setIsOpenAddInv, setTableData }: TableCardProps) {
     const initialChairNames = Array(numberOfChairs).fill('');
@@ -24,7 +26,8 @@ function TableCard({ fa, id, numberOfChairs, weddingInvitationLists, name, userI
     });
     const [chairNames, setChairNames] = useState(initialChairNames);
     const [hoverIndex, setHoverIndex] = useState(-1);
-    const { fetchData } = useTableData();
+    const [isOpen, setIsOpen] = useState(false);
+    const [idTable, setIdTable] = useState(0);
     const handleInputChange = (index: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
         const newChairNames = [...chairNames];
         newChairNames[index] = event.target.value;
@@ -46,15 +49,26 @@ function TableCard({ fa, id, numberOfChairs, weddingInvitationLists, name, userI
     };
 
 
+    const handleOpenEditModal = () => {
+        setIdTable(fa || 0);
+        setIsOpen(true);
+    }
+
+    console.log(idTable)
+
+
+
     return (
         <article className='general-table-particle-container'>
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
             <header className='table-title'>
                 {name ? <span>{name}</span> : <span>Table {id}</span>}
                 <div className='button-settings'>
-                    <span className="material-symbols-outlined">
-                        settings
-                    </span>
+                    <button onClick={() => handleOpenEditModal()}>
+                        <span className="material-symbols-outlined">
+                            settings
+                        </span>
+                    </button>
                 </div>
             </header>
             <div className='diviser'></div>
@@ -90,6 +104,8 @@ function TableCard({ fa, id, numberOfChairs, weddingInvitationLists, name, userI
                     ))}
                 </ol>
             </section>
+            <EditTable isOpen={isOpen} contentLabel={"Modificar Mesa"} onRequestClose={() => setIsOpen(false)} tableID={idTable} />
+
         </article >
     );
 }

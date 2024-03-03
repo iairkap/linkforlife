@@ -3,30 +3,32 @@ import Modal from './modal';
 import table from "../../../../public/table.svg"
 import InputField from './InputField';
 import { InputsData } from '@/app/handlers/editTableInputsData';
-import { handleClickAddTable } from '@/app/handlers/addTable';
+import { handleClickEditTable } from '@/app/handlers/addTable';
 interface AddTableProps {
     isOpen: boolean;
     contentLabel: string;
     onRequestClose: () => void;
+    tableID?: number | null;
 }
 
-function AddTable({ isOpen, contentLabel, onRequestClose, }: AddTableProps) {
+function EditTable({ isOpen, contentLabel, onRequestClose, tableID }: AddTableProps) {
     const iconElement = <img src={table.src} height={table.height} width={table.width} style={{ filter: `blur(${table.blurWidth}px ${table.blurHeight}px)` }} />
 
     const [numberChairs, setNumberChairs] = useState<number | null>(null)
-    const [numberTables, setNumberTables] = useState<number | null>(null)
+    const [tableName, setTableName] = useState<string>("")
 
-    const stateSetters: { [key: string]: React.Dispatch<React.SetStateAction<number | null>> } = {
-        numberChairs: setNumberChairs,
-        numberTable: setNumberTables,
+    const stateSetters: { [key: string]: React.Dispatch<React.SetStateAction<string | number | null>> } = {
+        numberChairs: setNumberChairs as React.Dispatch<React.SetStateAction<string | number | null>>,
+        tableName: setTableName as React.Dispatch<React.SetStateAction<string | number | null>>,
     }
+
 
 
     return (
         <Modal isOpen={isOpen} contentLabel={contentLabel} onRequestClose={onRequestClose} icon={iconElement}>
             <section className='containerModalInvitationWedding'>
                 <h1 className='title-container'>
-                    Agregar Mesas
+                    Modificar Mesa
                 </h1>
                 {InputsData.map((inputData, index) => (
                     <div key={index}>
@@ -35,17 +37,26 @@ function AddTable({ isOpen, contentLabel, onRequestClose, }: AddTableProps) {
                             type={inputData.inputField.type}
                             placeholder={inputData.inputField.placeholder}
                             name={inputData.inputField.name}
-                            value={inputData.inputField.name === 'numberChairs' ? numberChairs : numberTables}
-                            onChange={(e) => stateSetters[inputData.inputField.name as 'numberChairs' | 'numberTable'](Number(e.target.value))}
+                            value={inputData.inputField.name === 'numberChairs' ? numberChairs : tableName}
+                            onChange={(e) => {
+                                const value = inputData.inputField.name === 'numberChairs' ? Number(e.target.value) : e.target.value;
+                                stateSetters[inputData.inputField.name as 'numberChairs' | 'tableName'](value);
+                            }}
                         />
                     </div>
                 ))}
-
-                <button className='button-a' onClick={() => handleClickAddTable(numberTables, numberChairs, onRequestClose)}>Save</button>
+                <button className='button-a' onClick={() => {
+                    if (tableID == null) {
+                        // Show an error message or return early
+                        console.error('tableID is null or undefined');
+                        return;
+                    }
+                    handleClickEditTable(Number(numberChairs || 0), tableID, onRequestClose, tableName);
+                }}>Save</button>
 
             </section>
         </Modal>
     );
 }
 
-export default AddTable;
+export default EditTable;

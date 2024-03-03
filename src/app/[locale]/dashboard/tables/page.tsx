@@ -14,8 +14,7 @@ function TablesPage() {
     const { tableData, loading, deleteGuestAndFetchData, setTableData } = useTableData();
     const [isOpen, setIsOpen] = useState(false)
     const [isOpenAddInv, setIsOpenAddInv] = useState(false)
-    const { userInvitationList, user, groups, setUserInvitationList, invitedByOptions } = useGlobalContext() || {}; // Add null check here
-
+    const { userInvitationList, user, groups, setUserInvitationList, invitedByOptions, } = useGlobalContext() || {}; // Add null check here
     const handleCloseModal = () => {
         setIsOpenAddInv(false);
     }
@@ -43,6 +42,8 @@ function TablesPage() {
             <AddTable isOpen={isOpen} contentLabel={"Agregar mesas"} onRequestClose={() => setIsOpen(false)} setTableData={setTableData} />
             <AddInv isOpen={isOpenAddInv} onRequestClose={handleCloseModal} contentLabel="My Modal" setUserInvitationList={(list: any[]) => setUserInvitationList && setUserInvitationList(list)} userInvitationList={userInvitationList} user={user} groups={groups} invitedByOptions={invitedByOptions}
             />
+
+
         </main>
     );
 }

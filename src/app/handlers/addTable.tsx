@@ -19,3 +19,14 @@ export const handleClickAddTable = async (numberTable: number | null, numberChai
     return response.data
 
 }
+
+export const handleClickEditTable = async (numberChairs: number | null, tableID: number, onRequestClose: any, tableName?: string) => {
+
+
+    const response = await axios.patch(`/api/tables/${tableID}`, {
+        numberChairs,
+        tableName
+    })
+    onRequestClose()
+    return response.data
+}

@@ -8,15 +8,12 @@ import NoTablesInitialState from './noTablesInitialState';
 interface props {
     setIsOpenAddInv: (arg0: boolean) => void;
     deleteGuestAndFetchData: any;
+
 }
 
 
 function TableDashboardContainer({ tableData, userInvitationList, setIsOpenAddInv, deleteGuestAndFetchData, setTableData, setIsOpen }: { tableData: TableData[]; userInvitationList: UserInvitation[], setIsOpenAddInv: (arg0: boolean) => void; deleteGuestAndFetchData: any; setTableData: any; setIsOpen: (arg0: boolean) => void; }) {
-
-
-
     return (
-
 
         <div className='containerGen'  >
             {
@@ -27,6 +24,7 @@ function TableDashboardContainer({ tableData, userInvitationList, setIsOpenAddIn
                 <main className='layout-table-page'>
                     <article className='table-card-container-dash'>
                         <TableCardContainer tableData={tableData} userInvitationList={userInvitationList} setIsOpenAddInv={setIsOpenAddInv} deleteGuestAndFetchData={deleteGuestAndFetchData} setTableData={setTableData} />
+
                     </article>
                     <section className='table-filter-container-dash'>
 
