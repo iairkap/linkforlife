@@ -26,6 +26,8 @@ export const useInvitationData = (id?: number | undefined) => {
     }
   };
 
+  console.log(invitationCards);
+
   useEffect(() => {
     fetchData();
   }, []);
