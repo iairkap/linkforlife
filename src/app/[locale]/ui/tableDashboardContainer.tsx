@@ -4,6 +4,7 @@ import "../sass/layout/tableCardContainer.scss"
 import TableFilter from './tableFilter';
 import type { TableData, UserInvitation } from '@/types/types';
 import NoTablesInitialState from './noTablesInitialState';
+import FilterTable from './filterTable';
 
 interface props {
     setIsOpenAddInv: (arg0: boolean) => void;
@@ -27,8 +28,8 @@ function TableDashboardContainer({ tableData, userInvitationList, setIsOpenAddIn
 
                     </article>
                     <section className='table-filter-container-dash'>
-
                         <TableFilter setIsOpenAddInv={setIsOpenAddInv} />
+                        <FilterTable />
                     </section>
                 </main>
             }

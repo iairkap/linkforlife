@@ -24,9 +24,9 @@ export default async function handler(req, res) {
     const userId = user.id;
     if (req.method === "PATCH") {
       const { tableId, weddingInvitationID } = req.body;
-      const wedding = user.weddings[0];
+      console.log(tableId);
 
-      // Check if the table exists
+      const wedding = user.weddings[0];
       const table = await prisma.table.findUnique({
         where: {
           id: Number(tableId),
@@ -51,6 +51,7 @@ export default async function handler(req, res) {
             },
           },
         });
+        res.status(200).json({ message: "Guest added to table" }); // Send a response back to the client
       } catch (error) {
         res.status(400).json({ error: "An error occurred" });
       }
@@ -86,6 +87,7 @@ export default async function handler(req, res) {
         res.status(200).json({ message: "Guest removed from table" });
       } catch (error) {
         res.status(400).json({ error: "An error occurred" });
+        console.log(error);
       }
     }
   } catch (error) {

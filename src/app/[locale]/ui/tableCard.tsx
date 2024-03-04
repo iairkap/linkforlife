@@ -5,6 +5,8 @@ import axios from 'axios';
 import { useTableData } from '../helpers/useTableData';
 import EditTable from './editTable';
 import { set } from 'date-fns';
+import { useGlobalContext } from '../dashboard/globalContext';
+
 interface TableCardProps {
     fa?: number;
     numberOfChairs: number;
@@ -28,22 +30,32 @@ function TableCard({ fa, id, numberOfChairs, weddingInvitationLists, name, userI
     const [hoverIndex, setHoverIndex] = useState(-1);
     const [isOpen, setIsOpen] = useState(false);
     const [idTable, setIdTable] = useState(0);
+
+    const { setFilteredInvitations } = useGlobalContext() || {};
+
+
+    console.log(idTable)
+
+
     const handleInputChange = (index: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
         const newChairNames = [...chairNames];
         newChairNames[index] = event.target.value;
         setChairNames(newChairNames);
         const selectedInvitation = userInvitationList.find((option) => `${option.name} ${option.lastName}` === event.target.value);
-
         if (selectedInvitation) {
+
             axios.patch('/api/addGuestToTable', {
-                tableId: id,
+                tableId: fa,
                 weddingInvitationID: selectedInvitation.id,
             })
                 .then(response => {
-
+                    const updatedUserInvitationList = userInvitationList.filter((option) => option.id !== selectedInvitation.id);
+                    console.log(updatedUserInvitationList)
+                    setFilteredInvitations(updatedUserInvitationList);
                 })
                 .catch((error) => {
                     console.error('Error:', error);
+                    console.log(error)
                 });
         }
     };

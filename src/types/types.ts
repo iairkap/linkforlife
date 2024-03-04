@@ -49,6 +49,11 @@ export interface DashboardData {
   setIsOpenModalAddUser: any;
   user: any;
   invitedByOptions: any[];
+  filteruserInvitationListByGroup?: any;
+  filteredInvitations?: any;
+  setFilteredInvitations?: any;
+  setGroupIds?: any;
+  groupIds?: any;
 }
 
 export interface DashboardDataB {

@@ -26,12 +26,19 @@ export default async function handler(req, res) {
     if (req.method === "PATCH") {
       const { id } = req.query;
       const { tableName, numberChairs } = req.body;
+
+      // Only update fields that are not null
+      const data = {};
+      if (tableName != null) {
+        data.name = tableName;
+      }
+      if (numberChairs != null) {
+        data.numberOfChairs = numberChairs;
+      }
+
       const updatedTable = await prisma.table.update({
         where: { id: Number(id) },
-        data: {
-          name: tableName,
-          numberOfChairs: numberChairs,
-        },
+        data,
       });
 
       res.status(200).json(updatedTable);

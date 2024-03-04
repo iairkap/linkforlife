@@ -29,6 +29,11 @@ export const useDashboardData = () => {
     null
   );
   const [invitedByOptions, setInvitedByOptions] = useState<any[]>([]);
+  const [filteredInvitations, setFilteredInvitations] = useState<
+    UserInvitation[]
+  >([]);
+  const [groupIds, setGroupIds] = useState<number[]>([]);
+
   const router = useRouter();
 
   const fetchData = async () => {
@@ -59,9 +64,11 @@ export const useDashboardData = () => {
           (invitation: UserInvitation) => invitation.weddingId === data[0].id
         );
         setUserInvitationList(filteredInvitations);
+        setFilteredInvitations(filteredInvitations); // Set filteredInvitations here
       } else {
         setSelectedWedding(null);
         setUserInvitationList([]);
+        setFilteredInvitations([]); // And here
       }
     } catch (error) {
       const axiosError = error as AxiosError;
@@ -94,6 +101,24 @@ export const useDashboardData = () => {
     setGroupInvitations(newGroupInvitations);
   }, [userInvitationList, selectedWedding]);
 
+  const filteruserInvitationListByGroup = () => {
+    if (!userInvitationList || !selectedWedding || groupIds.length === 0) {
+      return userInvitationList;
+    }
+    return userInvitationList.filter((invitation) => {
+      if (invitation.groups) {
+        return invitation.groups.some((group) => groupIds.includes(group.id));
+      }
+      return false;
+    });
+  };
+
+  useEffect(() => {
+    const newFilteredInvitations = filteruserInvitationListByGroup();
+    setFilteredInvitations(newFilteredInvitations);
+  }, [groupIds]);
+
+  console.log(filteredInvitations);
   return {
     setUserInvitationList,
     userInvitationList,
@@ -117,5 +142,10 @@ export const useDashboardData = () => {
     fetchData,
     isLoadingBis: isLoading,
     invitedByOptions,
+    filteruserInvitationListByGroup,
+    filteredInvitations,
+    setFilteredInvitations,
+    setGroupIds,
+    groupIds,
   };
 };

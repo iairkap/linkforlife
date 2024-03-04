@@ -4,6 +4,7 @@ import table from "../../../../public/table.svg"
 import InputField from './InputField';
 import { InputsData } from '@/app/handlers/editTableInputsData';
 import { handleClickEditTable } from '@/app/handlers/addTable';
+import { useTableData } from '../helpers/useTableData';
 interface AddTableProps {
     isOpen: boolean;
     contentLabel: string;
@@ -21,6 +22,8 @@ function EditTable({ isOpen, contentLabel, onRequestClose, tableID }: AddTablePr
         numberChairs: setNumberChairs as React.Dispatch<React.SetStateAction<string | number | null>>,
         tableName: setTableName as React.Dispatch<React.SetStateAction<string | number | null>>,
     }
+
+    const { fetchData } = useTableData(); // Use useTableData to get fetchData
 
 
 
@@ -45,13 +48,14 @@ function EditTable({ isOpen, contentLabel, onRequestClose, tableID }: AddTablePr
                         />
                     </div>
                 ))}
-                <button className='button-a' onClick={() => {
+                <button className='button-a' onClick={async () => {
                     if (tableID == null) {
                         // Show an error message or return early
                         console.error('tableID is null or undefined');
                         return;
                     }
-                    handleClickEditTable(Number(numberChairs || 0), tableID, onRequestClose, tableName);
+                    await handleClickEditTable(numberChairs, tableID, onRequestClose, tableName);
+                    fetchData();
                 }}>Save</button>
 
             </section>

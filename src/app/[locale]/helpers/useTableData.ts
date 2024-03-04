@@ -9,7 +9,7 @@ export const useTableData = () => {
   const fetchData = () => {
     setLoading(true);
     fetchTableData().then((data) => {
-      setTableData(data);
+      setTableData(data.sort((a: any, b: any) => a.id - b.id));
       setLoading(false);
     });
   };
@@ -43,5 +43,6 @@ export const useTableData = () => {
     deleteGuestAndFetchData,
     setTableData,
     fetchDataAndUpdateExternal,
+    fetchData,
   };
 };

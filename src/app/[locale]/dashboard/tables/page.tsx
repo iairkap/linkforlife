@@ -9,15 +9,20 @@ import AddTable from '../../ui/addTable';
 import { useState } from 'react';
 import { useGlobalContext } from '../globalContext';
 import AddInv from '../../ui/addInv';
+import { filter } from 'd3';
 function TablesPage() {
 
     const { tableData, loading, deleteGuestAndFetchData, setTableData } = useTableData();
     const [isOpen, setIsOpen] = useState(false)
     const [isOpenAddInv, setIsOpenAddInv] = useState(false)
-    const { userInvitationList, user, groups, setUserInvitationList, invitedByOptions, } = useGlobalContext() || {}; // Add null check here
+    const { userInvitationList, user, groups, setUserInvitationList, invitedByOptions, filteruserInvitationListByGroup, filteredInvitations } = useGlobalContext() || {};
     const handleCloseModal = () => {
         setIsOpenAddInv(false);
     }
+
+
+    console.log(filteredInvitations)
+
 
 
     if (loading) {
@@ -35,7 +40,7 @@ function TablesPage() {
                 <ButtonContainerTablesHeader setIsOpen={setIsOpen} tableData={tableData} />
             </header>
             <section className='general-table'>
-                <TableDashboardContainer tableData={tableData} userInvitationList={userInvitationList} setIsOpenAddInv={setIsOpenAddInv} deleteGuestAndFetchData={deleteGuestAndFetchData} setTableData={setTableData}
+                <TableDashboardContainer tableData={tableData} userInvitationList={filteredInvitations} setIsOpenAddInv={setIsOpenAddInv} deleteGuestAndFetchData={deleteGuestAndFetchData} setTableData={setTableData}
                     setIsOpen={setIsOpen}
                 />
             </section>
