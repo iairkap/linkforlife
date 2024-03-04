@@ -34,7 +34,6 @@ function TableCard({ fa, id, numberOfChairs, weddingInvitationLists, name, userI
     const { setFilteredInvitations } = useGlobalContext() || {};
 
 
-    console.log(idTable)
 
 
     const handleInputChange = (index: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,7 +49,6 @@ function TableCard({ fa, id, numberOfChairs, weddingInvitationLists, name, userI
             })
                 .then(response => {
                     const updatedUserInvitationList = userInvitationList.filter((option) => option.id !== selectedInvitation.id);
-                    console.log(updatedUserInvitationList)
                     setFilteredInvitations(updatedUserInvitationList);
                 })
                 .catch((error) => {
