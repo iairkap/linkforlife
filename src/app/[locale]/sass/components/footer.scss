@@ -1,0 +1,41 @@
+@import "../abstracts/variables";
+
+.footer {
+  min-height: 25dvh;
+  background-color: $accent-color;
+  margin-left: -100px;
+  width: calc(100% + 200px);
+  color: #fff;
+  font-family: Lora;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.horizontal-line-div {
+  width: 60%;
+  height: 2px;
+  background-color: #fff;
+}
+
+.socialMediaIconContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.facebook,
+.instagram {
+  border: 1px solid rgba(255, 255, 255, 0.415);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
+  padding: 10px;
+  margin-bottom: 4rem;
+}

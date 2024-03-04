@@ -1,0 +1,24 @@
+@import "../abstracts/variables.scss";
+
+.imagen-relative {
+  position: relative;
+}
+
+.image-absolute {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  object-fit: cover;
+}
+
+.text-person {
+  color: #6a6a6a;
+  font-family: $es-en-font;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%;
+  width: 40%;
+  margin-left: 30%;
+  text-align: center;
+}
