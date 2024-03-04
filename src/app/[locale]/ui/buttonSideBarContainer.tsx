@@ -8,6 +8,9 @@ import invitation from "../../../../public/invitation.svg"
 import { useState } from "react";
 import { useTranslations } from 'next-intl';
 import { usePathname } from "../../../navigation"
+import table from "../../../../public/tableb.svg"
+
+
 function ButtonSideBarContainer() {
     const pathName = usePathname();
     const t = useTranslations('Sidebar');
@@ -36,6 +39,11 @@ function ButtonSideBarContainer() {
             icon: invitation,
             Tooltip: t("invitation"),
             Link: "/dashboard/invitation"
+        },
+        {
+            icon: table,
+            Tooltip: t("table"),
+            Link: "/dashboard/tables"
         }
 
     ]

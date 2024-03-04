@@ -7,7 +7,8 @@
     "rsvp": "RSVP",
     "charts": "Charts",
     "calendar": "Calendar",
-    "invitation": "Invitation"
+    "invitation": "Invitation",
+    "table": "Sitting Plan"
   },
   "MenuDropDown": {
     "settings": "Settings",
