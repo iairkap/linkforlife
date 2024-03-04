@@ -35,25 +35,26 @@ export interface Wedding {
 }
 
 export interface DashboardData {
-  userInvitationList: any;
+  userInvitationList?: any;
   setUserInvitationList: React.Dispatch<React.SetStateAction<any[]>>; // Reemplaza 'any' con el tipo correcto
-  isLoading: boolean;
-  setIsLoading: any;
-  groups: any;
-  groupInvitations: any;
-  weddings: any;
-  setWeddings: any;
-  session: any;
-  refreshData: any;
-  isOpenModalAddUser: boolean;
-  setIsOpenModalAddUser: any;
-  user: any;
-  invitedByOptions: any[];
+  isLoading?: boolean;
+  setIsLoading?: any;
+  groups?: any;
+  groupInvitations?: any;
+  weddings?: any;
+  setWeddings?: any;
+  session?: any;
+  refreshData?: any;
+  isOpenModalAddUser?: boolean;
+  setIsOpenModalAddUser?: any;
+  user?: any;
+  invitedByOptions?: any[];
   filteruserInvitationListByGroup?: any;
   filteredInvitations?: any;
   setFilteredInvitations?: any;
   setGroupIds?: any;
   groupIds?: any;
+  filteredInvitation?: any;
 }
 
 export interface DashboardDataB {
