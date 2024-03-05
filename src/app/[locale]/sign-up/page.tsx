@@ -58,30 +58,31 @@ function SignUp() {
 
 
     return (
-        <main className='main-container' dir={extraction === "he" ? "rtl" : "ltr"}>            <section className='pictureContainer'>
-            <div className='overflow-picture-container'>
-                {
-                    currentPage === 1 &&
-                    <Image
-                        src={backgroundSign}
-                        alt="Picture of the author"
-                        layout="fill"
-                        objectFit="cover"
-                    />
-                }
-                {
-                    currentPage === 2 &&
-                    <Image
-                        src={backgroundSign}
-                        alt="Picture of the author"
-                        layout="fill"
-                        objectFit="cover"
-                    />
+        <main className='main-container' dir={extraction === "he" ? "rtl" : "ltr"}>
+            <section className='pictureContainer'>
+                <div className='overflow-picture-container'>
+                    {
+                        currentPage === 1 &&
+                        <Image
+                            src={backgroundSign}
+                            alt="Picture of the author"
+                            layout="fill"
+                            objectFit="cover"
+                        />
+                    }
+                    {
+                        currentPage === 2 &&
+                        <Image
+                            src={backgroundSign}
+                            alt="Picture of the author"
+                            layout="fill"
+                            objectFit="cover"
+                        />
 
-                }
-            </div>
+                    }
+                </div>
 
-        </section>
+            </section>
             <section className='form'>
                 <h2 className='title'>Welcome!</h2>
 

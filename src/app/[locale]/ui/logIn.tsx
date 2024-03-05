@@ -7,7 +7,6 @@ import CryptoJS from 'crypto-js';
 import { useTranslations } from 'next-intl';
 import ModalNotification from './modalNotification';
 import { error } from 'console';
-import { useSession, signOut } from 'next-auth/react';
 interface SignUpFormData {
     email: string;
     password: string;
@@ -36,9 +35,6 @@ const SignUpPart1: React.FC<SignUpPart1Props> = ({ onNext }) => {
     const [modalIsOpen, setIsOpen] = useState(false);
     const t = useTranslations("SignUp");
     const [modalError, setModalError] = useState<any>("");
-    const session = useSession();
-
-
 
 
     const validateForm = (): Errors => {
@@ -64,10 +60,6 @@ const SignUpPart1: React.FC<SignUpPart1Props> = ({ onNext }) => {
     }
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-        console.log(session);
-        if (session.data) {
-            signOut();
-        }
 
         const errors = validateForm();
         setErrors(errors);
@@ -114,36 +106,7 @@ const SignUpPart1: React.FC<SignUpPart1Props> = ({ onNext }) => {
     }
     return (
         <div>
-            <div className='container-inputB'>
-                <InputField value={formData.email} type="text" onChange={(e: ChangeEvent<HTMLInputElement>) => updateFormData("email", e.target.value)} placeholder={t("email")} error={errors.email} />
-                <InputField value={formData.password} type="password" onChange={(e: ChangeEvent<HTMLInputElement>) => updateFormData("password", e.target.value)} placeholder={t("password")} error={errors.password} />
-                <InputField value={formData.passwordConfirmation} type="password" onChange={(e: ChangeEvent<HTMLInputElement>) => updateFormData("passwordConfirmation", e.target.value)} placeholder={t("confirmPassword")} error={errors.passwordConfirmation} />
-            </div>
-            <div className='button-container-sign-up'>
-                <Button
-                    label={t("signUp")}
-                    onClick={handleSubmit}
-                    className={formData.email && formData.password && formData.passwordConfirmation ? 'button-a' : 'button-a-disabled'}
-                    disabled={!(formData.email && formData.password && formData.passwordConfirmation)}
-                />
-                <div className='google'>
-                    <div className='linef' />
-                    <span >{t("orSignInWithGoogle")}</span>
-                    <div className='linef' />
-                </div>
-                <Button
-                    label={t("signWithGoogle")}
-                    type="submit"
-                    className='button-b'
-                    onClick={handleGoogleSignIn}
-                />
-            </div>
-            <ModalNotification
-                message={modalError}
-                status={500}
-                isOpen={modalIsOpen}
-                onRequestClose={() => setIsOpen(false)}
-            />
+
         </div>
     );
 }

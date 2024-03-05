@@ -158,7 +158,7 @@ const SignUpPart2: React.FC<SignUpPart2Props> = ({ formDataEmail }) => {
 
                 if (response.status !== 200) {
                     throw new Error('Something went wrong');
-                } else if (pathName === "/sign-upv2") {
+                } else if (pathName === "/sign-up") {
 
                     const encryptedPassword = Cookies.get('tempPassword');
 
