@@ -127,5 +127,44 @@
     "error": "שגיאה",
     "close": "סגור",
     "creditosRestantes": "קרדיטים נותרים"
+  },
+  "HomeNavBar": {
+    "home": "בית",
+    "RSVP": "רשימת מוזמנים",
+    "DigitalInvitation": "הזמנה דיגיט",
+    "ContactUs": "צור קשר",
+    "SignUp": "הרשמה",
+    "LogIn": "התחברות"
+  },
+  "HeroSection": {
+    "manageYour": "נהל את",
+    "wedding": "החתונה שלך",
+    "veryEasily": "בקלות רבה",
+    "withOurWeddingPlanningSoftware": "עם תוכנת התכנון שלנו",
+    "exploreProduct": "חקור את המוצר",
+    "getStarted": "התחל"
+  },
+  "SectionTwo": {
+    "findOutWhy": "גלה למה יותר ויותר מתכננים בוחרים",
+    "toManage": "לנהל את עסקי התכנון שלהם לחתונות ואירועים"
+  },
+  "SectionThree": {
+    "DesignYouPersonalized": "עיצוב אתר ההזמנה האישי שלך וקבל אישורים מהאורחים שלך!"
+  },
+  "AboutProduct": {
+    "AboutProduct": "אודות המוצר",
+    "PlanningCanBeOverwhelming": "לתכנן חתונה יכול להיות מדאיג, אך זה לא חייב. האפליקציה שלנו מספקת לך את כל הכלים שאתה צריך כדי לנהל כל פרט של החתונה שלך, מהתקציב ועד רשימת האורחים, השיוך למקומות ישיבה ועוד הרבה יותר. פשוט את הלוגיסטיקה ותהנה יותר מההליכה לחופה. להכיר כמה מהתכונות שלנו.",
+    "getStarted": "התחל"
+  },
+  "PersonalizedServiceInvitation": {
+    "PersonalizedInvitationService": "שירות הזמנות אישיות",
+    "HighlightYourSpecil": "הדגש את היום המיוחד שלך עם הזמנות ייחודיות. צוות העיצוב שלנו יעבוד איתך כדי ליצור הזמנות שלא רק יכריזו על החתונה שלך, אלא גם ישקפו את סיפור האהבה שלך. התחל לעצב את ההזמנות של חלומותיך היום.",
+    "IWantMyFreeInvitation": "אני רוצה את ההזמנה החינמית שלי"
+  },
+  "Testimonios": {
+    "Testimonials": "המלצות"
+  },
+  "Footer": {
+    "WeExpectYouCelebrateWithUsOurBiggestDay": "מצפים שתחגוג איתנו את היום הגדול ביותר שלנו"
   }
 }

@@ -7,11 +7,14 @@ interface Props {
     name: string;
     text: string;
     margin: string;
+    extraction?: string;
+    marginhe?: string;
+    style?: object;
 }
 
-function TestimonialCard({ flexDirection, img, name, text, margin }: Props) {
+function TestimonialCard({ flexDirection, img, name, text, margin, extraction, style }: Props) {
     return (
-        <main className={flexDirection}>
+        <main className={`${flexDirection} ${extraction}`} /* style={style} */>
             <div style={{ margin: margin }}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="195" height="171" viewBox="0 0 195 171" fill="none">
                     <circle cx="7.5" cy="7.5" r="7.5" fill="#E9EADF" />

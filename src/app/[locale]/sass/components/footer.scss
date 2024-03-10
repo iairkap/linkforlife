@@ -17,6 +17,23 @@
   align-items: center;
 }
 
+.footer-he {
+  min-height: 25dvh;
+  background-color: $accent-color;
+  margin-right: -100px;
+  width: calc(100% + 200px);
+  color: #fff;
+  font-family: Lora;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .horizontal-line-div {
   width: 60%;
   height: 2px;

@@ -2,26 +2,33 @@ import React from 'react';
 import AboutCard from './aboutCard';
 import { aboutCardObject } from '@/utils/abotCardObjext';
 import "../sass/components/AboutCard.scss"
-
+import { useTranslations } from 'next-intl';
+import { usePathname } from 'next/navigation';
+import { extractLocaleFromPathName } from '../utils/getLocale';
 
 function AboutProduct() {
+    const pathName = usePathname();
+    const extraction = extractLocaleFromPathName(pathName);
+    console.log(extraction)
+
+    const t = useTranslations('AboutProduct');
     return (
         <main className='about-product-layout'>
             <article>
-                <h3>About the product</h3>
-                <span>Planning a wedding can be overwhelming, but it doesn't have to be. Our app gives you all the tools you need to manage every detail of your wedding, from the budget to the guest list, seating assignments and much more. Simplify logistics and enjoy the walk to the altar more. Get to know some of our features</span>
+                <h3>{t("AboutProduct")}</h3>
+                <span>{t("PlanningCanBeOverwhelming")}</span>
             </article>
             <div className='about-card-container'>
                 {aboutCardObject.map((card, index) => (
                     <AboutCard
                         key={index}
                         image={card.image}
-                        title={card.title}
-                        parragraph={card.parragraph}
+                        title={card[`title${extraction?.toUpperCase()}` as keyof typeof card]}
+                        parragraph={card[`parragraph${extraction?.toUpperCase()}` as keyof typeof card]}
                     />
                 ))}
             </div>
-            <button className='button-homepageB'>Get Started!</button>
+            <button className='button-homepageB'>{t("getStarted")}</button>
         </main>
     );
 }

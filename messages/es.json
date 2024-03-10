@@ -132,5 +132,45 @@
     "error": "Error",
     "close": "Cerrar",
     "creditosRestantes": "Creditos Restantes"
+  },
+  "HomeNavBar": {
+    "home": "Home",
+    "RSVP": "RSVP",
+    "DigitalInvitation": "Invitación Digital",
+    "ContactUs": "Contacto",
+    "SignUp": "Registrarse",
+    "LogIn": "Iniciar Sesión"
+  },
+  "HeroSection": {
+    "manageYour": "Gestiona tu",
+    "wedding": "casamiento",
+    "veryEasily": "muy fácilmente",
+    "withOurWeddingPlanningSoftware": "Con Nuestro Software de Planificación de Bodas",
+    "exploreProduct": "Explorar Producto",
+    "getStarted": "Empezar"
+  },
+  "SectionTwo": {
+    "findOutWhy": "Descubre por qué cada vez más planificadores eligen",
+    "toManage": "para gestionar sus negocios de planificación de bodas y eventos"
+  },
+  "SectionThree": {
+    "DesignYouPersonalized": "Diseña tu invitación de boda personalizada y recibe confirmaciones de tus invitados!"
+  },
+
+  "AboutProduct": {
+    "AboutProduct": "Acerca del Producto",
+    "PlanningCanBeOverwhelming": "Planificar una boda puede ser abrumador, pero no tiene por qué serlo. Nuestra aplicación te proporciona todas las herramientas que necesitas para gestionar cada detalle de tu boda, desde el presupuesto hasta la lista de invitados, asignaciones de asientos y mucho más. Simplifica la logística y disfruta más del camino hacia el altar. Conoce algunas de nuestras características.",
+    "getStarted": "Comenzar"
+  },
+  "PersonalizedServiceInvitation": {
+    "PersonalizedInvitationService": "Servicio de Invitaciones Personalizadas",
+    "HighlightYourSpecil": "Destaca tu día especial con invitaciones únicas. Nuestro equipo de diseño trabajará contigo para crear invitaciones que no solo anuncien tu boda, sino que también reflejen tu historia de amor. Comienza a diseñar tus invitaciones de ensueño hoy mismo.",
+    "IWantMyFreeInvitation": "Quiero mi invitación gratuita"
+  },
+  "Testimonios": {
+    "Testimonials": "Testimonios"
+  },
+  "Footer": {
+    "WeExpectYouCelebrateWithUsOurBiggestDay": "Esperamos que celebres con nosotros nuestro gran día"
   }
 }

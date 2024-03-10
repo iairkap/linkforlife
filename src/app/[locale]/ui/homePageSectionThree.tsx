@@ -1,7 +1,10 @@
 import React from 'react';
 import Image from 'next/image';
-
+import { useTranslations } from 'next-intl';
 function HomePageSectionThree() {
+
+    const t = useTranslations('SectionThree');
+
     return (
         <div className='layout-sectionb'>
             <section className='picture-containerHomeB'>
@@ -16,8 +19,7 @@ function HomePageSectionThree() {
                 </div>
             </section>
             <h2 className='titleBisA'>
-                Design your personalized wedding invitation website
-                and receive confirmations from your guests!
+                {t("DesignYouPersonalized")}
             </h2>
         </div>
     );

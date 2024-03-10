@@ -1,9 +1,11 @@
 import React from 'react';
 import "../sass/pages/homePage.scss"
 import Image from 'next/image';
-
+import { useTranslations } from 'next-intl';
 
 function HeroSection() {
+
+    const t = useTranslations("HeroSection");
     return (
         <main className='hero-layout'>
             <article className='circleB'>
@@ -11,8 +13,8 @@ function HeroSection() {
             <article className='circleC'>
             </article>
             <div className='title'>
-                <h1 className='title-page'>Manage your <span className='br-font'>wedding</span> very easily</h1>
-                <h2 className='sub-page'>With our Wedding Planning Software!</h2>
+                <h1 className='title-page'>{t("manageYour")} <span className='br-font'>{t("wedding")}</span> {t("veryEasily")}</h1>
+                <h2 className='sub-page'>{t("withOurWeddingPlanningSoftware")}</h2>
             </div>
             <section className='picture-containerHome'>
                 <div className='image-wrapper'>
@@ -25,8 +27,8 @@ function HeroSection() {
                     />
                 </div>
                 <footer className='buttonContainer-homePage'>
-                    <button className='button-homepageA'>Explore Product</button>
-                    <button className='button-homepageB'>Get Started</button>
+                    <button className='button-homepageA'>{t("exploreProduct")}</button>
+                    <button className='button-homepageB'>{t("getStarted")}</button>
                 </footer>
             </section>
         </main>

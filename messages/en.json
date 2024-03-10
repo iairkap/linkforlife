@@ -144,5 +144,44 @@
   "ModalCredits": {
     "title": "Credits:",
     "span": "To ensure that all our customers have the opportunity to enjoy our free service, we offer up to two invitation designs at no cost per customer and event."
+  },
+  "HomeNavBar": {
+    "home": "Home",
+    "RSVP": "RSVP",
+    "DigitalInvitation": "Digital Invitation",
+    "ContactUs": "Contact Us",
+    "SignUp": "Sign Up",
+    "LogIn": "Log In"
+  },
+  "HeroSection": {
+    "manageYour": "Manage your",
+    "wedding": "wedding",
+    "veryEasily": "very easily",
+    "withOurWeddingPlanningSoftware": "With Our Wedding Planning Software",
+    "exploreProduct": "Explore Product",
+    "getStarted": "Get Started"
+  },
+  "SectionTwo": {
+    "findOutWhy": "Find out why more and more planners are choosing",
+    "toManage": "to manage their wedding and event planning businesses"
+  },
+  "SectionThree": {
+    "DesignYouPersonalized": "Design your personalized wedding invitation website and receive confirmations from your guests!"
+  },
+  "AboutProduct": {
+    "AboutProduct": "About the Product",
+    "PlanningCanBeOverwhelming": "Planning a wedding can be overwhelming, but it doesn't have to be. Our app gives you all the tools you need to manage every detail of your wedding, from the budget to the guest list, seating assignments and much more. Simplify logistics and enjoy the walk to the altar more. Get to know some of our features.",
+    "getStarted": "Get Started"
+  },
+  "PersonalizedServiceInvitation": {
+    "PersonalizedInvitationService": "Personalized Invitation Service",
+    "HighlightYourSpecil": "Highlight your special day with unique invitations. Our design team will work with you to create invitations that not only announce your wedding, but also reflect your love story. Start designing your dream invitations today.",
+    "IWantMyFreeInvitation": "I want my free invitation"
+  },
+  "Testimonios": {
+    "Testimonials": "Testimonials"
+  },
+  "Footer": {
+    "WeExpectYouCelebrateWithUsOurBiggestDay": "We expect you to celebrate with us our biggest day"
   }
 }

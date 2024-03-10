@@ -1,7 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
-
+import { useTranslations } from 'next-intl';
 function HomePageSectionTwo() {
+
+    const t = useTranslations('SectionTwo');
     return (
         <div className='layout-sectionb'>
             <section className='picture-containerHomeB'>
@@ -16,10 +18,12 @@ function HomePageSectionTwo() {
                 </div>
             </section>
             <h2 className='titleBis'>
-                Find out why more and more planners are choosing <span className='br-fontbis'>Weddinvitation</span> to manage their wedding and event planning businesses
+                {t('findOutWhy')} <span className='br-fontbis'>Weddinvitation</span> {t('toManage')}
             </h2>
         </div>
+
     );
 }
+
 
 export default HomePageSectionTwo;
