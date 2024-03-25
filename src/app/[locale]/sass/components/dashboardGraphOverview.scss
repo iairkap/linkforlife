@@ -1,13 +1,51 @@
 @import "../abstracts/variables.scss";
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap");
 
 .font-hebrew {
   font-family: $hebrew-font-option2;
 }
 
-.font-regular {
-  font-family: $es-en-font;
+.name-titleAF,
+.attending,
+.notAttending,
+.notConfirmed {
+  font-family: "Lora", serif !important;
+  font-weight: 700;
+  font-optical-sizing: auto;
+  background-color: #818369;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #e9eadd;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  padding: 1rem;
 }
 
+.attending {
+  border-radius: 0px !important;
+  background-color: #fff;
+  color: #818369;
+}
+
+.notAttending {
+  border-radius: 0px !important;
+  background-color: #fff;
+  color: #818369;
+}
+
+.notConfirmed {
+  border-radius: 0px !important;
+  background-color: #ffffff;
+  color: #818369;
+}
+
+/* .font-regular {
+  font-family: $es-en-font;
+}
+ */
 .dash-card-container {
   display: flex;
   flex-direction: row;
@@ -122,4 +160,33 @@
 
 .DashboardGraphCard {
   width: 100%;
+}
+
+.main-container-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.initial {
+  font-size: 96px;
+  font-family: "Lora", serif;
+}
+
+.name-titleAFA {
+  font-family: "Lora", serif !important;
+  font-weight: 700;
+  font-optical-sizing: auto;
+  background-color: #818369;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #e9eadd;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  padding: 1rem;
 }

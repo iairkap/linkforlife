@@ -1,0 +1,60 @@
+@import "../abstracts/variables.scss";
+
+.icon-profile-container {
+  background-color: #e2e5ba;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+}
+.title-siting {
+  color: $accent-color;
+  font-size: 1.5rem;
+}
+
+.title-table-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  max-height: 20rem;
+}
+
+.dashboard-table-container {
+  background-color: #fff;
+  padding: 1.5rem 2rem;
+  border-radius: 1rem;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.container-fix {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  color: 959595;
+  overflow-x: scroll;
+  margin-top: 2rem;
+  max-height: 10.5rem;
+}
+
+.list-table {
+  width: 100%;
+  min-width: 7rem;
+}
+
+.name-list {
+  width: 100%;
+  text-wrap: nowrap;
+  color: #959595;
+}
+
+.subtitle-talbe {
+  margin-bottom: 1rem;
+}

@@ -43,7 +43,8 @@ a {
   color: #466650;
 }
 
-.buttonactive {
+.buttonactive,
+.button:hover {
   border-radius: 0.5rem;
   background: #e9eadd;
   display: flex;
@@ -67,6 +68,10 @@ a {
   align-self: stretch;
   color: #818369;
   border: transparent;
+}
+
+.button:hover {
+  background-color: #e9eadd84;
 }
 
 .button {

@@ -11,7 +11,7 @@ import { signIn, getSession } from "next-auth/react";
 import { useSession } from 'next-auth/react';
 
 
-function LoginForm() {
+function LoginForm({ t }: { t: any }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [emailError, setEmailError] = useState(''); // Nuevo estado para el error de email
@@ -33,13 +33,12 @@ function LoginForm() {
     return (
         <div className='container'>
             <div className='input-containerB'>
-                <InputField value={email} type="text" onChange={handleUsernameChange} placeholder='אימייל' error={emailError} /> {/* Pasa el error de email como prop */}
-                <InputField value={password} type="password" onChange={handlePasswordChange} placeholder='סיסמה' error={passwordError} /> {/* Pasa el error de password como prop */}
-
+                <InputField value={email} type="text" onChange={handleUsernameChange} placeholder={t("email")} error={emailError} />
+                <InputField value={password} type="password" onChange={handlePasswordChange} placeholder={t("password")} error={passwordError} />
             </div>
             <div className='button-containerB'>
                 <Button
-                    label='התחבר'
+                    label={t("login")}
                     onClick={() => {
                         signIn("credentials", {
 
@@ -48,13 +47,13 @@ function LoginForm() {
                     }}
                     className='button-a'
                 />
-                <Button label='התחבר עם Google' onClick={() => {
+                <Button label={t("signWithGoogle")} onClick={() => {
                     signIn("google", { callbackUrl: "/dashboard" });
                 }} className='button-b' />
             </div>
             <div className='span-container'>
-                <span>אין לך חשבון?<span> הירשם</span> </span>
-                <span className='forget-password'>שכחת סיסמה?</span>
+                <span>{t("dontHaveAnAccount")}<span> {t("signUp")}</span> </span>
+                <span className='forget-password'>{t("forgotPassword")}</span>
             </div>
 
         </div>

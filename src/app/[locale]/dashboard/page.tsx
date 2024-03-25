@@ -13,6 +13,7 @@ import { extractLocaleFromPathName } from '../utils/getLocale';
 import DashboardLastConfirmed from '../ui/lastConfirmed';
 import UpcomingPayment from '../ui/upcomingPayment';
 import RemainingCredits from '../ui/remainingCredits';
+import TableDashboardHome from '../ui/tablesDashboardHome';
 function DashboardGeneral() {
 
     const { userInvitationList, setUserInvitationList, isLoading, setIsLoading, groups, groupInvitations, selectedWedding, setSelectedWedding, weddings, setWeddings, /* handleWeddingChange */setGroups,
@@ -42,7 +43,7 @@ function DashboardGeneral() {
         <article className='containerDash'>
             <div className='containerDashito'>
                 <DashboardGraph userInvitationList={userInvitationList} user={user} extraction={extraction} />
-                <RemainingCredits credits={user?.credits} />
+                <TableDashboardHome />
                 <UpcomingPayment upcomingExpenses={upcomingExpenses ? (Array.isArray(upcomingExpenses) ? upcomingExpenses : [upcomingExpenses]) : []} extraction={extraction} />            </div>
             <div className='graph-container-pair'>
                 <DashboardWithPiechart userInvitationList={userInvitationList} extraction={extraction} />
@@ -61,3 +62,5 @@ function DashboardGeneral() {
 export default DashboardGeneral;
 
 
+{/*                 <RemainingCredits credits={user?.credits} />
+ */}   

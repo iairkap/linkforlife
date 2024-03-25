@@ -166,5 +166,16 @@
   },
   "Footer": {
     "WeExpectYouCelebrateWithUsOurBiggestDay": "מצפים שתחגוג איתנו את היום הגדול ביותר שלנו"
+  },
+  "login": {
+    "welcomeBack": "ברוך הבא",
+    "email": "אימייל",
+    "password": "סיסמא",
+    "forgotPassword": "שכחת סיסמא?",
+    "login": "התחבר",
+    "orSignInWithGoogle": "או התחבר עם גוגל",
+    "signWithGoogle": "התחבר עם Google",
+    "dontHaveAnAccount": "אין לך חשבון?",
+    "signUp": "הרשמה"
   }
 }

@@ -24,7 +24,9 @@
     "invitedBy": "Invitados Por",
     "totalInvited": "Total Invitados",
     "attending": "Asistirán",
-    "notAttending": "No Asistirán"
+    "notAttending": "No Asistirán",
+    "guest": "Invitados",
+    "notConfirmed": "No Respondieron"
   },
   "DashboardGroups": {
     "groups": "Grupos",
@@ -172,5 +174,16 @@
   },
   "Footer": {
     "WeExpectYouCelebrateWithUsOurBiggestDay": "Esperamos que celebres con nosotros nuestro gran día"
+  },
+  "login": {
+    "welcomeBack": "Bienvenido de nuevo!",
+    "email": "Email",
+    "password": "Contraseña",
+    "forgotPassword": "Olvidaste tu contraseña?",
+    "login": "Iniciar Sesión",
+    "orSignInWithGoogle": "O inicia sesión con Google",
+    "signWithGoogle": "Iniciar Sesión con Google",
+    "dontHaveAnAccount": "No tienes una cuenta?",
+    "signUp": "Registrarse"
   }
 }

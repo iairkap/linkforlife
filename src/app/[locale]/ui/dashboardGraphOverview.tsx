@@ -107,9 +107,18 @@ function DashboardGraph({ userInvitationList, user, extraction }: { userInvitati
     const handlePrev = () => {
         setCurrentPage((prevPage) => prevPage - 1);
     };
+
+    console.log(user)
+
+    const firstLatterName = user.name.charAt(0).toUpperCase();
+    const firstLastName = user.lastName.charAt(0).toUpperCase();
+    const firstLatterPartnerName = user.partnerName.charAt(0).toUpperCase();
+    const firstLatterPartnerLastName = user.partnerLastName.charAt(0).toUpperCase()
+
+
     const cards = [
-        <DashboardGraphCard cardTitle={`${t("invitedBy")} ${user.partnerName}`} icon={iconPartner} confirmed={confirmedByUserPartner} attending={isAttendingByUserPartner} notAttending={notAttendingByUserPartner} notConfirmed={notConfirmedByUserPartner} total={invitedByUserPartner} extraction={extraction} next={handleNext} currentPage={currentPage} setCurrentPage={setCurrentPage} />,
-        <DashboardGraphCard cardTitle={`${t("invitedBy")} ${(user.name)}`} icon={iconUser} confirmed={confirmedByUser} attending={isAttendingByUser} notAttending={notAttendingByUser} notConfirmed={notConfirmedByUser} total={invitedByUser} extraction={extraction} next={handleNext} previous={handlePrev} currentPage={currentPage} setCurrentPage={setCurrentPage} />,
+        <DashboardGraphCard cardTitle={`${firstLatterPartnerName}${firstLatterPartnerLastName}`} icon={iconPartner} confirmed={confirmedByUserPartner} attending={isAttendingByUserPartner} notAttending={notAttendingByUserPartner} notConfirmed={notConfirmedByUserPartner} total={invitedByUserPartner} extraction={extraction} next={handleNext} currentPage={currentPage} setCurrentPage={setCurrentPage} />,
+        <DashboardGraphCard cardTitle={`${(firstLatterName)}${firstLastName}`} icon={iconUser} confirmed={confirmedByUser} attending={isAttendingByUser} notAttending={notAttendingByUser} notConfirmed={notConfirmedByUser} total={invitedByUser} extraction={extraction} next={handleNext} previous={handlePrev} currentPage={currentPage} setCurrentPage={setCurrentPage} />,
         <DashboardGraphCard cardTitle={`${t("invitedBy")} ${(user.name)} & ${user.partnerName}`} icon={iconUser} confirmed={confirmedByBothUserAndUserPartner} attending={isAttendingByBothUserAndUserPartner} notAttending={notAttendingByBothUserAndUserPartner} notConfirmed={notConfirmedByBothUserAndUserPartner} total={invitedByBothUserAndUserPartner} extraction={extraction} next={handleNext} previous={handlePrev} currentPage={currentPage} setCurrentPage={setCurrentPage} />,
         <DashboardGraphCard cardTitle={`${t("invitedBy")} ${(user.partnerName)}'s family`} icon={iconUser} confirmed={confirmedByUserPartnerFamily} attending={isAttendingByUserPartnerFamily} notAttending={notAttendingByUserPartnerFamily} notConfirmed={notConfirmedByUserPartnerFamily} total={invitedByUserPartnerFamily} extraction={extraction} next={handleNext} previous={handlePrev} currentPage={currentPage} setCurrentPage={setCurrentPage} />,
         <DashboardGraphCard cardTitle={`${t("invitedBy")} ${(user.name)}'s  family`} icon={iconUser} confirmed={confirmedByUserFamily} attending={isAttendingByUserFamily} notAttending={notAttendingByUserFamily} notConfirmed={notConfirmedByUserFamily} total={invitedByUserFamily} extraction={extraction} next={handleNext} previous={handlePrev} currentPage={currentPage} setCurrentPage={setCurrentPage} />,

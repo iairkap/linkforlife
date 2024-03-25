@@ -22,9 +22,11 @@
   "DashboardHeaderDates": { "date": "Wedding Day" },
   "DashboardStats": {
     "invitedBy": "Invited by",
-    "totalInvited": "Total Invited",
+    "e": "Total Invited",
     "attending": "Attending",
-    "notAttending": "Not Attending"
+    "notAttending": "Not Attending",
+    "guest": "Guest",
+    "notConfirmed": "Not Answered"
   },
   "DashboardGroups": {
     "groups": "Groups",
@@ -183,5 +185,19 @@
   },
   "Footer": {
     "WeExpectYouCelebrateWithUsOurBiggestDay": "We expect you to celebrate with us our biggest day"
+  },
+  "login": {
+    "welcomeBack": "Welcome back!",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot password?",
+    "login": "Login",
+    "orSignInWithGoogle": "Or Sign In With Google",
+    "signWithGoogle": "Sign In With Google",
+    "dontHaveAnAccount": "Don't have an account?",
+    "signUp": "Sign Up"
+  },
+  "TableDashboard": {
+    "SittingPlan": "Sitting Plan"
   }
 }
