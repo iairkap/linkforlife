@@ -12,6 +12,8 @@ import Testimonios from "./ui/testimonios";
 import Footer from "./ui/footer";
 import { usePathname } from "next/navigation";
 import { extractLocaleFromPathName } from "./utils/getLocale";
+import ContactForm from "./ui/contactForm";
+
 export default function Home() {
 
   const pathName = usePathname();
@@ -28,12 +30,23 @@ export default function Home() {
     }>
       <HomeNavBar />
       <HeroSection />
-      <HomePageSectionTwo />
-      <HomePageSectionThree />
-      <AboutProduct />
-      <PersonalizedServiceInvitation />
+      <div id="RSVP">
+        <HomePageSectionTwo />
+      </div>
+      <div id="about">
+
+        <AboutProduct />
+      </div>
+      <div id="digitalInvitation">
+        <PersonalizedServiceInvitation />
+        <HomePageSectionThree />
+      </div>
       <Testimonios />
+      <div id="contact">
+        <ContactForm />
+      </div>
       <Footer />
+
     </main>
   );
 }

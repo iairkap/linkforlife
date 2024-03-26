@@ -137,6 +137,7 @@
   },
   "HomeNavBar": {
     "home": "Home",
+    "about": "Nosotros",
     "RSVP": "RSVP",
     "DigitalInvitation": "Invitación Digital",
     "ContactUs": "Contacto",
@@ -185,5 +186,14 @@
     "signWithGoogle": "Iniciar Sesión con Google",
     "dontHaveAnAccount": "No tienes una cuenta?",
     "signUp": "Registrarse"
+  },
+
+  "ContactForm": {
+    "contactUs": "Contactanos! ",
+    "name": "Nombre",
+    "email": "Email",
+    "message": "Mensaje",
+    "send": "Enviar",
+    "span": "¡Estamos aquí para ayudarte a planificar tu boda soñada! Por favor, déjanos un mensaje y te responderemos lo antes posible."
   }
 }

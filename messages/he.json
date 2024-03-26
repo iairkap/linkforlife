@@ -134,7 +134,8 @@
     "DigitalInvitation": "הזמנה דיגיט",
     "ContactUs": "צור קשר",
     "SignUp": "הרשמה",
-    "LogIn": "התחברות"
+    "LogIn": "התחברות",
+    "about": "אודות"
   },
   "HeroSection": {
     "manageYour": "נהל את",
@@ -177,5 +178,13 @@
     "signWithGoogle": "התחבר עם Google",
     "dontHaveAnAccount": "אין לך חשבון?",
     "signUp": "הרשמה"
+  },
+  "ContactForm": {
+    "contactUs": "צור קשר",
+    "name": "שם",
+    "email": "אימייל",
+    "message": "הודעה",
+    "send": "שלח",
+    "span": "אנחנו כאן כדי לעזור לך לתכנן את החתונה של החלומות שלך! אנא השאר לנו הודעה ונחזור אליך בהקדם האפשרי"
   }
 }

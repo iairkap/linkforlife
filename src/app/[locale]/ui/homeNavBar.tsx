@@ -12,10 +12,26 @@ function HomeNavBar() {
             <Image src="/finalLogoB.png" alt="logo" width={196} height={38.33} />
             <div className='button-container-nav'>
                 <ul className='navBar-home'>
-                    <li className="li-nav">{t("home")}</li>
-                    <li className="li-nav">{t("RSVP")}</li>
-                    <li className="li-nav">{t("DigitalInvitation")}</li>
-                    <li className="li-nav">{t("ContactUs")}</li>
+                    <li className="li-nav">
+                        <a href="#RSVP">
+                            {t("RSVP")}
+                        </a>
+                    </li>
+                    <li className="li-nav">
+                        <a href="#about">
+                            {t("about")}
+                        </a>
+                    </li>
+                    <li className="li-nav">
+                        <a href="#digitalInvitation">
+                            {t("DigitalInvitation")}
+                        </a>
+                    </li>
+                    <li className="li-nav">
+                        <a href="#contact">
+                            {t("ContactUs")}
+                        </a>
+                    </li>
                 </ul>
                 <div style={{ display: "flex", gap: "1rem" }}>
                     <Link href={"./sign-up"}>

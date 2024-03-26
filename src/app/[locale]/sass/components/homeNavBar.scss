@@ -40,6 +40,9 @@ a {
   padding: 0 0.625rem;
   justify-content: center;
   align-items: center;
+  a {
+    color: inherit;
+  }
 }
 
 .button-home-nav {

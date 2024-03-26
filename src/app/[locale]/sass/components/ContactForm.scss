@@ -1,0 +1,71 @@
+@import "../abstracts/variables.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.general-s {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0px 175px;
+  margin-bottom: 10rem;
+  margin-top: 10rem;
+  font-family: $es-en-font;
+  gap: 2rem;
+}
+
+.layout-contact-us-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.title-contact-form {
+  font-size: 64px;
+  font-weight: 900;
+}
+
+.span-contact-form {
+  font-size: 20px;
+}
+
+.email-contact-form {
+  font-size: 32px;
+  font-weight: 900;
+}
+
+.input-form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.label-form {
+  color: $accent-color;
+}
+
+.input-form,
+.text-area-form {
+  background-color: #efefef;
+  border: 0px;
+  padding: 1rem 0.2rem;
+  border-radius: 8px;
+  resize: none;
+}
+
+.input-form:focus,
+.text-area-form:focus {
+  border: 0px;
+  outline: none;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.layout-contact-us-title {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}

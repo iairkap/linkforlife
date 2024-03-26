@@ -149,6 +149,7 @@
   },
   "HomeNavBar": {
     "home": "Home",
+    "about": "About",
     "RSVP": "RSVP",
     "DigitalInvitation": "Digital Invitation",
     "ContactUs": "Contact Us",
@@ -199,5 +200,13 @@
   },
   "TableDashboard": {
     "SittingPlan": "Sitting Plan"
+  },
+  "ContactForm": {
+    "contactUs": "Contact Us!",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send",
+    "span": "We're here to help you plan your dream wedding! Please leave us a message, and we'll get back to you as soon as possible."
   }
 }
