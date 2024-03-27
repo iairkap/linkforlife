@@ -122,7 +122,9 @@
     "youRole": "Your Role",
     "partnerRole": "Partner Role",
     "dontKnow": "I don't know",
-    "save": "save"
+    "save": "save",
+    "alreadyHaveAnAccount": "Already have an account?",
+    "logIn": "Log In"
   },
   "FirstSteps": {
     "thereIsNotWedding": "No wedding yet",

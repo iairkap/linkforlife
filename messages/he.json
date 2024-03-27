@@ -101,7 +101,9 @@
     "youRole": "תפקידך בחתונה",
     "partnerRole": "תפקיד בן זוגך בחתונה",
     "dontKnow": "לא יודע",
-    "save": "שמור"
+    "save": "שמור",
+    "alreadyHaveAnAccount": "כבר יש לך חשבון?",
+    "logIn": "התחבר"
   },
   "FirstSteps": {
     "thereIsNotWedding": "אין חתונה קיימת",

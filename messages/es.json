@@ -115,7 +115,9 @@
     "youRole": "Tu Rol",
     "partnerRole": "Rol de tu pareja",
     "dontKnow": "No lo se",
-    "save": "Guardar"
+    "save": "Guardar",
+    "alreadyHaveAnAccount": "Ya tienes una cuenta?",
+    "logIn": "Iniciar Sesión"
   },
   "FirstSteps": {
     "thereIsNotWedding": "No hay casamiento registrado",

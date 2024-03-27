@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation'
 import "../sass/pages/login.scss"
 import { signIn, getSession } from "next-auth/react";
 import { useSession } from 'next-auth/react';
+import { Link } from '@/navigation';
 
 
 function LoginForm({ t }: { t: any }) {
@@ -52,7 +53,11 @@ function LoginForm({ t }: { t: any }) {
                 }} className='button-b' />
             </div>
             <div className='span-container'>
-                <span>{t("dontHaveAnAccount")}<span> {t("signUp")}</span> </span>
+                <div>
+                    <Link href={"/sign-up"}>
+                        <span>{t("dontHaveAnAccount")}<span> {t("signUp")}</span> </span>
+                    </Link>
+                </div>
                 <span className='forget-password'>{t("forgotPassword")}</span>
             </div>
 

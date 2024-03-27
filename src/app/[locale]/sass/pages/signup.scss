@@ -240,3 +240,23 @@ form {
 
 .input-containerB {
 }
+
+a {
+  color: $accent-color;
+  text-decoration: none;
+}
+
+span {
+  font-family: $font-family;
+  text-align: center;
+
+  > span:last-child,
+  .forget-password {
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+  }
+  > span:last-child:hover,
+  .forget-password:hover {
+    color: $secondary-color;
+  }
+}

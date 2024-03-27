@@ -8,6 +8,7 @@ import { useTranslations } from 'next-intl';
 import ModalNotification from './modalNotification';
 import { error } from 'console';
 import { useSession, signOut } from 'next-auth/react';
+import { Link } from '@/navigation';
 interface SignUpFormData {
     email: string;
     password: string;
@@ -137,6 +138,11 @@ const SignUpPart1: React.FC<SignUpPart1Props> = ({ onNext }) => {
                     className='button-b'
                     onClick={handleGoogleSignIn}
                 />
+                <Link href={"/log-in"}>
+                    <div className='span-container'>
+                        <span>{t("alreadyHaveAnAccount")} <span>{t("logIn")}</span></span>
+                    </div>
+                </Link>
             </div>
             <ModalNotification
                 message={modalError}

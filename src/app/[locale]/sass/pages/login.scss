@@ -1,6 +1,10 @@
 @import "../abstracts/mixin.scss";
 @import "../abstracts/variables.scss";
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
 .login-grid {
   @include grid-1-3-2-3;
 
