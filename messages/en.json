@@ -85,6 +85,7 @@
     "prev": "< Prev"
   },
   "AddUserToWeddingList": {
+    "inviteSomeoneToCollaborate": "Invite someone to collaborate",
     "email": "Email",
     "send": "Send"
   },
@@ -122,7 +123,7 @@
     "youRole": "Your Role",
     "partnerRole": "Partner Role",
     "dontKnow": "I don't know",
-    "save": "save",
+    "save": "Save",
     "alreadyHaveAnAccount": "Already have an account?",
     "logIn": "Log In"
   },

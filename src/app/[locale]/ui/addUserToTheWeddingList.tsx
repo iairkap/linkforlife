@@ -43,8 +43,8 @@ function AddUserCollaborator({ isOpen, contentLabel, onRequestClose }: AddInvPro
     return (
         <Modal isOpen={isOpen} onRequestClose={onRequestClose} contentLabel={contentLabel} icon={"celebration"}>
             <section className='containerModalInvitationWedding'>
-                <h1 className='title-container'>Invite someone to Collaborate</h1>
-                <article className="layout">
+                <h1 className='title-container'>{t("inviteSomeoneToCollaborate")}</h1>
+                <article className="layoutb">
                     <InputField
                         value={emailUser}
                         type="text"
@@ -52,7 +52,9 @@ function AddUserCollaborator({ isOpen, contentLabel, onRequestClose }: AddInvPro
                         onChange={(e) => setEmailUser(e.target.value)}
                         error=''
                     />
-                    <Button label={t("send")} onClick={handleUserInvitation} className='button-a' />
+                    <div style={{ width: '100%' }}>
+                        <Button label={t("send")} onClick={handleUserInvitation} className='button-a' />
+                    </div>
                 </article>
             </section>
         </Modal>

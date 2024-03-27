@@ -83,7 +83,11 @@
     "next": "Siguiente >",
     "prev": "< Anterior"
   },
-  "AddUserToWeddingList": { "email": "Email", "send": "Enviar   " },
+  "AddUserToWeddingList": {
+    "inviteSomeoneToCollaborate": "Invita a alguien a colaborar",
+    "email": "Email",
+    "send": "Enviar"
+  },
   "ModalAddExpense": {
     "addExpense": "Agregar Gasto",
     "name": "Nombre",
