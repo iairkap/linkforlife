@@ -40,7 +40,7 @@ function SignUp() {
     const [formData, setFormData] = useState({});
 
     useEffect(() => {
-        signOut();
+        signOut({ redirect: false });
     }, []);
 
 

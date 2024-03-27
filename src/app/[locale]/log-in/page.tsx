@@ -28,7 +28,7 @@ function SignUp() {
     const extraction = extractLocaleFromPathName(pathName)
     const t = useTranslations("login");
     useEffect(() => {
-        signOut();
+        signOut({ redirect: false });
     }, []);
     return (
         <main className='main-containerna' dir={extraction === "he" ? "rtl" : "ltr"}>
