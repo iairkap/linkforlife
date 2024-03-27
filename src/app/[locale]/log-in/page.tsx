@@ -8,6 +8,7 @@ import { usePathname } from 'next/navigation';
 import { extractLocaleFromPathName } from '../utils/getLocale';
 import LoginForm from '../ui/loginForm';
 import { useTranslations } from 'next-intl';
+import { signOut } from "next-auth/react";
 
 interface SignUpFormData {
     email: string;
@@ -26,6 +27,9 @@ function SignUp() {
     const pathName = usePathname();
     const extraction = extractLocaleFromPathName(pathName)
     const t = useTranslations("login");
+    useEffect(() => {
+        signOut();
+    }, []);
     return (
         <main className='main-containerna' dir={extraction === "he" ? "rtl" : "ltr"}>
             <section className='pictureContainer'>

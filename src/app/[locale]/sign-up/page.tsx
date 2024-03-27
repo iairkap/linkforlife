@@ -18,6 +18,8 @@ import SignUpPart1 from '../ui/signUpPart1';
 import SignUpPart2 from '../ui/signUpPart2';
 import { usePathname } from 'next/navigation';
 import { extractLocaleFromPathName } from '../utils/getLocale';
+import { signOut } from "next-auth/react";
+
 
 
 interface SignUpFormData {
@@ -36,6 +38,11 @@ interface SignUpResponse {
 function SignUp() {
     const [currentPage, setCurrentPage] = useState(1);
     const [formData, setFormData] = useState({});
+
+    useEffect(() => {
+        signOut();
+    }, []);
+
 
     const pathName = usePathname();
     const extraction = extractLocaleFromPathName(pathName)
