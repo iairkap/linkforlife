@@ -1,6 +1,8 @@
 {
   "Dashboard": {
-    "title": "שלום"
+    "title": "שלום",
+    "lastAttendees": "אורחים אחרונים",
+    "noAttendeesYet": "אין עדיין אורחים"
   },
   "Sidebar": {
     "dashboard": "לוח בקרה",

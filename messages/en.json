@@ -1,6 +1,8 @@
 {
   "Dashboard": {
-    "title": "Hello"
+    "title": "Hello",
+    "lastAttendees": "Last Attendees",
+    "noAttendeesYet": "No attendees yet"
   },
   "Sidebar": {
     "dashboard": "Dashboard",

@@ -1,6 +1,8 @@
 {
   "Dashboard": {
-    "title": "Hola"
+    "title": "Hola",
+    "lastAttendees": "Últimos Asistentes Confirmados",
+    "noAttendeesYet": "Aún no hay asistentes confirmados"
   },
   "Sidebar": {
     "dashboard": "Dashboard",

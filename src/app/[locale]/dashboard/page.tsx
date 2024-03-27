@@ -47,7 +47,7 @@ function DashboardGeneral() {
                 <UpcomingPayment upcomingExpenses={upcomingExpenses ? (Array.isArray(upcomingExpenses) ? upcomingExpenses : [upcomingExpenses]) : []} extraction={extraction} />            </div>
             <div className='graph-container-pair'>
                 <DashboardWithPiechart userInvitationList={userInvitationList} extraction={extraction} />
-                <DashboardLastConfirmed userInvitationList={userInvitationList} extraction={extraction} />
+                <DashboardLastConfirmed userInvitationList={userInvitationList} extraction={extraction} t={t} />
             </div>
             {
                 isModalGroupOpen && <ModalGroup isOpen={isModalGroupOpen} contentLabel="Add Group" onRequestClose={() => setIsModalGroupOpen(false)} onRequestCloseGeneral={() => setIsModalGroupOpen(false)} weddings={weddings} setGroups={setGroups} />
