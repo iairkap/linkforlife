@@ -4,6 +4,7 @@ import { useTableData } from '../helpers/useTableData';
 import { useTranslations } from 'next-intl';
 import table from "../../../../public/table2.svg"
 import "../sass/components/tableDashboard.scss"
+import { Link } from '@/navigation';
 
 function TableDashboardHome() {
 
@@ -25,7 +26,7 @@ function TableDashboardHome() {
                     const filledGuests = [...guests, ...Array(table.numberOfChairs - guests.length).fill({})];
                     return (
                         <div key={table.id} className='list-table'>
-                            <h4 className='subtitle-talbe'>Table {String(index + 1).padStart(2, '0')}</h4>
+                            <h4 className='subtitle-talbe'>{t("table")} {String(index + 1).padStart(2, '0')}</h4>
                             <div className='div-hor'></div>
                             <ul>
                                 {filledGuests.map((guest: any, guestIndex: number) => (
@@ -38,9 +39,11 @@ function TableDashboardHome() {
                     )
                 })}
             </div>
-            <button>
-                View All
-            </button>
+            <Link href={"dashboard/tables"}>
+                <button>
+                    {t("viewAll")}
+                </button>
+            </Link>
         </section>
     );
 }

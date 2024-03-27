@@ -51,7 +51,14 @@
     "invitedBy": "Invited by",
     "specialRole": "Special Role",
     "save": "Save",
-    "other": "Add a new group"
+    "other": "Add a new group",
+    "child": "Child",
+    "addOtherChildren": "Add other children",
+    "group": "Group",
+    "oneGuest": "One guest",
+    "couple": "Couple",
+    "family": "Family",
+    "guest": "Guest"
   },
   "RSVPTABLE": {
     "name": "Name",
@@ -90,7 +97,15 @@
     "date": "Date",
     "save": "Save",
     "cuotas": "Numero de cuotas",
-    "dueDate": "Vencimiento cuotas"
+    "dueDate": "Vencimiento cuotas",
+    "pleaseChooseACategoryd": "Please choose a category",
+    "other": "Other",
+    "enterOtherCategory": "Enter other category",
+    "costo": "Cost: ",
+    "monto": "Amount: ",
+    "agregarPago": "Add Payment",
+    "agregarInstallment": "Add Installment",
+    "generalExpense": "General Expense"
   },
   "SignUp": {
     "email": "Email",
@@ -133,10 +148,19 @@
     "copy": "Copy Link",
     "updateToken": "Update Token"
   },
+
   "FormInvitationCard": {
     "NoCredits": "You don't have enought credits to get a free design",
     "personalizaLosDatosDeLasInvitaciones": "Personalize the data of the invitations",
     "send": "Send",
+    "name": "Name",
+    "lastName": "Last Name",
+    "partnerName": "Partner Name",
+    "partnerLastName": "Partner Last Name",
+    "weddingDate": "Wedding Date",
+    "weddingTime": "Wedding Time",
+    "weddingPlace": "Wedding Place",
+    "comments": "Comments",
     "invitationSent": "Order successfully placed, our designers will be working on the invitation and will send it to you within the next 48 hours."
   },
   "ModalNotification": {
@@ -201,7 +225,9 @@
     "signUp": "Sign Up"
   },
   "TableDashboard": {
-    "SittingPlan": "Sitting Plan"
+    "SittingPlan": "Sitting Plan",
+    "table": "Table",
+    "viewAll": "View All"
   },
   "ContactForm": {
     "contactUs": "Contact Us!",
@@ -210,5 +236,51 @@
     "message": "Message",
     "send": "Send",
     "span": "We're here to help you plan your dream wedding! Please leave us a message, and we'll get back to you as soon as possible."
+  },
+  "DashboardupcomingPayment": {
+    "upcomingPayments": "Upcoming Payments",
+    "seeMore": "See More",
+    "expense": "Expense"
+  },
+  "tablePage": {
+    "weddingTable": "Wedding tables:",
+    "addTable": "Add Table",
+    "download": "Download",
+    "delete": "Delete",
+    "filter": "Filter",
+    "addGuest": "Add Guest +",
+    "filterByGroups": "Filter by groups"
+  },
+
+  "createGroup": {
+    "createGroup": "Create Group",
+    "groupName": "Group Name",
+    "addOtherGroup": "Add other group",
+    "save": "Save"
+  },
+  "Payments": {
+    "presupuestoAsignado": "Budget Assigned:",
+    "indicadorDeGastos": "Expense Indicator",
+    "gastosDocumentados": "Documented Expenses",
+    "pagosEfectaudos": "Payments Made",
+    "importPorPagar": "Amount Due",
+    "settings": "Settings",
+    "addExpense": "Add Expense",
+    "add": "Add"
+  },
+  "DatePickerMaterialUI": {
+    "weddingDate": "Wedding Date"
+  },
+  "tablePayment": {
+    "itemName": "Item Name",
+    "due": "Due",
+    "alreadyPaid": "Already Paid",
+    "total": "Total",
+    "installmentsDueDate": "Installments Due Date"
+  },
+  "InvitationPage": {
+    "remainingCredits": "Remaining Credits",
+    "free": "Free",
+    "edit": "Edit"
   }
 }

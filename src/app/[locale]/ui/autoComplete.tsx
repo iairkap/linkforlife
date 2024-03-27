@@ -7,7 +7,7 @@ import axios from 'axios';
 import { themeGeneralA } from '../dashboard/themes/themeGenera';
 
 
-export default function FreeSolo({ userInvitationList, value, onChange, readOnly, initialChairNames, fa, setUserInvitationList }: any) {
+export default function FreeSolo({ userInvitationList, value, onChange, readOnly, initialChairNames, fa, setUserInvitationList, extraction }: any) {
     const [active, setActive] = React.useState(false);
     const [hover, setHover] = React.useState(false);
 
@@ -20,6 +20,15 @@ export default function FreeSolo({ userInvitationList, value, onChange, readOnly
 
     const trimmedInitialChairNames = initialChairNames.map((name: string) => name.trim());
     const filteredUserInvitationList = userInvitationListWithFullNames.filter((option: any) => !trimmedInitialChairNames.includes(option.fullName));
+
+    let clickHereToAddGuest = "";
+    if (extraction === "he") {
+        clickHereToAddGuest = "לחץ כאן כדי להוסיף אורח";
+    } else if (extraction === "es") {
+        clickHereToAddGuest = "Haga clic aquí para agregar un invitado";
+    } else if (extraction === "en") {
+        clickHereToAddGuest = "Click here to add a guest";
+    }
 
     return (
         <ThemeProvider theme={themeGeneralA}>
@@ -54,7 +63,7 @@ export default function FreeSolo({ userInvitationList, value, onChange, readOnly
                     onBlur={() => setActive(false)}
                     onMouseEnter={() => setHover(true)}
                     onMouseLeave={() => setHover(false)}
-                    renderInput={(params) => <TextField {...params} label={active ? "Add Guest" : (hover ? "Click here to add a guest" : "")} />}
+                    renderInput={(params) => <TextField {...params} label={active ? "Add Guest" : (hover ? clickHereToAddGuest : "")} />}
                 />
             )}
         </ThemeProvider>

@@ -8,9 +8,10 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
 import { createTheme, ThemeProvider } from "@mui/material";
+import { useTranslations } from 'next-intl';
 
 const themeGeneral = createTheme({
-    palette: {
+    direction: "rtl", palette: {
         action: {
             active: "#818369",
             focus: "#818369",
@@ -112,13 +113,13 @@ export default function MultipleSelectChip({ valueselct, selectedValueSelector, 
                 : value as unknown as number[]
         );
     };
+    const t = useTranslations("ModalAddInv");
 
     return (
         <div>
             <ThemeProvider theme={themeGeneral}>
-
                 <FormControl>
-                    <InputLabel id="demo-multiple-chip-label">Group</InputLabel>
+                    <InputLabel id="demo-multiple-chip-label">{t("group")}</InputLabel>
                     <Select
                         labelId="demo-multiple-chip-label"
                         id="demo-multiple-chip"

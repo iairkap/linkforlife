@@ -4,7 +4,7 @@ import { useTableData } from '../helpers/useTableData';
 import type { DashboardData } from '@/types/types';
 import "../sass/components/groupsFilter.scss"
 
-function FilterTable() {
+function FilterTable({ t, extraction }: { t: (key: string) => string, extraction: string }): JSX.Element {
     let groups: any,
         filteruserInvitationListByGroup: (arg: any) => any,
         userInvitationList: any,
@@ -12,8 +12,11 @@ function FilterTable() {
         setGroupIds: React.Dispatch<React.SetStateAction<number[]>>,
         groupIds: number[];
     const context = useGlobalContext();
+
+
+
     if (!context) {
-        return null; // or some other JSX
+        return <div>Loading...</div>;
     } else {
         ({ groups, filteruserInvitationListByGroup, userInvitationList, filteredInvitation, setGroupIds, groupIds } = context as DashboardData);
     }
@@ -40,12 +43,14 @@ function FilterTable() {
         }
     }
 
+    const filterContainerButtons = extraction === "he" ? "filter-container-buttons-he" : "filter-container-buttons";
+
     return (
-        <article className='filter-container-buttons'>
+        <article className={filterContainerButtons}>
             {
                 groups && groups.length > 0 &&
                 <div className='filter-container-chips'>
-                    <span>Filter by Groups:</span>
+                    <span>{t("filterByGroups")}</span>
                     {groups.map((group: any) => {
                         return (
                             <div className='chips-layout'>

@@ -13,7 +13,13 @@ interface props {
 }
 
 
-function TableDashboardContainer({ tableData, userInvitationList, setIsOpenAddInv, deleteGuestAndFetchData, setTableData, setIsOpen }: { tableData: TableData[]; userInvitationList: UserInvitation[], setIsOpenAddInv: (arg0: boolean) => void; deleteGuestAndFetchData: any; setTableData: any; setIsOpen: (arg0: boolean) => void; }) {
+function TableDashboardContainer({ tableData, userInvitationList, setIsOpenAddInv, deleteGuestAndFetchData, setTableData, setIsOpen, extraction, t }: { tableData: TableData[]; userInvitationList: UserInvitation[], setIsOpenAddInv: (arg0: boolean) => void; deleteGuestAndFetchData: any; setTableData: any; extraction: any, setIsOpen: (arg0: boolean) => void; t: (key: string) => string; }) {
+
+
+    console.log(extraction)
+    const className = extraction === "he" ? "table-card-container-dash-he" : "table-card-container-dash"
+
+
     return (
 
         <div className='containerGen'  >
@@ -23,13 +29,13 @@ function TableDashboardContainer({ tableData, userInvitationList, setIsOpenAddIn
             }
             {tableData.length > 0 &&
                 <main className='layout-table-page'>
-                    <article className='table-card-container-dash'>
-                        <TableCardContainer tableData={tableData} userInvitationList={userInvitationList} setIsOpenAddInv={setIsOpenAddInv} deleteGuestAndFetchData={deleteGuestAndFetchData} setTableData={setTableData} />
+                    <article className={className}>
+                        <TableCardContainer tableData={tableData} userInvitationList={userInvitationList} setIsOpenAddInv={setIsOpenAddInv} deleteGuestAndFetchData={deleteGuestAndFetchData} setTableData={setTableData} extraction={extraction} />
 
                     </article>
                     <section className='table-filter-container-dash'>
-                        <TableFilter setIsOpenAddInv={setIsOpenAddInv} />
-                        <FilterTable />
+                        <TableFilter setIsOpenAddInv={setIsOpenAddInv} t={t} />
+                        <FilterTable t={t} extraction={extraction} />
                     </section>
                 </main>
             }

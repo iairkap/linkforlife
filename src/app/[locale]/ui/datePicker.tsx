@@ -4,7 +4,13 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TextField } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material";
-
+import { useTranslations } from "next-intl";
+import { usePathname } from "next/navigation";
+import { extractLocaleFromPathName } from "../utils/getLocale";
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
+import { prefixer } from 'stylis';
+import rtlPlugin from 'stylis-plugin-rtl';
 
 /* MuiFormControl-root MuiTextField-root css-z3c6am-MuiFormControl-root-MuiTextField-root
  */
@@ -89,19 +95,33 @@ export const themeGeneral = createTheme({
     },
 });
 
+
 export default function DatePickerMaterialUI({ date, onChange }: any) {
+
+    const extraction = extractLocaleFromPathName(usePathname());
+
+
+    const cacheRtl = createCache({
+        key: 'he' === extraction ? 'muirtl' : 'mui',
+        stylisPlugins: 'he' === extraction ? [prefixer, rtlPlugin] : undefined
+    });
+    const t = useTranslations("DatePickerMaterialUI");
+
 
 
     return (
-        <ThemeProvider theme={themeGeneral}>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DatePicker
-                    value={date}
-                    onChange={onChange}
-                    label="Wedding Date"
 
-                />
-            </LocalizationProvider>
+        <ThemeProvider theme={themeGeneral}>
+            <CacheProvider value={cacheRtl}>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DatePicker
+                        value={date}
+                        onChange={onChange}
+                        label={t("weddingDate")}
+
+                    />
+                </LocalizationProvider>
+            </CacheProvider>
         </ThemeProvider>
     );
 }

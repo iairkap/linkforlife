@@ -6,17 +6,18 @@ interface Props {
     weddings: Wedding[];
     isOpen: boolean;
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    t: (key: string) => string;
 }
 
 
-function AddPayment({ weddings, isOpen, setIsOpen }: Props) {
+function AddPayment({ weddings, isOpen, setIsOpen, t }: Props) {
 
 
 
     return (
         <div>
-            <h2>Add Expense</h2>
-            <button onClick={() => setIsOpen(true)}>Add</button>        </div>
+            <h2>{t("addExpense")}</h2>
+            <button onClick={() => setIsOpen(true)}>{t("add")}</button>        </div>
     );
 }
 

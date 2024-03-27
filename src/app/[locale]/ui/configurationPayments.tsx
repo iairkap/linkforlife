@@ -3,15 +3,16 @@ import React from 'react';
 
 interface ConfigurationPaymentsCardProps {
     setConfiguration: (value: boolean) => void;
+    t: (key: string) => string;
 }
 
-function ConfigurationPaymentsCard({ setConfiguration }: ConfigurationPaymentsCardProps) {
+function ConfigurationPaymentsCard({ setConfiguration, t }: ConfigurationPaymentsCardProps) {
 
 
     return (
         <div>
             <button onClick={() => setConfiguration(true)}>
-                Settings
+                {t("settings")}
             </button>
         </div>
     );

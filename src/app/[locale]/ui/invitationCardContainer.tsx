@@ -10,9 +10,10 @@ import Link from 'next/link';
 interface InvitationCardContainer {
     cards: InvitationCard[];
     credits: number;
+    t: (key: string) => string;
 }
 
-function InvitationCardContainer({ cards, credits }: InvitationCardContainer) {
+function InvitationCardContainer({ cards, credits, t }: InvitationCardContainer) {
 
     const [favorites, setFavorites] = useState<Record<number, boolean>>({});
 
@@ -31,6 +32,7 @@ function InvitationCardContainer({ cards, credits }: InvitationCardContainer) {
                     image={card.url}
                     name={card.name}
                     favorite={favorites[card.id]}
+                    t={t}
                     toggleFavorite={() => toggleFavorite(card.id)} url={undefined} />
 
             ))}

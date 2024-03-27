@@ -4,7 +4,9 @@ import InputField from './InputField';
 import "../sass/layout/modalContent.scss"
 import axios from 'axios';
 import { useDashboardData } from '../helpers/useDashboardData';
-
+import { useTranslations } from 'next-intl';
+import { usePathname } from 'next/navigation';
+import { extractLocaleFromPathName } from '../utils/getLocale';
 interface modalGroupProps {
     isOpen: boolean;
     contentLabel: string;
@@ -18,6 +20,11 @@ interface modalGroupProps {
 
 function ModalGroup({ isOpen, contentLabel, onRequestClose, onRequestCloseGeneral, weddings, setGroups }: modalGroupProps) {
 
+
+    const pathName = usePathname();
+    const extraction = extractLocaleFromPathName(pathName)
+
+    const containerModalClassName = extraction === "he" ? "containerModalInvitationWeddingHe" : "containerModalInvitationWeddingA";
     const { fetchData, isLoading, setIsLoading, } = useDashboardData();
     const [form, setForm] = useState<{ name: string, names: string[], weddingId: number | undefined }>({
         name: "",
@@ -52,15 +59,17 @@ function ModalGroup({ isOpen, contentLabel, onRequestClose, onRequestCloseGenera
         newNames.splice(index, 1);
         setForm({ ...form, names: newNames });
     }
+
+    const t = useTranslations("createGroup");
     return (
         <Modal isOpen={isOpen} contentLabel={contentLabel} onRequestClose={onRequestClose} icon={"groups_3"}>
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-            <section className='containerModalInvitationWeddingA'>
+            <section className={containerModalClassName}>
                 <article className='layout-groups-container'>
-                    <h1 className='title-container'>Creacion de grupos</h1>
+                    <h1 className='title-container'>{t("createGroup")}</h1>
                     <InputField
                         type="text"
-                        placeholder="Nombre del grupo"
+                        placeholder={t("groupName")}
                         value={form.name}
                         onChange={(e) => setForm({ ...form, name: e.target.value })}
                     />
@@ -68,7 +77,7 @@ function ModalGroup({ isOpen, contentLabel, onRequestClose, onRequestCloseGenera
                         <div key={index} className='erase-container'>
                             <InputField
                                 type="text"
-                                placeholder="Nombre del grupo"
+                                placeholder={t("groupName")}
                                 value={name}
                                 onChange={(e) => {
                                     const newNames = [...form.names];
@@ -82,10 +91,10 @@ function ModalGroup({ isOpen, contentLabel, onRequestClose, onRequestCloseGenera
                         </div>
                     ))}
                     <div className='add-other-children'>
-                        <button onClick={handleAddOtherGroup} className='button-add-children'>Agregar Otro Grupo</button>
+                        <button onClick={handleAddOtherGroup} className='button-add-children'>{t("addOtherGroup")}</button>
                     </div>
                 </article>
-                <button onClick={handleSubmit} className='button-a'>Enviar</button>
+                <button onClick={handleSubmit} className='button-a'>{t("save")}</button>
             </section>
         </Modal>
     );

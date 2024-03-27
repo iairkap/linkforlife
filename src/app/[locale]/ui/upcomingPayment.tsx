@@ -2,16 +2,17 @@ import React from 'react';
 import type { Expense } from '@/types/types';
 import "../sass/components/upcomingPayment.scss"
 import { Link } from '@/navigation';
+import { useTranslations } from 'next-intl';
 interface UpcomingPaymentProps {
     upcomingExpenses?: any[];
     extraction?: string;
 }
 
 function UpcomingPayment({ upcomingExpenses, extraction }: UpcomingPaymentProps) {
+    const t = useTranslations('DashboardupcomingPayment');
     const paymentFormat = (date: string) => {
         const options = { year: 'numeric' as const, month: 'short' as const, day: '2-digit' as const };
         const formattedDate = new Date(date).toLocaleDateString(undefined, options);
-
         const [day, month, year] = formattedDate.split(' ');
         const capitalizedMonth = month.charAt(0).toUpperCase() + month.slice(1);
 
@@ -19,7 +20,7 @@ function UpcomingPayment({ upcomingExpenses, extraction }: UpcomingPaymentProps)
     }
 
     const defaultExpense = {
-        name: 'Expense',
+        name: t("expense"),
         paymentDate: '2029-01-01T03:00:00.000Z',
         amount: 0,
     };
@@ -36,9 +37,9 @@ function UpcomingPayment({ upcomingExpenses, extraction }: UpcomingPaymentProps)
     return (
         <div className='card-container-payments-upcoming'>
             <header className='header-payment-upcoming'>
-                <h3>Upcoming Payments</h3>
+                <h3>{t("upcomingPayments")}</h3>
                 <Link href={"dashboard/payments"}>
-                    <span className='spanda'>See More</span>
+                    <span className='spanda'>{t("seeMore")}</span>
                 </Link>
             </header>
             <div className='container-expense-genral'>

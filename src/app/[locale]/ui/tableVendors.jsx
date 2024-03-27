@@ -19,6 +19,10 @@ import {
   UseGlobalFiltersInstanceProps,
 } from "react-table";
 import { Cell } from "react-table";
+import { useTranslations } from "next-intl";
+import { usePathname } from "next/navigation";
+import { extractLocaleFromPathName } from "../utils/getLocale";
+import { translationsTable } from "../utils/translationsTablePayment";
 
 function TableVendors({
   expenseData,
@@ -28,31 +32,37 @@ function TableVendors({
   expandedCategories,
 }) {
   const [data, setData] = useState(() => expenseDataTemplate);
-  /*   const [expandedCategories, setExpandedCategories] = useState({});
-   */
+
+  const t = useTranslations("tablePayment");
+
+  const extraction = extractLocaleFromPathName(usePathname());
+  console.log(extraction);
+
   const memoizedData = useMemo(() => expenseData, [expenseData]);
 
   const columns = useMemo(
     () => [
       {
-        Header: "Item Name",
+        Header: t("itemName"),
         accessor: "name",
         style: { width: "90%" },
         Cell: ({ row }) => {
           if (row.original.isCategoryRow) {
             return (
               <span style={{ fontWeight: "bold", fontSize: "1.5rem" }}>
-                {row.original.category}
+                {translationsTable[extraction][row.original.category]}
               </span>
             );
           }
-          return <span>{row.original.name}</span>;
+          return (
+            <span>{translationsTable[extraction][row.original.name]}</span>
+          );
         },
       },
       {
-        Header: "Due",
+        Header: t("due"),
         id: "dueAmount", // use 'id' instead of 'accessor'
-        style: { width: "15%" },
+        style: { width: "35%" },
         Cell: ({ row }) => {
           if (
             row.original.installments &&
@@ -73,9 +83,9 @@ function TableVendors({
         },
       },
       {
-        Header: "Already payed",
+        Header: t("alreadyPaid"),
         id: "installmentsAmount", // use 'id' instead of 'accessor'
-        style: { width: "15%" },
+        style: { width: "35%" },
         Cell: ({ row }) => {
           if (
             row.original.installments &&
@@ -95,7 +105,7 @@ function TableVendors({
         },
       },
       {
-        Header: "total",
+        Header: t("total"),
         accessor: "amount",
         Cell: ({ value }) => {
           if (!value) {
@@ -109,9 +119,9 @@ function TableVendors({
         },
       },
       {
-        Header: "Installments Due Date",
+        Header: t("installmentsDueDate"),
         id: "installmentsDueDate", // use 'id' instead of 'accessor'
-        style: { width: "15%" },
+        style: { width: "105%" },
         Cell: ({ row }) => {
           if (
             row.original.installments &&
@@ -146,13 +156,18 @@ function TableVendors({
     useRowSelect,
     useColumnOrder
   );
+
+  console.log(data);
   return (
     <article className="conttable">
       <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
       />
-      <table {...getTableProps()} className="table">
+      <table
+        {...getTableProps()}
+        className={`table ${extraction === "he" ? "rtl" : ""}`}
+      >
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()} className="tr">

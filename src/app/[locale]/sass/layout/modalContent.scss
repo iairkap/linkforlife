@@ -159,6 +159,23 @@ button {
   width: 60%;
   margin-left: 20%;
 }
+.containerModalInvitationWeddingHe {
+  margin: 0px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  margin: 0px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+  width: 60%;
+  margin-right: 20%;
+}
 
 .layout-groups-container {
   display: flex;
@@ -176,5 +193,13 @@ button {
   right: 0;
   top: 0;
   transform: translate(-50%, 90%);
+  color: #818369;
+}
+
+.delete-button {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  flex-direction: row-reverse;
   color: #818369;
 }

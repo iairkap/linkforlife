@@ -16,6 +16,11 @@ function AddInvFamily({ name, coupleName, setCoupleName, setName, lastName, setL
         setChildLastName('');
         setChildSelectedGroups([]);
     };
+
+    const handleDeleteChildren = (index: number) => {
+        setChildren((prevChildren: any[]): any => prevChildren.filter((_, i) => i !== index));
+
+    }
     return (
         <article className='family-container'>
             <AddInvCouple name={name}
@@ -54,57 +59,69 @@ function AddInvFamily({ name, coupleName, setCoupleName, setName, lastName, setL
             <br />
 
             <article >
-                <span className='guess-span child'>Child:</span>
                 {children.map((child: any, index: number) => (
-                    <article key={index} className="layoutModalAddInv modalChild">
-                        <InputField
-                            value={child.name}
-                            type="text"
-                            placeholder={t("name")}
-                            onChange={(e) => {
-                                const newChildren = [...children];
-                                newChildren[index].name = e.target.value;
-                                setChildren(newChildren);
-                            }}
-                            error=''
-                        />
-                        <InputField
-                            value={child.lastName}
-                            type="text"
-                            placeholder={t("lastName")}
-                            onChange={(e) => {
-                                const newChildren = [...children];
-                                newChildren[index].lastName = e.target.value;
-                                setChildren(newChildren);
-                            }}
-                            error=''
-                        />
-                        <MultipleSelectChip
-                            valueselct={groups}
-                            selectedValueSelector={child.selectedGroups}
-                            setSelectedValueSelector={(selectedGroups: string[]) => {
-                                const newChildren = [...children];
-                                newChildren[index].selectedGroups = selectedGroups;
-                                setChildren(newChildren);
-                            }}
-                            otherValue={otherValue}
-                        />
-                        <SingleSelect
-                            valueSelect={invitedByOptions}
-                            selectedValueSelector={child.invitedBy}
-                            setSelectedValueSelector={(value: string) => {
-                                const newChildren = [...children];
-                                newChildren[index].invitedBy = value;
-                                setChildren(newChildren);
-                            }}
-                            otherValue={otherValue}
-                            label={t("invitedBy")}
-                        />
+                    <article key={index} style={{ marginTop: "1rem" }} >
+                        <span className='guess-span child' >{t("child")}</span>
+                        <div className="layoutModalAddInv modalChild">
+                            <InputField
+                                value={child.name}
+                                type="text"
+                                placeholder={t("name")}
+                                onChange={(e) => {
+                                    const newChildren = [...children];
+                                    newChildren[index].name = e.target.value;
+                                    setChildren(newChildren);
+                                }}
+                                error=''
+                            />
+                            <InputField
+                                value={child.lastName}
+                                type="text"
+                                placeholder={t("lastName")}
+                                onChange={(e) => {
+                                    const newChildren = [...children];
+                                    newChildren[index].lastName = e.target.value;
+                                    setChildren(newChildren);
+                                }}
+                                error=''
+                            />
+                            <MultipleSelectChip
+                                valueselct={groups}
+                                selectedValueSelector={child.selectedGroups}
+                                setSelectedValueSelector={(selectedGroups: string[]) => {
+                                    const newChildren = [...children];
+                                    newChildren[index].selectedGroups = selectedGroups;
+                                    setChildren(newChildren);
+                                }}
+                                otherValue={otherValue}
+                            />
+                            <SingleSelect
+                                valueSelect={invitedByOptions}
+                                selectedValueSelector={child.invitedBy}
+                                setSelectedValueSelector={(value: string) => {
+                                    const newChildren = [...children];
+                                    newChildren[index].invitedBy = value;
+                                    setChildren(newChildren);
+                                }}
+                                otherValue={otherValue}
+                                label={t("invitedBy")}
+                            />
+                            <div></div>
+                            <div className='delete-button'>
+                                <button onClick={() => handleDeleteChildren(index)} >
+                                    <span className="material-symbols-outlined">
+                                        delete
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+
                     </article>
                 ))}
                 <div className='add-other-children'>
-                    <button onClick={handleAddChildren} className='button-add-children'><span className='plus'>+</span>Add other Children</button>
+                    <button onClick={handleAddChildren} className='button-add-children'><span className='plus'>+</span>{t("addOtherChildren")}</button>
                 </div>
+
             </article >
 
 

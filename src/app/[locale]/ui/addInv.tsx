@@ -186,7 +186,7 @@ function AddInv({ isOpen, contentLabel, onRequestClose, setUserInvitationList, u
                     />
                 }
                 <div style={{
-                    width: "20%",
+                    width: "50%",
                     marginTop: "2rem"
                 }}>
                     <Button label={t("save")} onClick={() => handleAddInv(wedding, name, lastName, email, invitedBy, specialRole, phoneNumber, selectedGroups, otherValue, setUserInvitationList, userInvitationList, fetchData, onRequestClose, coupleName, coupleLastName, emailCouple, phoneNumberCouple, selectedGroupsCouple, childName, childLastName, childsName, childsLastName, childSelectedGroups, childsSelectedGroups, children, invitedByCouple)} className='button-a' />

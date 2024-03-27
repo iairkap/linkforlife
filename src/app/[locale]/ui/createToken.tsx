@@ -6,6 +6,8 @@ import InputField from './InputField';
 import { useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import "../sass/components/addToken.scss"
+import { usePathname } from 'next/navigation';
+import { extractLocaleFromPathName } from "../utils/getLocale";
 interface CreateTokenProps {
     weddingId: string;
     extraction: string | undefined;
@@ -15,6 +17,9 @@ interface CreateTokenProps {
 function CreateToken({ isOpen, contentLabel, onRequestClose, weddingId, extraction }: ModalType & CreateTokenProps) {
     const [token, setToken] = useState('');
     const t = useTranslations('CreateToken');
+
+
+
 
     const handleSubmit = async () => {
         try {
@@ -38,7 +43,7 @@ function CreateToken({ isOpen, contentLabel, onRequestClose, weddingId, extracti
         }
     };
 
-
+    const styleHebrew = extraction === "he" ? "layoutbishe" : "layoutbis";
 
 
 
@@ -51,12 +56,7 @@ function CreateToken({ isOpen, contentLabel, onRequestClose, weddingId, extracti
                     <span className='text-align'>
                         {t("subtitle")}
                     </span>
-                    <div className='layoutbis' style={{
-                        width: '70%',
-                        alignSelf: "center",
-                        marginTop: "2rem",
-                        marginLeft: "15%",
-                    }}>
+                    <div className={styleHebrew}>
                         <div className='container-input-text'>
                             <InputField
                                 type="text"

@@ -23,12 +23,15 @@ interface DashboardGraphCardProps {
 function DashboardGraphCard({ cardTitle, icon, confirmed, attending, notAttending, notConfirmed, total, extraction, next, previous, setCurrentPage, currentPage, cards }: DashboardGraphCardProps): JSX.Element {
 
     const t = useTranslations('DashboardStats');
-
+    console.log(extraction)
     console.log(cardTitle)
+
+    const classNameHebrew = extraction === 'he' ? 'name-titleAFHE' : 'name-titleAF';
+    const classNameHebrewB = extraction === 'he' ? 'name-titleAFAHE' : 'name-titleAFA';
 
     return (
         <div className='main-container-card'>
-            <aside className='name-titleAF'>
+            <aside className={classNameHebrew}>
                 <h2 className='initial'>{cardTitle}</h2>
                 <h2>{t("guest").toUpperCase()}</h2>
             </aside>
@@ -44,11 +47,11 @@ function DashboardGraphCard({ cardTitle, icon, confirmed, attending, notAttendin
                 <h2 className='initial'>{notConfirmed}</h2>
                 <p>{t("notConfirmed")}</p>
             </div>
-            <div className='name-titleAFA'>
+            <div className={classNameHebrewB}>
                 <h2 className='initial'>{total}</h2>
                 <p>{t("e")}</p>
             </div>
-        </div>
+        </div >
     );
 }
 

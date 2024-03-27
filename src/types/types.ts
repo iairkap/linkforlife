@@ -116,6 +116,7 @@ export interface InvitationCard {
   favorite: boolean;
   toggleFavorite: () => void;
   url: string | undefined;
+  t: (key: string) => string;
 }
 
 export interface TableData {

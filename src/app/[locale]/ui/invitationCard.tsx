@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { downloadImage } from '../helpers/download';
 
 
-function InvitationCard({ image, name, favorite, toggleFavorite, id, url }: InvitationCard) {
+function InvitationCard({ image, name, favorite, toggleFavorite, id, url, t }: InvitationCard) {
 
 
     const [hover, setHover] = useState(false);
@@ -36,8 +36,8 @@ function InvitationCard({ image, name, favorite, toggleFavorite, id, url }: Invi
             </div>
             <p className='name-style-card'>{name}</p>
             <section className='button-container-card'>
-                <span className='free-label'>Free</span>
-                <button className='buttonA'>Edit</button>
+                <span className='free-label'>{t("free")}</span>
+                <button className='buttonA'>{t("edit")}</button>
             </section>
         </div>
     );

@@ -17,9 +17,10 @@ interface TableCardProps {
     deleteGuestAndFetchData?: any;
     setIsOpenAddInv?: any;
     setTableData?: any;
+    extraction: string;
 
 }
-function TableCard({ fa, id, numberOfChairs, weddingInvitationLists, name, userInvitationList, deleteGuestAndFetchData, setIsOpenAddInv, setTableData }: TableCardProps) {
+function TableCard({ fa, id, numberOfChairs, weddingInvitationLists, name, userInvitationList, deleteGuestAndFetchData, setIsOpenAddInv, setTableData, extraction }: TableCardProps) {
     const initialChairNames = Array(numberOfChairs).fill('');
     weddingInvitationLists.forEach((list, index) => {
         if (index < numberOfChairs) {
@@ -96,6 +97,7 @@ function TableCard({ fa, id, numberOfChairs, weddingInvitationLists, name, userI
                                         value={chairNames[i]}
                                         onChange={handleInputChange(i)}
                                         readOnly={initialChairNames[i] !== ""}
+                                        extraction={extraction}
                                     />
                                 </div>
                                 {chairNames[i] && (

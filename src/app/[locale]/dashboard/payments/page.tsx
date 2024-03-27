@@ -17,7 +17,9 @@ import TableVendors from '../../ui/tableVendors';
 import { Tab } from '@mui/material';
 import type { Expense } from '@/types/types';
 import ModalPaymentChange from '../../ui/modalPaymentChange';
-
+import { useTranslations } from 'next-intl';
+import { usePathname } from 'next/navigation';
+import { extractLocaleFromPathName } from '../../utils/getLocale';
 function Payments() {
 
 
@@ -31,6 +33,12 @@ function Payments() {
     const [expenseDataSelected, setExpenseDataSelected] = useState<Expense | {}>({});
     const [modalPaymentChange, setModalPaymentChange] = useState(false);
     const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({});
+    const pathName = usePathname();
+    const extraction = extractLocaleFromPathName(pathName);
+
+    const t = useTranslations('Payments');
+
+    const tableClassName = extraction === "he" ? "tableHe" : "table";
 
 
 
@@ -72,6 +80,8 @@ function Payments() {
     }, [rowClicked, expenseData, modalPaymentChange]);  // Add expenseData to the dependency array
 
 
+    console.log(expandedCategories)
+
 
 
     if (loading || !weddings || weddings.length === 0) {
@@ -84,16 +94,16 @@ function Payments() {
 
     return (
         <article className='containerDashA'>
-            <ConfigurationPaymentsCard setConfiguration={setConfiguration} />
+            <ConfigurationPaymentsCard setConfiguration={setConfiguration} t={t} />
 
             <section className='layout'>
                 <div className='izq'>
-                    <AddBudget expenseData={expenseData} weddings={weddings} refreshData={refreshData} totalPaid={totalPaid} totalAmount={totalAmount} />
-                    <AddPayment weddings={weddings} isOpen={isOpen} setIsOpen={setIsOpen} />
+                    <AddBudget expenseData={expenseData} weddings={weddings} refreshData={refreshData} totalPaid={totalPaid} totalAmount={totalAmount} t={t} />
+                    <AddPayment weddings={weddings} isOpen={isOpen} setIsOpen={setIsOpen} t={t} />
                 </div>
 
                 {/* TABLE */}
-                <div className='table'>
+                <div className={tableClassName}>
                     <TableVendors expenseData={expenseData} setRowClick={onRowClick} categories={categories} setExpandedCategories={setExpandedCategories} expandedCategories={expandedCategories} />
                 </div>
 
@@ -109,7 +119,7 @@ function Payments() {
                 setModalPaymentChange(false);
                 setExpenseDataSelected({});
                 setRowClicked(null);
-            }} contentLabel={"Payment Configuration"} expenseDataSelected={expenseDataSelected} setExpenseDataSelected={setExpenseDataSelected} fetchData={fetchData} />
+            }} contentLabel={"Payment Configuration"} expenseDataSelected={expenseDataSelected} setExpenseDataSelected={setExpenseDataSelected} fetchData={fetchData} t={t} />
         </article>
     );
 }

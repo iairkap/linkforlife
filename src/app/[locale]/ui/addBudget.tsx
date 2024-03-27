@@ -24,9 +24,10 @@ interface Props {
     refreshData: any;
     totalPaid: number;
     totalAmount: number;
+    t: (key: string) => string;
 }
 
-function AddBudget({ expenseData, weddings, refreshData, totalPaid, totalAmount }: Props) {
+function AddBudget({ expenseData, weddings, refreshData, totalPaid, totalAmount, t }: Props) {
 
     const [budget, setBudget] = useState("");
 
@@ -68,28 +69,28 @@ function AddBudget({ expenseData, weddings, refreshData, totalPaid, totalAmount 
             <div className='card-container'>
                 <span className='span'>+</span>
                 <div className='fila-info'>
-                    <h4>Presupuesto asignado: </h4>
+                    <h4>{t("presupuestoAsignado")} </h4>
                     <h4>{moneyFormat}</h4>
                 </div>
-                <span>Indicador de gasto:</span>
+                <span>{t("indicadorDeGastos")}</span>
                 <div className='progress-bar-container'>
                     <div className='alreadypaid-percentage' style={{ width: `${paidPercentage}%` }}></div>
                     <div className="debt-percentage" style={{ width: `${amountPercentage}%` }}></div>
                 </div>
-                <span>sobre costos reales:</span>
+                <span>{t("gastosDocumentados")}</span>
                 <div className='progress-bar-container'>
                     <div className='alreadypaid-percentage' style={{ width: `${barFromPayment}%` }}></div>
                 </div>
                 <div className='fila-info'>
-                    <h4>Gastos documentados:</h4>
+                    <h4>{t("gastosDocumentados")}</h4>
                     <h4>{amountFormat}</h4>
                 </div>
                 <div className='fila-info'>
-                    <h4>Pagos efectuados:</h4>
+                    <h4>{t("pagosEfectaudos")}</h4>
                     <h4>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(totalPaid)}</h4>
                 </div>
                 <div className='fila-info'>
-                    <h4>Importe por pagar:</h4>
+                    <h4>{t("importPorPagar")}</h4>
                     <h4>{dueFormat}</h4>
                 </div>
 

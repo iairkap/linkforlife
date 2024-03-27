@@ -80,42 +80,42 @@ function formInvitationCard({ invitationCard, weddings, credits }: any) {
                 <article className='article-container-text'>
                     <div className='input-container'>
                         <div className="input-containerBisaBis">
-                            <InputField placeholder={"Name"} value={name} name='name' onChange={(e) => setName(e.target.value)} type="text" />
+                            <InputField placeholder={t("name")} value={name} name='name' onChange={(e) => setName(e.target.value)} type="text" />
                         </div>
                     </div>
                     <div className='input-container'>
                         <div className="input-containerBisaBis">
-                            <InputField placeholder={"Last Name"} value={lastName} name='lastName' onChange={(e) => setLastName(e.target.value)} type="text" />
+                            <InputField placeholder={t("lastName")} value={lastName} name='lastName' onChange={(e) => setLastName(e.target.value)} type="text" />
                         </div>
                     </div>
                     <div className='input-container'>
                         <div className="input-containerBisaBis">
-                            <InputField placeholder={"Fiancee's Name"} value={partnerName} name="Fiancee's Name" onChange={(e) => setPartnerName(e.target.value)} type="text" />
+                            <InputField placeholder={t("partnerName")} value={partnerName} name="Fiancee's Name" onChange={(e) => setPartnerName(e.target.value)} type="text" />
                         </div>
                     </div>
                     <div className='input-container'>
                         <div className="input-containerBisaBis">
-                            <InputField placeholder={"Fiancee's Last Name"} value={partnerLastName} name="Fiancee's Name" onChange={(e) => setPartnerLastName(e.target.value)} type="text" />
+                            <InputField placeholder={t("partnerLastName")} value={partnerLastName} name="Fiancee's Name" onChange={(e) => setPartnerLastName(e.target.value)} type="text" />
                         </div>
                     </div>
-                    <div className='input-container'>
-                        <div className="input-containerBisaBis">
+                    <div className='input-container' style={{ width: "100%" }}>
+                        <div className="input-containerBisaBis" style={{ width: "100%" }}>
                             <ReactDayPicker date={weddingDate} onChange={(date: any) => setWeddingDate(date)} />
                         </div>
                     </div>
                     <div className='input-container'>
                         <div className="input-containerBisaBis">
-                            <InputField placeholder={"Wedding starting hour"} value={weddingTime} name="Wedding starting hour" onChange={(e) => setWeddingTime(e.target.value)} type="text" />
+                            <InputField placeholder={t("weddingTime")} value={weddingTime} name="Wedding starting hour" onChange={(e) => setWeddingTime(e.target.value)} type="text" />
                         </div>
                     </div>
                     <div className='input-container'>
                         <div className="input-containerBisaBis">
-                            <InputField placeholder={"Wedding Place"} value={weddingPlace} name="Wedding Place" onChange={(e) => setWeddingPlace(e.target.value)} type="text" />
+                            <InputField placeholder={t("weddingPlace")} value={weddingPlace} name="Wedding Place" onChange={(e) => setWeddingPlace(e.target.value)} type="text" />
                         </div>
                     </div>
                     <div className='input-container'>
                         <div className="input-containerBisaBis">
-                            <InputField placeholder={"Comments"} value={comments} name="Comments" onChange={(e) => setComments(e.target.value)} type="text" />
+                            <InputField placeholder={t("comments")} value={comments} name="Comments" onChange={(e) => setComments(e.target.value)} type="text" />
                         </div>
                     </div>
                 </article>

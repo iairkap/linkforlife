@@ -24,9 +24,11 @@
   "DashboardHeaderDates": { "date": "תאריך תתונה" },
   "DashboardStats": {
     "invitedBy": "הוזמן על ידי",
-    "totalInvited": "סה\"כ מוזמנים",
+    "e": "סה\"כ מוזמנים",
     "attending": "מגיעים",
-    "notAttending": "לא מגיעים"
+    "notAttending": "לא מגיעים",
+    "guest": "אורח",
+    "notConfirmed": "לא מאשרים"
   },
   "DashboardGroups": {
     "groups": "קבותזות",
@@ -47,7 +49,14 @@
     "invitedBy": "הוזמן על ידי",
     "specialRole": "תפקיד מיוחד",
     "save": "שמור והוסף לרשימה",
-    "other": "הוסף קבוצה חדשה"
+    "other": "הוסף קבוצה חדשה",
+    "child": "ילד",
+    "addOtherChildren": "הוסף ילדים נוספים",
+    "group": "קבוצה",
+    "oneGuest": "אורח אחד",
+    "couple": "זוג",
+    "family": "משפחה",
+    "guest": "אורח"
   },
   "RSVPTABLE": {
     "name": "שם",
@@ -122,6 +131,14 @@
     "NoCredits": "אין קרדיטים",
     "personalizaLosDatosDeLasInvitaciones": "התאמת נתוני ההזמנה",
     "send": "שלח",
+    "name": "שם",
+    "lastName": "שם משפחה",
+    "partnerName": "שם בן זוג",
+    "partnerLastName": "שם משפחה של בן זוג",
+    "weddingDate": "תאריך חתונה",
+    "weddingTime": "שעת חתונה",
+    "weddingPlace": "מקום חתונה",
+    "comments": "הערות",
     "invitationSent": "ההזמנה בוצעה בהצלחה, המעצבים שלנו יעבדו על ההזמנה וישלחו לך בתוך 48 שעות הקרובות."
   },
   "ModalNotification": {
@@ -181,6 +198,11 @@
     "dontHaveAnAccount": "אין לך חשבון?",
     "signUp": "הרשמה"
   },
+  "TableDashboard": {
+    "SittingPlan": "תוכנית שולחנות",
+    "table": "שולחן",
+    "viewAll": "הצג הכל"
+  },
   "ContactForm": {
     "contactUs": "צור קשר",
     "name": "שם",
@@ -188,5 +210,68 @@
     "message": "הודעה",
     "send": "שלח",
     "span": "אנחנו כאן כדי לעזור לך לתכנן את החתונה של החלומות שלך! אנא השאר לנו הודעה ונחזור אליך בהקדם האפשרי"
+  },
+  "DashboardupcomingPayment": {
+    "upcomingPayments": "תשלומים קרובים",
+    "seeMore": "ראה עוד",
+    "expense": "הוצאה"
+  },
+  "tablePage": {
+    "weddingTable": "שולחן חתונה",
+    "addTable": "הוסף שולחן",
+    "download": "הורד",
+    "delete": "מחק",
+    "filter": "סנן",
+    "addGuest": "הוסף אורח",
+    "filterByGroups": "סנן לפי קבוצות"
+  },
+  "createGroup": {
+    "createGroup": "צור קבוצה",
+    "groupName": "שם קבוצה",
+    "addOtherGroup": "הוסף קבוצה חדשה",
+    "save": "שמור"
+  },
+  "Payments": {
+    "presupuestoAsignado": "תקציב מוקצה:",
+    "indicadorDeGastos": "מחוון הוצאות",
+    "gastosDocumentados": "הוצאות מתועדות",
+    "pagosEfectaudos": "תשלומים שבוצעו",
+    "importPorPagar": "סכום לתשלום",
+    "settings": "הגדרות",
+    "addExpense": "הוסף הוצאה",
+    "add": "הוסף",
+    "pleaseChooseACategoryd": "בבקשה בחר קטגוריה"
+  },
+  "ModalAddExpense": {
+    "addExpense": "הוסף הוצאה",
+    "name": "שם",
+    "amount": "סכום כולל",
+    "date": "תאריך",
+    "save": "שמור",
+    "description": "תיאור",
+    "pleaseChooseACategoryd": "בבקשה בחר קטגוריה",
+    "other": "אחר",
+    "enterOtherCategory": "הכנס קטגוריה חדשה",
+    "costo": "עלות",
+    "dueDate": "תאריך יעד",
+    "monto": "סכום",
+    "agregarPago": "הוסף תשלום",
+    "agregarInstallment": "הוסף תשלום",
+    "generalExpense": "הוצאה כללית"
+  },
+  "DatePickerMaterialUI": {
+    "weddingDate": "תאריך חתונה"
+  },
+  "tablePayment": {
+    "itemName": "שם פריט",
+    "due": "לתשלום",
+    "alreadyPaid": "כבר שולם",
+    "total": "סה\"כ",
+    "installmentsDueDate": "תאריך יעד"
+  },
+  "InvitationPage": {
+    "remainingCredits": "קרדיטים נותרים",
+    "free": "חינם",
+    "edit": "ערוך"
   }
 }

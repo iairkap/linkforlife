@@ -102,6 +102,7 @@ function AddExpense({ isOpen, contentLabel, onRequestClose, refreshData, onReque
                         />
 
                         <select
+                            className='my-input'
                             name="categories"
                             id="categories"
                             value={form.categories}
@@ -110,17 +111,17 @@ function AddExpense({ isOpen, contentLabel, onRequestClose, refreshData, onReque
                                 handleCategoryChange(e);
                             }}
                         >
-                            <option value="">Please choose a Categorie</option>
+                            <option value="">{t("pleaseChooseACategoryd")}</option>
                             {
                                 categories.map((categorie, index) => {
                                     return <option key={index} value={categorie}>{categorie}</option>
                                 })
                             }
-                            <option value="other">other</option>
+                            <option value="other">{t("other")}</option>
                         </select>
                         {isOther && (
 
-                            <InputField value={otherCategory} type={"text"} onChange={(e) => setOtherCategory(e.target.value)} placeholder="Enter other category" />
+                            <InputField value={otherCategory} type={"text"} onChange={(e) => setOtherCategory(e.target.value)} placeholder={t("enterOtherCategory")} />
 
 
                         )}

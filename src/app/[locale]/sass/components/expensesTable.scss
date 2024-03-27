@@ -12,6 +12,19 @@ table {
   border-spacing: 0;
   margin-left: 5%;
 }
+
+.table.rtl {
+  text-align: right;
+}
+
+.tableHe {
+  width: 80%;
+  text-align: left;
+  margin: 0px;
+  padding: 0px;
+  border-spacing: 0;
+  margin-right: 5%;
+}
 .th {
   margin: 0px;
   padding: 1rem 1rem;

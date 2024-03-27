@@ -13,9 +13,10 @@ interface ExpenseDataProps {
     expenseDataSelected: any;
     setExpenseDataSelected: (value: any) => void; // 
     fetchData: () => void;
+    t: (key: string) => string;
 }
 
-function ModalPaymentChange({ isOpen, onRequestClose, contentLabel, expenseDataSelected, setExpenseDataSelected, fetchData }: ModalType & ExpenseDataProps) {
+function ModalPaymentChange({ isOpen, onRequestClose, contentLabel, expenseDataSelected, setExpenseDataSelected, fetchData, }: ModalType & ExpenseDataProps) {
 
 
     const [payment, setPayment] = useState(false);
@@ -60,6 +61,8 @@ function ModalPaymentChange({ isOpen, onRequestClose, contentLabel, expenseDataS
     }
 
     const label = payment ? "Guardar" : "Agregar pago";
+
+
 
 
 
@@ -133,7 +136,7 @@ function ModalPaymentChange({ isOpen, onRequestClose, contentLabel, expenseDataS
                 {!payment &&
                     <article className='layoutbis'>
                         <div className='fila'>
-                            <h4>Costo:</h4>
+                            <h4>{t("costo")}</h4>
                             <section className='absolute'>
                                 <div className='place-holder-money'>
                                     <span>$</span>
@@ -150,14 +153,14 @@ function ModalPaymentChange({ isOpen, onRequestClose, contentLabel, expenseDataS
                         </div>
 
                         <div className='fila'>
-                            <h4>Vencimiento</h4>
+                            <h4>{t("dueDate")}</h4>
                             <ReactDayPicker date={form.paymentDate}
                                 onChange={(date: any) => updateFormData("paymentDate", date)}
                             />
                         </div>
                         <div className='buttoncontainer'>
-                            <Button label={"Agregar Pago"} onClick={handleClick} className='button-d' />
-                            <Button label={"GENERAL EXPENSE"} onClick={handleSubmit} className='button-c' />
+                            <Button label={t("agregarPago")} onClick={handleClick} className='button-d' />
+                            <Button label={t("generalExpense")} onClick={handleSubmit} className='button-c' />
                         </div>
                     </article>
                 }
@@ -165,7 +168,7 @@ function ModalPaymentChange({ isOpen, onRequestClose, contentLabel, expenseDataS
                     payment &&
                     <article className='layoutbis'>
                         <div className='fila'>
-                            <h4>Monto:</h4>
+                            <h4>{t("monto")}</h4>
                             <section className='absolute'>
                                 <div className='place-holder-money'>
                                     <span>$</span>
@@ -180,7 +183,7 @@ function ModalPaymentChange({ isOpen, onRequestClose, contentLabel, expenseDataS
                                 />
                             </section>
                         </div>
-                        <Button label={"agregarInstallment"} onClick={handleUpdateInstallment} className='button-d' />
+                        <Button label={t("agregarInstallment")} onClick={handleUpdateInstallment} className='button-d' />
 
 
 

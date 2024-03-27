@@ -12,7 +12,7 @@ function AddInvOnePerson({ name, setName, lastName, setLastName, email, setEmail
 
     return (
         <div>
-            <span>Single Guest</span>
+            <span>{t("oneGuest")}</span>
             <article className="layoutModalAddInv">
                 <InputField
                     value={name}

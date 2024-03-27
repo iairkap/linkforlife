@@ -1,6 +1,6 @@
 import React from 'react';
 
-function TableFilter({ setIsOpenAddInv }: { setIsOpenAddInv: (arg0: boolean) => void; }) {
+function TableFilter({ setIsOpenAddInv, t }: { setIsOpenAddInv: (arg0: boolean) => void; t: (key: string) => string; }) {
     return (
         <article className='button-filter-container'>
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
@@ -8,11 +8,11 @@ function TableFilter({ setIsOpenAddInv }: { setIsOpenAddInv: (arg0: boolean) => 
                 <span className="material-symbols-outlined">
                     tune
                 </span>
-                Filter
+                {t("filter")}
             </button>
             <div className='dividier'></div>
             <button className='button-filter-table' onClick={() => setIsOpenAddInv(true)}>
-                + Add Guest
+                {t("addGuest")} +
             </button>
         </article>
     );

@@ -8,10 +8,11 @@ import axios from 'axios';
 interface Props {
     setIsOpen: (isOpen: boolean) => void;
     tableData: TableData[];
+    t: (key: string) => string;
 }
 
 
-function buttonContainerTablesHeader({ setIsOpen, tableData }: Props) {
+function buttonContainerTablesHeader({ setIsOpen, tableData, t }: Props) {
 
     const classNameOptions = tableData.length === 0 ? 'button-container-header-table-disabled' : 'button-container-header-tableActive';
 
@@ -39,10 +40,10 @@ function buttonContainerTablesHeader({ setIsOpen, tableData }: Props) {
         <div className='button-container-header-table'>
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
-            <button className={classNameOptions} onClick={() => setIsOpen(true)}>Add Table</button>
+            <button className={classNameOptions} onClick={() => setIsOpen(true)}>{t("addTable")}</button>
             <button className={classNameOptions}
                 onClick={handleDownloadClick}
-            >Download</button>
+            >{t("download")}</button>
             <button className={classNameOptions}>
                 <span className="material-symbols-outlined">
                     delete

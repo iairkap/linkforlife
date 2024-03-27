@@ -24,7 +24,7 @@
   "DashboardHeaderDates": { "date": "Fecha de Casamiento" },
   "DashboardStats": {
     "invitedBy": "Invitados Por",
-    "totalInvited": "Total Invitados",
+    "e": "Total Invitados",
     "attending": "Asistirán",
     "notAttending": "No Asistirán",
     "guest": "Invitados",
@@ -50,7 +50,14 @@
     "invitedBy": "Invitado Por",
     "specialRole": "Rol Especial",
     "save": "Guardar",
-    "other": "Agregar un nuevo Grupo"
+    "other": "Agregar un nuevo Grupo",
+    "child": "Niño",
+    "addOtherChildren": "Agregar otro niño",
+    "group": "Grupo",
+    "oneGuest": "Un Invitado",
+    "couple": "Pareja",
+    "family": "Familia",
+    "guest": "Invitado"
   },
   "RSVPTABLE": {
     "name": "Nombre",
@@ -82,7 +89,16 @@
     "name": "Nombre",
     "amount": "Total",
     "date": "Fecha",
-    "save": "Guardar"
+    "save": "Guardar",
+    "description": "Descripción",
+    "pleaseChooseACategoryd": "Por favor elija una categoría",
+    "other": "Otro",
+    "enterOtherCategory": "Ingrese otra categoría",
+    "costo": "Costo: ",
+    "monto": "Monto: ",
+    "agregarPago": "Agregar Pago",
+    "agregarInstallment": "Agregar Cuota",
+    "generalExpense": "Gasto General"
   },
   "SignUp": {
     "email": "Email",
@@ -129,6 +145,14 @@
     "NoCredits": "No tienes créditos para obtener un diseño de invitacion gratis",
     "personalizaLosDatosDeLasInvitaciones": "Personaliza los datos de las invitaciones",
     "send": "Enviar",
+    "name": "Nombre",
+    "lastName": "Apellido",
+    "partnerName": "Nombre de tu pareja",
+    "partnerLastName": "Apellido de tu pareja",
+    "weddingDate": "Fecha de Casamiento",
+    "weddingTime": "Hora de Casamiento",
+    "weddingPlace": "Lugar de Casamiento",
+    "comments": "Comentarios",
     "invitationSent": "Pedido realizado con éxito, nuestros diseñadores van a estar trabajando en la invitación y te la enviarán en las próximas 48 horas."
   },
   "ModalNotification": {
@@ -189,6 +213,11 @@
     "dontHaveAnAccount": "No tienes una cuenta?",
     "signUp": "Registrarse"
   },
+  "TableDashboard": {
+    "SittingPlan": "Distribución de Mesas",
+    "table": "Mesa",
+    "viewAll": "Ver Todo"
+  },
 
   "ContactForm": {
     "contactUs": "Contactanos! ",
@@ -197,5 +226,49 @@
     "message": "Mensaje",
     "send": "Enviar",
     "span": "¡Estamos aquí para ayudarte a planificar tu boda soñada! Por favor, déjanos un mensaje y te responderemos lo antes posible."
+  },
+  "DashboardupcomingPayment": {
+    "upcomingPayments": "Próximos Pagos",
+    "seeMore": "Ver más",
+    "expense": "Gasto"
+  },
+  "tablePage": {
+    "weddingTable": "Distribución de Mesas de:",
+    "addTable": "Agregar Mesa",
+    "download": "Descargar",
+    "delete": "Eliminar",
+    "addGuest": "Agregar Invitado",
+    "filterByGroups": "Filtrar por Grupos"
+  },
+  "createGroup": {
+    "createGroup": "Crear Grupo",
+    "groupName": "Nombre del Grupo",
+    "addOtherGroup": "Agregar otro Grupo",
+    "save": "Guardar"
+  },
+  "Payments": {
+    "presupuestoAsignado": "Presupuesto Asignado:",
+    "indicadorDeGastos": "Indicador de Gastos",
+    "gastosDocumentados": "Gastos Documentados",
+    "pagosEfectaudos": "Pagos Efectuados",
+    "importPorPagar": "Importe por Pagar",
+    "settings": "Configuración",
+    "addExpense": "Agregar Gasto",
+    "add": "Agregar"
+  },
+  "DatePickerMaterialUI": {
+    "weddingDate": "Fecha de Casamiento"
+  },
+  "tablePayment": {
+    "itemName": "Nombre del Item",
+    "due": "Vencimiento",
+    "alreadyPaid": "Ya Pagado",
+    "total": "Total",
+    "installmentsDueDate": "Fecha de Vencimiento de Cuotas"
+  },
+  "InvitationPage": {
+    "remainingCredits": "Creditos Restantes",
+    "free": "Gratis",
+    "edit": "Editar"
   }
 }
